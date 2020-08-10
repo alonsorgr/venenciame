@@ -57,3 +57,7 @@ psql_test: ## Arranca una consola SQL en la BD de pruebas
 
 issues:    ## Actualiza incidencias en GitHub
 	cd guia && make
+
+
+theme:	   ## Actualiza el tema Bootstrap
+	cd /home/alonso/Web/bootswatch && grunt swatch:materia --force
