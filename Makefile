@@ -61,3 +61,6 @@ issues:    ## Actualiza incidencias en GitHub
 
 theme:	   ## Actualiza el tema Bootstrap
 	cd /home/alonso/Web/bootswatch && grunt swatch:materia --force
+
+i18n:	   ## Actualiza las traducciones
+	./yii message/extract @app/config/i18n.php
