@@ -8,6 +8,7 @@
 
 namespace app\helpers;
 
+use kartik\dialog\Dialog;
 use yii\bootstrap4\Html;
 
 /**
