@@ -52,6 +52,9 @@ $this->title = Yii::$app->name;
             'collapseOptions' => [
                 'class' => 'justify-content-end',
             ],
+            'innerContainerOptions' => [
+                'class' => 'container-fluid',
+            ]
         ]);
         echo Nav::widget([
             'options' => ['class' => 'navbar-nav'],
@@ -72,7 +75,7 @@ $this->title = Yii::$app->name;
         NavBar::end();
         ?>
 
-        <div class="container">
+        <div class="container-fluid">
             <?= Breadcrumbs::widget([
                 'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
             ]) ?>
