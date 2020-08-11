@@ -22,6 +22,8 @@ $this->registerJsFile("@web/js/effects.js", [
 
 $this->registerJs("loading()", View::POS_READY);
 
+$this->title = Yii::$app->name;
+
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
