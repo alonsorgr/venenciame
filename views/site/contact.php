@@ -36,12 +36,18 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
         </div>
     <?php else : ?>
-        <div class="lead">
-            <?= Yii::t('app', 'Si tiene consultas comerciales u otras preguntas, complete el siguiente formulario para comunicarse con nosotros.
-             Gracias.'); ?>
-        </div>
         <div class="row my-4 justify-content-between">
-            <div class="col-xl-5">
+            <div class="col-xl-6">
+                <div class="row display-4">
+                    <div class="col">
+                        <?= Yii::t('app', 'Contacta con {appname}', [
+                            'appname' => Yii::$app->name,
+                        ]); ?>
+                        <div class="lead my-4">
+                            <?= Yii::t('app', 'Si tiene consultas comerciales u otras preguntas, complete el siguiente formulario para comunicarse con nosotros.'); ?>
+                        </div>
+                    </div>
+                </div>
                 <?php $form = ActiveForm::begin([
                     'id' => 'contact-form',
                 ]); ?>
@@ -77,7 +83,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'title' => Yii::t('app', 'Introduzca el texto de la imagen superior'),
                     ],
                 ]); ?>
-                <div class="form-group ">
+                <div class="form-group">
                     <?= Html::submitButton(Yii::t('app', 'Enviar'), [
                         'class' => 'btn btn-primary mt-3',
                         'name' => 'contact-button',
