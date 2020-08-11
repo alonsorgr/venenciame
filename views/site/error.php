@@ -8,20 +8,32 @@
 use yii\helpers\Html;
 
 $this->title = $name;
+
 ?>
-<div class="site-error">
+<div class="site-error mt-5" id="site-error">
+    <div class="container text-center">
+        <div class="error-container mb-4">
+            <?= Html::img('@web/img/site/glass.svg', [
+                'class' => 'error-anim',
+                'title' => Yii::t('app', 'Imagen animada de copa de vino'),
+                'atl' => Yii::t('app', 'Imagen animada de copa de vino'),
+            ]) ?>
+        </div>
 
-    <h1><?= Html::encode($this->title) ?></h1>
+        <?= Html::tag('h1', Html::encode($this->title), [
+            'class' => 'display-4',
+            'title' => Yii::t('app', 'Mensaje de error'),
+        ]) ?>
 
-    <div class="alert alert-danger">
-        <?= nl2br(Html::encode($message)) ?>
+        <?= Html::tag('p', nl2br(Html::encode($message)), [
+            'class' => 'lead',
+            'title' => Yii::t('app', 'Descripción del error'),
+        ]) ?>
+
+        <?= Html::a(Yii::t('app', 'Ir a la página principal'), ['site/index'], [
+            'class' => 'btn btn-primary',
+            'title' => Yii::t('app', 'Ir a la página principal'),
+        ]) ?>
+
     </div>
-
-    <p>
-        The above error occurred while the Web server was processing your request.
-    </p>
-    <p>
-        Please contact us if you think this is a server error. Thank you.
-    </p>
-
 </div>
