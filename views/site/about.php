@@ -14,9 +14,11 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="row my-4 justify-content-between">
         <div class="col-xl-8">
             <div class="row display-4">
-                <?= Yii::t('app', 'Acerca de {appname}', [
-                    'appname' => Yii::$app->name,
-                ]); ?>
+                <div class="col mb-4">
+                    <?= Yii::t('app', 'Acerca de {appname}', [
+                        'appname' => Yii::$app->name,
+                    ]); ?>
+                </div>
             </div>
             <?= Html::tag('p', Yii::t('app', '{title}' . ' se presenta no sólo como una tienda on-line distribuidora de vinos focalizada en productos del marco de Jerez, si no como una forma de acercar nuestra vinicultura a todo el mundo, ya que se trata de una aplicación web que dispone de diferentes secciones, para que además de poner al alcance el producto al cliente, éstos puedan acceder a su descripción y a los perfiles de cada bodega que lo elaboran para así conocer mejor de donde viene el producto.', [
                 'title' => Html::encode(Yii::$app->name),
