@@ -2,7 +2,7 @@
 
 return [
     'adminEmail' => 'soporte.venenciame@gmail.com',
-    'senderEmail' => 'venenciame',
+    'senderEmail' => 'soporte.venenciame@gmail.com',
     'senderName' => 'Vennénciame',
     'smtpUsername' => 'soporte.venenciame@gmail.com',
 ];
