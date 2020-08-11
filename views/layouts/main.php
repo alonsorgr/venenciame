@@ -9,6 +9,7 @@ use yii\bootstrap4\Nav;
 use yii\bootstrap4\NavBar;
 use yii\bootstrap4\Breadcrumbs;
 use app\assets\AppAsset;
+use yii\helpers\Url;
 use yii\web\View;
 
 AppAsset::register($this);
@@ -78,11 +79,63 @@ $this->registerJs("loading()", View::POS_READY);
         </div>
     </div>
 
-    <footer class="footer">
+    <footer class="mb-5">
         <div class="container">
-            <p class="float-left">&copy; My Company <?= date('Y') ?></p>
-
-            <p class="float-right"><?= Yii::powered() ?></p>
+            <div class="row text-center d-flex justify-content-center mb-3">
+                <div class="col-md-3 mb-3">
+                    <?= Html::a(Yii::t('app', 'Acerca de nosotros'), Url::to(['site/about']), [
+                        'id' => 'about-us',
+                        'class' => 'h6 text-uppercase font-weight-bold font-transition-small',
+                        'title' => Yii::t('app', 'Lea más acerca de nuestra empresa'),
+                    ]) ?>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <?= Html::a(Yii::t('app', 'Nuestros vinos'), '#!', [
+                        'id' => 'our-wines',
+                        'class' => 'h6 text-uppercase font-weight-bold font-transition-small',
+                        'title' => Yii::t('app', 'Navegue entre nuestra gran colección de vinos'),
+                    ]) ?>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <?= Html::a(Yii::t('app', 'Ayuda'), '#!', [
+                        'id' => 'help',
+                        'class' => 'h6 text-uppercase font-weight-bold font-transition-small',
+                        'title' => Yii::t('app', 'Ir a la ayuda del sitio web'),
+                    ]) ?>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <?= Html::a(Yii::t('app', 'Contacto'), Url::to(['site/contact']), [
+                        'id' => 'contact',
+                        'class' => 'h6 text-uppercase font-weight-bold font-transition-small',
+                        'title' => Yii::t('app', 'Ir a la página de contacto'),
+                    ]) ?>
+                </div>
+            </div>
+            <div class="row d-flex text-center justify-content-center mb-md-0 mb-4">
+                <div class="col-md-9 col-12 mt-2">
+                    <p class="lead"><?= Yii::t('app', 'El proyecto "Venénciame" está enfocado a una tienda online para la venta de vinos españoles de denominación de origen, ofreciéndo un servicio a pequeñas bodegas que desean abrirse en el mercado.') ?></p>
+                </div>
+            </div>
+            <div class="row pb-3">
+                <div class="col-md-12">
+                    <div class="row d-flex text-center justify-content-center mb-md-0">
+                        <div class="col-md-8 col-12 mt-5">
+                            <i class="fab fa-facebook-f fa-lg mr-4"> </i>
+                            <i class="fab fa-twitter fa-lg mr-4"> </i>
+                            <i class="fab fa-linkedin-in fa-lg"> </i>
+                            <i class="fab fa-instagram fa-lg ml-4"> </i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="text-center">
+            <span><?= Yii::t('app', 'Desarrollado por Alonso García') ?></span>
+            <?= Html::a('Visita su perfil en GitHub', 'https://github.com/alonsorgr', [
+                'id' => 'github-link',
+                'class' => 'powered d-block',
+                'title' => Yii::t('app', 'Perfil del desarrollador en GitHub'),
+            ]) ?>
         </div>
     </footer>
     <div class="page-loader-wrapper">
