@@ -47,7 +47,7 @@ $this->title = Yii::$app->name;
             'brandLabel' => Yii::$app->name,
             'brandUrl' => Yii::$app->homeUrl,
             'options' => [
-                'class' => 'navbar-dark bg-dark navbar-expand-md fixed-top',
+                'class' => 'navbar-light bg-light navbar-expand-lg fixed-top shadow-lg',
             ],
             'collapseOptions' => [
                 'class' => 'justify-content-end',
@@ -57,7 +57,7 @@ $this->title = Yii::$app->name;
             ]
         ]);
         echo Nav::widget([
-            'options' => ['class' => 'navbar-nav'],
+            'options' => ['class' => 'navbar-nav text-uppercase'],
             'items' => [
                 ['label' => 'Home', 'url' => ['/site/index']],
                 ['label' => 'About', 'url' => ['/site/about']],
