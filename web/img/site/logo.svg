@@ -24,7 +24,7 @@
    inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)"><metadata
    id="metadata77"><rdf:RDF><cc:Work
        rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
-         rdf:resource="http://purl.org/dc/dcmitype/StillImage" /><dc:title></dc:title></cc:Work></rdf:RDF></metadata><defs
+         rdf:resource="http://purl.org/dc/dcmitype/StillImage" /><dc:title /></cc:Work></rdf:RDF></metadata><defs
    id="defs75" /><sodipodi:namedview
    pagecolor="#ffffff"
    bordercolor="#666666"
@@ -39,7 +39,7 @@
    id="namedview73"
    showgrid="false"
    inkscape:zoom="0.46092942"
-   inkscape:cx="332.65725"
+   inkscape:cx="326.02317"
    inkscape:cy="82.442123"
    inkscape:window-x="0"
    inkscape:window-y="32"
@@ -250,4 +250,5 @@
      x="494.38013"
      y="375.32861"
      style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:192px;font-family:Abydos;-inkscape-font-specification:'Abydos, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;opacity:0.98000004;fill:#232d32;fill-opacity:1">Venénciame</tspan></text>
+
 </svg>
