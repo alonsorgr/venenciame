@@ -8,7 +8,8 @@ use yii\web\Controller;
 use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
-use app\models\ContactForm;
+use app\models\forms\ContactForm;
+use yii\bootstrap4\ActiveForm;
 
 class SiteController extends Controller
 {
@@ -106,9 +107,21 @@ class SiteController extends Controller
     public function actionContact()
     {
         $model = new ContactForm();
-        if ($model->load(Yii::$app->request->post()) && $model->contact(Yii::$app->params['adminEmail'])) {
-            Yii::$app->session->setFlash('contactFormSubmitted');
 
+        if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            return ActiveForm::validate($model);
+        }
+
+        if ($model->load(Yii::$app->request->post())) {
+            if ($model->contact()) {
+                Yii::$app->session->setFlash('contactFormSubmitted');
+            } else {
+                Yii::$app->session->setFlash(
+                    'danger',
+                    Yii::t('app', 'Ocurrió un error al enviar el correo electrónico, por favor, inténtelo más tarde.')
+                );
+            }
             return $this->refresh();
         }
         return $this->render('contact', [
