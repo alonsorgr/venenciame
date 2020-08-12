@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Yii::$app->session->setFlash(
             'success',
             Yii::t('app', 'Gracias por contactar con nosotros, {username}. Nosotros responderemos a la mayor brevedad posible.', [
-                'username' => $model->name,
+                'username' => $model->name === '' ?: Yii::t('app', 'invitado'),
             ])
         ); ?>
         <div class="row d-flex justify-content-center">
@@ -50,6 +50,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 </div>
                 <?php $form = ActiveForm::begin([
                     'id' => 'contact-form',
+                    'enableAjaxValidation' => true,
                 ]); ?>
                 <?= $form->field($model, 'name')->textInput([
                     'maxlength' => true,
