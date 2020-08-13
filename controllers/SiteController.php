@@ -10,6 +10,7 @@ use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\forms\ContactForm;
 use yii\bootstrap4\ActiveForm;
+use yii\web\Cookie;
 
 class SiteController extends Controller
 {
@@ -137,5 +138,21 @@ class SiteController extends Controller
     public function actionAbout()
     {
         return $this->render('about');
+    }
+
+    /**
+     * Acción de creación de aceptación de cookies.
+     *
+     * @return Response el objeto de respuesta actual.
+     */
+    public function actionCookie()
+    {
+        Yii::$app->response->cookies->add(new Cookie([
+            'name' => 'accept-cookies',
+            'value' => '1',
+            'expire' => time() + 3600 * 24 * 365,
+            'domain' => '',
+        ]));
+        return $this->goBack();
     }
 }
