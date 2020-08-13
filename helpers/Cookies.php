@@ -38,7 +38,7 @@ class Cookies
 
         $button = Yii::t('app', 'Aceptar');
 
-        $view->registerJsFile("@web/js/bootbox.js", [
+        $view->registerJsFile("@web/js/bootbox.min.js", [
             'depends' => [
                 \yii\web\JqueryAsset::class,
             ]
