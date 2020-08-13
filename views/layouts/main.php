@@ -9,20 +9,13 @@ use yii\bootstrap4\Nav;
 use yii\bootstrap4\NavBar;
 use yii\bootstrap4\Breadcrumbs;
 use app\assets\AppAsset;
+use app\helpers\Bootstrap;
 use app\helpers\Cookies;
 use yii\helpers\Url;
-use yii\web\View;
 
 AppAsset::register($this);
+Bootstrap::loading($this);
 Cookies::init($this);
-
-$this->registerJsFile("@web/js/effects.js", [
-    'depends' => [
-        \yii\web\JqueryAsset::class,
-    ]
-]);
-
-$this->registerJs("loading()", View::POS_READY);
 
 $this->title = Yii::$app->name;
 

@@ -10,6 +10,7 @@ namespace app\helpers;
 
 use kartik\dialog\Dialog;
 use yii\bootstrap4\Html;
+use yii\web\View;
 
 /**
  * Clase auxiliar para la administración y generación de elementos Html.
@@ -54,5 +55,22 @@ class Bootstrap
             {hint}
         </div>
         EOT;
+    }
+
+    /**
+     * Regitra el efecto de carga de peticiones.
+     *
+     * @param \yii\web\View    $view   vista donde se aplicará el efecto de carga.
+     * @return void
+     */
+    public static function loading($view)
+    {
+        $view->registerJsFile("@web/js/effects.js", [
+            'depends' => [
+                \yii\web\JqueryAsset::class,
+            ]
+        ]);
+
+        $view->registerJs("loading()", View::POS_READY);
     }
 }
