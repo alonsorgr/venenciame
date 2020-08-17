@@ -7,7 +7,7 @@ use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\Response;
 use yii\filters\VerbFilter;
-use app\models\LoginForm;
+use app\models\forms\LoginForm;
 use app\models\forms\ContactForm;
 use yii\bootstrap4\ActiveForm;
 use yii\web\Cookie;
@@ -78,11 +78,21 @@ class SiteController extends Controller
         }
 
         $model = new LoginForm();
+
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
             return $this->goBack();
         }
 
         $model->password = '';
+
+        if (Yii::$app->request->isAjax) {
+            return $this->renderAjax('login', [
+                'model' => $model,
+            ]);
+        } else {
+            return $this->goBack();
+        }
+
         return $this->render('login', [
             'model' => $model,
         ]);
