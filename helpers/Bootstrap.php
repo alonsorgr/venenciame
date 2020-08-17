@@ -9,7 +9,9 @@
 namespace app\helpers;
 
 use kartik\dialog\Dialog;
+use Yii;
 use yii\bootstrap4\Html;
+use yii\bootstrap4\Modal;
 use yii\web\View;
 
 /**
@@ -38,6 +40,7 @@ class Bootstrap
             $options['type-password'] = Html::tag('i', null, [
                 'id' => 'password-input-icon',
                 'class' => 'input-group-addon password-input-icon fas fa-eye-slash',
+                'title' => Yii::t('app', 'Mostrar u ocultar contraseña'),
             ]) :
             $options['type-password'] = '';
 
@@ -60,10 +63,10 @@ class Bootstrap
     /**
      * Regitra el efecto de carga de peticiones.
      *
-     * @param \yii\web\View    $view   vista donde se aplicará el efecto de carga.
+     * @param \yii\web\View    $view   vista donde se registrará la función.
      * @return void
      */
-    public static function loading($view)
+    public static function registerLoadingEffect($view)
     {
         $view->registerJsFile("@web/js/effects.js", [
             'depends' => [
@@ -72,5 +75,43 @@ class Bootstrap
         ]);
 
         $view->registerJs("loading()", View::POS_READY);
+    }
+
+    /**
+     * Registra el diseño de los Tooltips de Bootstrap.
+     *
+     * @param \yii\web\View     $view   vista donde se registrará la función.
+     * @return void
+     */
+    public static function registerTooltip($view)
+    {
+        $js = <<<EOT
+                $(function () {
+                    $('*').tooltip({
+                        'delay': { show: 1000, hide: 0 }
+                    });
+                });
+            EOT;
+        $view->registerJs($js);
+    }
+
+    /**
+     * Genera una ventana modal (widget) en respurestas AJAX.
+     *
+     * @param   array                   $options    opciones de configuración de la ventana modal {id, image, title}.
+     * @return  \yii\bootstrap4\Widget              widget de ventana modal.
+     */
+    public static function modal($options)
+    {
+        Modal::begin([
+            'id' => $options['id'],
+            'title' => '<i class="' . $options['image'] . ' mr-3 ml-2"></i>' . $options['title'],
+            'size' => !isset($options['size']) ?: $options['size'],
+            'clientOptions' => ['method' => 'POST'],
+        ]);
+        echo Html::tag('div', null, [
+            'id' => 'content',
+        ]);
+        Modal::end();
     }
 }

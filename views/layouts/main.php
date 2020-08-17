@@ -11,10 +11,12 @@ use yii\bootstrap4\Breadcrumbs;
 use app\assets\AppAsset;
 use app\helpers\Bootstrap;
 use app\helpers\Cookies;
+use app\helpers\NavItem;
 use yii\helpers\Url;
 
 AppAsset::register($this);
-Bootstrap::loading($this);
+Bootstrap::registerLoadingEffect($this);
+Bootstrap::registerTooltip($this);
 Cookies::init($this);
 
 $this->title = Yii::$app->name;
@@ -58,19 +60,7 @@ $this->title = Yii::$app->name;
         ]);
         echo Nav::widget([
             'options' => ['class' => 'navbar-nav text-uppercase'],
-            'items' => [
-                ['label' => 'Home', 'url' => ['/site/index']],
-                ['label' => 'About', 'url' => ['/site/about']],
-                ['label' => 'Contact', 'url' => ['/site/contact']],
-                Yii::$app->user->isGuest ? (['label' => 'Login', 'url' => ['/site/login']]) : ('<li class="nav-item">'
-                    . Html::beginForm(['/site/logout'], 'post')
-                    . Html::submitButton(
-                        'Logout (' . Yii::$app->user->identity->username . ')',
-                        ['class' => 'btn btn-dark nav-link logout']
-                    )
-                    . Html::endForm()
-                    . '</li>')
-            ],
+            'items' => NavItem::items(),
         ]);
         NavBar::end();
         ?>
@@ -83,7 +73,11 @@ $this->title = Yii::$app->name;
             <?= $content ?>
         </div>
     </div>
-
+    <?php Bootstrap::modal([
+        'id' => 'modal-login',
+        'image' => 'fas fa-sign-in-alt',
+        'title' => Yii::t('app', 'Conectarse'),
+    ]) ?>
     <footer class="mb-5">
         <div class="container">
             <div class="row text-center d-flex justify-content-center mb-3">

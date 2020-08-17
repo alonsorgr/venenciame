@@ -4,7 +4,7 @@
  * @param {*} $input    selector id para el elemento input.
  */
 function passwordInput(input) {
-    $($('#password-input').on('click', function (event) {
+    $($('#password-input-icon').on('click', function (event) {
         event.preventDefault();
         if ($('#'.concat(input)).attr("type") == "text") {
             $('#'.concat(input)).attr('type', 'password');

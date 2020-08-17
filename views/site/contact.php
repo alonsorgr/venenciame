@@ -88,7 +88,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <?= Html::submitButton(Yii::t('app', 'Enviar'), [
                         'class' => 'btn btn-primary mt-3',
                         'name' => 'contact-button',
-                        'title' => Yii::t('app', 'IEnviar el formulario'),
+                        'title' => Yii::t('app', 'Enviar el formulario'),
                     ]); ?>
                 </div>
                 <?php ActiveForm::end(); ?>
