@@ -2,17 +2,17 @@
 
 namespace app\controllers;
 
+use app\helpers\Cookies;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\Response;
 use yii\filters\VerbFilter;
+use yii\bootstrap4\ActiveForm;
+use app\models\User;
 use app\models\forms\LoginForm;
 use app\models\forms\ContactForm;
 use app\models\forms\RegisterForm;
-use app\models\User;
-use yii\bootstrap4\ActiveForm;
-use yii\web\Cookie;
 
 class SiteController extends Controller
 {
@@ -59,9 +59,9 @@ class SiteController extends Controller
     }
 
     /**
-     * Displays homepage.
+     * Acción de renderizado vista de inicio del sitio.
      *
-     * @return string
+     * @return yii\web\Response | string    el resultado de la representación.
      */
     public function actionIndex()
     {
@@ -69,9 +69,9 @@ class SiteController extends Controller
     }
 
     /**
-     * Login action.
+     * Acción de renderizado de vista de conexión de usuarios.
      *
-     * @return Response|string
+     * @return yii\web\Response | string    el objeto de respuesta actual | el resultado de la representación.
      */
     public function actionLogin()
     {
@@ -94,16 +94,12 @@ class SiteController extends Controller
         } else {
             return $this->goBack();
         }
-
-        return $this->render('login', [
-            'model' => $model,
-        ]);
     }
 
     /**
-     * Logout action.
+     * Acción de renderizado de vista de desconexión de usuarios.
      *
-     * @return Response
+     * @return yii\web\Response | string    el objeto de respuesta actual | el resultado de la representación.
      */
     public function actionLogout()
     {
@@ -115,6 +111,11 @@ class SiteController extends Controller
         }
     }
 
+    /**
+     * Acción de renderizado de vista de registro de usuarios.
+     *
+     * @return yii\web\Response | string    el objeto de respuesta actual | el resultado de la representación.
+     */
     public function actionRegister()
     {
         $model = new RegisterForm();
@@ -143,6 +144,11 @@ class SiteController extends Controller
         return $this->goHome();
     }
 
+    /**
+     * Acción de renderizado de vista de activación registro de usuarios.
+     *
+     * @return yii\web\Response    el objeto de respuesta actual.
+     */
     public function actionActivateAccount($id, $auth_key)
     {
         $model = User::find()->where(['id' => $id])->one();
@@ -167,9 +173,9 @@ class SiteController extends Controller
     }
 
     /**
-     * Displays contact page.
+     * Acción de renderizado de vista de contacto.
      *
-     * @return Response|string
+     * @return yii\web\Response | string    el objeto de respuesta actual | el resultado de la representación.
      */
     public function actionContact()
     {
@@ -197,9 +203,9 @@ class SiteController extends Controller
     }
 
     /**
-     * Displays about page.
+     * Acción de renderizado de vista de acerca de.
      *
-     * @return string
+     * @return string    el resultado de la representación.
      */
     public function actionAbout()
     {
@@ -213,12 +219,7 @@ class SiteController extends Controller
      */
     public function actionCookie()
     {
-        Yii::$app->response->cookies->add(new Cookie([
-            'name' => 'accept-cookies',
-            'value' => '1',
-            'expire' => time() + 3600 * 24 * 365,
-            'domain' => '',
-        ]));
+        Cookies::accept();
         return $this->goBack();
     }
 }
