@@ -84,6 +84,11 @@ $this->title = Yii::$app->name;
         'size' => 'modal-lg',
         'title' => Yii::t('app', 'Desconectarse'),
     ]) ?>
+    <?php Bootstrap::modal([
+        'id' => 'modal-register',
+        'image' => 'fas fa-sign-in-alt',
+        'title' => Yii::t('app', 'Registrarse'),
+    ]) ?>
     <footer class="mb-5">
         <div class="container">
             <div class="row text-center d-flex justify-content-center mb-3">
