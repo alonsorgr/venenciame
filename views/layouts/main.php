@@ -78,6 +78,12 @@ $this->title = Yii::$app->name;
         'image' => 'fas fa-sign-in-alt',
         'title' => Yii::t('app', 'Conectarse'),
     ]) ?>
+    <?php Bootstrap::modal([
+        'id' => 'modal-logout',
+        'image' => 'fas fa-sign-out-alt',
+        'size' => 'modal-lg',
+        'title' => Yii::t('app', 'Desconectarse'),
+    ]) ?>
     <footer class="mb-5">
         <div class="container">
             <div class="row text-center d-flex justify-content-center mb-3">

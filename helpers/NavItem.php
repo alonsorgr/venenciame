@@ -112,7 +112,7 @@ class NavItem
 
         $view = [
             'encode' => false,
-            'label' => '<i class="fas fa-user text-secondary mr-2 nav-item-icon-mt"></i>' . Yii::t('app', 'Ver perfil'),
+            'label' => '<i class="fas fa-user text-secondary mr-2"></i>' . Yii::t('app', 'Ver perfil'),
             'url' => ['user/view', 'id' => User::id()], 'post',
             'linkOptions' => [
                 'title' => Yii::t('app', 'Ver el perfil personal del usuario'),
@@ -121,7 +121,7 @@ class NavItem
 
         $update = [
             'encode' => false,
-            'label' => '<i class="fas fa-pen text-secondary mr-2 nav-item-icon-mt"></i>' . Yii::t('app', 'Editar perfil'),
+            'label' => '<i class="fas fa-pen text-secondary mr-2"></i>' . Yii::t('app', 'Editar perfil'),
             'url' => ['user/update', 'id' => User::id()], 'post',
             'linkOptions' => [
                 'title' => Yii::t('app', 'Editar el perfil personal del usuario'),
@@ -130,10 +130,14 @@ class NavItem
 
         $logout = [
             'encode' => false,
-            'label' => '<i class="fas fa-sign-out-alt text-danger mr-2 nav-item-icon-mt"></i>' . Yii::t('app', 'Cerrar sesión'),
-            'url' => ['site/logout'], 'post',
+            'label' => '<i class="fas fa-sign-out-alt text-danger mr-2"></i>' . Yii::t('app', 'Cerrar sesión'),
+            'url' => '#',
             'linkOptions' => [
                 'title' => Yii::t('app', 'Desconectarse del sitio'),
+                'class' => 'show-modal-logout',
+                'value' => Url::to(['site/logout']),
+                'data-toggle' => 'modal',
+                'data-target' => '#modal-logout',
             ],
         ];
 
