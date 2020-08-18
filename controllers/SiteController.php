@@ -286,15 +286,4 @@ class SiteController extends Controller
     {
         return $this->render('about');
     }
-
-    /**
-     * Acción de creación de aceptación de cookies.
-     *
-     * @return Response el objeto de respuesta actual.
-     */
-    public function actionCookie()
-    {
-        Cookies::accept();
-        return $this->goBack();
-    }
 }

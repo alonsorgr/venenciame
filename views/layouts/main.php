@@ -17,7 +17,6 @@ use yii\helpers\Url;
 AppAsset::register($this);
 Bootstrap::registerLoadingEffect($this);
 Bootstrap::registerTooltip($this);
-Cookies::init($this);
 
 $this->title = Yii::$app->name;
 
@@ -162,6 +161,7 @@ $this->title = Yii::$app->name;
             </div>
         </div>
     </div>
+    <?= Cookies::register(); ?>
     <?php $this->endBody() ?>
 </body>
 

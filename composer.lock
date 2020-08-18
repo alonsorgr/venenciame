@@ -4,8 +4,55 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5478e46b5adb25a858ddf1e6b2c035f4",
+    "content-hash": "c7add2b2ab9364a1764ba6318e7322e1",
     "packages": [
+        {
+            "name": "bizley/cookiemonster",
+            "version": "1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/bizley/yii2-cookiemonster.git",
+                "reference": "7368a65b7fbe56952fd50ea089e937fcc57fa77a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/bizley/yii2-cookiemonster/zipball/7368a65b7fbe56952fd50ea089e937fcc57fa77a",
+                "reference": "7368a65b7fbe56952fd50ea089e937fcc57fa77a",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": "*"
+            },
+            "require-dev": {
+                "roave/security-advisories": "dev-master"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "bizley\\cookiemonster\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Paweł Bizley Brzozowski",
+                    "email": "pawel@positive.codes"
+                }
+            ],
+            "description": "Yii extension to manage cookie warning.",
+            "keywords": [
+                "cookie",
+                "cookiemonster",
+                "privacy",
+                "warning",
+                "widget",
+                "yii2"
+            ],
+            "time": "2020-02-24T19:10:12+00:00"
+        },
         {
             "name": "bower-asset/inputmask",
             "version": "3.3.11",
