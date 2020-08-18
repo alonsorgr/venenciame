@@ -33,4 +33,18 @@ class Email
             ->setHtmlBody($options['body'])
             ->send();
     }
+
+    /**
+     * Genera un enlace en para redireccionar hacia una acción de un correo electrónico.
+     *
+     * @return array configuración de elementos del enlace de correo electrónico.
+     */
+    public static function link($options)
+    {
+        return <<<EOT
+        <h1>Venénciame</h1>
+        <p>{$options['body']}<p>
+        <a href="{$options['url']}">{$options['text']}</a>
+        EOT;
+    }
 }

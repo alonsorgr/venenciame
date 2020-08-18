@@ -8,3 +8,4 @@ function show(selector, modal) {
 
 show('.show-modal-login', '#modal-login');
 show('.show-modal-logout', '#modal-logout');
+show('.show-modal-register', '#modal-register');

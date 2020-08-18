@@ -114,4 +114,22 @@ class Bootstrap
         ]);
         Modal::end();
     }
+
+    /**
+     * Genera un elemento cabecera con líne en la posición inferior.
+     *
+     * @param   string $title   título de la cabecera.
+     * @return  string          cabecera generada con los elementos Html.
+     */
+    public static function header($title)
+    {
+        return Html::beginTag('div', [
+            'class' => 'tab-group-header',
+        ]) . Html::tag('h5', $title, [
+            'class' => 'lead',
+            'title' => Yii::t('app', $title),
+        ]) . Html::tag('hr', null, [
+            'class' => 'mt-2',
+        ]) . Html::endTag('div');
+    }
 }

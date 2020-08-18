@@ -9,6 +9,8 @@ use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\forms\LoginForm;
 use app\models\forms\ContactForm;
+use app\models\forms\RegisterForm;
+use app\models\User;
 use yii\bootstrap4\ActiveForm;
 use yii\web\Cookie;
 
@@ -111,6 +113,57 @@ class SiteController extends Controller
             Yii::$app->user->logout();
             return $this->goHome();
         }
+    }
+
+    public function actionRegister()
+    {
+        $model = new RegisterForm();
+
+        if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            return ActiveForm::validate($model);
+        }
+
+        if ($model->load(Yii::$app->request->post())) {
+            if ($model->register()) {
+                Yii::$app->session->setFlash(
+                    'success',
+                    Yii::t('app', 'Se ha registrado correctamenete, confirme su cuenta en su dirección de correo electrónico.')
+                );
+                return $this->goHome();
+            }
+        }
+
+        if (Yii::$app->request->isAjax) {
+            return $this->renderAjax('register', [
+                'model' => $model,
+            ]);
+        }
+
+        return $this->goHome();
+    }
+
+    public function actionActivateAccount($id, $auth_key)
+    {
+        $model = User::find()->where(['id' => $id])->one();
+
+        if ($model->validateAuthKey($auth_key)) {
+            $model->removeAuthKey();
+            $model->setActive();
+            if ($model->save()) {
+                Yii::$app->session->setFlash(
+                    'success',
+                    Yii::t('app', 'Su dirección de correo electrónico ha sido confirmada, ahora puede iniciar sesión.')
+                );
+                return $this->goBack();
+            } else {
+                Yii::$app->session->setFlash(
+                    'danger',
+                    Yii::t('app', 'Ocurrió un error al validar la cuenta por correo electrónico, por favor, inténtelo de nuevo.')
+                );
+            }
+        }
+        return $this->goHome();
     }
 
     /**
