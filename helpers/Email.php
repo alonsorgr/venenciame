@@ -42,9 +42,9 @@ class Email
     public static function link($options)
     {
         return <<<EOT
-        <h1>Venénciame</h1>
-        <p>{$options['body']}<p>
-        <a href="{$options['url']}">{$options['text']}</a>
+            <h1>Venénciame</h1>
+            <p>{$options['body']}<p>
+            <a href="{$options['url']}">{$options['text']}</a>
         EOT;
     }
 }

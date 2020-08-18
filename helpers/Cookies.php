@@ -12,6 +12,7 @@ use Yii;
 use yii\web\View;
 use yii\helpers\Url;
 use yii\bootstrap4\Html;
+use yii\web\Cookie;
 
 /**
  * Clase auxiliar para la administración y generación de cookies.
@@ -66,5 +67,20 @@ class Cookies
         if (!Yii::$app->getRequest()->getCookies()->getValue('accept-cookies')) {
             $view->registerJs($js, View::POS_READY);
         }
+    }
+
+    /**
+     * Genera una cookie para aceptación de términios.
+     *
+     * @return void
+     */
+    public static function accept()
+    {
+        Yii::$app->response->cookies->add(new Cookie([
+            'name' => 'accept-cookies',
+            'value' => '1',
+            'expire' => time() + 3600 * 24 * 365,
+            'domain' => '',
+        ]));
     }
 }
