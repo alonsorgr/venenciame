@@ -13,6 +13,8 @@ use app\models\User;
 use app\models\forms\LoginForm;
 use app\models\forms\ContactForm;
 use app\models\forms\RegisterForm;
+use app\models\forms\RequestPasswordForm;
+use app\models\forms\ResetPasswordForm;
 
 class SiteController extends Controller
 {
@@ -170,6 +172,79 @@ class SiteController extends Controller
             }
         }
         return $this->goHome();
+    }
+
+    /**
+     * Acción de renderizado de vista de petición de recuperación de contraseña de usuarios.
+     *
+     * @return yii\web\Response | string    el objeto de respuesta actual | el resultado de la representación.
+     */
+    public function actionRequestPassword()
+    {
+        $model = new RequestPasswordForm();
+
+        if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            return ActiveForm::validate($model);
+        }
+
+        if ($model->load(Yii::$app->request->post())) {
+            if ($model->request()) {
+                Yii::$app->session->setFlash(
+                    'success',
+                    Yii::t('app', 'Se ha enviado a su direeción de correo electrónico las instrucciones para restablecer su contraseña. Si no le ha llegado el correo electrónico, puede volver a enviarlo.')
+                );
+            } else {
+                Yii::$app->session->setFlash(
+                    'danger',
+                    Yii::t('app', 'Ocurrió un error al enviar el correo electrónico, por favor, inténtelo de nuevo.')
+                );
+            }
+        }
+
+        return $this->render('request-password', [
+            'model' => $model,
+        ]);
+    }
+
+    /**
+     * Acción de renderizado de vista de petición de restablecimiento de contraseña de usuarios.
+     *
+     * @return yii\web\Response | string    el objeto de respuesta actual | el resultado de la representación.
+     */
+    public function actionResetPassword($id, $verf_key)
+    {
+        $model = new ResetPasswordForm();
+
+        if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            return ActiveForm::validate($model);
+        }
+
+        $model->getUser($id);
+
+        if ($model->load(Yii::$app->request->post())) {
+            if ($model !== null) {
+                if ($model->user->validatePasswordVerfKey($verf_key)) {
+                    if ($model->reset()) {
+                        Yii::$app->session->setFlash(
+                            'success',
+                            Yii::t('app', 'La contraseña se modificó correctamente, conéctese con su nueva contraseña.')
+                        );
+                        return $this->goHome();
+                    }
+                } else {
+                    Yii::$app->session->setFlash(
+                        'warning',
+                        Yii::t('app', 'La dirección de correo electtrónico no se ha podido autenticar.')
+                    );
+                }
+            }
+        }
+
+        return $this->render('reset-password', [
+            'model' => $model,
+        ]);
     }
 
     /**
