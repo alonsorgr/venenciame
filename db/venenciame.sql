@@ -48,7 +48,7 @@ CREATE TABLE users
   , name            VARCHAR(32)     
   , surname         VARCHAR(32)     
   , birthdate       DATE            
-  , image           VARCHAR(255)  DEFAULT NULL
+  , image           VARCHAR(255)
   , rol_id          BIGINT        REFERENCES roles (id)
   , language_id     BIGINT        REFERENCES languages (id)
   , updated_at      TIMESTAMP(0)
