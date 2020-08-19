@@ -46,9 +46,9 @@ CREATE TABLE users
   , admin           BOOLEAN       DEFAULT FALSE
   , privacity       BOOLEAN       DEFAULT FALSE
   , name            VARCHAR(32)     
-  , first_surname   VARCHAR(32)     
-  , second_surname  VARCHAR(32)     
+  , surname         VARCHAR(32)     
   , birthdate       DATE            
+  , image           VARCHAR(255)  DEFAULT NULL
   , rol_id          BIGINT        REFERENCES roles (id)
   , language_id     BIGINT        REFERENCES languages (id)
   , updated_at      TIMESTAMP(0)
@@ -81,29 +81,4 @@ CREATE TABLE addresses
   , phone       VARCHAR(64)   NOT NULL
   , updated_at  TIMESTAMP(0)
   , created_at  TIMESTAMP(0)  DEFAULT CURRENT_TIMESTAMP
-);
-
-DROP TABLE IF EXISTS customers CASCADE;
-
-CREATE TABLE customers
-(
-    id            BIGSERIAL     PRIMARY KEY
-  , user_id       BIGINT        UNIQUE      NOT NULL  REFERENCES users (id)
-  , name          VARCHAR(32)               NOT NULL
-  , description   VARCHAR(255)              NOT NULL
-  , information   TEXT
-  , url           VARCHAR(255)              NOT NULL
-  , image         VARCHAR(255)
-  , updated_at    TIMESTAMP(0)
-  , created_at    TIMESTAMP(0)  NOT NULL    DEFAULT CURRENT_TIMESTAMP
-);
-
-DROP TABLE IF EXISTS followers CASCADE;
-
-CREATE TABLE followers
-(
-    id            BIGSERIAL     PRIMARY KEY
-  , user_id       BIGINT        NOT NULL  REFERENCES users (id)
-  , customer_id   BIGINT        NOT NULL  REFERENCES customers (id)
-  , created_at    TIMESTAMP(0)  DEFAULT CURRENT_TIMESTAMP
 );

@@ -3,8 +3,8 @@
 namespace app\models;
 
 use Yii;
-use yii\base\NotSupportedException;
 use yii\web\IdentityInterface;
+use yii\base\NotSupportedException;
 
 /**
  * This is the model class for table "users".
@@ -19,17 +19,15 @@ use yii\web\IdentityInterface;
  * @property bool|null $admin
  * @property bool|null $privacity
  * @property string|null $name
- * @property string|null $first_surname
- * @property string|null $second_surname
+ * @property string|null $surname
  * @property string|null $birthdate
+ * @property string|null $image
  * @property int|null $rol_id
  * @property int|null $language_id
  * @property string|null $updated_at
  * @property string|null $created_at
  *
  * @property Addresses[] $addresses
- * @property Customers $customers
- * @property Followers[] $followers
  * @property Languages $language
  */
 class User extends \yii\db\ActiveRecord implements IdentityInterface
@@ -46,6 +44,18 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
      */
     const SCENARIO_CREATE = 'create';
     const SCENARIO_UPDATE = 'up';
+
+    /**
+     * Constante de imagen de perfil de usuario.
+     */
+    const IMAGE = '@img/users/user.jpg';
+
+    /**
+     * Variable de subida de imagen de operfil de usuario.
+     *
+     * @var string
+     */
+    public $upload;
 
     /**
      * {@inheritdoc}
@@ -73,7 +83,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
             [['rol_id', 'language_id'], 'integer'],
             [['admin', 'privacity'], 'boolean'],
             [['birthdate', 'updated_at', 'created_at'], 'safe'],
-            [['username', 'auth_key', 'verf_key', 'name', 'first_surname', 'second_surname'], 'string', 'max' => 32],
+            [['username', 'auth_key', 'verf_key', 'name', 'surname'], 'string', 'max' => 32],
             [['password', 'email'], 'string', 'max' => 64],
             [
                 ['username', 'email'], 'unique',
@@ -81,6 +91,10 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
                     self::SCENARIO_CREATE
                 ],
             ],
+            [['image'], 'file'],
+            [['image'], 'safe'],
+            [['image'], 'string', 'max' => 255],
+            [['language_id'], 'exist', 'skipOnError' => true, 'targetClass' => Languages::class, 'targetAttribute' => ['language_id' => 'id']],
         ];
     }
 
@@ -100,13 +114,13 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
             'admin' => Yii::t('app', 'Admin'),
             'privacity' => Yii::t('app', 'Privacidad'),
             'name' => Yii::t('app', 'Nombre'),
-            'first_surname' => Yii::t('app', 'Primer apellido'),
-            'second_surname' => Yii::t('app', 'Segundo apellido'),
+            'surname' => Yii::t('app', 'Primer apellido'),
             'birthdate' => Yii::t('app', 'Fecha de nacimiento'),
-            'rol_id' => Yii::t('app', 'Rol ID'),
+            'image' => Yii::t('app', 'Imagen de usuario'),
+            'rol_id' => Yii::t('app', 'Rol de usuario'),
             'language_id' => Yii::t('app', 'Idioma preferido'),
-            'updated_at' => Yii::t('app', 'Updated At'),
-            'created_at' => Yii::t('app', 'Created At'),
+            'updated_at' => Yii::t('app', 'Actualizado'),
+            'created_at' => Yii::t('app', 'Creado'),
         ];
     }
 
@@ -300,8 +314,31 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
         $this->status = self::STATUS_DELETED;
     }
 
+    /**
+     * Relación de usuarios con [[Addresses]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getAddresses()
+    {
+        return $this->hasMany(Addresses::class, ['user_id' => 'id'])->inverseOf('user');
+    }
 
+    /**
+     * Relación de usuarios con [[Language]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getLanguage()
+    {
+        return $this->hasOne(Languages::class, ['id' => 'language_id'])->inverseOf('users');
+    }
 
+    /**
+     * Función estática para obtener el id del usuario.
+     *
+     * @return int | string     el id del usuario actual | cadena vacía si no hay usuario actual.
+     */
     public static function id()
     {
         return !Yii::$app->user->isGuest ? Yii::$app->user->identity->id : '';
