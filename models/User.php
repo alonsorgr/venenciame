@@ -83,7 +83,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
             [['rol_id', 'language_id'], 'integer'],
             [['admin', 'privacity'], 'boolean'],
             [['birthdate', 'updated_at', 'created_at'], 'safe'],
-            [['username', 'auth_key', 'verf_key', 'name', 'first_surname'], 'string', 'max' => 32],
+            [['username', 'auth_key', 'verf_key', 'name', 'surname'], 'string', 'max' => 32],
             [['password', 'email'], 'string', 'max' => 64],
             [
                 ['username', 'email'], 'unique',
@@ -117,10 +117,10 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
             'surname' => Yii::t('app', 'Primer apellido'),
             'birthdate' => Yii::t('app', 'Fecha de nacimiento'),
             'image' => Yii::t('app', 'Imagen de usuario'),
-            'rol_id' => Yii::t('app', 'Rol ID'),
+            'rol_id' => Yii::t('app', 'Rol de usuario'),
             'language_id' => Yii::t('app', 'Idioma preferido'),
-            'updated_at' => Yii::t('app', 'Updated At'),
-            'created_at' => Yii::t('app', 'Created At'),
+            'updated_at' => Yii::t('app', 'Actualizado'),
+            'created_at' => Yii::t('app', 'Creado'),
         ];
     }
 
