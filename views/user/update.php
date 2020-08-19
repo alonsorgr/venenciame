@@ -8,16 +8,24 @@ use yii\bootstrap4\Html;
 $this->title = Yii::t('app', 'Update User: {name}', [
     'name' => $model->name,
 ]);
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Users'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Usuarios'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = Yii::t('app', 'Update');
+$this->params['breadcrumbs'][] = Yii::t('app', 'Editar');
 ?>
 <div class="user-update">
-
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <?= $this->render('_form', [
-        'model' => $model,
-    ]) ?>
-
+    <div class="row my-4 justify-content-between">
+        <div class="col-xl-8">
+            <div class="row display-5">
+                <div class="col mb-4">
+                    <?= Yii::t('app', 'Editar perfil'); ?>
+                </div>
+            </div>
+            <?= $this->render('_form', [
+                'model' => $model,
+            ]) ?>
+        </div>
+        <div class="col-xl-3">
+            <?= $this->render('/site/_aside'); ?>
+        </div>
+    </div>
 </div>

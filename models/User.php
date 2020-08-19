@@ -49,7 +49,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
      * Constantes de escenarios
      */
     const SCENARIO_CREATE = 'create';
-    const SCENARIO_UPDATE = 'up';
+    const SCENARIO_UPDATE = 'update';
 
     /**
      * Constante de imagen de perfil de usuario.
@@ -79,11 +79,13 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
         return [
             ['status', 'default', 'value' => User::STATUS_INACTIVE],
             ['status', 'in', 'range' => [User::STATUS_ACTIVE, User::STATUS_INACTIVE, User::STATUS_DELETED]],
+            [['username', 'email'], 'required'],
             [
-                ['username', 'password', 'email'], 'required',
+                ['password'],
+                'required',
                 'on' => [
                     self::SCENARIO_CREATE
-                ],
+                ]
             ],
             [['rol_id', 'language_id'], 'default', 'value' => null],
             [['rol_id', 'language_id'], 'integer'],
@@ -93,11 +95,15 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
             [['password', 'email'], 'string', 'max' => 64],
             [
                 ['username', 'email'], 'unique',
-                'on' => [
-                    self::SCENARIO_CREATE
-                ],
+                'skipOnError' => true,
+                'on' => [self::SCENARIO_UPDATE],
             ],
-            //[['image'], 'file'],
+            [
+                ['username', 'email'], 'unique',
+                'skipOnError' => false,
+                'on' => [self::SCENARIO_CREATE],
+            ],
+            [['image'], 'file'],
             [['image'], 'safe'],
             [['image'], 'string', 'max' => 255],
             [['language_id'], 'exist', 'skipOnError' => true, 'targetClass' => Languages::class, 'targetAttribute' => ['language_id' => 'id']],
@@ -117,10 +123,10 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
             'auth_key' => Yii::t('app', 'Auth Key'),
             'verf_key' => Yii::t('app', 'Verf Key'),
             'status' => Yii::t('app', 'Status'),
-            'admin' => Yii::t('app', 'Admin'),
+            'admin' => Yii::t('app', 'Administrador del sitio'),
             'privacity' => Yii::t('app', 'Privacidad'),
             'name' => Yii::t('app', 'Nombre'),
-            'surname' => Yii::t('app', 'Primer apellido'),
+            'surname' => Yii::t('app', 'Apellido'),
             'birthdate' => Yii::t('app', 'Fecha de nacimiento'),
             'image' => Yii::t('app', 'Imagen de usuario'),
             'rol_id' => Yii::t('app', 'Rol de usuario'),
@@ -128,6 +134,29 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
             'updated_at' => Yii::t('app', 'Actualizado'),
             'created_at' => Yii::t('app', 'Creado'),
         ];
+    }
+
+    public function beforeSave($insert)
+    {
+        if (!parent::beforeSave($insert)) {
+            return false;
+        }
+
+        if ($insert) {
+            if ($this->scenario === self::SCENARIO_CREATE) {
+                $this->generatePasswordHash($this->password);
+            }
+        } else {
+            if ($this->scenario === self::SCENARIO_UPDATE) {
+                if ($this->password === '') {
+                    $this->generatePasswordHash($this->getOldAttribute('password'));
+                } else {
+                    $this->generatePasswordHash($this->password);
+                }
+            }
+        }
+
+        return true;
     }
 
     /**
@@ -298,6 +327,16 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     public function setInactive()
     {
         $this->status = self::STATUS_INACTIVE;
+    }
+
+    /**
+     * Establece el escenario create en el modelo [[User]]
+     *
+     * @return void
+     */
+    public function setScenarioCreate()
+    {
+        $this->scenario = self::SCENARIO_CREATE;
     }
 
     /**

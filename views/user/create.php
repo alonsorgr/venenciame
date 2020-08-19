@@ -10,11 +10,19 @@ $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Users'), 'url' => ['
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="user-create">
-
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <?= $this->render('_form', [
-        'model' => $model,
-    ]) ?>
-
+    <div class="row my-4 justify-content-between">
+        <div class="col-xl-8">
+            <div class="row display-5">
+                <div class="col mb-4">
+                    <?= Yii::t('app', 'Crear usuario'); ?>
+                </div>
+            </div>
+            <?= $this->render('_form', [
+                'model' => $model,
+            ]) ?>
+        </div>
+        <div class="col-xl-3">
+            <?= $this->render('/site/_aside'); ?>
+        </div>
+    </div>
 </div>

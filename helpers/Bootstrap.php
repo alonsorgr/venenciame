@@ -126,10 +126,25 @@ class Bootstrap
         return Html::beginTag('div', [
             'class' => 'tab-group-header',
         ]) . Html::tag('h5', $title, [
-            'class' => 'lead',
+            'class' => 'lead text-secondary font-weight-bold',
             'title' => Yii::t('app', $title),
-        ]) . Html::tag('hr', null, [
-            'class' => 'mt-2',
+        ]) . Html::tag('div', null, [
+            'class' => 'mt-2 horizontal-divider',
         ]) . Html::endTag('div');
+    }
+
+    /**
+     * Genera una pestaña para el componente TabX de krajee.
+     *
+     * @param   array $options      configuración de elemento TabX.
+     * @return  array               configuración para la pestaña del elemento TabX.
+     * @see     \kartik\tabs\TabsX
+     */
+    public static function tabItem($options)
+    {
+        return [
+            'label' => '<i class="' . $options['icon'] . ' mr-2"></i>' . $options['label'],
+            'content' => $options['content'],
+        ];
     }
 }
