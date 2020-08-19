@@ -59,6 +59,16 @@ class Languages extends \yii\db\ActiveRecord
      */
     public function getUsers()
     {
-        return $this->hasMany(Users::className(), ['language_id' => 'id'])->inverseOf('language');
+        return $this->hasMany(User::class, ['language_id' => 'id'])->inverseOf('language');
+    }
+
+    /**
+     * Genera una lista con las etiquetas de los objetos [[Languages]]
+     *
+     * @return array    array con las etiquetas de [[Languages]] indexados por id.
+     */
+    public static function labels()
+    {
+        return static::find()->select('label')->orderBy('label')->indexBy('id')->column();
     }
 }

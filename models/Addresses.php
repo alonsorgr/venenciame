@@ -45,9 +45,9 @@ class Addresses extends \yii\db\ActiveRecord
             [['user_id', 'country_id', 'state_id'], 'integer'],
             [['updated_at', 'created_at'], 'safe'],
             [['alias', 'identity', 'city', 'zip_code', 'address', 'phone'], 'string', 'max' => 64],
-            [['country_id'], 'exist', 'skipOnError' => true, 'targetClass' => Countries::className(), 'targetAttribute' => ['country_id' => 'id']],
-            [['state_id'], 'exist', 'skipOnError' => true, 'targetClass' => States::className(), 'targetAttribute' => ['state_id' => 'id']],
-            [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => Users::className(), 'targetAttribute' => ['user_id' => 'id']],
+            [['country_id'], 'exist', 'skipOnError' => true, 'targetClass' => Countries::class, 'targetAttribute' => ['country_id' => 'id']],
+            [['state_id'], 'exist', 'skipOnError' => true, 'targetClass' => States::class, 'targetAttribute' => ['state_id' => 'id']],
+            [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::class, 'targetAttribute' => ['user_id' => 'id']],
         ];
     }
 
@@ -79,7 +79,7 @@ class Addresses extends \yii\db\ActiveRecord
      */
     public function getCountry()
     {
-        return $this->hasOne(Countries::className(), ['id' => 'country_id'])->inverseOf('addresses');
+        return $this->hasOne(Countries::class, ['id' => 'country_id'])->inverseOf('addresses');
     }
 
     /**
@@ -89,7 +89,7 @@ class Addresses extends \yii\db\ActiveRecord
      */
     public function getState()
     {
-        return $this->hasOne(States::className(), ['id' => 'state_id'])->inverseOf('addresses');
+        return $this->hasOne(States::class, ['id' => 'state_id'])->inverseOf('addresses');
     }
 
     /**
@@ -99,6 +99,6 @@ class Addresses extends \yii\db\ActiveRecord
      */
     public function getUser()
     {
-        return $this->hasOne(Users::className(), ['id' => 'user_id'])->inverseOf('addresses');
+        return $this->hasOne(User::class, ['id' => 'user_id'])->inverseOf('addresses');
     }
 }

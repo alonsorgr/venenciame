@@ -47,4 +47,14 @@ class Roles extends \yii\db\ActiveRecord
             'created_at' => Yii::t('app', 'Created At'),
         ];
     }
+
+    /**
+     * Genera una lista con las etiquetas de los objetos [[Roles]]
+     *
+     * @return array    array con las etiquetas de [[Roles]] indexados por id.
+     */
+    public static function labels()
+    {
+        return static::find()->select('label')->orderBy('label')->indexBy('id')->column();
+    }
 }

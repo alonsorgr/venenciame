@@ -58,7 +58,7 @@ class Countries extends \yii\db\ActiveRecord
      */
     public function getAddresses()
     {
-        return $this->hasMany(Addresses::className(), ['country_id' => 'id'])->inverseOf('country');
+        return $this->hasMany(Addresses::class, ['country_id' => 'id'])->inverseOf('country');
     }
 
     /**
@@ -68,6 +68,16 @@ class Countries extends \yii\db\ActiveRecord
      */
     public function getStates()
     {
-        return $this->hasMany(States::className(), ['country_id' => 'id'])->inverseOf('country');
+        return $this->hasMany(States::class, ['country_id' => 'id'])->inverseOf('country');
+    }
+
+    /**
+     * Genera una lista con las etiquetas de los objetos [[Countries]]
+     *
+     * @return array    array con las etiquetas de [[Countries]] indexados por id.
+     */
+    public static function labels()
+    {
+        return static::find()->select('label')->orderBy('label')->indexBy('id')->column();
     }
 }

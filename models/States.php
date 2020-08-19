@@ -36,7 +36,7 @@ class States extends \yii\db\ActiveRecord
             [['country_id'], 'integer'],
             [['created_at'], 'safe'],
             [['label'], 'string', 'max' => 64],
-            [['country_id'], 'exist', 'skipOnError' => true, 'targetClass' => Countries::className(), 'targetAttribute' => ['country_id' => 'id']],
+            [['country_id'], 'exist', 'skipOnError' => true, 'targetClass' => Countries::class, 'targetAttribute' => ['country_id' => 'id']],
         ];
     }
 
