@@ -91,7 +91,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
                     self::SCENARIO_CREATE
                 ],
             ],
-            [['image'], 'file'],
+            //[['image'], 'file'],
             [['image'], 'safe'],
             [['image'], 'string', 'max' => 255],
             [['language_id'], 'exist', 'skipOnError' => true, 'targetClass' => Languages::class, 'targetAttribute' => ['language_id' => 'id']],
