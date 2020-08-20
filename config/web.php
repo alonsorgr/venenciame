@@ -57,6 +57,13 @@ $config = [
                 ],
             ],
         ],
+        's3' => [
+            'class' => 'app\components\S3Service',
+            'version' => 'latest',
+            'region' => 'us-east-2',
+            'key' => getenv('S3_KEY'),
+            'secret' => getenv('S3_SECRET'),
+        ],
         'log' => $log,
         'db' => $db,
         'formatter' => [
