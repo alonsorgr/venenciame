@@ -8,9 +8,11 @@
 
 namespace app\models;
 
+use app\helpers\S3Util;
 use Yii;
 use yii\web\IdentityInterface;
 use yii\base\NotSupportedException;
+use yii\web\UploadedFile;
 
 /**
  * This is the model class for table "users".
@@ -54,7 +56,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     /**
      * Constante de imagen de perfil de usuario.
      */
-    const IMAGE = '@img/users/user.jpg';
+    const IMAGE = '@img/user.jpg';
 
     /**
      * Variable de subida de imagen de operfil de usuario.
@@ -158,6 +160,20 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
             }
         }
         return true;
+    }
+
+    public function uploadImage()
+    {
+        $this->upload = UploadedFile::getInstance($this, 'upload');
+        if ($this->upload !== null) {
+            $this->image = S3Util::upload($this->upload, $this->username, S3Util::BUCKET_USERS, $this->image);
+            $this->upload = null;
+        }
+    }
+
+    public function getImageLink()
+    {
+        return S3Util::getLink($this->image, self::IMAGE, S3Util::USER, S3Util::BUCKET_USERS);
     }
 
     /**
