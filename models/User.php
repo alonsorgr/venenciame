@@ -8,11 +8,11 @@
 
 namespace app\models;
 
-use app\helpers\S3Util;
 use Yii;
 use yii\web\IdentityInterface;
 use yii\base\NotSupportedException;
 use yii\web\UploadedFile;
+use app\helpers\AmazonS3;
 
 /**
  * This is the model class for table "users".
@@ -131,7 +131,8 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
             'name' => Yii::t('app', 'Nombre'),
             'surname' => Yii::t('app', 'Apellido'),
             'birthdate' => Yii::t('app', 'Fecha de nacimiento'),
-            'image' => Yii::t('app', 'Imagen de usuario'),
+            'image' => Yii::t('app', 'Subir imagen de perfil'),
+            'upload' => Yii::t('app', 'Subir imagen de perfil'),
             'rol_id' => Yii::t('app', 'Rol de usuario'),
             'language_id' => Yii::t('app', 'Idioma preferido'),
             'updated_at' => Yii::t('app', 'Actualizado'),
@@ -175,7 +176,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     {
         $this->upload = UploadedFile::getInstance($this, 'upload');
         if ($this->upload !== null) {
-            $this->image = S3Util::upload($this->upload, $this->username, S3Util::BUCKET_USERS, $this->image);
+            $this->image = AmazonS3::upload($this->upload, $this->username, AmazonS3::BUCKET_USERS, $this->image);
             $this->upload = null;
         }
     }
@@ -198,7 +199,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     public function getLink()
     {
         if ($this->_link === null && !$this->isNewRecord) {
-            $this->setLink(S3Util::getLink($this->image, self::IMAGE, S3Util::USER, S3Util::BUCKET_USERS));
+            $this->setLink(AmazonS3::getLink($this->image, self::IMAGE, AmazonS3::USER, AmazonS3::BUCKET_USERS));
         }
         return $this->_link;
     }

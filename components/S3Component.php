@@ -8,7 +8,7 @@ use yii\base\Component;
 /**
  * Componente de aplicación para gestionar la subida de archivos a AWS S3
  */
-class S3Service extends Component
+class S3Component extends Component
 {
     /**
      * Versión de AWS S3

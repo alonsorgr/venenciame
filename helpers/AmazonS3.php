@@ -9,7 +9,7 @@ use yii\web\BadRequestHttpException;
 /**
  * Clase auxiliar para el uso del componente AWS S3
  */
-class S3Util
+class AmazonS3
 {
     /**
      * Nombre del bucket general en AWS S3
