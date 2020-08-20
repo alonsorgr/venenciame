@@ -85,7 +85,7 @@ $this->registerJs("passwordInput('reset-password')");
                 'pluginOptions' => [
                     'showUpload' => false,
                     'initialPreview' => [
-                        $model->getImageLink(),
+                        $model->link,
                     ],
                     'initialPreviewAsData' => true,
                     'initialCaption' => Html::encode($model->username),

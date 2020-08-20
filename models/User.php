@@ -65,6 +65,8 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
      */
     public $upload;
 
+    private $_link = null;
+
     /**
      * {@inheritdoc}
      */
@@ -146,6 +148,8 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
             return false;
         }
 
+        $this->uploadImage();
+
         if ($insert) {
             if ($this->scenario === self::SCENARIO_CREATE) {
                 $this->generatePasswordHash($this->password);
@@ -162,6 +166,11 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
         return true;
     }
 
+    /**
+     * Sube la imagen de perfil del usuario a Amazon Web Services S3.
+     *
+     * @return void
+     */
     public function uploadImage()
     {
         $this->upload = UploadedFile::getInstance($this, 'upload');
@@ -171,9 +180,27 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
         }
     }
 
-    public function getImageLink()
+    /**
+     * Genera un enlace a la imagen de perfil del usuario actual.
+     *
+     * @param   string    $link   enlace a imagen de perfil.
+     * @return  void
+     */
+    public function setLink($link) {
+        $this->_link = $link;
+    }
+
+    /**
+     * Genera un enlace a la imagen de perfil del usuario actual.
+     *
+     * @return  string  enlace a imagen de perfil.
+     */
+    public function getLink()
     {
-        return S3Util::getLink($this->image, self::IMAGE, S3Util::USER, S3Util::BUCKET_USERS);
+        if ($this->_link === null && !$this->isNewRecord) {
+            $this->setLink(S3Util::getLink($this->image, self::IMAGE, S3Util::USER, S3Util::BUCKET_USERS));
+        }
+        return $this->_link;
     }
 
     /**
