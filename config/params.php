@@ -16,7 +16,7 @@ return [
         Module::FORMAT_DATETIME => 'php:d-m-Y H:i:s',
     ],
     'dateControlSave' => [
-        Module::FORMAT_DATE => 'php:Y-m-d', // saves as unix timestamp
+        Module::FORMAT_DATE => 'php:Y-m-d',
         Module::FORMAT_TIME => 'php:H:i:s',
         Module::FORMAT_DATETIME => 'php:Y-m-d H:i:s',
     ],

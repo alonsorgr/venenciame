@@ -33,7 +33,7 @@ VALUES (
     crypt('ana', gen_salt('bf', 10)),
     'ana@venenciame.com',
     10,
-    true,
+    false,
     1,
     1
   );

@@ -66,7 +66,6 @@ $this->registerJs("passwordInput('reset-password')");
                     'type' => DatePicker::TYPE_COMPONENT_APPEND,
                     'pluginOptions' => [
                         'autoclose' => true,
-                        'format' => 'php:d-m-Y',
                     ],
                 ],
             ]); ?>
@@ -141,7 +140,7 @@ $this->registerJs("passwordInput('reset-password')");
             ]); ?>
         </div>
     </div>
-    <?php if ($model->isNewRecord) : ?>
+    <?php if ($model->isNewRecord || Yii::$app->user->identity->admin) : ?>
         <div class="row">
             <div class="col-xl-6">
                 <?= $form->field($model, 'rol_id')->widget(Select2::class, [

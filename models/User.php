@@ -81,7 +81,16 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
             ['status', 'in', 'range' => [User::STATUS_ACTIVE, User::STATUS_INACTIVE, User::STATUS_DELETED]],
             [['username', 'email'], 'required'],
             [
-                ['password'],
+                ['username', 'email'], 'unique',
+                'on' => [self::SCENARIO_CREATE],
+            ],
+            [
+                ['username', 'email'], 'unique',
+                'skipOnError' => true,
+                'on' => [self::SCENARIO_UPDATE],
+            ],
+            [
+                ['password', 'rol_id', 'language_id'],
                 'required',
                 'on' => [
                     self::SCENARIO_CREATE
@@ -93,16 +102,6 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
             [['birthdate', 'updated_at', 'created_at'], 'safe'],
             [['username', 'auth_key', 'verf_key', 'name', 'surname'], 'string', 'max' => 32],
             [['password', 'email'], 'string', 'max' => 64],
-            [
-                ['username', 'email'], 'unique',
-                'skipOnError' => true,
-                'on' => [self::SCENARIO_UPDATE],
-            ],
-            [
-                ['username', 'email'], 'unique',
-                'skipOnError' => false,
-                'on' => [self::SCENARIO_CREATE],
-            ],
             [['image'], 'file'],
             [['image'], 'safe'],
             [['image'], 'string', 'max' => 255],
@@ -136,6 +135,9 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
         ];
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function beforeSave($insert)
     {
         if (!parent::beforeSave($insert)) {
@@ -155,7 +157,6 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
                 }
             }
         }
-
         return true;
     }
 
