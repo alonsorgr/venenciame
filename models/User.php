@@ -65,6 +65,11 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
      */
     public $upload;
 
+    /**
+     * Atributo virtual para enlace a imagen de perfil.
+     *
+     * @var string
+     */
     private $_link = null;
 
     /**

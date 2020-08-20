@@ -1,19 +1,45 @@
 <?php
 
+/**
+ * @link https://github.com/alonsorgr/venenciame/
+ * @copyright Copyright (c) 2020 alonsorgr
+ * @license https://github.com/alonsorgr/venenciame/blob/master/LICENSE.md
+ */
+
 namespace app\helpers;
 
-use \yii\imagine\Image;
 use Yii;
+use yii\imagine\Image;
 use yii\web\BadRequestHttpException;
 
+/**
+ * Clase auxiliar para la administración de imágenes en AWS S3.
+ *
+ * @author Alonso García <alonsorgr@gmail.com>
+ * @since 1.0
+ */
 class AmazonS3
 {
+    /**
+     * Constantes de buckets en AWS S3.
+     */
     const BUCKET = 'venenciame';
-
     const BUCKET_USERS = 'venenciame-users';
 
+    /**
+     * Constantes de alias para AWS S3.
+     */
     const USER = '@user/';
 
+    /**
+     * Undocumented function
+     *
+     * @param   yii\web\UploadedFile    $upload   imagen a subir.
+     * @param   string                  $key      nombre de la imagen a subir.
+     * @param   string                  $bucket   nombre del bucket.
+     * @param   string                  $old      imagen a reemplazar.
+     * @return  string                            nombre de la imagen.
+     */
     public static function upload($upload, $key, $bucket, $old)
     {
         try {
@@ -32,11 +58,21 @@ class AmazonS3
             unlink($fileName);
 
             return $uploadFile;
+            
         } catch (\Exception $exception) {
             throw new BadRequestHttpException(Yii::t('app', 'The requested page does not exist.'));
         }
     }
 
+    /**
+     * Undocumented function
+     *
+     * @param   string    $image     nombre de la imagen.
+     * @param   string    $default   imagen por defecto.
+     * @param   string    $alias     ruta al directorio de imágenes.
+     * @param   string    $bucket    nombre del bucket.
+     * @return  string               enlace a la imagen.
+     */
     public static function getLink($image, $default, $alias, $bucket)
     {
         if ($image !== null) {
@@ -54,7 +90,6 @@ class AmazonS3
             } catch (\Exception $exception) {
             }
         }
-
         return Yii::getAlias($default);
     }
 }
