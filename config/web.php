@@ -12,6 +12,11 @@ $config = [
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
+        '@uploads' => '@app/web/uploads',
+        '@js' => '@app/web/js',
+        '@img' => 'img',
+        '@aws' => 'aws',
+        '@user' => '@aws/user',
     ],
     'language' => 'es-ES',
     'components' => [
@@ -51,6 +56,13 @@ $config = [
                     ],
                 ],
             ],
+        ],
+        's3' => [
+            'class' => 'app\components\S3Component',
+            'version' => 'latest',
+            'region' => 'us-east-2',
+            'key' => getenv('S3_KEY'),
+            'secret' => getenv('S3_SECRET'),
         ],
         'log' => $log,
         'db' => $db,

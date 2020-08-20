@@ -11,6 +11,8 @@ namespace app\models;
 use Yii;
 use yii\web\IdentityInterface;
 use yii\base\NotSupportedException;
+use yii\web\UploadedFile;
+use app\helpers\AmazonS3;
 
 /**
  * This is the model class for table "users".
@@ -54,7 +56,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     /**
      * Constante de imagen de perfil de usuario.
      */
-    const IMAGE = '@img/users/user.jpg';
+    const IMAGE = '@img/user.jpg';
 
     /**
      * Variable de subida de imagen de operfil de usuario.
@@ -62,6 +64,8 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
      * @var string
      */
     public $upload;
+
+    private $_link = null;
 
     /**
      * {@inheritdoc}
@@ -127,7 +131,8 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
             'name' => Yii::t('app', 'Nombre'),
             'surname' => Yii::t('app', 'Apellido'),
             'birthdate' => Yii::t('app', 'Fecha de nacimiento'),
-            'image' => Yii::t('app', 'Imagen de usuario'),
+            'image' => Yii::t('app', 'Subir imagen de perfil'),
+            'upload' => Yii::t('app', 'Subir imagen de perfil'),
             'rol_id' => Yii::t('app', 'Rol de usuario'),
             'language_id' => Yii::t('app', 'Idioma preferido'),
             'updated_at' => Yii::t('app', 'Actualizado'),
@@ -144,6 +149,8 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
             return false;
         }
 
+        $this->uploadImage();
+
         if ($insert) {
             if ($this->scenario === self::SCENARIO_CREATE) {
                 $this->generatePasswordHash($this->password);
@@ -158,6 +165,43 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
             }
         }
         return true;
+    }
+
+    /**
+     * Sube la imagen de perfil del usuario a Amazon Web Services S3.
+     *
+     * @return void
+     */
+    public function uploadImage()
+    {
+        $this->upload = UploadedFile::getInstance($this, 'upload');
+        if ($this->upload !== null) {
+            $this->image = AmazonS3::upload($this->upload, $this->username, AmazonS3::BUCKET_USERS, $this->image);
+            $this->upload = null;
+        }
+    }
+
+    /**
+     * Genera un enlace a la imagen de perfil del usuario actual.
+     *
+     * @param   string    $link   enlace a imagen de perfil.
+     * @return  void
+     */
+    public function setLink($link) {
+        $this->_link = $link;
+    }
+
+    /**
+     * Genera un enlace a la imagen de perfil del usuario actual.
+     *
+     * @return  string  enlace a imagen de perfil.
+     */
+    public function getLink()
+    {
+        if ($this->_link === null && !$this->isNewRecord) {
+            $this->setLink(AmazonS3::getLink($this->image, self::IMAGE, AmazonS3::USER, AmazonS3::BUCKET_USERS));
+        }
+        return $this->_link;
     }
 
     /**

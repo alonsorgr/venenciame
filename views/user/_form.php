@@ -78,14 +78,14 @@ $this->registerJs("passwordInput('reset-password')");
     </div>
     <div class="row">
         <div class="col-xl-6">
-            <?= $form->field($model, 'image')->widget(FileInput::class, [
+            <?= $form->field($model, 'upload')->widget(FileInput::class, [
                 'options' => [
                     'accept' => 'image/*',
                 ],
                 'pluginOptions' => [
                     'showUpload' => false,
                     'initialPreview' => [
-                        '',
+                        $model->link,
                     ],
                     'initialPreviewAsData' => true,
                     'initialCaption' => Html::encode($model->username),
