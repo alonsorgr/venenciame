@@ -1,6 +1,6 @@
 <p align="center">
     <a href="https://github.com/yiisoft" target="_blank">
-        <img src="https://raw.githubusercontent.com/alonsorgr/venenciame/master/guia/images/logo.svg?token=AH3YUC37W52UIKR4RODWQNC7G62G2">
+        <img src="https://raw.githubusercontent.com/alonsorgr/venenciame/master/guia/images/logo.svg?token=AH3YUC4VV45VBYW34IA6PJC7I66YG">
     </a>
     <h1 align="center">Proyecto Integrado - Desarrollo de Aplicaciones Web</h1>
     <br>
