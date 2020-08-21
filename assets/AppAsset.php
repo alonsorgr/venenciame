@@ -24,10 +24,12 @@ class AppAsset extends AssetBundle
         'css/site.css',
         'css/bootstrap.min.css',
         'css/loading.min.css',
+        'css/zoom.min.css',
     ];
     public $js = [
         'js/form.js',
         'js/modal.js',
+        'js/zoom.min.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',

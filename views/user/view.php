@@ -1,52 +1,88 @@
 <?php
 
+use app\helpers\Bootstrap;
+use kartik\tabs\TabsX;
 use yii\bootstrap4\Html;
-use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\User */
 
 $this->title = $model->name;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Users'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Usuarios'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
+
 <div class="user-view">
+    <div class="row justify-content-between">
+        <div class="col-xl-8 mt-5">
+            <div class="row">
+                <div class="col-12 col-sm-auto">
+                    <div class="mx-auto">
+                        <div class="col d-flex justify-content-center align-items-center">
+                            <div class="user-box">
+                                <img class="img-profile" src="<?= $model->link ?>" alt="user avatar" data-action="zoom">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col d-flex flex-column flex-sm-row justify-content-between">
+                    <div class="text-center text-sm-left">
+                        <div class="d-block mb-xl-2 lead">
+                            <?= Html::encode($model->fullname) ?>
+                        </div>
+                        <div class="d-block">
+                            <?= Html::encode($model->username) ?>
+                        </div>
+                        <div class="d-block">
+                            <?= Yii::$app->formatter->asEmail(Html::encode($model->email)) ?>
+                        </div>
+                    </div>
+                    <div class="text-center text-sm-right">
+                        <small class="text-muted"><?= Yii::t('app', 'Registrado el {date}', [
+                            'date' => Html::encode(Yii::$app->formatter->asDate($model->created_at)),
+                        ]) ?></small>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-xl-1 horizontal-divider"></div>
 
-    <h1><?= Html::encode($this->title) ?></h1>
+            <?php
+            $items[] = Bootstrap::tabItem([
+                'icon' => 'fas fa-chart-line',
+                'label' => Yii::t('app', 'Actividad'),
+                'content' => $this->render('tabs/_activity.php'),
+            ]);
 
-    <p>
-        <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => Yii::t('app', 'Are you sure you want to delete this item?'),
-                'method' => 'post',
-            ],
-        ]) ?>
-    </p>
+            $items[] = Bootstrap::tabItem([
+                'icon' => 'fas fa-heart',
+                'label' => Yii::t('app', 'Seguidos'),
+                'content' => $this->render('tabs/_followed.php'),
+            ]);
 
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            'id',
-            'username',
-            'password',
-            'email:email',
-            'auth_key',
-            'verf_key',
-            'status',
-            'admin:boolean',
-            'privacity:boolean',
-            'name',
-            'surname',
-            'birthdate',
-            'image',
-            'rol_id',
-            'language_id',
-            'updated_at',
-            'created_at',
-        ],
-    ]) ?>
+            $items[] = Bootstrap::tabItem([
+                'icon' => 'fas fa-star',
+                'label' => Yii::t('app', 'Favoritos'),
+                'content' => $this->render('tabs/_favorites.php'),
+            ]);
 
+            $items[] = Bootstrap::tabItem([
+                'icon' => 'fas fa-money-check',
+                'label' => Yii::t('app', 'Compras'),
+                'content' => $this->render('tabs/_purchases.php'),
+            ]);
+            ?>
+            <div class="mt-5">
+                <?= TabsX::widget([
+                    'items' => $items,
+                    'position' => TabsX::POS_ABOVE,
+                    'bordered' => true,
+                    'encodeLabels' => false,
+                ]); ?>
+            </div>
+        </div>
+        <div class="col-xl-3">
+            <?= $this->render('/site/_aside'); ?>
+        </div>
+    </div>
 </div>

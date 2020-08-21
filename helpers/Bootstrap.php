@@ -143,7 +143,12 @@ class Bootstrap
     public static function tabItem($options)
     {
         return [
-            'label' => '<i class="' . $options['icon'] . ' mr-2"></i>' . $options['label'],
+            'label' => '<div class="text-center mb-2">
+                            <i class="' . $options['icon'] . ' mr-sm-2"></i>
+                            <div class="d-xl-inline d-sm-block">
+                                ' . $options['label'] . '
+                            </div>
+                        </div>',
             'content' => $options['content'],
         ];
     }

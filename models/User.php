@@ -73,6 +73,13 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     private $_link = null;
 
     /**
+     * Areibuto virtual para concatenación de nombre completo.
+     *
+     * @var string
+     */
+    private $_fullname = null;
+
+    /**
      * {@inheritdoc}
      */
     public static function tableName()
@@ -207,6 +214,19 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
             $this->setLink(AmazonS3::getLink($this->image, self::IMAGE, AmazonS3::USER, AmazonS3::BUCKET_USERS));
         }
         return $this->_link;
+    }
+
+    public function setFullname($fullname)
+    {
+        $this->_fullname = $fullname;
+    }
+
+    public function getFullname()
+    {
+        if ($this->_fullname === null && !$this->isNewRecord) {
+            $this->setFullname($this->name . ' ' . $this->surname);
+        }
+        return $this->_fullname;
     }
 
     /**
