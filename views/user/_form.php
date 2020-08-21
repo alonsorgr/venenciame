@@ -84,6 +84,7 @@ $this->registerJs("passwordInput('reset-password')");
                 ],
                 'pluginOptions' => [
                     'showUpload' => false,
+                    'showRemove' => false,
                     'initialPreview' => [
                         $model->link,
                     ],
