@@ -7,7 +7,7 @@ use yii\bootstrap4\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\User */
 
-$this->title = $model->name;
+$this->title = $model->username;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Usuarios'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
@@ -21,7 +21,13 @@ $this->params['breadcrumbs'][] = $this->title;
                     <div class="mx-auto">
                         <div class="col d-flex justify-content-center align-items-center">
                             <div class="user-box">
-                                <img class="img-profile" src="<?= $model->link ?>" alt="user avatar" data-action="zoom">
+                                <div class="image-profile">
+                                    <?= Html::img(Html::encode($model->link), [
+                                        'alt' => Yii::t('app', 'Imagen de usuario'),
+                                        'data-action' => 'zoom',
+                                        'title' => Yii::t('app', 'Imagen de usuario'),
+                                    ]); ?>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -35,13 +41,17 @@ $this->params['breadcrumbs'][] = $this->title;
                             <?= Html::encode($model->username) ?>
                         </div>
                         <div class="d-block">
+                            <i class="fas fa-envelope mr-1"></i> 
                             <?= Yii::$app->formatter->asEmail(Html::encode($model->email)) ?>
                         </div>
                     </div>
                     <div class="text-center text-sm-right">
-                        <small class="text-muted"><?= Yii::t('app', 'Registrado el {date}', [
-                            'date' => Html::encode(Yii::$app->formatter->asDate($model->created_at)),
-                        ]) ?></small>
+                        <small class="text-muted">
+                            <i class="fas fa-calendar icon-sm mr-1"></i>
+                            <?= Yii::t('app', 'Registrado el {date}', [
+                                'date' => Html::encode(Yii::$app->formatter->asDate($model->created_at)),
+                            ]) ?>
+                        </small>
                     </div>
                 </div>
             </div>
