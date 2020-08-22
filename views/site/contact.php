@@ -94,7 +94,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?php ActiveForm::end(); ?>
             </div>
             <div class="col-xl-3">
-                <?= $this->render('_aside'); ?>
+                <?= $this->render('_sidebar'); ?>
             </div>
         </div>
     <?php endif; ?>
