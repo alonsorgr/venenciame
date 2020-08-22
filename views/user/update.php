@@ -25,7 +25,7 @@ $this->params['breadcrumbs'][] = Yii::t('app', 'Editar');
             ]) ?>
         </div>
         <div class="col-xl-3">
-            <?= $this->render('/site/_aside'); ?>
+            <?= $this->render('_sidebar'); ?>
         </div>
     </div>
 </div>

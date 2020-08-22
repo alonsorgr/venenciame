@@ -38,7 +38,7 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
         </div>
         <div class="col-xl-3">
-            <?= $this->render('_aside'); ?>
+            <?= $this->render('_sidebar'); ?>
         </div>
     </div>
 </div>

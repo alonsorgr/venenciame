@@ -22,7 +22,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ]) ?>
         </div>
         <div class="col-xl-3">
-            <?= $this->render('/site/_aside'); ?>
+            <?= $this->render('_sidebar'); ?>
         </div>
     </div>
 </div>

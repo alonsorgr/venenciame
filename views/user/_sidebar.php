@@ -2,13 +2,14 @@
 
 /* @var $this yii\web\View */
 
+use app\helpers\Bootstrap;
 use yii\bootstrap4\Html;
 use yii\helpers\Url;
 
 \yii\web\YiiAsset::register($this);
 ?>
 
-<div class="help-aside my-4">
+<div class="user-sidebar my-4">
     <div class="row">
         <div class="card w-100">
             <div class="card-header">
@@ -29,23 +30,29 @@ use yii\helpers\Url;
                         ]) ?>
                     </li>
                 <?php else : ?>
-                    <li class="list-group-item">
-                        <?= Html::a(Yii::t('app', 'Perfil'), Url::to(['user/view', 'id' => Yii::$app->user->id]), [
-                            'class' => 'font-transition-small',
-                            'title' => Yii::t('app', 'Ir a tu perfil.'),
-                        ]) ?>
-                    </li>
-                    <li class="list-group-item">
-                        <?= Html::a(Yii::t('app', 'Configuración de la cuenta'), Url::to(['user/update', 'id' => Yii::$app->user->id]), [
-                            'class' => 'font-transition-small',
-                            'title' => Yii::t('app', 'Ir a la configuración de tu cuenta.'),
-                        ]) ?>
-                    </li>
+                    <?php if (Yii::$app->controller->action->id === 'update') : ?>
+                        <li class="list-group-item">
+                            <?= Html::a(Yii::t('app', 'Perfil'), Url::to(['user/view', 'id' => Yii::$app->user->id]), [
+                                'class' => 'font-transition-small',
+                                'title' => Yii::t('app', 'Ir a tu perfil.'),
+                            ]) ?>
+                        </li>
+                    <?php else : ?>
+                        <li class="list-group-item">
+                            <?= Html::a(Yii::t('app', 'Configuración de la cuenta'), Url::to(['user/update', 'id' => Yii::$app->user->id]), [
+                                'class' => 'font-transition-small',
+                                'title' => Yii::t('app', 'Ir a la configuración de tu cuenta.'),
+                            ]) ?>
+                        </li>
+                    <?php endif ?>
                 <?php endif ?>
                 <li class="list-group-item">
-                    <?= Html::a(Yii::t('app', 'Cuenta para distribuidores'), Url::to(['site/sign-up-dealer']), [
-                        'class' => 'font-transition-small',
-                        'title' => Yii::t('app', 'Ir a la página de registro de distribuidores.'),
+                    <?= Html::a(Yii::t('app', 'Desconectarse'), Url::to(['site/logout']), [
+                        'class' => 'show-modal-logout',
+                        'value' => Url::to(['site/logout']),
+                        'data-toggle' => 'modal',
+                        'data-target' => '#modal-logout',
+                        'title' => Yii::t('app', 'Desconectarse del sitio')
                     ]) ?>
                 </li>
                 <?php if (Yii::$app->controller->action->id === 'contact') : ?>
@@ -88,3 +95,9 @@ use yii\helpers\Url;
         </div>
     </div>
 </div>
+<?php Bootstrap::modal([
+    'id' => 'modal-logout',
+    'image' => 'fas fa-sign-out-alt',
+    'size' => 'modal-lg',
+    'title' => Yii::t('app', 'Desconectarse'),
+]) ?>
