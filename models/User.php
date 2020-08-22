@@ -450,6 +450,16 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     }
 
     /**
+     * Relación de usuarios con [[Partners]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPartners()
+    {
+        return $this->hasOne(Partners::class, ['user_id' => 'id'])->inverseOf('user');
+    }
+
+    /**
      * Función estática para obtener el id del usuario.
      *
      * @return int | string     el id del usuario actual | cadena vacía si no hay usuario actual.
