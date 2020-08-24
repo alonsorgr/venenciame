@@ -194,12 +194,23 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     }
 
     /**
+     * Comprueba si el usuario es socio.
+     *
+     * @return boolean  verdadero si el usuario es socio.
+     */
+    public static function isPartner()
+    {
+        return Partners::findOne(['id' => static::id()]) != null ?: false;
+    }
+
+    /**
      * Genera un enlace a la imagen de perfil del usuario actual.
      *
      * @param   string    $link   enlace a imagen de perfil.
      * @return  void
      */
-    public function setLink($link) {
+    public function setLink($link)
+    {
         $this->_link = $link;
     }
 

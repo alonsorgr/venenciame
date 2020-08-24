@@ -3,6 +3,7 @@
 /* @var $this yii\web\View */
 
 use app\helpers\Bootstrap;
+use app\models\User;
 use yii\bootstrap4\Html;
 use yii\helpers\Url;
 
@@ -79,21 +80,39 @@ use yii\helpers\Url;
             </ul>
         </div>
     </div>
-    <div class="row mt-4">
-        <div class="card w-100">
-            <div class="card-header">
-                <div class="lead"><?= Yii::t('app', 'Participa') ?></div>
-            </div>
-            <div class="card-body">
-                <h5 class="card-title"><?= Yii::t('app', 'Solicitd para ventas en la web.') ?></h5>
-                <p class="card-text"><?= Yii::t('app', 'Si ya eres usuario de nuestra web, y quieres vender tus productos, solicítalo aquí.') ?></p>
-                <?= Html::a(Yii::t('app', 'Solicitar'), Url::to(['requests/create']), [
-                    'class' => 'font-transition-small',
-                    'title' => Yii::t('app', 'Solicitar al administrador una cuenta de distribuidor'),
-                ]) ?>
+    <?php if (!Yii::$app->user->isGuest && User::isPartner()) : ?>
+        <div class="row mt-4">
+            <div class="card w-100">
+                <div class="card-header">
+                    <div class="lead"><?= Yii::t('app', 'Participa') ?></div>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title"><?= Yii::t('app', 'Solicitd para ventas en la web.') ?></h5>
+                    <p class="card-text"><?= Yii::t('app', 'Si ya eres usuario de nuestra web, y quieres vender tus productos, solicítalo aquí.') ?></p>
+                    <?= Html::a(Yii::t('app', 'Solicitar'), Url::to(['partners/create']), [
+                        'class' => 'font-transition-small',
+                        'title' => Yii::t('app', 'Solicitar al administrador una cuenta de distribuidor'),
+                    ]) ?>
+                </div>
             </div>
         </div>
-    </div>
+    <?php else : ?>
+        <div class="row mt-4">
+            <div class="card w-100">
+                <div class="card-header">
+                    <div class="lead"><?= Yii::t('app', 'Mis ventas') ?></div>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title"><?= Yii::t('app', 'Panel de administración de ventas de socios.') ?></h5>
+                    <p class="card-text"><?= Yii::t('app', 'Aquí podrás administrar tus ventas.') ?></p>
+                    <?= Html::a(Yii::t('app', 'Administrar'), Url::to(['partners/index']), [
+                        'class' => 'font-transition-small',
+                        'title' => Yii::t('app', 'Solicitar al administrador una cuenta de distribuidor'),
+                    ]) ?>
+                </div>
+            </div>
+        </div>
+    <?php endif ?>
 </div>
 <?php Bootstrap::modal([
     'id' => 'modal-logout',
