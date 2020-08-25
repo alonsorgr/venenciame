@@ -78,4 +78,14 @@ class States extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Countries::className(), ['id' => 'country_id'])->inverseOf('states');
     }
+
+    /**
+     * Genera una lista con las etiquetas de los objetos [[States]]
+     *
+     * @return array    array con las etiquetas de [[States]] indexados por id.
+     */
+    public static function labels()
+    {
+        return static::find()->select('label')->orderBy('label')->indexBy('id')->column();
+    }
 }

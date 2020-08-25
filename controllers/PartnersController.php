@@ -2,12 +2,15 @@
 
 namespace app\controllers;
 
+use app\models\forms\RequestPartnersForm;
 use Yii;
 use app\models\Partners;
 use app\models\search\PartnersSearch;
+use yii\bootstrap4\ActiveForm;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\Response;
 
 /**
  * PartnersController implements the CRUD actions for Partners model.
@@ -21,7 +24,7 @@ class PartnersController extends Controller
     {
         return [
             'verbs' => [
-                'class' => VerbFilter::className(),
+                'class' => VerbFilter::class,
                 'actions' => [
                     'delete' => ['POST'],
                 ],
@@ -107,6 +110,24 @@ class PartnersController extends Controller
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
+    }
+
+    public function actionRequest()
+    {
+        $model = new RequestPartnersForm();
+
+        if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            return ActiveForm::validate($model);
+        }
+
+        if ($model->load(Yii::$app->request->post())) {
+
+        }
+
+        return $this->render('request', [
+            'model' => $model,
+        ]);
     }
 
     /**

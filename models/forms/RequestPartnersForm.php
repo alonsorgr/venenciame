@@ -3,10 +3,9 @@
 namespace app\models\forms;
 
 use Yii;
-use yii\base\Model;
 use app\models\User;
 
-class RequestPartnersForm extends Model
+class RequestPartnersForm extends \yii\db\ActiveRecord
 {
     /**
      * Atributo de nombre de [[Partners]].
