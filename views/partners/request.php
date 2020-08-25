@@ -11,10 +11,42 @@ use borales\extensions\phoneInput\PhoneInput;
 use kartik\select2\Select2;
 use yii\bootstrap4\ActiveForm;
 use yii\bootstrap4\Html;
+use yii\helpers\Url;
 
 $this->title = Yii::t('app', 'Solicitud de socio');
 
 $this->params['breadcrumbs'][] = $this->title;
+
+$url = Url::to(['partners/states']);
+
+$js = <<<EOT
+$('#requestpartnersform-state_id').empty();
+$('#requestpartnersform-country_id').on('change', function (ev) {
+    var country = $(this);
+    var country_id = country.val();
+    if (country_id === '') {
+        $('#requestpartnersform-state_id').empty();
+        $('#requestpartnersform-state_id').append('<option value=""></option>');
+        return;
+    }
+    $.ajax({
+        method: 'GET',
+        url: '$url',
+        data: {
+            id: country_id
+        },
+        success: function (data) {
+            var states = $('#requestpartnersform-state_id');
+            states.empty();
+            states.append(`<option value=""></option>`);
+            for (var i in data) {
+                states.append(`<option value="\${i}">\${data[i]}</option>`);
+            }
+        }   
+    });
+});
+EOT;
+$this->registerJs($js);
 
 ?>
 <div class="partners-request">

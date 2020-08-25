@@ -6,6 +6,7 @@ use app\models\forms\RequestPartnersForm;
 use Yii;
 use app\models\Partners;
 use app\models\search\PartnersSearch;
+use app\models\States;
 use yii\bootstrap4\ActiveForm;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -128,6 +129,12 @@ class PartnersController extends Controller
         return $this->render('request', [
             'model' => $model,
         ]);
+    }
+
+    public function actionStates($id)
+    {
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        return States::getStates($id);
     }
 
     /**

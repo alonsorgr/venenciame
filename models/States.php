@@ -88,4 +88,20 @@ class States extends \yii\db\ActiveRecord
     {
         return static::find()->select('label')->orderBy('label')->indexBy('id')->column();
     }
+
+    /**
+     * Undocumented function
+     *
+     * @param   int     $id     identificador del pais [[Countries]].
+     * @return  array           con las etiquetas de [[States]] indexados por id.
+     */
+    public static function getStates($id)
+    {
+        return static::find()
+            ->select('label')
+            ->where(['country_id' => $id])
+            ->orderBy('label')
+            ->indexBy('id')
+            ->column();
+    }
 }

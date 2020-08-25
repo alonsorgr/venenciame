@@ -4,6 +4,8 @@ namespace app\models\forms;
 
 use Yii;
 use app\models\User;
+use app\models\Countries;
+use app\models\States;
 
 class RequestPartnersForm extends \yii\db\ActiveRecord
 {
