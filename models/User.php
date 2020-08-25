@@ -93,8 +93,8 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     public function rules()
     {
         return [
-            ['status', 'default', 'value' => User::STATUS_INACTIVE],
-            ['status', 'in', 'range' => [User::STATUS_ACTIVE, User::STATUS_INACTIVE, User::STATUS_DELETED]],
+            ['status', 'default', 'value' => self::STATUS_INACTIVE],
+            ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_INACTIVE, self::STATUS_DELETED]],
             [['username', 'email'], 'required'],
             [
                 ['username', 'email'], 'unique',
@@ -194,12 +194,23 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     }
 
     /**
+     * Comprueba si el usuario es socio.
+     *
+     * @return boolean  verdadero si el usuario es socio.
+     */
+    public static function isPartner()
+    {
+        return Partners::findOne(['id' => static::id()]) != null ?: false;
+    }
+
+    /**
      * Genera un enlace a la imagen de perfil del usuario actual.
      *
      * @param   string    $link   enlace a imagen de perfil.
      * @return  void
      */
-    public function setLink($link) {
+    public function setLink($link)
+    {
         $this->_link = $link;
     }
 
@@ -447,6 +458,16 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     public function getLanguage()
     {
         return $this->hasOne(Languages::class, ['id' => 'language_id'])->inverseOf('users');
+    }
+
+    /**
+     * Relación de usuarios con [[Partners]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPartners()
+    {
+        return $this->hasOne(Partners::class, ['user_id' => 'id'])->inverseOf('user');
     }
 
     /**

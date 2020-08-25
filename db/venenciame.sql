@@ -65,20 +65,22 @@ CREATE TABLE roles
   , created_at  TIMESTAMP(0) DEFAULT CURRENT_TIMESTAMP
 );
 
-DROP TABLE IF EXISTS addresses CASCADE;
+DROP TABLE IF EXISTS partners CASCADE;
 
-CREATE TABLE addresses
+CREATE TABLE partners
 (
-    id          BIGSERIAL     PRIMARY KEY
-  , user_id     BIGINT        NOT NULL    REFERENCES users (id)
-  , alias       VARCHAR(64)   NOT NULL
-  , identity    VARCHAR(64)   NOT NULL
-  , country_id  BIGINT        NOT NULL    REFERENCES countries (id)
-  , state_id    BIGINT        NOT NULL    REFERENCES states (id)
-  , city        VARCHAR(64)   NOT NULL
-  , zip_code    VARCHAR(64)   NOT NULL
-  , address     VARCHAR(64)   NOT NULL
-  , phone       VARCHAR(64)   NOT NULL
-  , updated_at  TIMESTAMP(0)
-  , created_at  TIMESTAMP(0)  DEFAULT CURRENT_TIMESTAMP
+    id            BIGSERIAL     PRIMARY KEY
+  , user_id       BIGINT        UNIQUE      NOT NULL  REFERENCES users (id)
+  , name          VARCHAR(32)   UNIQUE      NOT NULL
+  , description   VARCHAR(255)              NOT NULL
+  , information   TEXT
+  , image         VARCHAR(255)
+  , country_id    BIGINT        NOT NULL    REFERENCES countries (id)
+  , state_id      BIGINT        NOT NULL    REFERENCES states (id)
+  , city          VARCHAR(64)   NOT NULL
+  , zip_code      VARCHAR(64)   NOT NULL
+  , address       VARCHAR(64)   NOT NULL
+  , phone         VARCHAR(64)   NOT NULL
+  , updated_at    TIMESTAMP(0)
+  , created_at    TIMESTAMP(0)  NOT NULL    DEFAULT CURRENT_TIMESTAMP
 );
