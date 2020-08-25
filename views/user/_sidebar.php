@@ -89,7 +89,7 @@ use yii\helpers\Url;
                 <div class="card-body">
                     <h5 class="card-title"><?= Yii::t('app', 'Solicitd para ventas en la web.') ?></h5>
                     <p class="card-text"><?= Yii::t('app', 'Si ya eres usuario de nuestra web, y quieres vender tus productos, solicítalo aquí.') ?></p>
-                    <?= Html::a(Yii::t('app', 'Solicitar'), Url::to(['partners/create']), [
+                    <?= Html::a(Yii::t('app', 'Solicitar'), Url::to(['partners/request']), [
                         'class' => 'font-transition-small',
                         'title' => Yii::t('app', 'Solicitar al administrador una cuenta de distribuidor'),
                     ]) ?>
