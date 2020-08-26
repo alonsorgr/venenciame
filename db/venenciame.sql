@@ -77,6 +77,7 @@ CREATE TABLE partners
   , image         VARCHAR(255)
   , country_id    BIGINT        NOT NULL    REFERENCES countries (id)
   , state_id      BIGINT        NOT NULL    REFERENCES states (id)
+  , status_id      BIGINT       NOT NULL    REFERENCES statuses (id)
   , city          VARCHAR(64)   NOT NULL
   , zip_code      VARCHAR(64)   NOT NULL
   , address       VARCHAR(64)   NOT NULL
