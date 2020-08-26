@@ -3,10 +3,11 @@
 namespace app\models\forms;
 
 use Yii;
+use borales\extensions\phoneInput\PhoneInputValidator;
 use app\models\User;
 use app\models\Countries;
+use app\models\Partners;
 use app\models\States;
-
 class RequestPartnersForm extends \yii\db\ActiveRecord
 {
     /**
@@ -68,6 +69,14 @@ class RequestPartnersForm extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
+    public static function tableName()
+    {
+        return 'partners';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function rules()
     {
         return [
@@ -88,7 +97,15 @@ class RequestPartnersForm extends \yii\db\ActiveRecord
                 ['city', 'zip_code', 'address', 'phone'], 'string', 'max' => 64,
                 'message' => Yii::t('app', 'El número de caracteres del {attribute} no puede exceder los 64 caracteres.'),
             ],
-            [['country_id', 'state_id'], 'default', 'value' => null],
+            [
+                ['phone'], PhoneInputValidator::class,
+                'message' => Yii::t('app', 'El número de de teléfono debe ser un número de teléfono válido.'),
+            ],
+            [
+                ['zip_code'], 'match',
+                'pattern' => '/^[0-9]{5}(-[0-9]{4})?$/',
+                'message' => Yii::t('app', 'El código postal debe ser un código postal válido. Ej. (14467 | 144679554 | 14467-9554)'),
+            ],
             [['country_id'], 'exist', 'skipOnError' => true, 'targetClass' => Countries::class, 'targetAttribute' => ['country_id' => 'id']],
             [['state_id'], 'exist', 'skipOnError' => true, 'targetClass' => States::class, 'targetAttribute' => ['state_id' => 'id']],
         ];
@@ -105,9 +122,27 @@ class RequestPartnersForm extends \yii\db\ActiveRecord
             'state_id' => Yii::t('app', 'Estado o provincia'),
             'city' => Yii::t('app', 'Ciudad'),
             'zip_code' => Yii::t('app', 'Código postal'),
-            'address' => Yii::t('app', 'Calle'),
+            'address' => Yii::t('app', 'Dirección'),
             'phone' => Yii::t('app', 'Teléfono'),
         ];
+    }
+
+    public function request()
+    {
+        if ($this->validate()) {
+            $partner = new Partners([
+                'user_id' => $this->user->id,
+                'name' => $this->name,
+                'country_id' => $this->country_id,
+                'state_id' => $this->state_id,
+                'city' => $this->city,
+                'zip_code' => $this->zip_code,
+                'address' => $this->address,
+                'phone' => $this->phone,
+            ]);
+
+            return $partner->save();
+        }
     }
 
     /**

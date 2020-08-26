@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use borales\extensions\phoneInput\PhoneInputValidator;
 
 /**
  * This is the model class for table "partners".
@@ -42,7 +43,7 @@ class Partners extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['user_id', 'name', 'description', 'country_id', 'state_id', 'city', 'zip_code', 'address', 'phone'], 'required'],
+            [['user_id', 'name', 'country_id', 'state_id', 'city', 'zip_code', 'address', 'phone'], 'required'],
             [['user_id', 'country_id', 'state_id'], 'default', 'value' => null],
             [['user_id', 'country_id', 'state_id'], 'integer'],
             [['information'], 'string'],
@@ -50,10 +51,21 @@ class Partners extends \yii\db\ActiveRecord
             [['name'], 'string', 'max' => 32],
             [['description', 'image'], 'string', 'max' => 255],
             [['city', 'zip_code', 'address', 'phone'], 'string', 'max' => 64],
+            [['name'], 'unique'],
             [['user_id'], 'unique'],
+            [
+                ['phone'], PhoneInputValidator::class,
+                'message' => Yii::t('app', 'El número de de teléfono debe ser un número de teléfono válido.'),
+            ],
+            [
+                ['zip_code'], 'match',
+                'pattern' => '/^[0-9]{5}(-[0-9]{4})?$/',
+                'message' => Yii::t('app', 'El código postal debe ser un código postal válido. Ej. (14467 | 144679554 | 14467-9554)'),
+            ],
             [['country_id'], 'exist', 'skipOnError' => true, 'targetClass' => Countries::class, 'targetAttribute' => ['country_id' => 'id']],
             [['state_id'], 'exist', 'skipOnError' => true, 'targetClass' => States::class, 'targetAttribute' => ['state_id' => 'id']],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::class, 'targetAttribute' => ['user_id' => 'id']],
+            [['user_id', 'name', 'country_id', 'state_id', 'city', 'zip_code', 'address', 'phone'], 'safe'],
         ];
     }
 

@@ -80,7 +80,7 @@ use yii\helpers\Url;
             </ul>
         </div>
     </div>
-    <?php if (!Yii::$app->user->isGuest && User::isPartner()) : ?>
+    <?php if (!Yii::$app->user->isGuest && !User::isPartner()) : ?>
         <div class="row mt-4">
             <div class="card w-100">
                 <div class="card-header">
@@ -105,7 +105,7 @@ use yii\helpers\Url;
                 <div class="card-body">
                     <h5 class="card-title"><?= Yii::t('app', 'Panel de administración de ventas de socios.') ?></h5>
                     <p class="card-text"><?= Yii::t('app', 'Aquí podrás administrar tus ventas.') ?></p>
-                    <?= Html::a(Yii::t('app', 'Administrar'), Url::to(['partners/index']), [
+                    <?= Html::a(Yii::t('app', 'Administrar'), Url::to(['partners/request']), [
                         'class' => 'font-transition-small',
                         'title' => Yii::t('app', 'Solicitar al administrador una cuenta de distribuidor'),
                     ]) ?>

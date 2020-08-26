@@ -2,11 +2,13 @@
 
 namespace app\controllers;
 
+use app\helpers\Email;
 use app\models\forms\RequestPartnersForm;
 use Yii;
 use app\models\Partners;
 use app\models\search\PartnersSearch;
 use app\models\States;
+use app\models\User;
 use yii\bootstrap4\ActiveForm;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -123,7 +125,25 @@ class PartnersController extends Controller
         }
 
         if ($model->load(Yii::$app->request->post())) {
-
+            if ($model->request()) {
+                Yii::$app->session->setFlash('partnersFormSubmitted');
+                Email::send([
+                    'email' => $model->user->email,
+                    'subject' => Yii::t('app', 'VENÉNCIAME - SOLICITUD DE SOCIO'),
+                    'body' => Yii::t('app', 'Se ha creado una petición de socio en nuestra base de datos. Pronto será informado del estado de su solicitud mediante correo electrónico.'),
+                ]);
+                Yii::$app->session->setFlash(
+                    'success',
+                    Yii::t('app', 'Se ha creado una petición de socio en nuestra base de datos. Pronto será informado del estado de su solicitud mediante correo electrónico.')
+                );
+                return $this->refresh();
+            } else {       
+                Yii::$app->session->setFlash(
+                    'danger',
+                    Yii::t('app', 'Ocurrió un error al enviar el correo electrónico, por favor, inténtelo de nuevo.')
+                );
+                return $this->refresh();
+            }
         }
 
         return $this->render('request', [

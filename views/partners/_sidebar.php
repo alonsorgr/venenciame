@@ -96,6 +96,22 @@ use yii\helpers\Url;
                 </div>
             </div>
         </div>
+    <?php else : ?>
+        <div class="row mt-4">
+            <div class="card w-100">
+                <div class="card-header">
+                    <div class="lead"><?= Yii::t('app', 'Ayuda') ?></div>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title"><?= Yii::t('app', 'Instrucciones.') ?></h5>
+                    <p class="card-text"><?= Yii::t('app', 'Completa el formulario.') ?></p>
+                    <p class="card-text"><?= Yii::t('app', 'Se le enviará un correo electrónico indicando que la solicitud está en revisión.') ?></p>
+                    <p class="card-text"><?= Yii::t('app', 'Una vez confirmada por el administrador, le llegará una notificación por correo electrónico y en la web.') ?></p>
+                    <p class="card-text"><?= Yii::t('app', 'Una vez confirmada la solicitud, podrás acceder al panel para completar la información de su empresa y crear nuevas ventas que serán moderanad por el administrador.') ?></p>
+                    
+                </div>
+            </div>
+        </div>
     <?php endif ?>
 </div>
 <?php Bootstrap::modal([
