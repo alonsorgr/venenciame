@@ -45,4 +45,24 @@ class Statuses extends \yii\db\ActiveRecord
             'created_at' => Yii::t('app', 'Created At'),
         ];
     }
+
+    /**
+     * Relación de 3estados con [[Partners]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPartners()
+    {
+        return $this->hasMany(Partners::class, ['status_id' => 'id'])->inverseOf('status');
+    }
+
+    /**
+     * Genera una lista con las etiquetas de los objetos [[Statuses]]
+     *
+     * @return array    array con las etiquetas de [[Statuses]] indexados por id.
+     */
+    public static function labels()
+    {
+        return static::find()->select('label')->orderBy('label')->indexBy('id')->column();
+    }
 }
