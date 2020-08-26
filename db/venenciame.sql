@@ -65,6 +65,15 @@ CREATE TABLE roles
   , created_at  TIMESTAMP(0) DEFAULT CURRENT_TIMESTAMP
 );
 
+DROP TABLE IF EXISTS statuses CASCADE;
+
+CREATE TABLE statuses
+(
+    id          BIGSERIAL       PRIMARY KEY
+  , label       VARCHAR(64)     NOT NULL UNIQUE
+  , created_at  TIMESTAMP(0)    DEFAULT CURRENT_TIMESTAMP
+);
+
 DROP TABLE IF EXISTS partners CASCADE;
 
 CREATE TABLE partners
@@ -84,13 +93,4 @@ CREATE TABLE partners
   , phone         VARCHAR(64)   NOT NULL
   , updated_at    TIMESTAMP(0)
   , created_at    TIMESTAMP(0)  NOT NULL    DEFAULT CURRENT_TIMESTAMP
-);
-
-DROP TABLE IF EXISTS statuses CASCADE;
-
-CREATE TABLE statuses
-(
-    id          BIGSERIAL       PRIMARY KEY
-  , label       VARCHAR(64)     NOT NULL UNIQUE
-  , created_at  TIMESTAMP(0)    DEFAULT CURRENT_TIMESTAMP
 );
