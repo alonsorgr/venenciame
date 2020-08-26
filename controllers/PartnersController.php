@@ -151,12 +151,6 @@ class PartnersController extends Controller
         ]);
     }
 
-    public function actionStates($id)
-    {
-        Yii::$app->response->format = Response::FORMAT_JSON;
-        return States::getStates($id);
-    }
-
     /**
      * Finds the Partners model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.

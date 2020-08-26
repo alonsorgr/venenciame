@@ -17,7 +17,7 @@ $this->title = Yii::t('app', 'Solicitud de socio');
 
 $this->params['breadcrumbs'][] = $this->title;
 
-$url = Url::to(['partners/states']);
+$url = Url::to(['states/states']);
 
 $js = <<<EOT
 
