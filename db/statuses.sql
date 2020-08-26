@@ -2,9 +2,8 @@
 -- Archivo de carga de estados --
 ---------------------------------
 
-INSERT INTO languages (label) VALUES ('Inactivo');
-INSERT INTO languages (label) VALUES ('Activo');
-INSERT INTO languages (label) VALUES ('Borrador');
-INSERT INTO languages (label) VALUES ('Moderación');
-INSERT INTO languages (label) VALUES ('Publicado');
-INSERT INTO languages (label) VALUES ('Borrado');
+INSERT INTO statuses (label) VALUES ('Borrado');
+INSERT INTO statuses (label) VALUES ('Inactivo');
+INSERT INTO statuses (label) VALUES ('Moderación');
+INSERT INTO statuses (label) VALUES ('Publicado');
+INSERT INTO statuses (label) VALUES ('Activo');

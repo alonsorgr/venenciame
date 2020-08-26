@@ -14,6 +14,15 @@ use Yii;
 class Statuses extends \yii\db\ActiveRecord
 {
     /**
+     * Constantes de estados
+     */
+    const STATUS_DELETED = 1;
+    const STATUS_INACTIVE = 2;
+    const STATUS_MODERATION = 3;
+    const STATUS_PUBLISHED = 4;
+    const STATUS_ACTIVE = 5;
+
+    /**
      * {@inheritdoc}
      */
     public static function tableName()

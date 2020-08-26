@@ -8,6 +8,8 @@ use app\models\User;
 use app\models\Countries;
 use app\models\Partners;
 use app\models\States;
+use app\models\Statuses;
+
 class RequestPartnersForm extends \yii\db\ActiveRecord
 {
     /**
@@ -135,6 +137,7 @@ class RequestPartnersForm extends \yii\db\ActiveRecord
                 'name' => $this->name,
                 'country_id' => $this->country_id,
                 'state_id' => $this->state_id,
+                'status_id' => Statuses::STATUS_MODERATION,
                 'city' => $this->city,
                 'zip_code' => $this->zip_code,
                 'address' => $this->address,
