@@ -12,7 +12,7 @@ VALUES
 (
    'admin'
  , crypt('admin', gen_salt('bf', 10))
- , 'admin@venenciame.com'
+ , 'alonsorgr@gmail.com'
  , 10
  , true
  , 1

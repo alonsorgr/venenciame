@@ -72,7 +72,7 @@ CREATE TABLE partners
     id            BIGSERIAL     PRIMARY KEY
   , user_id       BIGINT        UNIQUE      NOT NULL  REFERENCES users (id)
   , name          VARCHAR(32)   UNIQUE      NOT NULL
-  , description   VARCHAR(255)              NOT NULL
+  , description   VARCHAR(255)              
   , information   TEXT
   , image         VARCHAR(255)
   , country_id    BIGINT        NOT NULL    REFERENCES countries (id)

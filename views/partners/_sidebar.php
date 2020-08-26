@@ -10,7 +10,7 @@ use yii\helpers\Url;
 \yii\web\YiiAsset::register($this);
 ?>
 
-<div class="user-sidebar my-4">
+<div class="partners-sidebar my-4">
     <div class="row">
         <div class="card w-100">
             <div class="card-header">
@@ -80,16 +80,16 @@ use yii\helpers\Url;
             </ul>
         </div>
     </div>
-    <?php if (!Yii::$app->user->isGuest && !User::isPartner()) : ?>
+    <?php if (!Yii::$app->user->isGuest && User::isPartner()) : ?>
         <div class="row mt-4">
             <div class="card w-100">
                 <div class="card-header">
-                    <div class="lead"><?= Yii::t('app', 'Participa') ?></div>
+                    <div class="lead"><?= Yii::t('app', 'Mis ventas') ?></div>
                 </div>
                 <div class="card-body">
-                    <h5 class="card-title"><?= Yii::t('app', 'Solicitd para ventas en la web.') ?></h5>
-                    <p class="card-text"><?= Yii::t('app', 'Si ya eres usuario de nuestra web, y quieres vender tus productos, solicítalo aquí.') ?></p>
-                    <?= Html::a(Yii::t('app', 'Solicitar'), Url::to(['partners/request']), [
+                    <h5 class="card-title"><?= Yii::t('app', 'Panel de administración de ventas de socios.') ?></h5>
+                    <p class="card-text"><?= Yii::t('app', 'Aquí podrás administrar tus ventas.') ?></p>
+                    <?= Html::a(Yii::t('app', 'Administrar'), Url::to(['partners/index']), [
                         'class' => 'font-transition-small',
                         'title' => Yii::t('app', 'Solicitar al administrador una cuenta de distribuidor'),
                     ]) ?>
@@ -100,15 +100,15 @@ use yii\helpers\Url;
         <div class="row mt-4">
             <div class="card w-100">
                 <div class="card-header">
-                    <div class="lead"><?= Yii::t('app', 'Mis ventas') ?></div>
+                    <div class="lead"><?= Yii::t('app', 'Ayuda') ?></div>
                 </div>
                 <div class="card-body">
-                    <h5 class="card-title"><?= Yii::t('app', 'Panel de administración de ventas de socios.') ?></h5>
-                    <p class="card-text"><?= Yii::t('app', 'Aquí podrás administrar tus ventas.') ?></p>
-                    <?= Html::a(Yii::t('app', 'Administrar'), Url::to(['partners/request']), [
-                        'class' => 'font-transition-small',
-                        'title' => Yii::t('app', 'Solicitar al administrador una cuenta de distribuidor'),
-                    ]) ?>
+                    <h5 class="card-title"><?= Yii::t('app', 'Instrucciones.') ?></h5>
+                    <p class="card-text"><?= Yii::t('app', 'Completa el formulario.') ?></p>
+                    <p class="card-text"><?= Yii::t('app', 'Se le enviará un correo electrónico indicando que la solicitud está en revisión.') ?></p>
+                    <p class="card-text"><?= Yii::t('app', 'Una vez confirmada por el administrador, le llegará una notificación por correo electrónico y en la web.') ?></p>
+                    <p class="card-text"><?= Yii::t('app', 'Una vez confirmada la solicitud, podrás acceder al panel para completar la información de su empresa y crear nuevas ventas que serán moderanad por el administrador.') ?></p>
+                    
                 </div>
             </div>
         </div>
