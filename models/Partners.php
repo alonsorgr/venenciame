@@ -25,6 +25,7 @@ use borales\extensions\phoneInput\PhoneInputValidator;
  *
  * @property Countries $country
  * @property States $state
+ * @property Statuses $status
  * @property Users $user
  */
 class Partners extends \yii\db\ActiveRecord
@@ -62,6 +63,7 @@ class Partners extends \yii\db\ActiveRecord
                 'pattern' => '/^[0-9]{5}(-[0-9]{4})?$/',
                 'message' => Yii::t('app', 'El código postal debe ser un código postal válido. Ej. (14467 | 144679554 | 14467-9554)'),
             ],
+            [['status_id'], 'exist', 'skipOnError' => true, 'targetClass' => Statuses::class, 'targetAttribute' => ['status_id' => 'id']],
             [['country_id'], 'exist', 'skipOnError' => true, 'targetClass' => Countries::class, 'targetAttribute' => ['country_id' => 'id']],
             [['state_id'], 'exist', 'skipOnError' => true, 'targetClass' => States::class, 'targetAttribute' => ['state_id' => 'id']],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::class, 'targetAttribute' => ['user_id' => 'id']],
@@ -83,6 +85,7 @@ class Partners extends \yii\db\ActiveRecord
             'image' => Yii::t('app', 'Image'),
             'country_id' => Yii::t('app', 'Country ID'),
             'state_id' => Yii::t('app', 'State ID'),
+            'status_id' => Yii::t('app', 'Estado'),
             'city' => Yii::t('app', 'City'),
             'zip_code' => Yii::t('app', 'Zip Code'),
             'address' => Yii::t('app', 'Address'),
@@ -110,6 +113,16 @@ class Partners extends \yii\db\ActiveRecord
     public function getState()
     {
         return $this->hasOne(States::class, ['id' => 'state_id'])->inverseOf('partners');
+    }
+
+    /**
+     * Gets query for [[Statuses]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getStatus()
+    {
+        return $this->hasOne(Statuses::class, ['id' => 'status_id'])->inverseOf('partners');
     }
 
     /**

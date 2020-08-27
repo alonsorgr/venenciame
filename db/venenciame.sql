@@ -65,6 +65,15 @@ CREATE TABLE roles
   , created_at  TIMESTAMP(0) DEFAULT CURRENT_TIMESTAMP
 );
 
+DROP TABLE IF EXISTS statuses CASCADE;
+
+CREATE TABLE statuses
+(
+    id          BIGSERIAL       PRIMARY KEY
+  , label       VARCHAR(64)     NOT NULL UNIQUE
+  , created_at  TIMESTAMP(0)    DEFAULT CURRENT_TIMESTAMP
+);
+
 DROP TABLE IF EXISTS partners CASCADE;
 
 CREATE TABLE partners
@@ -77,6 +86,7 @@ CREATE TABLE partners
   , image         VARCHAR(255)
   , country_id    BIGINT        NOT NULL    REFERENCES countries (id)
   , state_id      BIGINT        NOT NULL    REFERENCES states (id)
+  , status_id     BIGINT                    REFERENCES statuses (id)
   , city          VARCHAR(64)   NOT NULL
   , zip_code      VARCHAR(64)   NOT NULL
   , address       VARCHAR(64)   NOT NULL
