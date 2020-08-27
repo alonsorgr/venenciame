@@ -162,7 +162,6 @@ class Navigation
             ],
             'items' => [
                 $view,
-                static::horizontalDivider(),
                 $update,
                 User::isPartner() ? static::horizontalDivider() : '',
                 User::isPartner() ? $partner : '',
