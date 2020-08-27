@@ -11,7 +11,7 @@ use yii\bootstrap4\Breadcrumbs;
 use app\assets\AppAsset;
 use app\helpers\Bootstrap;
 use app\helpers\Cookies;
-use app\helpers\NavItem;
+use app\helpers\Navigation;
 use yii\helpers\Url;
 
 AppAsset::register($this);
@@ -59,7 +59,7 @@ $this->title = Yii::$app->name;
         ]);
         echo Nav::widget([
             'options' => ['class' => 'navbar-nav text-uppercase'],
-            'items' => NavItem::items(),
+            'items' => Navigation::items(),
         ]);
         NavBar::end();
         ?>

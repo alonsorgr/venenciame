@@ -20,7 +20,7 @@ use yii\helpers\Url;
  * @author Alonso García <alonsorgr@gmail.com>
  * @since 1.0
  */
-class NavItem
+class Navigation
 {
     /**
      * Genera el menú principal en la barra de navegación.
