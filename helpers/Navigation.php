@@ -112,29 +112,41 @@ class Navigation
 
         $view = [
             'encode' => false,
-            'label' => '<i class="fas fa-user text-secondary mr-2"></i>' . Yii::t('app', 'Ver perfil'),
+            'label' => '<i class="fas fa-user text-primary mr-3"></i>' . Yii::t('app', 'Ver perfil'),
             'url' => ['user/view', 'id' => User::id()], 'post',
             'linkOptions' => [
                 'title' => Yii::t('app', 'Ver el perfil personal del usuario'),
+                'class' => 'text-capitalize',
             ],
         ];
 
         $update = [
             'encode' => false,
-            'label' => '<i class="fas fa-pen text-secondary mr-2"></i>' . Yii::t('app', 'Editar perfil'),
+            'label' => '<i class="fas fa-pen text-primary mr-3"></i>' . Yii::t('app', 'Editar perfil'),
             'url' => ['user/update', 'id' => User::id()], 'post',
             'linkOptions' => [
                 'title' => Yii::t('app', 'Editar el perfil personal del usuario'),
+                'class' => 'text-capitalize',
+            ],
+        ];
+
+        $partner = [
+            'encode' => false,
+            'label' => '<i class="fas fa-handshake text-primary mr-3"></i>' . Yii::t('app', 'Panel de ventas'),
+            'url' => ['partners/view', 'id' => User::id()], 'post',
+            'linkOptions' => [
+                'title' => Yii::t('app', 'Administrar las ventas de socio'),
+                'class' => 'text-capitalize',
             ],
         ];
 
         $logout = [
             'encode' => false,
-            'label' => '<i class="fas fa-sign-out-alt text-danger mr-2"></i>' . Yii::t('app', 'Cerrar sesión'),
+            'label' => '<i class="fas fa-sign-out-alt text-danger mr-3"></i>' . Yii::t('app', 'Cerrar sesión'),
             'url' => '#',
             'linkOptions' => [
                 'title' => Yii::t('app', 'Desconectarse del sitio'),
-                'class' => 'show-modal-logout',
+                'class' => 'show-modal-logout text-capitalize',
                 'value' => Url::to(['site/logout']),
                 'data-toggle' => 'modal',
                 'data-target' => '#modal-logout',
@@ -150,7 +162,10 @@ class Navigation
             ],
             'items' => [
                 $view,
+                static::horizontalDivider(),
                 $update,
+                User::isPartner() ? static::horizontalDivider() : '',
+                User::isPartner() ? $partner : '',
                 static::horizontalDivider(),
                 $logout,
             ]
