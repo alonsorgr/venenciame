@@ -67,6 +67,16 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+        /* $faker = \Faker\Factory::create();
+        for ( $i = 1; $i <= 2000; $i++ )
+        {
+            $user = new User();
+            $user->username = $faker->username;
+            $user->password = '123';
+            $user->email = $faker->email;
+            $user->save();
+      
+        } */
         return $this->render('index');
     }
 

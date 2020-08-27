@@ -3,6 +3,8 @@
 namespace app\models;
 
 use Yii;
+use app\helpers\AmazonS3;
+use yii\web\UploadedFile;
 use borales\extensions\phoneInput\PhoneInputValidator;
 
 /**
@@ -31,6 +33,25 @@ use borales\extensions\phoneInput\PhoneInputValidator;
 class Partners extends \yii\db\ActiveRecord
 {
     /**
+     * Constante de imagen de logo corporativo.
+     */
+    const IMAGE = '@img/partners.jpg';
+
+    /**
+     * Variable de subida de imagen de logo corporativo.
+     *
+     * @var string
+     */
+    public $upload;
+
+    /**
+     * Atributo virtual para enlace a logo corporativo.
+     *
+     * @var string
+     */
+    private $_link = null;
+
+    /**
      * {@inheritdoc}
      */
     public static function tableName()
@@ -44,7 +65,7 @@ class Partners extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['user_id', 'name', 'country_id', 'state_id', 'city', 'zip_code', 'address', 'phone'], 'required'],
+            [['user_id', 'name', 'status_id', 'country_id', 'state_id', 'city', 'zip_code', 'address', 'phone'], 'required'],
             [['user_id', 'country_id', 'state_id'], 'default', 'value' => null],
             [['user_id', 'country_id', 'state_id'], 'integer'],
             [['information'], 'string'],
@@ -63,6 +84,9 @@ class Partners extends \yii\db\ActiveRecord
                 'pattern' => '/^[0-9]{5}(-[0-9]{4})?$/',
                 'message' => Yii::t('app', 'El código postal debe ser un código postal válido. Ej. (14467 | 144679554 | 14467-9554)'),
             ],
+
+            [['image'], 'file'],
+            [['image'], 'safe'],
             [['status_id'], 'exist', 'skipOnError' => true, 'targetClass' => Statuses::class, 'targetAttribute' => ['status_id' => 'id']],
             [['country_id'], 'exist', 'skipOnError' => true, 'targetClass' => Countries::class, 'targetAttribute' => ['country_id' => 'id']],
             [['state_id'], 'exist', 'skipOnError' => true, 'targetClass' => States::class, 'targetAttribute' => ['state_id' => 'id']],
@@ -78,25 +102,76 @@ class Partners extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'user_id' => Yii::t('app', 'User ID'),
-            'name' => Yii::t('app', 'Name'),
-            'description' => Yii::t('app', 'Description'),
-            'information' => Yii::t('app', 'Information'),
-            'image' => Yii::t('app', 'Image'),
-            'country_id' => Yii::t('app', 'Country ID'),
-            'state_id' => Yii::t('app', 'State ID'),
-            'status_id' => Yii::t('app', 'Estado'),
-            'city' => Yii::t('app', 'City'),
-            'zip_code' => Yii::t('app', 'Zip Code'),
-            'address' => Yii::t('app', 'Address'),
-            'phone' => Yii::t('app', 'Phone'),
+            'user_id' => Yii::t('app', 'Usuario vinculado'),
+            'name' => Yii::t('app', 'Nombre de la bodega o empresa'),
+            'description' => Yii::t('app', 'Descripción'),
+            'information' => Yii::t('app', 'Información adicional'),
+            'image' => Yii::t('app', 'Logo corporativo'),
+            'upload' => Yii::t('app', 'Logo corporativo'),
+            'country_id' => Yii::t('app', 'País'),
+            'state_id' => Yii::t('app', 'Estado o provincia'),
+            'status_id' => Yii::t('app', 'Estado de la cuenta'),
+            'city' => Yii::t('app', 'Ciudad'),
+            'zip_code' => Yii::t('app', 'Código postal'),
+            'address' => Yii::t('app', 'Dirección'),
+            'phone' => Yii::t('app', 'Teléfono'),
             'updated_at' => Yii::t('app', 'Updated At'),
-            'created_at' => Yii::t('app', 'Created At'),
+            'created_at' => Yii::t('app', 'Socio desde '),
         ];
     }
 
     /**
-     * Gets query for [[Country]].
+     * {@inheritdoc}
+     */
+    public function beforeSave($insert)
+    {
+        if (!parent::beforeSave($insert)) {
+            return false;
+        }
+        $this->uploadImage();
+        return true;
+    }
+
+    /**
+     * Sube la imagen de logo corporativo a Amazon Web Services S3.
+     *
+     * @return void
+     */
+    public function uploadImage()
+    {
+        $this->upload = UploadedFile::getInstance($this, 'upload');
+        if ($this->upload !== null) {
+            $this->image = AmazonS3::upload($this->upload, $this->name, AmazonS3::BUCKET_USERS, $this->image);
+            $this->upload = null;
+        }
+    }
+
+    /**
+     * Genera un enlace a la imagen de logo corporativo.
+     *
+     * @param   string    $link   enlace a imagen de logo corporativo.
+     * @return  void
+     */
+    public function setLink($link)
+    {
+        $this->_link = $link;
+    }
+
+    /**
+     * Genera un enlace a la imagen de logo corporativo.
+     *
+     * @return  string  enlace a imagen de logo corporativo.
+     */
+    public function getLink()
+    {
+        if ($this->_link === null && !$this->isNewRecord) {
+        }
+        $this->setLink(AmazonS3::getLink($this->image, self::IMAGE, AmazonS3::USER, AmazonS3::BUCKET_USERS));
+        return $this->_link;
+    }
+
+    /**
+     * Relación de partners con [[Countries]].
      *
      * @return \yii\db\ActiveQuery
      */
@@ -106,7 +181,7 @@ class Partners extends \yii\db\ActiveRecord
     }
 
     /**
-     * Gets query for [[State]].
+     * Relación de partners con [[States]].
      *
      * @return \yii\db\ActiveQuery
      */
@@ -116,7 +191,7 @@ class Partners extends \yii\db\ActiveRecord
     }
 
     /**
-     * Gets query for [[Statuses]].
+     * Relación de partners con [[Statuses]].
      *
      * @return \yii\db\ActiveQuery
      */
@@ -126,7 +201,7 @@ class Partners extends \yii\db\ActiveRecord
     }
 
     /**
-     * Gets query for [[User]].
+     * Relación de partners con [[User]].
      *
      * @return \yii\db\ActiveQuery
      */

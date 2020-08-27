@@ -14,7 +14,7 @@ Thumbs.db
 
 # composer vendor dir
 /vendor
-
+.vscode
 # composer itself is not needed
 composer.phar
 
@@ -41,3 +41,4 @@ tests/chromedriver
 
 # files
 web/aws/user/*
+web/aws/partners/*

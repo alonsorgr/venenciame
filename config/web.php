@@ -16,6 +16,7 @@ $config = [
         '@uploads' => '@img/uploads',
         '@aws' => 'aws',
         '@user' => '@aws/user',
+        '@user' => '@aws/partners',
     ],
     'language' => 'es-ES',
     'components' => [

@@ -59,7 +59,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     const IMAGE = '@img/user.jpg';
 
     /**
-     * Variable de subida de imagen de operfil de usuario.
+     * Variable de subida de imagen de perfil de usuario.
      *
      * @var string
      */
@@ -478,5 +478,15 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     public static function id()
     {
         return !Yii::$app->user->isGuest ? Yii::$app->user->identity->id : '';
+    }
+
+    /**
+     * Genera una lista con las etiquetas de los objetos [[User]]
+     *
+     * @return array    array con las etiquetas de [[User]] indexados por id.
+     */
+    public static function labels()
+    {
+        return static::find()->select('username')->orderBy('id')->indexBy('id')->column();
     }
 }
