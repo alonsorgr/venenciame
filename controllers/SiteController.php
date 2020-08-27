@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * @link https://github.com/alonsorgr/venenciame/
+ * @copyright Copyright (c) 2020 alonsorgr
+ * @license https://github.com/alonsorgr/venenciame/blob/master/LICENSE.md
+ */
+
 namespace app\controllers;
 
 use app\helpers\Cookies;
@@ -16,6 +22,12 @@ use app\models\forms\RegisterForm;
 use app\models\forms\RequestPasswordForm;
 use app\models\forms\ResetPasswordForm;
 
+/**
+ * Controlador del sitio.
+ *
+ * @author Alonso García <alonsorgr@gmail.com>
+ * @since 1.0
+ */
 class SiteController extends Controller
 {
     /**

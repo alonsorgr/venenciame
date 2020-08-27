@@ -1,22 +1,31 @@
 <?php
 
+/**
+ * @link https://github.com/alonsorgr/venenciame/
+ * @copyright Copyright (c) 2020 alonsorgr
+ * @license https://github.com/alonsorgr/venenciame/blob/master/LICENSE.md
+ */
+
 namespace app\controllers;
 
+use Yii;
+use yii\web\Controller;
+use yii\bootstrap4\ActiveForm;
+use yii\filters\VerbFilter;
+use yii\web\NotFoundHttpException;
+use yii\web\Response;
+use app\models\search\PartnersSearch;
+use app\models\Partners;
+use app\models\User;
+use app\models\States;
 use app\helpers\Email;
 use app\models\forms\RequestPartnersForm;
-use Yii;
-use app\models\Partners;
-use app\models\search\PartnersSearch;
-use app\models\States;
-use app\models\User;
-use yii\bootstrap4\ActiveForm;
-use yii\web\Controller;
-use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
-use yii\web\Response;
 
 /**
- * PartnersController implements the CRUD actions for Partners model.
+ * Controlador de socios [[Partners]]
+ *
+ * @author Alonso García <alonsorgr@gmail.com>
+ * @since 1.0
  */
 class PartnersController extends Controller
 {
@@ -36,8 +45,9 @@ class PartnersController extends Controller
     }
 
     /**
-     * Lists all Partners models.
-     * @return mixed
+     * Acción de renderizado vista de inicio de socios.
+     *
+     * @return yii\web\Response | string    el resultado de la representación.
      */
     public function actionIndex()
     {
@@ -51,10 +61,11 @@ class PartnersController extends Controller
     }
 
     /**
-     * Displays a single Partners model.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
+     * Acción de renderizado vista de socio.
+     * 
+     * @param   integer            $id      identificador de socio.
+     * @return  yii\web\Response | string   el resultado de la representación.
+     * @throws  NotFoundHttpException       si el modelo no es encontrado.
      */
     public function actionView($id)
     {
@@ -64,9 +75,9 @@ class PartnersController extends Controller
     }
 
     /**
-     * Creates a new Partners model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return mixed
+     * Acción de renderizado vista de creación de socio.
+     * 
+     * @return  yii\web\Response | string   el resultado de la representación.
      */
     public function actionCreate()
     {
@@ -87,11 +98,11 @@ class PartnersController extends Controller
     }
 
     /**
-     * Updates an existing Partners model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
+     * Acción de renderizado vista de edición socio.
+     * 
+     * @param   integer            $id      identificador de socio.
+     * @return  yii\web\Response | string   el resultado de la representación.
+     * @throws  NotFoundHttpException       si el modelo no es encontrado.
      */
     public function actionUpdate($id)
     {
@@ -112,11 +123,11 @@ class PartnersController extends Controller
     }
 
     /**
-     * Deletes an existing Partners model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
+     * Acción de renderizado vista de borrado de socio.
+     * 
+     * @param   integer            $id      identificador de socio.
+     * @return  yii\web\Response | string   el resultado de la representación.
+     * @throws  NotFoundHttpException       si el modelo no es encontrado.
      */
     public function actionDelete($id)
     {
@@ -125,6 +136,11 @@ class PartnersController extends Controller
         return $this->redirect(['index']);
     }
 
+    /**
+     * Acción de renderizado de vista de petición de socio.
+     *
+     * @return  yii\web\Response | string   el resultado de la representación.
+     */
     public function actionRequest()
     {
         $model = new RequestPartnersForm();
@@ -162,11 +178,11 @@ class PartnersController extends Controller
     }
 
     /**
-     * Finds the Partners model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
-     * @return Partners the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
+     * Encuentra el modelo de socio en función de su valor de clave principal.
+     * 
+     * @param   integer                 $id     identificador de socio.
+     * @return  User                            el modelo cargado.
+     * @throws  NotFoundHttpException           si el modelo no es encontrado.
      */
     protected function findModel($id)
     {
