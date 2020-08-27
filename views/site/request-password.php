@@ -2,7 +2,7 @@
 
 /* @var $this yii\web\View */
 /* @var $form yii\bootstrap\ActiveForm */
-/* @var $model app\models\RequestPasswordForm */
+/* @var $model app\models\forms\RequestPasswordForm */
 
 use app\helpers\Bootstrap;
 use yii\bootstrap4\ActiveForm;

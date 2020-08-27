@@ -3,7 +3,7 @@
 use yii\bootstrap4\Html;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Partners */
+/* @var $model app\models\forms\RequestPartnersForm */
 
 $this->title = Yii::t('app', 'Solicitud de socios');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Socios'), 'url' => ['index']];
