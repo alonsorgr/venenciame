@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * @link https://github.com/alonsorgr/venenciame/
+ * @copyright Copyright (c) 2020 alonsorgr
+ * @license https://github.com/alonsorgr/venenciame/blob/master/LICENSE.md
+ */
+
 namespace app\models;
 
 use Yii;
@@ -8,8 +14,11 @@ use yii\web\UploadedFile;
 use borales\extensions\phoneInput\PhoneInputValidator;
 
 /**
- * This is the model class for table "partners".
- *
+ * Esta es la clase modelo para la tabla "socios"..
+ * 
+ * @author Alonso García <alonsorgr@gmail.com>
+ * @since 1.0
+ * 
  * @property int $id
  * @property int $user_id
  * @property string $name
@@ -171,7 +180,7 @@ class Partners extends \yii\db\ActiveRecord
     }
 
     /**
-     * Relación de partners con [[Countries]].
+     * Obtiene consulta para [[Countries]].
      *
      * @return \yii\db\ActiveQuery
      */
@@ -181,7 +190,7 @@ class Partners extends \yii\db\ActiveRecord
     }
 
     /**
-     * Relación de partners con [[States]].
+     * Obtiene consulta para [[States]].
      *
      * @return \yii\db\ActiveQuery
      */
@@ -191,7 +200,7 @@ class Partners extends \yii\db\ActiveRecord
     }
 
     /**
-     * Relación de partners con [[Statuses]].
+     * Obtiene consulta para [[Statuses]].
      *
      * @return \yii\db\ActiveQuery
      */
@@ -201,7 +210,7 @@ class Partners extends \yii\db\ActiveRecord
     }
 
     /**
-     * Relación de partners con [[User]].
+     * Obtiene consulta para [[User]].
      *
      * @return \yii\db\ActiveQuery
      */

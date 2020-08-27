@@ -15,8 +15,11 @@ use yii\web\UploadedFile;
 use app\helpers\AmazonS3;
 
 /**
- * This is the model class for table "users".
- *
+ * Esta es la clase modelo para la tabla "users".
+ * 
+ * @author Alonso García <alonsorgr@gmail.com>
+ * @since 1.0
+ * 
  * @property int $id
  * @property string $username
  * @property string $password
@@ -441,7 +444,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     }
 
     /**
-     * Relación de usuarios con [[Addresses]].
+     * Obtiene consulta para [[Addresses]].
      *
      * @return \yii\db\ActiveQuery
      */
@@ -451,7 +454,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     }
 
     /**
-     * Relación de usuarios con [[Language]].
+     * Obtiene consulta para [[Languages]].
      *
      * @return \yii\db\ActiveQuery
      */
@@ -461,7 +464,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     }
 
     /**
-     * Relación de usuarios con [[Partners]].
+     * Obtiene consulta para [[Partners]].
      *
      * @return \yii\db\ActiveQuery
      */

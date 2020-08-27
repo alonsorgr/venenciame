@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * @link https://github.com/alonsorgr/venenciame/
+ * @copyright Copyright (c) 2020 alonsorgr
+ * @license https://github.com/alonsorgr/venenciame/blob/master/LICENSE.md
+ */
+
 namespace app\models\forms;
 
 use Yii;
@@ -8,6 +14,12 @@ use yii\helpers\Url;
 use app\models\User;
 use app\helpers\Email;
 
+/**
+ * Modelo para formulario de registro de usuarios.
+ *
+ * @author Alonso García <alonsorgr@gmail.com>
+ * @since 1.0
+ */
 class RegisterForm extends ActiveRecord
 {
     /**

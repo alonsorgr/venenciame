@@ -11,8 +11,11 @@ namespace app\models;
 use Yii;
 
 /**
- * This is the model class for table "languages".
- *
+ * Esta es la clase modelo para la tabla "Idiomas".
+ * 
+ * @author Alonso García <alonsorgr@gmail.com>
+ * @since 1.0
+ * 
  * @property int $id
  * @property string $code
  * @property string $label
@@ -59,7 +62,7 @@ class Languages extends \yii\db\ActiveRecord
     }
 
     /**
-     * Gets query for [[Users]].
+     * Obtiene consulta para [[Users]].
      *
      * @return \yii\db\ActiveQuery
      */
