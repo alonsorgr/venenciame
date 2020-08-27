@@ -32,25 +32,6 @@ class UserController extends Controller
     }
 
     /**
-     * Acción de validación de formularios.
-     *
-     * @param   integer $id     identificador de usuario.
-     * @return  array           de mensajes de error indexada por los ID de atributo. 
-     */
-    public function actionValidation($id = null)
-    {
-        if ($id !== null) {
-            $model = $this->findModel($id);
-        } else {
-            $model = new User();
-        }
-        if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
-            Yii::$app->response->format = Response::FORMAT_JSON;
-            return ActiveForm::validate($model);
-        }
-    }
-
-    /**
      * Acción de renderizado vista de inicio de usuarios.
      *
      * @return yii\web\Response | string    el resultado de la representación.
@@ -129,6 +110,25 @@ class UserController extends Controller
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
+    }
+
+    /**
+     * Acción de validación de formularios.
+     *
+     * @param   integer $id     identificador de usuario.
+     * @return  array           de mensajes de error indexada por los ID de atributo. 
+     */
+    public function actionValidation($id = null)
+    {
+        if ($id !== null) {
+            $model = $this->findModel($id);
+        } else {
+            $model = new User();
+        }
+        if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            return ActiveForm::validate($model);
+        }
     }
 
     /**
