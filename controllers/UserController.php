@@ -31,6 +31,12 @@ class UserController extends Controller
         ];
     }
 
+    /**
+     * Acción de validación de formularios.
+     *
+     * @param   integer $id     identificador de usuario.
+     * @return  array           de mensajes de error indexada por los ID de atributo. 
+     */
     public function actionValidation($id = null)
     {
         if ($id !== null) {
@@ -45,8 +51,9 @@ class UserController extends Controller
     }
 
     /**
-     * Lists all User models.
-     * @return mixed
+     * Acción de renderizado vista de inicio de usuarios.
+     *
+     * @return yii\web\Response | string    el resultado de la representación.
      */
     public function actionIndex()
     {
@@ -60,10 +67,10 @@ class UserController extends Controller
     }
 
     /**
-     * Displays a single User model.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
+     * Acción de renderizado vista de usuario.
+     * 
+     * @param   integer            $id      identificador de usuario.
+     * @return  yii\web\Response | string   el resultado de la representación.
      */
     public function actionView($id)
     {
@@ -73,9 +80,9 @@ class UserController extends Controller
     }
 
     /**
-     * Creates a new User model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return mixed
+     * Acción de renderizado vista de creación de usuario.
+     * 
+     * @return  yii\web\Response | string   el resultado de la representación.
      */
     public function actionCreate()
     {
@@ -91,11 +98,11 @@ class UserController extends Controller
     }
 
     /**
-     * Updates an existing User model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
+     * Acción de renderizado vista de edición usuario.
+     * 
+     * @param   integer            $id      identificador de usuario.
+     * @return  yii\web\Response | string   el resultado de la representación.
+     * @throws  NotFoundHttpException       si el modelo no es encontrado.
      */
     public function actionUpdate($id)
     {
@@ -111,11 +118,11 @@ class UserController extends Controller
     }
 
     /**
-     * Deletes an existing User model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
+     * Acción de renderizado vista de borrado de usuario.
+     * 
+     * @param   integer            $id      identificador de usuario.
+     * @return  yii\web\Response | string   el resultado de la representación.
+     * @throws  NotFoundHttpException       si el modelo no es encontrado.
      */
     public function actionDelete($id)
     {
@@ -125,11 +132,11 @@ class UserController extends Controller
     }
 
     /**
-     * Finds the User model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
-     * @return User the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
+     * Encuentra el modelo de usuario en función de su valor de clave principal.
+     * 
+     * @param   integer                 $id     identificador de usuario.
+     * @return  User                            el modelo cargado.
+     * @throws  NotFoundHttpException           si el modelo no es encontrado.
      */
     protected function findModel($id)
     {
