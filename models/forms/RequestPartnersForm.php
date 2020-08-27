@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * @link https://github.com/alonsorgr/venenciame/
+ * @copyright Copyright (c) 2020 alonsorgr
+ * @license https://github.com/alonsorgr/venenciame/blob/master/LICENSE.md
+ */
+
 namespace app\models\forms;
 
 use Yii;
@@ -10,6 +16,12 @@ use app\models\Partners;
 use app\models\States;
 use app\models\Statuses;
 
+/**
+ * Modelo para formulario de solicitud de socio.
+ *
+ * @author Alonso García <alonsorgr@gmail.com>
+ * @since 1.0
+ */
 class RequestPartnersForm extends \yii\db\ActiveRecord
 {
     /**

@@ -1,11 +1,23 @@
 <?php
 
+/**
+ * @link https://github.com/alonsorgr/venenciame/
+ * @copyright Copyright (c) 2020 alonsorgr
+ * @license https://github.com/alonsorgr/venenciame/blob/master/LICENSE.md
+ */
+
 namespace app\models\forms;
 
 use Yii;
 use yii\base\Model;
 use app\models\User;
 
+/**
+ * Modelo para formulario de generación de recuperación de contraseña.
+ *
+ * @author Alonso García <alonsorgr@gmail.com>
+ * @since 1.0
+ */
 class ResetPasswordForm extends Model
 {
     /**

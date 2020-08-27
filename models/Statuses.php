@@ -1,12 +1,21 @@
 <?php
 
+/**
+ * @link https://github.com/alonsorgr/venenciame/
+ * @copyright Copyright (c) 2020 alonsorgr
+ * @license https://github.com/alonsorgr/venenciame/blob/master/LICENSE.md
+ */
+
 namespace app\models;
 
 use Yii;
 
 /**
- * This is the model class for table "statuses".
- *
+ * Esta es la clase modelo para la tabla "statuses".
+ * 
+ * @author Alonso García <alonsorgr@gmail.com>
+ * @since 1.0
+ * 
  * @property int $id
  * @property string $label
  * @property string|null $created_at
@@ -56,7 +65,7 @@ class Statuses extends \yii\db\ActiveRecord
     }
 
     /**
-     * Relación de 3estados con [[Partners]].
+     * Obtiene consulta para [[Partners]].
      *
      * @return \yii\db\ActiveQuery
      */

@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * @link https://github.com/alonsorgr/venenciame/
+ * @copyright Copyright (c) 2020 alonsorgr
+ * @license https://github.com/alonsorgr/venenciame/blob/master/LICENSE.md
+ */
+
 namespace app\models\search;
 
 use yii\base\Model;
@@ -7,7 +13,10 @@ use yii\data\ActiveDataProvider;
 use app\models\Partners;
 
 /**
- * PartnersSearch represents the model behind the search form of `app\models\Partners`.
+ * Modelo que representa el modelo detrás de la forma de búsqueda de [[Partners]].
+ *
+ * @author Alonso García <alonsorgr@gmail.com>
+ * @since 1.0
  */
 class PartnersSearch extends Partners
 {

@@ -11,8 +11,11 @@ namespace app\models;
 use Yii;
 
 /**
- * This is the model class for table "states".
- *
+ * Esta es la clase modelo para la tabla "states".
+ * 
+ * @author Alonso García <alonsorgr@gmail.com>
+ * @since 1.0
+ * 
  * @property int $id
  * @property string $label
  * @property int|null $country_id
@@ -60,23 +63,13 @@ class States extends \yii\db\ActiveRecord
     }
 
     /**
-     * Gets query for [[Addresses]].
-     *
-     * @return \yii\db\ActiveQuery
-     */
-    public function getAddresses()
-    {
-        return $this->hasMany(Addresses::className(), ['state_id' => 'id'])->inverseOf('state');
-    }
-
-    /**
-     * Gets query for [[Country]].
+     * Obtiene consulta para [[Country]].
      *
      * @return \yii\db\ActiveQuery
      */
     public function getCountry()
     {
-        return $this->hasOne(Countries::className(), ['id' => 'country_id'])->inverseOf('states');
+        return $this->hasOne(Countries::class, ['id' => 'country_id'])->inverseOf('states');
     }
 
     /**
@@ -87,21 +80,5 @@ class States extends \yii\db\ActiveRecord
     public static function labels()
     {
         return static::find()->select('label')->orderBy('label')->indexBy('id')->column();
-    }
-
-    /**
-     * Undocumented function
-     *
-     * @param   int     $id     identificador del pais [[Countries]].
-     * @return  array           con las etiquetas de [[States]] indexados por id.
-     */
-    public static function getStates($id)
-    {
-        return static::find()
-            ->select('label')
-            ->where(['country_id' => $id])
-            ->orderBy('label')
-            ->indexBy('id')
-            ->column();
     }
 }

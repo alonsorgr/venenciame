@@ -11,8 +11,11 @@ namespace app\models;
 use Yii;
 
 /**
- * This is the model class for table "countries".
- *
+ * Esta es la clase modelo para la tabla "países".
+ * 
+ * @author Alonso García <alonsorgr@gmail.com>
+ * @since 1.0
+ * 
  * @property int $id
  * @property string $code
  * @property string $label
@@ -58,7 +61,7 @@ class Countries extends \yii\db\ActiveRecord
     }
 
     /**
-     * Gets query for [[Addresses]].
+     * Obtiene consulta para [[Addresses]].
      *
      * @return \yii\db\ActiveQuery
      */
@@ -68,7 +71,7 @@ class Countries extends \yii\db\ActiveRecord
     }
 
     /**
-     * Gets query for [[States]].
+     * Obtiene consulta para [[States]].
      *
      * @return \yii\db\ActiveQuery
      */

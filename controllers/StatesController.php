@@ -50,6 +50,11 @@ class StatesController extends \yii\web\Controller
     public function actionStates($id)
     {
         Yii::$app->response->format = Response::FORMAT_JSON;
-        return States::getStates($id);
+        return States::find()
+            ->select('label')
+            ->where(['country_id' => $id])
+            ->orderBy('label')
+            ->indexBy('id')
+            ->column();;
     }
 }
