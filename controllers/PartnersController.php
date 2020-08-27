@@ -1,19 +1,25 @@
 <?php
 
+/**
+ * @link https://github.com/alonsorgr/venenciame/
+ * @copyright Copyright (c) 2020 alonsorgr
+ * @license https://github.com/alonsorgr/venenciame/blob/master/LICENSE.md
+ */
+
 namespace app\controllers;
 
-use app\helpers\Email;
-use app\models\forms\RequestPartnersForm;
 use Yii;
+use yii\web\Controller;
+use yii\bootstrap4\ActiveForm;
+use yii\filters\VerbFilter;
+use yii\web\NotFoundHttpException;
+use yii\web\Response;
 use app\models\Partners;
 use app\models\search\PartnersSearch;
-use app\models\States;
 use app\models\User;
-use yii\bootstrap4\ActiveForm;
-use yii\web\Controller;
-use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
-use yii\web\Response;
+use app\models\States;
+use app\helpers\Email;
+use app\models\forms\RequestPartnersForm;
 
 /**
  * PartnersController implements the CRUD actions for Partners model.

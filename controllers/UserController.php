@@ -1,15 +1,21 @@
 <?php
 
+/**
+ * @link https://github.com/alonsorgr/venenciame/
+ * @copyright Copyright (c) 2020 alonsorgr
+ * @license https://github.com/alonsorgr/venenciame/blob/master/LICENSE.md
+ */
+
 namespace app\controllers;
 
 use Yii;
+use yii\web\Controller;
+use yii\filters\VerbFilter;
+use yii\bootstrap4\ActiveForm;
+use yii\web\NotFoundHttpException;
+use yii\web\Response;
 use app\models\User;
 use app\models\search\UserSearch;
-use yii\bootstrap4\ActiveForm;
-use yii\web\Controller;
-use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
-use yii\web\Response;
 
 /**
  * UserController implements the CRUD actions for User model.
