@@ -112,17 +112,25 @@ class Navigation
 
         $view = [
             'encode' => false,
-            'label' => '<i class="fas fa-user text-primary mr-3"></i>' . Yii::t('app', 'Ver perfil'),
+            'label' => static::label([
+                'icon' => 'fas fa-user',
+                'color' => 'text-primary',
+                'label' => Yii::t('app', 'Ver perfil'),
+            ]),
             'url' => ['user/view', 'id' => User::id()], 'post',
             'linkOptions' => [
                 'title' => Yii::t('app', 'Ver el perfil personal del usuario'),
-                'class' => 'text-capitalize',
+                'class' => 'text-capitalize dropdown-label',
             ],
         ];
 
         $update = [
             'encode' => false,
-            'label' => '<i class="fas fa-pen text-primary mr-3"></i>' . Yii::t('app', 'Editar perfil'),
+            'label' => static::label([
+                'icon' => 'fas fa-pen',
+                'color' => 'text-primary',
+                'label' => Yii::t('app', 'Editar perfil'),
+            ]),
             'url' => ['user/update', 'id' => User::id()], 'post',
             'linkOptions' => [
                 'title' => Yii::t('app', 'Editar el perfil personal del usuario'),
@@ -132,7 +140,11 @@ class Navigation
 
         $partner = [
             'encode' => false,
-            'label' => '<i class="fas fa-handshake text-primary mr-3"></i>' . Yii::t('app', 'Panel de ventas'),
+            'label' => static::label([
+                'icon' => 'fas fa-handshake',
+                'color' => 'text-primary',
+                'label' => Yii::t('app', 'Panel de ventas'),
+            ]),
             'url' => ['partners/view', 'id' => User::id()], 'post',
             'linkOptions' => [
                 'title' => Yii::t('app', 'Administrar las ventas de socio'),
@@ -142,7 +154,11 @@ class Navigation
 
         $logout = [
             'encode' => false,
-            'label' => '<i class="fas fa-sign-out-alt text-danger mr-3"></i>' . Yii::t('app', 'Cerrar sesión'),
+            'label' => static::label([
+                'icon' => 'fas fa-sign-out-alt',
+                'color' => 'text-danger',
+                'label' => Yii::t('app', 'Cerrar sesión'),
+            ]),
             'url' => '#',
             'linkOptions' => [
                 'title' => Yii::t('app', 'Desconectarse del sitio'),
@@ -181,5 +197,23 @@ class Navigation
         return Html::tag('div', '', [
             'class' => 'dropdown-divider'
         ]);
+    }
+
+    /**
+     * Genera una etiqueta formateada para los menús.
+     *
+     * @param   array   $options    array de opciones.
+     * @return  string              etiqueta formateada.
+     */
+    public static function label($options)
+    {
+        return <<<EOT
+        <div class="row justify-content-between m-2">
+            <i class="{$options['icon']} {$options['color']}"></i>
+            <div>
+                {$options['label']}
+            </div>
+        </div>
+        EOT;
     }
 }
