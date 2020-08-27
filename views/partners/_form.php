@@ -54,6 +54,8 @@ EOT;
 
 $this->registerJs($js);
 
+$header = $model->isNewRecord ? Yii::t('app', 'Dar de alta') : Yii::t('app', 'Editar');
+$header = Yii::$app->controller->action->id === 'request' ? Yii::t('app', 'Solicitud') : $header;
 
 ?>
 <div class="partners-form">
@@ -65,7 +67,7 @@ $this->registerJs($js);
         <div class="col-xl-8">
             <div class="row display-5">
                 <div class="col mb-4">
-                    <?= $model->isNewRecord ? Yii::t('app', 'Dar de alta') : Yii::t('app', 'Editar'); ?>
+                    <?= $header ?>
                 </div>
             </div>
             <div class="row">
@@ -75,21 +77,23 @@ $this->registerJs($js);
             </div>
             <div class="row">
                 <div class="col-xl-6">
-                    <?php if ($model->isNewRecord) : ?>
-                        <div class="mb-4">
-                            <?= $form->field($model, 'user_id')->widget(Select2::class, [
-                                'data' => User::labels(),
-                                'options' => [
-                                    'class' => 'form-control',
-                                    'placeholder' => Yii::t('app', 'Seleccione el usuario vinculado a este socio'),
-                                    'title' => Yii::t('app', 'Seleccione el usuario vinculado a este socio'),
-                                ],
-                                'theme' => Select2::THEME_MATERIAL,
-                                'pluginOptions' => [
-                                    'allowClear' => false,
-                                ],
-                            ]); ?>
-                        </div>
+                    <?php if (Yii::$app->controller->action->id != 'request') : ?>
+                        <?php if ($model->isNewRecord) : ?>
+                            <div class="mb-4">
+                                <?= $form->field($model, 'user_id')->widget(Select2::class, [
+                                    'data' => User::labels(),
+                                    'options' => [
+                                        'class' => 'form-control',
+                                        'placeholder' => Yii::t('app', 'Seleccione el usuario vinculado a este socio'),
+                                        'title' => Yii::t('app', 'Seleccione el usuario vinculado a este socio'),
+                                    ],
+                                    'theme' => Select2::THEME_MATERIAL,
+                                    'pluginOptions' => [
+                                        'allowClear' => false,
+                                    ],
+                                ]); ?>
+                            </div>
+                        <?php endif; ?>
                     <?php endif; ?>
                     <div class="mb-4">
                         <?= $form->field($model, 'name')->textInput([
@@ -167,86 +171,88 @@ $this->registerJs($js);
                     </div>
                 </div>
             </div>
-            <div class="row mt-3">
-                <div class="col-xl-12 mb-3">
-                    <?= Bootstrap::header(Yii::t('app', 'Información adicional de su empresa o bodega')); ?>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xl-6">
-                    <div class="mb-4">
-                        <?= $form->field($model, 'description')->textInput([
-                            'maxlength' => true,
-                            'placeholder' => Yii::t('app', 'Introduzca una breve descripción de su empresa o bodega'),
-                            'title' => Yii::t('app', 'Introduzca una breve descripción de su empresa o bodega'),
-                        ]); ?>
-                    </div>
-                    <div class="mb-4">
-                        <?= $form->field($model, 'information')->textarea([
-                            'rows' => 6,
-                            'maxlength' => true,
-                            'placeholder' => Yii::t('app', 'Introduzca una introducción breve'),
-                            'title' => Yii::t('app', 'Introduzca una introducción breve'),
-                        ]); ?>
-                    </div>
-                </div>
-            </div>
-            <div class="row mt-3">
-                <div class="col-xl-12 mb-3">
-                    <?= Bootstrap::header(Yii::t('app', 'Logo corporativo')); ?>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xl-6">
-                    <div class="mb-4">
-                        <?= $form->field($model, 'upload')->widget(FileInput::class, [
-                            'options' => [
-                                'accept' => 'image/*',
-                            ],
-                            'pluginOptions' => [
-                                'showUpload' => false,
-                                'showRemove' => false,
-                                'initialPreview' => [
-                                    $model->link,
-                                ],
-                                'initialPreviewAsData' => true,
-                                'initialCaption' => Html::encode($model->name),
-                                'initialPreviewConfig' => [
-                                    ['caption' => Html::encode($model->name)],
-                                ],
-                                'overwriteInitial' => true,
-                                'maxFileSize' => 5000,
-                                'mainClass' => 'input-group-sm mt-4'
-                            ]
-                        ]); ?>
-                    </div>
-                </div>
-            </div>
-            <?php if ($model->isNewRecord || Yii::$app->user->identity->admin) : ?>
+            <?php if (Yii::$app->controller->action->id != 'request') : ?>
                 <div class="row mt-3">
                     <div class="col-xl-12 mb-3">
-                        <?= Bootstrap::header(Yii::t('app', 'Administrar')); ?>
+                        <?= Bootstrap::header(Yii::t('app', 'Información adicional de su empresa o bodega')); ?>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-xl-6">
                         <div class="mb-4">
-                            <?= $form->field($model, 'status_id')->widget(Select2::class, [
-                                'data' => Statuses::labels(),
-                                'options' => [
-                                    'class' => 'form-control',
-                                    'placeholder' => Yii::t('app', 'Estado de la cuenta'),
-                                    'title' => Yii::t('app', 'Estado de la cuenta'),
-                                ],
-                                'theme' => Select2::THEME_MATERIAL,
-                                'pluginOptions' => [
-                                    'allowClear' => false,
-                                ],
+                            <?= $form->field($model, 'description')->textInput([
+                                'maxlength' => true,
+                                'placeholder' => Yii::t('app', 'Introduzca una breve descripción de su empresa o bodega'),
+                                'title' => Yii::t('app', 'Introduzca una breve descripción de su empresa o bodega'),
+                            ]); ?>
+                        </div>
+                        <div class="mb-4">
+                            <?= $form->field($model, 'information')->textarea([
+                                'rows' => 6,
+                                'maxlength' => true,
+                                'placeholder' => Yii::t('app', 'Introduzca una introducción breve'),
+                                'title' => Yii::t('app', 'Introduzca una introducción breve'),
                             ]); ?>
                         </div>
                     </div>
                 </div>
-            <?php endif ?>
+                <div class="row mt-3">
+                    <div class="col-xl-12 mb-3">
+                        <?= Bootstrap::header(Yii::t('app', 'Logo corporativo')); ?>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xl-6">
+                        <div class="mb-4">
+                            <?= $form->field($model, 'upload')->widget(FileInput::class, [
+                                'options' => [
+                                    'accept' => 'image/*',
+                                ],
+                                'pluginOptions' => [
+                                    'showUpload' => false,
+                                    'showRemove' => false,
+                                    'initialPreview' => [
+                                        $model->link,
+                                    ],
+                                    'initialPreviewAsData' => true,
+                                    'initialCaption' => Html::encode($model->name),
+                                    'initialPreviewConfig' => [
+                                        ['caption' => Html::encode($model->name)],
+                                    ],
+                                    'overwriteInitial' => true,
+                                    'maxFileSize' => 5000,
+                                    'mainClass' => 'input-group-sm mt-4'
+                                ]
+                            ]); ?>
+                        </div>
+                    </div>
+                </div>
+                <?php if ($model->isNewRecord || Yii::$app->user->identity->admin) : ?>
+                    <div class="row mt-3">
+                        <div class="col-xl-12 mb-3">
+                            <?= Bootstrap::header(Yii::t('app', 'Administrar')); ?>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-6">
+                            <div class="mb-4">
+                                <?= $form->field($model, 'status_id')->widget(Select2::class, [
+                                    'data' => Statuses::labels(),
+                                    'options' => [
+                                        'class' => 'form-control',
+                                        'placeholder' => Yii::t('app', 'Estado de la cuenta'),
+                                        'title' => Yii::t('app', 'Estado de la cuenta'),
+                                    ],
+                                    'theme' => Select2::THEME_MATERIAL,
+                                    'pluginOptions' => [
+                                        'allowClear' => false,
+                                    ],
+                                ]); ?>
+                            </div>
+                        </div>
+                    </div>
+                <?php endif ?>
+            <?php endif; ?>
             <div class="form-group my-3">
                 <?= Html::submitButton(Yii::t('app', Yii::t('app', 'Enviar')), [
                     'class' => 'btn btn-primary mt-3',
