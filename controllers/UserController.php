@@ -52,6 +52,7 @@ class UserController extends Controller
      * 
      * @param   integer            $id      identificador de usuario.
      * @return  yii\web\Response | string   el resultado de la representación.
+     * @throws  NotFoundHttpException       si el modelo no es encontrado.
      */
     public function actionView($id)
     {
