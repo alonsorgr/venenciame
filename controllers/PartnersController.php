@@ -14,15 +14,18 @@ use yii\bootstrap4\ActiveForm;
 use yii\filters\VerbFilter;
 use yii\web\NotFoundHttpException;
 use yii\web\Response;
-use app\models\Partners;
 use app\models\search\PartnersSearch;
+use app\models\Partners;
 use app\models\User;
 use app\models\States;
 use app\helpers\Email;
 use app\models\forms\RequestPartnersForm;
 
 /**
- * PartnersController implements the CRUD actions for Partners model.
+ * Controlador de socios [[Partners]]
+ *
+ * @author Alonso García <alonsorgr@gmail.com>
+ * @since 1.0
  */
 class PartnersController extends Controller
 {

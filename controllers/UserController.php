@@ -18,7 +18,10 @@ use app\models\User;
 use app\models\search\UserSearch;
 
 /**
- * UserController implements the CRUD actions for User model.
+ * Controlador de usuarios [[User]]
+ *
+ * @author Alonso García <alonsorgr@gmail.com>
+ * @since 1.0
  */
 class UserController extends Controller
 {

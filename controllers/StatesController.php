@@ -13,6 +13,12 @@ use yii\filters\AccessControl;
 use yii\web\Response;
 use app\models\States;
 
+/**
+ * Controlador de estados [[States]]
+ *
+ * @author Alonso García <alonsorgr@gmail.com>
+ * @since 1.0
+ */
 class StatesController extends \yii\web\Controller
 {
     /**

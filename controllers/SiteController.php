@@ -22,6 +22,12 @@ use app\models\forms\RegisterForm;
 use app\models\forms\RequestPasswordForm;
 use app\models\forms\ResetPasswordForm;
 
+/**
+ * Controlador del sitio.
+ *
+ * @author Alonso García <alonsorgr@gmail.com>
+ * @since 1.0
+ */
 class SiteController extends Controller
 {
     /**
