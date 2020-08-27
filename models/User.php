@@ -197,6 +197,16 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     }
 
     /**
+     * Comprueba si el usuario es administrador.
+     *
+     * @return boolean  verdadero si el usuario es administrador.
+     */
+    public static function isAdmin()
+    {
+        return !Yii::$app->user->isGuest ? Yii::$app->user->identity->admin : false;
+    }
+
+    /**
      * Comprueba si el usuario es socio.
      *
      * @return boolean  verdadero si el usuario es socio.

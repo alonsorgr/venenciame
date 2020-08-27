@@ -138,6 +138,20 @@ class Navigation
             ],
         ];
 
+        $admin = [
+            'encode' => false,
+            'label' => static::label([
+                'icon' => 'fas fa-users-cog',
+                'color' => 'text-primary',
+                'label' => Yii::t('app', 'Administración'),
+            ]),
+            'url' => ['admin/index'],
+            'linkOptions' => [
+                'title' => Yii::t('app', 'Administrar el sitio'),
+                'class' => 'text-capitalize',
+            ],
+        ];
+
         $partner = [
             'encode' => false,
             'label' => static::label([
@@ -179,6 +193,8 @@ class Navigation
             'items' => [
                 $view,
                 $update,
+                User::isAdmin() ? static::horizontalDivider() : '',
+                $admin,
                 User::isPartner() ? static::horizontalDivider() : '',
                 User::isPartner() ? $partner : '',
                 static::horizontalDivider(),
