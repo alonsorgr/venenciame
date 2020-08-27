@@ -25,11 +25,13 @@ class AmazonS3
      */
     const BUCKET = 'venenciame';
     const BUCKET_USERS = 'venenciame-users';
+    const BUCKET_PARTNERS = 'venenciame-partners';
 
     /**
      * Constantes de alias para AWS S3.
      */
     const USER = '@user/';
+    const PARTNERS = '@partners/';
 
     /**
      * Undocumented function
