@@ -6,6 +6,8 @@ use yii\bootstrap4\Html;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\User */
+/* @var $followedSearch app\models\search\FollowedSearch */
+/* @var $followedProvider yii\data\ActiveDataProvider */
 
 $this->title = $model->username;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Usuarios'), 'url' => ['index']];
@@ -67,7 +69,10 @@ $this->params['breadcrumbs'][] = $this->title;
             $items[] = Bootstrap::tabItem([
                 'icon' => 'fas fa-heart',
                 'label' => Yii::t('app', 'Seguidos'),
-                'content' => $this->render('tabs/_followed.php'),
+                'content' => $this->render('tabs/_followed.php', [
+                    'followedSearch' => $followedSearch,
+                    'followedProvider' => $followedProvider,
+                ]),
             ]);
 
             $items[] = Bootstrap::tabItem([

@@ -91,6 +91,8 @@ CREATE TABLE partners
   , zip_code      VARCHAR(64)   NOT NULL
   , address       VARCHAR(64)   NOT NULL
   , phone         VARCHAR(64)   NOT NULL
+  , url           VARCHAR(64)
+  , email         VARCHAR(64)
   , updated_at    TIMESTAMP(0)
   , created_at    TIMESTAMP(0)  NOT NULL    DEFAULT CURRENT_TIMESTAMP
 );
@@ -99,9 +101,8 @@ DROP TABLE IF EXISTS followers CASCADE;
 
 CREATE TABLE followers
 (
-    id            BIGSERIAL     
-  , user_id       BIGINT                  REFERENCES users (id)
+    id            BIGSERIAL     PRIMARY KEY
+  , user_id       BIGINT        NOT NULL  REFERENCES users (id)
   , partner_id    BIGINT        NOT NULL  REFERENCES partners (id)
   , created_at    TIMESTAMP(0)  DEFAULT CURRENT_TIMESTAMP
-  , PRIMARY KEY (user_id, partner_id)
 );

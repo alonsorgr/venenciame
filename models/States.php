@@ -71,6 +71,16 @@ class States extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Countries::class, ['id' => 'country_id'])->inverseOf('states');
     }
+    
+    /**
+     * Obtiene consulta para [[Partners].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPartners()
+    {
+        return $this->hasMany(Partners::class, ['state_id' => 'id'])->inverseOf('state');
+    }
 
     /**
      * Genera una lista con las etiquetas de los objetos [[States]]

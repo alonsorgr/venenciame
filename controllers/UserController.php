@@ -16,6 +16,7 @@ use yii\web\NotFoundHttpException;
 use yii\web\Response;
 use app\models\User;
 use app\models\search\UserSearch;
+use app\models\search\FollowedSearch;
 
 /**
  * Controlador de usuarios [[User]]
@@ -65,8 +66,13 @@ class UserController extends Controller
      */
     public function actionView($id)
     {
+        $followedSearch = new FollowedSearch();
+        $followedProvider = $followedSearch->search(Yii::$app->request->queryParams);
+
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'followedSearch' => $followedSearch,
+            'followedProvider' => $followedProvider,
         ]);
     }
 

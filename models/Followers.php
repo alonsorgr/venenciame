@@ -1,12 +1,21 @@
 <?php
 
+/**
+ * @link https://github.com/alonsorgr/venenciame/
+ * @copyright Copyright (c) 2020 alonsorgr
+ * @license https://github.com/alonsorgr/venenciame/blob/master/LICENSE.md
+ */
+
 namespace app\models;
 
 use Yii;
 
 /**
- * This is the model class for table "followers".
- *
+ * Esta es la clase modelo para la tabla "followers".
+ * 
+ * @author Alonso García <alonsorgr@gmail.com>
+ * @since 1.0
+ * 
  * @property int $id
  * @property int $user_id
  * @property int $partner_id

@@ -8,30 +8,32 @@ use app\models\User;
 /* @var $model app\models\Partners */
 
 $follow = Url::to(['followers/follow', 'user_id' => User::id(), 'partner_id' => $model->id]);
+$id = $model->id;
 
 $js = <<<EOT
 $(document).ready(function(){
-    $('#partner-follow').css('cursor', 'pointer');
+    $('#partner-follow-' + $id).css('cursor', 'pointer');
     $.ajax({
         type : 'GET',
         url : '$follow',
         success: function(response) {
             response = JSON.parse(response);
-            $('#partner-follow').removeClass('far');
-            $('#partner-follow').addClass(response.class);
-            $('#partner-follow').prop('title', response.title);
+            $('#partner-follow-' + $id).removeClass('far');
+            $('#partner-follow-' + $id).addClass(response.class);
+            $('#partner-follow-' + $id).prop('title', response.title);
         }
     });
-    $('#partner-follow').click(function(e){
+    $('#partner-follow-' + $id).click(function(e){
         e.preventDefault();
         $.ajax({
             type : 'POST',
             url : '$follow',
             success: function(response) {
                 response = JSON.parse(response);
-                $('#partner-follow').removeClass('fas');
-                $('#partner-follow').addClass(response.class);
-                $('#partner-follow').prop('title', response.title);
+                $('#partner-follow-' + $id).removeClass('fas');
+                $('#partner-follow-' + $id).addClass(response.class);
+                $('#partner-follow-' + $id).prop('title', response.title);
+                $.pjax.reload({ container: '#partners-followed-pjax', timeout: false });
             }
         });
     });
@@ -43,7 +45,7 @@ $this->registerJs($js);
 
 <div class="partner-small">
     <div class="row">
-        <div class="col-12 col-sm-auto">
+        <div class="col-12 col-sm-auto mt-4">
             <div class="mx-auto">
                 <div class="col d-flex justify-content-center align-items-center">
                     <div class="user-box">
@@ -58,26 +60,40 @@ $this->registerJs($js);
                 </div>
             </div>
         </div>
-        <div class="col d-flex flex-column flex-sm-row justify-content-between">
+        <div class="col d-flex flex-column flex-sm-row justify-content-between mt-4">
             <div class="text-center text-sm-left">
                 <div class="d-block mb-xl-2 mt-2 lead">
-                    <?= Html::encode($model->name) ?>
+                    <?= Html::a(Html::encode($model->name), ['partners/view', 'id' => $model->id], [
+                        'data-pjax' => 0,
+                    ]) ?>
                 </div>
-                <cite class="d-block text-break font-italic">
+                <cite class="d-block text-break font-italic mr-lg-5 mt-2">
                     <?= Html::encode($model->description) ?>
                 </cite>
             </div>
-            <div class="text-center text-nowrap text-sm-right">
+            <div class="text-center text-nowrap text-sm-right mt-3">
                 <small class="text-muted">
-                    <i class="fas fa-calendar icon-sm mr-1"></i>
                     <?= Yii::t('app', 'Registrado el {date}', [
                         'date' => Html::encode(Yii::$app->formatter->asDate($model->created_at)),
                     ]) ?>
+                    <i class="fas fa-calendar icon-sm ml-2"></i>
                 </small>
+                <div class="d-block mt-2 text-muted">
+                    <?= Yii::$app->formatter->asUrl($model->url) ?>
+                    <i class="fas fa-link icon-sm ml-2"></i>
+                </div>
+                <div class="d-block mt-2 text-muted">
+                    <?= Yii::$app->formatter->asEmail($model->email) ?>
+                    <i class="fas fa-envelope icon-sm ml-2"></i>
+                </div>
+                <div class="d-block mt-2 text-muted">
+                    <?= Html::encode($model->location) ?>
+                </div>
                 <div class="d-block justify-content-end mt-3">
                     <?= Html::a(null, null, [
-                        'id' => 'partner-follow',
+                        'id' => 'partner-follow-' . $id,
                         'class' => 'far fa-heart no-underline heart-size text-danger',
+                        'data-pjax' => 0,
                     ]); ?>
                 </div>
             </div>

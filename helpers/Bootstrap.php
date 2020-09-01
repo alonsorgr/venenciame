@@ -152,4 +152,27 @@ class Bootstrap
             'content' => $options['content'],
         ];
     }
+    
+    /**
+     * Genera el componente de paginación para el componente ListView.
+     *
+     * @return  array                       configuración del paginador para el componente ListView.
+     * @see     \yii\widgets\ListView
+     * @see     \yii\widgets\BaseListView
+     */
+    public static function listViewPager()
+    {
+        return [
+            'firstPageLabel' => Yii::t('app', 'Primero'),
+            'lastPageLabel' => Yii::t('app', 'Último'),
+            'prevPageLabel' => Yii::t('app', 'Anterior'),
+            'nextPageLabel' => Yii::t('app', 'Siguiente'),
+            'maxButtonCount' => 3,
+            'options' => [
+                'tag' => 'div',
+                'class' => 'pager-wrapper pagination justify-content-center mt-5',
+            ],
+        ];
+    }
+
 }

@@ -1,8 +1,10 @@
 <?php
 
+use app\helpers\Bootstrap;
 use yii\helpers\Url;
 use yii\bootstrap4\Html;
 use app\models\User;
+use kartik\tabs\TabsX;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Partners */
@@ -19,6 +21,38 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="col-12">
                     <?= $this->render('_small', [
                         'model' => $model,
+                    ]); ?>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-12">
+                    <?php
+                    $items[] = Bootstrap::tabItem([
+                        'icon' => 'fas fa-chart-line',
+                        'label' => Yii::t('app', 'Productos'),
+                        'content' => $this->render('tabs/_products.php'),
+                    ]);
+
+                    $items[] = Bootstrap::tabItem([
+                        'icon' => 'fas fa-heart',
+                        'label' => Yii::t('app', 'Seguidores'),
+                        'content' => $this->render('tabs/_followers.php'),
+                    ]);
+
+                    $items[] = Bootstrap::tabItem([
+                        'icon' => 'fas fa-star',
+                        'label' => Yii::t('app', 'Descripción'),
+                        'content' => $this->render('tabs/_information.php', [
+                            'model' => $model,
+                        ]),
+                    ]);
+                    ?>
+                    <?= TabsX::widget([
+                        'id' => 'partner-view',
+                        'items' => $items,
+                        'position' => TabsX::POS_ABOVE,
+                        'bordered' => true,
+                        'encodeLabels' => false,
                     ]); ?>
                 </div>
             </div>
