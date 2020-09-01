@@ -19,6 +19,7 @@ use app\models\Partners;
 use app\models\User;
 use app\models\States;
 use app\helpers\Email;
+use app\models\Followers;
 use app\models\forms\RequestPartnersForm;
 
 /**
@@ -69,8 +70,10 @@ class PartnersController extends Controller
      */
     public function actionView($id)
     {
+        $followers = new Followers();
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'followers' => $followers,
         ]);
     }
 

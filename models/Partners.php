@@ -33,7 +33,9 @@ use borales\extensions\phoneInput\PhoneInputValidator;
  * @property string $phone
  * @property string|null $updated_at
  * @property string $created_at
- *
+ * 
+ * @property Followers[] $followers
+ * @property Users[] $users
  * @property Countries $country
  * @property States $state
  * @property Statuses $status
@@ -217,5 +219,25 @@ class Partners extends \yii\db\ActiveRecord
     public function getUser()
     {
         return $this->hasOne(User::class, ['id' => 'user_id'])->inverseOf('partners');
+    }
+
+    /**
+     * Obtiene consulta para [[Followers]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getFollowers()
+    {
+        return $this->hasMany(Followers::class, ['partner_id' => 'id'])->inverseOf('partner');
+    }
+
+    /**
+     * Obtiene consulta para [[User]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUsers()
+    {
+        return $this->hasMany(User::class, ['id' => 'user_id'])->viaTable('followers', ['partner_id' => 'id']);
     }
 }

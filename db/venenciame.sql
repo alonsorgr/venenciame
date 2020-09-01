@@ -94,3 +94,14 @@ CREATE TABLE partners
   , updated_at    TIMESTAMP(0)
   , created_at    TIMESTAMP(0)  NOT NULL    DEFAULT CURRENT_TIMESTAMP
 );
+
+DROP TABLE IF EXISTS followers CASCADE;
+
+CREATE TABLE followers
+(
+    id            BIGSERIAL     
+  , user_id       BIGINT                  REFERENCES users (id)
+  , partner_id    BIGINT        NOT NULL  REFERENCES partners (id)
+  , created_at    TIMESTAMP(0)  DEFAULT CURRENT_TIMESTAMP
+  , PRIMARY KEY (user_id, partner_id)
+);
