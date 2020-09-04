@@ -42,7 +42,7 @@ a.desc:after {
     position: relative;
     top: 1px;
     display: inline-block;
-    font-family: 'Glyphicons Halflings';
+    font-family: 'Font Awesome 5 Free';
     font-style: normal;
     font-weight: normal;
     line-height: 1;
@@ -50,15 +50,14 @@ a.desc:after {
 }
 
 a.asc:after {
-    content:
-        /*"\e113"*/
-        "\e151";
+    content:"\f15d";
+    color: var(--primary);
 }
 
 a.desc:after {
     content:
-        /*"\e114"*/
-        "\e152";
+    /*"\e114"*/
+    "\e152";
 }
 
 .sort-numerical a.asc:after {

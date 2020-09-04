@@ -31,7 +31,7 @@ use yii\widgets\Pjax;
                     'class' => 'app\widgets\DropdownSorter',
                     'label' => 'Ordenar por',
                     'attributes' => [
-                        
+                        'name'
                     ],
                 ],
                 'options' => [

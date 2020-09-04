@@ -61,7 +61,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     /**
      * Constante de imagen de perfil de usuario.
      */
-    const IMAGE = '@img/user.jpg';
+    const IMAGE = '@web/img/user.jpg';
 
     /**
      * Variable de subida de imagen de perfil de usuario.

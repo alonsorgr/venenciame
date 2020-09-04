@@ -7,40 +7,43 @@ use app\models\User;
 /* @var $this yii\web\View */
 /* @var $model app\models\Partners */
 
-$follow = Url::to(['followers/follow', 'user_id' => User::id(), 'partner_id' => $model->id]);
-$id = $model->id;
+if (!Yii::$app->user->isGuest) {
 
-$js = <<<EOT
-$(document).ready(function(){
-    $('#partner-follow-' + $id).css('cursor', 'pointer');
-    $.ajax({
-        type : 'GET',
-        url : '$follow',
-        success: function(response) {
-            response = JSON.parse(response);
-            $('#partner-follow-' + $id).removeClass('far');
-            $('#partner-follow-' + $id).addClass(response.class);
-            $('#partner-follow-' + $id).prop('title', response.title);
-        }
-    });
-    $('#partner-follow-' + $id).click(function(e){
-        e.preventDefault();
+    $follow = Url::to(['followers/follow', 'user_id' => User::id(), 'partner_id' => $model->id]);
+    $id = $model->id;
+
+    $js = <<<EOT
+    $(document).ready(function(){
+        $('#partner-follow-' + $id).css('cursor', 'pointer');
         $.ajax({
-            type : 'POST',
+            type : 'GET',
             url : '$follow',
             success: function(response) {
                 response = JSON.parse(response);
-                $('#partner-follow-' + $id).removeClass('fas');
+                $('#partner-follow-' + $id).removeClass('far');
                 $('#partner-follow-' + $id).addClass(response.class);
                 $('#partner-follow-' + $id).prop('title', response.title);
-                $.pjax.reload({ container: '#partners-followed-pjax', timeout: false });
             }
         });
+        $('#partner-follow-' + $id).click(function(e){
+            e.preventDefault();
+            $.ajax({
+                type : 'POST',
+                url : '$follow',
+                success: function(response) {
+                    response = JSON.parse(response);
+                    $('#partner-follow-' + $id).removeClass('fas');
+                    $('#partner-follow-' + $id).addClass(response.class);
+                    $('#partner-follow-' + $id).prop('title', response.title);
+                    $.pjax.reload({ container: '#partners-followed-pjax', timeout: false });
+                }
+            });
+        });
     });
-});
-EOT;
+    EOT;
 
-$this->registerJs($js);
+    $this->registerJs($js);
+}
 ?>
 
 <div class="partner-small">
@@ -90,11 +93,13 @@ $this->registerJs($js);
                     <?= Html::encode($model->location) ?>
                 </div>
                 <div class="d-block justify-content-end mt-3">
-                    <?= Html::a(null, null, [
-                        'id' => 'partner-follow-' . $id,
-                        'class' => 'far fa-heart no-underline heart-size text-danger',
-                        'data-pjax' => 0,
-                    ]); ?>
+                    <?php if (!Yii::$app->user->isGuest) : ?>
+                        <?= Html::a(null, null, [
+                            'id' => 'partner-follow-' . $id,
+                            'class' => 'far fa-heart no-underline heart-size text-danger',
+                            'data-pjax' => 0,
+                        ]); ?>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>

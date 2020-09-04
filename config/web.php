@@ -16,7 +16,7 @@ $config = [
         '@uploads' => '@img/uploads',
         '@aws' => 'aws',
         '@user' => '@aws/user',
-        '@user' => '@aws/partners',
+        '@partners' => '@aws/partners',
     ],
     'language' => 'es-ES',
     'components' => [
@@ -69,14 +69,16 @@ $config = [
         'formatter' => [
             'timeZone' => 'Europe/Madrid',
         ],
-        /*
-        'urlManager' => [
+        
+        /* 'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                '<controller:\w+>/<id:\d+>' => '<controller>/view',
+                '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
             ],
-        ],
-        */
+        ], */
+       
     ],
     'container' => [
         'definitions' => [
