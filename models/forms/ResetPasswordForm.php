@@ -28,13 +28,6 @@ class ResetPasswordForm extends Model
     public $password = null;
 
     /**
-     * Atributo privado de repatición contraseña.
-     *
-     * @var string
-     */
-    public $passwordRepeat = null;
-
-    /**
      * Atributo privado de usuario.
      *
      * @var User|null
@@ -55,20 +48,6 @@ class ResetPasswordForm extends Model
                 ['password'], 'string', 'max' => 64,
                 'message' => Yii::t('app', 'El campo de contraseña de usuario no puede exceder los 64 caracteres.')
             ],
-            [
-                ['passwordRepeat'], 'required',
-                'message' => Yii::t('app', 'El campo de repetir contraseña no puede estar vacío.')
-            ],
-            [
-                ['passwordRepeat'], 'string', 'max' => 64,
-                'message' => Yii::t('app', 'El campo de repetir contraseña no puede exceder los 64 caracteres.')
-            ],
-            [
-                ['passwordRepeat'],
-                'compare',
-                'compareAttribute' => 'password',
-                'message' => Yii::t('app', 'Las contraseñas introducidas no coinciden.')
-            ],
         ];
     }
 
@@ -79,7 +58,6 @@ class ResetPasswordForm extends Model
     {
         return [
             'password' => Yii::t('app', 'Contraseña'),
-            'passwordRepeat' => Yii::t('app', 'Repita la contraseña'),
         ];
     }
 

@@ -8,6 +8,15 @@ use yii\bootstrap4\ActiveForm;
 use yii\bootstrap4\Html;
 use app\helpers\Bootstrap;
 
+$this->registerJsFile("@web/js/form.js", [
+    'depends' => [
+        \yii\web\JqueryAsset::class,
+    ]
+]);
+
+$this->registerJs("passwordInput('reset-password')");
+$this->registerJs("passwordInput('confirm-password')");
+
 $this->title = Yii::t('app', 'Crear nueva contraseña');
 
 $this->params['breadcrumbs'][] = $this->title;
@@ -34,24 +43,9 @@ $this->params['breadcrumbs'][] = $this->title;
                                         'type-password' => true,
                                     ]),
                                 ])->passwordInput([
-                                    'id' => 'register-password',
+                                    'id' => 'reset-password',
                                     'class' => 'form-control password-input',
-                                    'placeholder' => Yii::t('app', 'Escriba su contraseña'),
-                                    'title' => Yii::t('app', 'Contraseña de acceso'),
-                                ]); ?>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                                <?= $form->field($model, 'passwordRepeat', [
-                                    'template' => Bootstrap::inputTemplate([
-                                        'image' => 'fas fa-key',
-                                        'type-password' => true,
-                                    ]),
-                                ])->passwordInput([
-                                    'id' => 'register-password',
-                                    'class' => 'form-control password-input',
-                                    'placeholder' => Yii::t('app', 'Escriba su contraseña'),
+                                    'placeholder' => Yii::t('app', 'Escriba su nueva contraseña'),
                                     'title' => Yii::t('app', 'Contraseña de acceso'),
                                 ]); ?>
                             </div>
