@@ -95,12 +95,12 @@ class PartnersController extends Controller
     public function actionView($id)
     {
         $followersSearch = new FollowersSearch();
-        $followedProvider = $followersSearch->search(Yii::$app->request->queryParams);
+        $followersProvider = $followersSearch->search(Yii::$app->request->queryParams);
 
         return $this->render('view', [
             'model' => $this->findModel($id),
             'followersSearch' => $followersSearch,
-            'followedProvider' => $followedProvider,
+            'followersProvider' => $followersProvider,
         ]);
     }
 

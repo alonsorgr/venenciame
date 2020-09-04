@@ -10,15 +10,15 @@ namespace app\models\search;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Partners;
+use app\models\User;
 
 /**
- * Modelo que representa el modelo detrás de la forma de búsqueda de [[Partners]].
+ * Modelo que representa el modelo detrás de la forma de búsqueda de [[User]].
  *
  * @author Alonso García <alonsorgr@gmail.com>
  * @since 1.0
  */
-class FollowersSearch extends Partners
+class FollowersSearch extends User
 {
     /**
      * {@inheritdoc}
@@ -26,8 +26,9 @@ class FollowersSearch extends Partners
     public function rules()
     {
         return [
-            [['id', 'user_id', 'country_id', 'state_id'], 'integer'],
-            [['name', 'description', 'information', 'image', 'city', 'zip_code', 'address', 'phone', 'updated_at', 'created_at'], 'safe'],
+            [['id', 'status', 'rol_id', 'language_id'], 'integer'],
+            [['username', 'password', 'email', 'auth_key', 'verf_key', 'name', 'surname', 'birthdate', 'image', 'updated_at', 'created_at'], 'safe'],
+            [['admin', 'privacity'], 'boolean'],
         ];
     }
 
@@ -49,7 +50,7 @@ class FollowersSearch extends Partners
      */
     public function search($params)
     {
-        $query = Partners::find()->joinWith(['followers f', 'users u'], true)->where(['f.partner_id' => $params['id']]);;
+        $query = User::find()->joinWith(['followers f', 'partners p'], true)->where(['p.id' => $params['id']]);;
 
         // add conditions that should always apply here
 
@@ -68,21 +69,24 @@ class FollowersSearch extends Partners
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'user_id' => $this->user_id,
-            'country_id' => $this->country_id,
-            'state_id' => $this->state_id,
+            'status' => $this->status,
+            'admin' => $this->admin,
+            'privacity' => $this->privacity,
+            'birthdate' => $this->birthdate,
+            'rol_id' => $this->rol_id,
+            'language_id' => $this->language_id,
             'updated_at' => $this->updated_at,
             'created_at' => $this->created_at,
         ]);
 
-        $query->andFilterWhere(['ilike', 'name', $this->name])
-            ->andFilterWhere(['ilike', 'description', $this->description])
-            ->andFilterWhere(['ilike', 'information', $this->information])
-            ->andFilterWhere(['ilike', 'image', $this->image])
-            ->andFilterWhere(['ilike', 'city', $this->city])
-            ->andFilterWhere(['ilike', 'zip_code', $this->zip_code])
-            ->andFilterWhere(['ilike', 'address', $this->address])
-            ->andFilterWhere(['ilike', 'phone', $this->phone]);
+        $query->andFilterWhere(['ilike', 'username', $this->username])
+            ->andFilterWhere(['ilike', 'password', $this->password])
+            ->andFilterWhere(['ilike', 'email', $this->email])
+            ->andFilterWhere(['ilike', 'auth_key', $this->auth_key])
+            ->andFilterWhere(['ilike', 'verf_key', $this->verf_key])
+            ->andFilterWhere(['ilike', 'name', $this->name])
+            ->andFilterWhere(['ilike', 'surname', $this->surname])
+            ->andFilterWhere(['ilike', 'image', $this->image]);
 
         return $dataProvider;
     }
