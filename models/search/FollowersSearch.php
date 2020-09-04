@@ -50,7 +50,7 @@ class FollowersSearch extends User
      */
     public function search($params)
     {
-        $query = User::find()->joinWith(['followers f', 'partners p'], true)->where(['p.id' => $params['id']]);;
+        $query = User::find()->joinWith(['followers f', 'partners p'], true)->where(['f.partner_id' => $params['id']]);;
 
         // add conditions that should always apply here
 

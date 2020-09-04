@@ -65,4 +65,4 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
         </div>
     </div>
-</div>
+</div> 'passwordRepeat' => Yii::t('app', 'Repita la contraseña'),
