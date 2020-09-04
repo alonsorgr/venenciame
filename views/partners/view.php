@@ -36,7 +36,10 @@ $this->params['breadcrumbs'][] = $this->title;
                     $items[] = Bootstrap::tabItem([
                         'icon' => 'fas fa-heart',
                         'label' => Yii::t('app', 'Seguidores'),
-                        'content' => $this->render('tabs/_followers.php'),
+                        'content' => $this->render('tabs/_followers.php', [
+                            'followersSearch' => $followersSearch,
+                            'followersProvider' => $followersProvider,
+                        ]),
                     ]);
 
                     $items[] = Bootstrap::tabItem([
