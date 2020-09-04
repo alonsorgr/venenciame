@@ -194,6 +194,20 @@ $header = Yii::$app->controller->action->id === 'request' ? Yii::t('app', 'Solic
                                 'title' => Yii::t('app', 'Introduzca una introducción breve'),
                             ]); ?>
                         </div>
+                        <div class="mb-4">
+                            <?= $form->field($model, 'email')->textInput([
+                                'maxlength' => true,
+                                'placeholder' => Yii::t('app', 'Introduzca una dirección de correo electrónico de contacto para clientes'),
+                                'title' => Yii::t('app', 'Introduzca una dirección de correo electrónico de contacto para clientes'),
+                            ]); ?>
+                        </div>
+                        <div class="mb-4">
+                            <?= $form->field($model, 'url')->textInput([
+                                'maxlength' => true,
+                                'placeholder' => Yii::t('app', 'Introduzca la dirección web de su empresa o bodega'),
+                                'title' => Yii::t('app', 'Introduzca la dirección web de su empresa o bodega'),
+                            ]); ?>
+                        </div>
                     </div>
                 </div>
                 <div class="row mt-3">

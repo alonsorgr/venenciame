@@ -31,9 +31,13 @@ use borales\extensions\phoneInput\PhoneInputValidator;
  * @property string $zip_code
  * @property string $address
  * @property string $phone
+ * @property string|null $url
+ * @property string|null $email
  * @property string|null $updated_at
  * @property string $created_at
- *
+ * 
+ * @property Followers[] $followers
+ * @property Users[] $users
  * @property Countries $country
  * @property States $state
  * @property Statuses $status
@@ -44,7 +48,7 @@ class Partners extends \yii\db\ActiveRecord
     /**
      * Constante de imagen de logo corporativo.
      */
-    const IMAGE = '@img/partners.jpg';
+    const IMAGE = '@web/img/partners.jpg';
 
     /**
      * Variable de subida de imagen de logo corporativo.
@@ -59,6 +63,13 @@ class Partners extends \yii\db\ActiveRecord
      * @var string
      */
     private $_link = null;
+
+    /**
+     * Atributo virtual para mostrar dirección completa.
+     *
+     * @var string
+     */
+    private $_location = null;
 
     /**
      * {@inheritdoc}
@@ -81,7 +92,7 @@ class Partners extends \yii\db\ActiveRecord
             [['updated_at', 'created_at'], 'safe'],
             [['name'], 'string', 'max' => 32],
             [['description', 'image'], 'string', 'max' => 255],
-            [['city', 'zip_code', 'address', 'phone'], 'string', 'max' => 64],
+            [['city', 'zip_code', 'address','phone', 'url', 'email'], 'string', 'max' => 64],
             [['name'], 'unique'],
             [['user_id'], 'unique'],
             [
@@ -96,6 +107,7 @@ class Partners extends \yii\db\ActiveRecord
 
             [['image'], 'file'],
             [['image'], 'safe'],
+            [['email'], 'email'],
             [['status_id'], 'exist', 'skipOnError' => true, 'targetClass' => Statuses::class, 'targetAttribute' => ['status_id' => 'id']],
             [['country_id'], 'exist', 'skipOnError' => true, 'targetClass' => Countries::class, 'targetAttribute' => ['country_id' => 'id']],
             [['state_id'], 'exist', 'skipOnError' => true, 'targetClass' => States::class, 'targetAttribute' => ['state_id' => 'id']],
@@ -124,6 +136,8 @@ class Partners extends \yii\db\ActiveRecord
             'zip_code' => Yii::t('app', 'Código postal'),
             'address' => Yii::t('app', 'Dirección'),
             'phone' => Yii::t('app', 'Teléfono'),
+            'email' => Yii::t('app', 'Dirección de correo electrónico de contacto'),
+            'url' => Yii::t('app', 'Sitio web'),
             'updated_at' => Yii::t('app', 'Updated At'),
             'created_at' => Yii::t('app', 'Socio desde '),
         ];
@@ -150,7 +164,7 @@ class Partners extends \yii\db\ActiveRecord
     {
         $this->upload = UploadedFile::getInstance($this, 'upload');
         if ($this->upload !== null) {
-            $this->image = AmazonS3::upload($this->upload, $this->name, AmazonS3::BUCKET_USERS, $this->image);
+            $this->image = AmazonS3::upload($this->upload, $this->name, AmazonS3::BUCKET_PARTNERS, $this->image);
             $this->upload = null;
         }
     }
@@ -174,9 +188,24 @@ class Partners extends \yii\db\ActiveRecord
     public function getLink()
     {
         if ($this->_link === null && !$this->isNewRecord) {
+            $this->setLink(AmazonS3::getLink($this->image, self::IMAGE, AmazonS3::PARTNERS, AmazonS3::BUCKET_USERS));
         }
-        $this->setLink(AmazonS3::getLink($this->image, self::IMAGE, AmazonS3::USER, AmazonS3::BUCKET_USERS));
         return $this->_link;
+    }
+
+    public function setLocation($location)
+    {
+        $this->_location = $location;
+    }
+
+    public function getLocation()
+    {
+        if ($this->_location === null && !$this->isNewRecord) {
+            $country = $this->getCountry()->one()->label;
+            $state = $this->getState()->one()->label;
+            $this->setLocation($this->address . ' ' . $state . ', ' . $country);
+        }
+        return $this->_location;
     }
 
     /**
@@ -217,5 +246,25 @@ class Partners extends \yii\db\ActiveRecord
     public function getUser()
     {
         return $this->hasOne(User::class, ['id' => 'user_id'])->inverseOf('partners');
+    }
+
+    /**
+     * Obtiene consulta para [[Followers]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getFollowers()
+    {
+        return $this->hasMany(Followers::class, ['partner_id' => 'id'])->inverseOf('partner');
+    }
+
+    /**
+     * Obtiene consulta para [[User]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUsers()
+    {
+        return $this->hasMany(User::class, ['id' => 'user_id'])->viaTable('followers', ['partner_id' => 'id']);
     }
 }

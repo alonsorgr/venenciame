@@ -10,6 +10,7 @@ use kartik\file\FileInput;
 use kartik\select2\Select2;
 use app\models\Languages;
 use app\models\Roles;
+use app\models\User;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\User */
@@ -141,7 +142,7 @@ $this->registerJs("passwordInput('reset-password')");
             ]); ?>
         </div>
     </div>
-    <?php if ($model->isNewRecord || Yii::$app->user->identity->admin) : ?>
+    <?php if ($model->isNewRecord || User::isAdmin()) : ?>
         <div class="row">
             <div class="col-xl-6">
                 <?= $form->field($model, 'rol_id')->widget(Select2::class, [

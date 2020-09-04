@@ -19,7 +19,10 @@ use app\models\Partners;
 use app\models\User;
 use app\models\States;
 use app\helpers\Email;
+use app\models\Followers;
 use app\models\forms\RequestPartnersForm;
+use app\models\search\FollowersSearch;
+use yii\filters\AccessControl;
 
 /**
  * Controlador de socios [[Partners]]
@@ -35,6 +38,28 @@ class PartnersController extends Controller
     public function behaviors()
     {
         return [
+            'access' => [
+                'class' => AccessControl::class,
+                'rules' => [
+                    [
+                        'actions' => ['index', 'view', 'request'],
+                        'allow' => true
+                    ],
+                    [
+                        'actions' => ['update'],
+                        'allow' => true,
+                        'roles' => ['@']
+                    ],
+                    [
+                        'actions' => ['create', 'delete'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                        'matchCallback' => function ($rule, $action) {
+                            return User::isAdmin();
+                        }
+                    ],
+                ],
+            ],
             'verbs' => [
                 'class' => VerbFilter::class,
                 'actions' => [
@@ -69,8 +94,13 @@ class PartnersController extends Controller
      */
     public function actionView($id)
     {
+        $followersSearch = new FollowersSearch();
+        $followedProvider = $followersSearch->search(Yii::$app->request->queryParams);
+
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'followersSearch' => $followersSearch,
+            'followedProvider' => $followedProvider,
         ]);
     }
 

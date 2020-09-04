@@ -61,13 +61,13 @@ class Countries extends \yii\db\ActiveRecord
     }
 
     /**
-     * Obtiene consulta para [[Addresses]].
+     * Obtiene consulta para [[Partners]].
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getAddresses()
+    public function getPartners()
     {
-        return $this->hasMany(Addresses::class, ['country_id' => 'id'])->inverseOf('country');
+        return $this->hasMany(Partners::class, ['country_id' => 'id'])->inverseOf('country');
     }
 
     /**

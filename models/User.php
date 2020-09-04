@@ -38,7 +38,9 @@ use app\helpers\AmazonS3;
  * @property string|null $updated_at
  * @property string|null $created_at
  *
- * @property Addresses[] $addresses
+ * @property Followers[] $followers
+ * @property Partners[] $partners
+ * @property Partners $partners0
  * @property Languages $language
  */
 class User extends \yii\db\ActiveRecord implements IdentityInterface
@@ -59,7 +61,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     /**
      * Constante de imagen de perfil de usuario.
      */
-    const IMAGE = '@img/user.jpg';
+    const IMAGE = '@web/img/user.jpg';
 
     /**
      * Variable de subida de imagen de perfil de usuario.
@@ -194,6 +196,16 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
             $this->image = AmazonS3::upload($this->upload, $this->username, AmazonS3::BUCKET_USERS, $this->image);
             $this->upload = null;
         }
+    }
+
+    /**
+     * Comprueba si el usuario es administrador.
+     *
+     * @return boolean  verdadero si el usuario es administrador.
+     */
+    public static function isAdmin()
+    {
+        return !Yii::$app->user->isGuest ? Yii::$app->user->identity->admin : false;
     }
 
     /**
@@ -444,13 +456,23 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     }
 
     /**
-     * Obtiene consulta para [[Addresses]].
+     * Obtiene consulta para [[Followers]].
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getAddresses()
+    public function getFollowers()
     {
-        return $this->hasMany(Addresses::class, ['user_id' => 'id'])->inverseOf('user');
+        return $this->hasMany(Followers::class, ['user_id' => 'id'])->inverseOf('user');
+    }
+
+    /**
+     * Obtiene consulta para [[Partners]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPartners0()
+    {
+        return $this->hasOne(Partners::class, ['user_id' => 'id']);
     }
 
     /**

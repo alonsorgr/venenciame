@@ -34,7 +34,7 @@ class AmazonS3
     const PARTNERS = '@partners/';
 
     /**
-     * Undocumented function
+     * Sube un fichero el servicio de Amazon S3.
      *
      * @param   yii\web\UploadedFile    $upload   imagen a subir.
      * @param   string                  $key      nombre de la imagen a subir.
@@ -67,7 +67,7 @@ class AmazonS3
     }
 
     /**
-     * Undocumented function
+     * Baja un fichero el servicio de Amazon S3.
      *
      * @param   string    $image     nombre de la imagen.
      * @param   string    $default   imagen por defecto.
