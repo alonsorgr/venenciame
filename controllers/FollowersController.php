@@ -48,7 +48,7 @@ class FollowersController extends Controller
     /**
      * Acción de seguimiento de socios.
      *
-     * @return string    el resultado de la representación.
+     * @return string    objeto JSON.
      */
     public function actionFollow($user_id, $partner_id)
     {
