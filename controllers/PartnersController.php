@@ -21,6 +21,7 @@ use app\models\States;
 use app\helpers\Email;
 use app\models\Followers;
 use app\models\forms\RequestPartnersForm;
+use app\models\search\FollowersSearch;
 use yii\filters\AccessControl;
 
 /**
@@ -93,10 +94,13 @@ class PartnersController extends Controller
      */
     public function actionView($id)
     {
-        $followers = new Followers();
+        $followersSearch = new FollowersSearch();
+        $followedProvider = $followersSearch->search(Yii::$app->request->queryParams);
+
         return $this->render('view', [
             'model' => $this->findModel($id),
-            'followers' => $followers,
+            'followersSearch' => $followersSearch,
+            'followedProvider' => $followedProvider,
         ]);
     }
 
