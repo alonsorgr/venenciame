@@ -37,7 +37,7 @@ class FollowedSearch extends Partners
     public function scenarios()
     {
         // bypass scenarios() implementation in the parent class
-        return Model::scenarios();
+        return parent::scenarios();
     }
 
     /**
@@ -49,7 +49,7 @@ class FollowedSearch extends Partners
      */
     public function search($params)
     {
-        $query = Partners::find()->joinWith(['followers f', 'users u'], true)->where(['u.id' => $params['id']]);;
+        $query = Partners::find()->joinWith(['followers f'], true)->where(['f.user_id' => $params['id']]);;
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,

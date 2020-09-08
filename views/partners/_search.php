@@ -105,7 +105,7 @@ $this->registerJs($js);
                         ],
                         'theme' => Select2::THEME_MATERIAL,
                         'pluginOptions' => [
-                            'allowClear' => false,
+                            'allowClear' => true,
                         ],
                     ]); ?>
                 </div>

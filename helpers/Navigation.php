@@ -8,6 +8,7 @@
 
 namespace app\helpers;
 
+use app\models\Partners;
 use app\models\User;
 use Yii;
 use yii\bootstrap4\Html;
@@ -36,6 +37,8 @@ class Navigation
                 'url' => ['/site/index'],
                 'title' => Yii::t('app', 'Ir a la página principal'),
             ]),
+
+            static::partners(),
 
             static::user(),
 
@@ -89,7 +92,7 @@ class Navigation
     /**
      * Genera el menú de usuario en la barra de navegación.
      *
-     * @return array    configuración del menú usuario  en la barra de navegación.
+     * @return array    configuración del menú usuario en la barra de navegación.
      */
     public static function user()
     {
@@ -201,6 +204,51 @@ class Navigation
                 $logout,
             ]
         ] : '';
+    }
+
+    /**
+     * Genera el menú de bodegas en la barra de navegación.
+     *
+     * @return array    configuración del menú de bodegas de socios en la barra de navegación.
+     */
+    public static function partners()
+    {
+        $icon = Html::tag('span', '', [
+            'class' => 'fas fa-adjust partners-nav-icon',
+        ]);
+
+        $label = Html::tag('span', Yii::t('app', 'Bodegas'), [
+            'id' => 'partners-label',
+            'class' => 'ml-2 active',
+            'title' => Yii::t('app', 'Bodegas de nuestros socios.'),
+        ]);
+
+        $item = Html::tag('div', $icon . $label, [
+            'id' => 'partners-menu',
+            'class' => 'nav-item active',
+        ]);
+
+        $items = null;
+        foreach (Partners::find()->all() as $value) {
+            $items[] = [
+                'encode' => false,
+                'label' => $value['name'],
+                'url' => [
+                    'partners/view',
+                    'id' => $value['id'],
+                ]
+            ];
+        }
+
+        return [
+            'encode' => false,
+            'label' => $item,
+            'url' => '',
+            'linkOptions' => [
+                'class' => 'dropdown-menu-toggle',
+            ],
+            'items' => $items,
+        ];
     }
 
     /**

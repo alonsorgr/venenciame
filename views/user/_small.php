@@ -29,10 +29,14 @@ use app\models\User;
         <div class="col d-flex flex-column flex-sm-row justify-content-between">
             <div class="text-center text-sm-left">
                 <div class="d-block lead mb-2">
-                    <?= Html::a(Html::encode($model->fullname), ['user/view', 'id' => $model->id]) ?>
+                    <?= Html::a(Html::encode($model->fullname), ['user/view', 'id' => $model->id], [
+                        'data-pjax' => 0,
+                    ]) ?>
                 </div>
                 <div class="d-block mb-2">
-                    <?= Html::a(Html::encode($model->username), ['user/view', 'id' => $model->id]) ?>
+                    <?= Html::a(Html::encode($model->username), ['user/view', 'id' => $model->id], [
+                        'data-pjax' => 0,
+                    ]) ?>
                 </div>
                 <div class="d-block mb-2">
                     <i class="fas fa-envelope mr-1"></i>
