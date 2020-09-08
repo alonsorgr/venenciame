@@ -175,7 +175,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
         } else {
             if ($this->scenario === self::SCENARIO_UPDATE) {
                 if ($this->password === '') {
-                    $this->generatePasswordHash($this->getOldAttribute('password'));
+                    $this->password = $this->getOldAttribute('password');
                 } else {
                     $this->generatePasswordHash($this->password);
                 }
@@ -196,26 +196,6 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
             $this->image = AmazonS3::upload($this->upload, $this->username, AmazonS3::BUCKET_USERS, $this->image);
             $this->upload = null;
         }
-    }
-
-    /**
-     * Comprueba si el usuario es administrador.
-     *
-     * @return boolean  verdadero si el usuario es administrador.
-     */
-    public static function isAdmin()
-    {
-        return !Yii::$app->user->isGuest ? Yii::$app->user->identity->admin : false;
-    }
-
-    /**
-     * Comprueba si el usuario es socio.
-     *
-     * @return boolean  verdadero si el usuario es socio.
-     */
-    public static function isPartner()
-    {
-        return Partners::findOne(['id' => static::id()]) != null ?: false;
     }
 
     /**
@@ -503,6 +483,36 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     public static function id()
     {
         return !Yii::$app->user->isGuest ? Yii::$app->user->identity->id : '';
+    }
+
+    /**
+     * Comprueba si el usuario es administrador.
+     *
+     * @return boolean  verdadero si el usuario es administrador.
+     */
+    public static function isAdmin()
+    {
+        return !Yii::$app->user->isGuest ? Yii::$app->user->identity->admin : false;
+    }
+
+    /**
+     * Comprueba si el usuario es socio.
+     *
+     * @return boolean  verdadero si el usuario es socio.
+     */
+    public static function isPartner()
+    {
+        return Partners::findOne(['id' => static::id()]) != null ?: false;
+    }
+
+    /**
+     * Comprueba si el acceso del usuario es válido para determinada acción
+     *
+     * @return boolean  verdadero si es coinciden los id's.
+     */
+    public static function isOwner()
+    {
+        return intval(Yii::$app->getRequest()->getQueryParam('id')) === static::id();
     }
 
     /**

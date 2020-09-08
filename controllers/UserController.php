@@ -17,6 +17,7 @@ use yii\web\Response;
 use app\models\User;
 use app\models\search\UserSearch;
 use app\models\search\FollowedSearch;
+use yii\filters\AccessControl;
 
 /**
  * Controlador de usuarios [[User]]
@@ -36,6 +37,31 @@ class UserController extends Controller
                 'class' => VerbFilter::class,
                 'actions' => [
                     'delete' => ['POST'],
+                ],
+            ],
+            'access' => [
+                'class' => AccessControl::class,
+                'rules' => [
+                    [
+                        'actions' => ['index', 'view'],
+                        'allow' => true
+                    ],
+                    [
+                        'actions' => ['create', 'delete'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                        'matchCallback' => function ($rule, $action) {
+                            return User::isAdmin();
+                        }
+                    ],
+                    [
+                        'actions' => ['update'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                        'matchCallback' => function ($rule, $action) {
+                            return User::isOwner();
+                        }
+                    ],
                 ],
             ],
         ];
