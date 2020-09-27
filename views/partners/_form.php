@@ -226,7 +226,7 @@ $header = Yii::$app->controller->action->id === 'request' ? Yii::t('app', 'Solic
                                     'showUpload' => false,
                                     'showRemove' => false,
                                     'initialPreview' => [
-                                        $model->link,
+                                        Url::base(true) . '/' . $model->link,
                                     ],
                                     'initialPreviewAsData' => true,
                                     'initialCaption' => Html::encode($model->name),

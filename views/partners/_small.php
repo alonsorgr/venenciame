@@ -53,7 +53,7 @@ if (!Yii::$app->user->isGuest) {
                 <div class="col d-flex justify-content-center align-items-center">
                     <div class="user-box">
                         <div class="image-profile">
-                            <?= Html::img(Html::encode($model->link), [
+                            <?= Html::img(Html::encode(Url::base(true) . '/' . $model->link), [
                                 'alt' => Yii::t('app', 'Logo corporativo'),
                                 'title' => Yii::t('app', 'Logo corporativo'),
                                 'data-action' => 'zoom',

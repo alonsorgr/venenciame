@@ -16,7 +16,7 @@ use app\models\User;
                 <div class="col d-flex justify-content-center align-items-center">
                     <div class="user-box">
                         <div class="image-profile">
-                            <?= Html::img(Html::encode($model->link), [
+                            <?= Html::img(Html::encode(Url::base(true) . '/' . $model->link), [
                                 'alt' => Yii::t('app', 'Imagen de usuario'),
                                 'data-action' => 'zoom',
                                 'title' => Yii::t('app', 'Imagen de usuario'),
