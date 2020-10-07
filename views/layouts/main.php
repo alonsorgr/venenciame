@@ -43,6 +43,7 @@ $this->title = Yii::$app->name;
             'brandLabel' => Html::img('@web/img/site/logo.svg', [
                 'width' => '200',
                 'heigth' => '100',
+                'class' => 'img-fluid',
                 'alt' => Yii::$app->name,
                 'style' => 'margin-top: -20px',
             ]),
