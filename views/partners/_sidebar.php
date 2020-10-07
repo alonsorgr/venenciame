@@ -89,7 +89,7 @@ use yii\helpers\Url;
                 <div class="card-body">
                     <h5 class="card-title"><?= Yii::t('app', 'Panel de administración de ventas de socios.') ?></h5>
                     <p class="card-text"><?= Yii::t('app', 'Aquí podrás administrar tus ventas.') ?></p>
-                    <?= Html::a(Yii::t('app', 'Administrar'), Url::to(['partners/view', 'id' => User::partnerId()]), [
+                    <?= Html::a(Yii::t('app', 'Administrar'), Url::to(['partners/update', 'id' => User::partnerId()]), [
                         'class' => 'font-transition-small',
                         'title' => Yii::t('app', 'Solicitar al administrador una cuenta de distribuidor'),
                     ]) ?>

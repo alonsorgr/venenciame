@@ -272,9 +272,11 @@ class Navigation
     public static function label($options)
     {
         return <<<EOT
-        <div class="row justify-content-between m-2 w-100">
-            <i class="{$options['icon']} {$options['color']}"></i>
-            <div>
+        <div class="row my-2 mr-4">
+            <div class="col col-1">
+                <i class="{$options['icon']} {$options['color']}"></i>
+            </div>
+            <div class="col col-5">
                 {$options['label']}
             </div>
         </div>
