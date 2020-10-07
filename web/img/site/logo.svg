@@ -24,7 +24,7 @@
    inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)"><metadata
    id="metadata77"><rdf:RDF><cc:Work
        rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
-         rdf:resource="http://purl.org/dc/dcmitype/StillImage" /><dc:title></dc:title></cc:Work></rdf:RDF></metadata><defs
+         rdf:resource="http://purl.org/dc/dcmitype/StillImage" /><dc:title /></cc:Work></rdf:RDF></metadata><defs
    id="defs75" /><sodipodi:namedview
    pagecolor="#ffffff"
    bordercolor="#666666"
@@ -44,7 +44,7 @@
    inkscape:window-x="0"
    inkscape:window-y="32"
    inkscape:window-maximized="1"
-   inkscape:current-layer="Layer_1" />
+   inkscape:current-layer="text886" />
 <rect
    x="6.4149795"
    style="fill:#e0faf2;stroke-width:0.66377354"
@@ -239,17 +239,40 @@
    id="g70"
    transform="translate(13.457057,45.560088)">
 </g>
-<text
-   xml:space="preserve"
+<g
+   aria-label="Venénciame"
    style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
-   x="270.37628"
-   y="375.32861"
-   id="text886"><tspan
-     sodipodi:role="line"
-     id="tspan884"
-     x="270.37628"
-     y="375.32861"
-     style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:192px;font-family:Abydos;-inkscape-font-specification:'Abydos, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;opacity:0.98000004;fill:#232d32;fill-opacity:1">Venénciame</tspan></text>
+   id="text886"><path
+     d="m 401.25128,249.51611 -55.40625,125.8125 h -9.5625 l -55.40625,-125.8125 9.65625,-4.21875 50.53125,114.84375 50.53125,-114.84375 z"
+     style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:192px;font-family:Abydos;-inkscape-font-specification:'Abydos, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;opacity:0.98000004;fill:#232d32;fill-opacity:1"
+     id="path43" /><path
+     d="m 473.06378,375.32861 h -48.09375 l -5.25,-5.25 v -80.4375 l 5.25,-5.25 h 48.09375 v 10.5 h -42.84375 v 29.71875 h 42.84375 v 10.5 h -42.84375 v 29.71875 h 42.84375 z"
+     style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:192px;font-family:Abydos;-inkscape-font-specification:'Abydos, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;opacity:0.98000004;fill:#232d32;fill-opacity:1"
+     id="path45" /><path
+     d="m 555.00128,366.89111 -9.46875,3.1875 -46.03125,-61.5 v 66.75 h -10.5 v -82.5 l 9.46875,-3.1875 46.03125,61.5 v -66.75 h 10.5 z"
+     style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:192px;font-family:Abydos;-inkscape-font-specification:'Abydos, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;opacity:0.98000004;fill:#232d32;fill-opacity:1"
+     id="path47" /><path
+     d="m 683.90753,322.54736 v 9.5625 h -78.46875 q 1.21875,11.8125 8.53125,17.71875 7.3125,5.90625 20.4375,5.90625 10.59375,0 21.65625,-3.09375 11.15625,-3.1875 22.875,-9.5625 v 25.875 q -11.90625,4.5 -23.8125,6.75 -11.90625,2.34375 -23.8125,2.34375 -28.5,0 -44.34375,-14.4375 -15.75,-14.53125 -15.75,-40.6875 0,-25.6875 15.46875,-40.40625 15.5625,-14.71875 42.75,-14.71875 24.75,0 39.5625,14.90625 14.90625,14.90625 14.90625,39.84375 z m -34.5,-11.15625 q 0,-9.5625 -5.625,-15.375 -5.53125,-5.90625 -14.53125,-5.90625 -9.75,0 -15.84375,5.53125 -6.09375,5.4375 -7.59375,15.75 z m -5.4375,-89.625 h 26.53125 l -34.59375,35.25 h -18.375 z"
+     style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:192px;font-family:Abydos;-inkscape-font-specification:'Abydos, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;opacity:0.98000004;fill:#232d32;fill-opacity:1"
+     id="path49" /><path
+     d="m 767.15753,366.89111 -9.46875,3.1875 -46.03125,-61.5 v 66.75 h -10.5 v -82.5 l 9.46875,-3.1875 46.03125,61.5 v -66.75 h 10.5 z"
+     style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:192px;font-family:Abydos;-inkscape-font-specification:'Abydos, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;opacity:0.98000004;fill:#232d32;fill-opacity:1"
+     id="path51" /><path
+     d="m 860.81378,370.82861 q -14.625,6.28125 -26.15625,6.28125 -20.625,0 -35.71875,-13.21875 -15.84375,-13.78125 -15.84375,-34.03125 0,-20.25 15.84375,-34.03125 15.09375,-13.21875 35.71875,-13.21875 11.34375,0 26.15625,6.1875 l -4.03125,9.65625 q -12.75,-5.34375 -22.125,-5.34375 -16.21875,0 -28.3125,10.125 -12.75,10.6875 -12.75,26.625 0,15.9375 12.75,26.625 12.09375,10.125 28.3125,10.125 9.1875,0 22.125,-5.4375 z"
+     style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:192px;font-family:Abydos;-inkscape-font-specification:'Abydos, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;opacity:0.98000004;fill:#232d32;fill-opacity:1"
+     id="path53" /><path
+     d="m 892.87628,375.32861 h -10.5 v -90.9375 h 10.5 z"
+     style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:192px;font-family:Abydos;-inkscape-font-specification:'Abydos, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;opacity:0.98000004;fill:#232d32;fill-opacity:1"
+     id="path55" /><path
+     d="m 1003.22,372.60986 -9.46872,4.40625 -14.25,-30.65625 h -41.25 l -14.34375,30.65625 -9.46875,-4.40625 39.65625,-85.21875 h 9.5625 z m -28.59372,-36.75 -15.75,-33.75 -15.75,33.75 z"
+     style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:192px;font-family:Abydos;-inkscape-font-specification:'Abydos, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;opacity:0.98000004;fill:#232d32;fill-opacity:1"
+     id="path57" /><path
+     d="m 1103.2513,375.32861 h -10.5 v -72.5625 l -27.4688,34.78125 h -8.25 l -27.375,-34.78125 v 72.5625 h -10.5 v -87.65625 l 9.375,-3.28125 32.625,41.4375 32.7188,-41.4375 9.375,3.28125 z"
+     style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:192px;font-family:Abydos;-inkscape-font-specification:'Abydos, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;opacity:0.98000004;fill:#232d32;fill-opacity:1"
+     id="path59" /><path
+     d="m 1172.5325,375.32861 h -48.0937 l -5.25,-5.25 v -80.4375 l 5.25,-5.25 h 48.0937 v 10.5 h -42.8437 v 29.71875 h 42.8437 v 10.5 h -42.8437 v 29.71875 h 42.8437 z"
+     style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:192px;font-family:Abydos;-inkscape-font-specification:'Abydos, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;writing-mode:lr-tb;text-anchor:start;opacity:0.98000004;fill:#232d32;fill-opacity:1"
+     id="path61" /></g>
 
 
 </svg>
