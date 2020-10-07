@@ -41,8 +41,8 @@ $this->title = Yii::$app->name;
         <?php
         NavBar::begin([
             'brandLabel' => Html::img('@web/img/site/logo.svg', [
-                'width' => '200',
-                'heigth' => '100',
+                'width' => '128',
+                'heigth' => '64',
                 'class' => 'img-fluid',
                 'alt' => Yii::$app->name,
                 'style' => 'margin-top: -20px',
