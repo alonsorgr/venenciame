@@ -2,6 +2,7 @@
 
 /* @var $this yii\web\View */
 
+use app\models\User;
 use yii\bootstrap4\Html;
 use yii\helpers\Url;
 
@@ -30,13 +31,13 @@ use yii\helpers\Url;
                     </li>
                 <?php else : ?>
                     <li class="list-group-item">
-                        <?= Html::a(Yii::t('app', 'Perfil'), Url::to(['user/view', 'id' => Yii::$app->user->id]), [
+                        <?= Html::a(Yii::t('app', 'Perfil'), Url::to(['user/view', 'id' => User::id()]), [
                             'class' => 'font-transition-small',
                             'title' => Yii::t('app', 'Ir a tu perfil.'),
                         ]) ?>
                     </li>
                     <li class="list-group-item">
-                        <?= Html::a(Yii::t('app', 'Configuración de la cuenta'), Url::to(['user/update', 'id' => Yii::$app->user->id]), [
+                        <?= Html::a(Yii::t('app', 'Configuración de la cuenta'), Url::to(['user/update', 'id' => User::id()]), [
                             'class' => 'font-transition-small',
                             'title' => Yii::t('app', 'Ir a la configuración de tu cuenta.'),
                         ]) ?>
@@ -80,7 +81,7 @@ use yii\helpers\Url;
             <div class="card-body">
                 <h5 class="card-title"><?= Yii::t('app', 'Solicitd para ventas en la web.') ?></h5>
                 <p class="card-text"><?= Yii::t('app', 'Si ya eres usuario de nuestra web, y quieres vender tus productos, solicítalo aquí.') ?></p>
-                <?= Html::a(Yii::t('app', 'Solicitar'), Url::to(['requests/create']), [
+                <?= Html::a(Yii::t('app', 'Solicitar'), Url::to(['partners/request']), [
                     'class' => 'font-transition-small',
                     'title' => Yii::t('app', 'Solicitar al administrador una cuenta de distribuidor'),
                 ]) ?>

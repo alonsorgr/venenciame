@@ -486,6 +486,16 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     }
 
     /**
+     * Función estática para obtener el id de socio del usuario.
+     *
+     * @return int | string     el id de socio del usuario actual | cadena vacía si no hay id del usuario actual.
+     */
+    public static function partnerId()
+    {
+        return !Yii::$app->user->isGuest ? Yii::$app->user->identity->partners->id : '';
+    }
+
+    /**
      * Comprueba si el usuario es administrador.
      *
      * @return boolean  verdadero si el usuario es administrador.

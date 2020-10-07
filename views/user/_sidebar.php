@@ -33,14 +33,14 @@ use yii\helpers\Url;
                 <?php else : ?>
                     <?php if (Yii::$app->controller->action->id === 'update') : ?>
                         <li class="list-group-item">
-                            <?= Html::a(Yii::t('app', 'Perfil'), Url::to(['user/view', 'id' => Yii::$app->user->id]), [
+                            <?= Html::a(Yii::t('app', 'Perfil'), Url::to(['user/view', 'id' => User::id()]), [
                                 'class' => 'font-transition-small',
                                 'title' => Yii::t('app', 'Ir a tu perfil.'),
                             ]) ?>
                         </li>
                     <?php else : ?>
                         <li class="list-group-item">
-                            <?= Html::a(Yii::t('app', 'Configuración de la cuenta'), Url::to(['user/update', 'id' => Yii::$app->user->id]), [
+                            <?= Html::a(Yii::t('app', 'Configuración de la cuenta'), Url::to(['user/update', 'id' => User::id()]), [
                                 'class' => 'font-transition-small',
                                 'title' => Yii::t('app', 'Ir a la configuración de tu cuenta.'),
                             ]) ?>
@@ -105,7 +105,7 @@ use yii\helpers\Url;
                 <div class="card-body">
                     <h5 class="card-title"><?= Yii::t('app', 'Panel de administración de ventas de socios.') ?></h5>
                     <p class="card-text"><?= Yii::t('app', 'Aquí podrás administrar tus ventas.') ?></p>
-                    <?= Html::a(Yii::t('app', 'Administrar'), Url::to(['partners/request']), [
+                    <?= Html::a(Yii::t('app', 'Administrar'), Url::to(['partners/view', 'id' => User::partnerId()]), [
                         'class' => 'font-transition-small',
                         'title' => Yii::t('app', 'Solicitar al administrador una cuenta de distribuidor'),
                     ]) ?>
