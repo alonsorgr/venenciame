@@ -144,8 +144,8 @@ class Bootstrap
     {
         return [
             'label' => '<div class="text-center mb-2">
-                            <i class="' . $options['icon'] . ' mr-sm-2"></i>
-                            <div class="d-xl-inline d-sm-block">
+                            <i class="' . $options['icon'] . ' text-center mr-sm-2"></i>
+                            <div class="d-xl-inline d-sm-block text-center">
                                 ' . $options['label'] . '
                             </div>
                         </div>',

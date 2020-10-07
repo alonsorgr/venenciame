@@ -123,7 +123,7 @@ class Navigation
             'url' => ['user/view', 'id' => User::id()], 'post',
             'linkOptions' => [
                 'title' => Yii::t('app', 'Ver el perfil personal del usuario'),
-                'class' => 'text-capitalize dropdown-label',
+                'class' => 'text-capitalize',
             ],
         ];
 
@@ -272,7 +272,7 @@ class Navigation
     public static function label($options)
     {
         return <<<EOT
-        <div class="row justify-content-between m-2">
+        <div class="row justify-content-between m-2 w-100">
             <i class="{$options['icon']} {$options['color']}"></i>
             <div>
                 {$options['label']}
