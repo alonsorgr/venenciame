@@ -32,29 +32,6 @@ CREATE TABLE languages
   , created_at  TIMESTAMP(0)    DEFAULT CURRENT_TIMESTAMP
 );
 
-DROP TABLE IF EXISTS users CASCADE;
-
-CREATE TABLE users
-(
-    id              BIGSERIAL     PRIMARY KEY
-  , username        VARCHAR(32)   NOT NULL        UNIQUE
-  , password        VARCHAR(64)   NOT NULL
-  , email           VARCHAR(64)   NOT NULL        UNIQUE
-  , auth_key        VARCHAR(32)   DEFAULT NULL
-  , verf_key        VARCHAR(32)   DEFAULT NULL
-  , status          INTEGER       DEFAULT 9
-  , admin           BOOLEAN       DEFAULT FALSE
-  , privacity       BOOLEAN       DEFAULT FALSE
-  , name            VARCHAR(32)     
-  , surname         VARCHAR(32)     
-  , birthdate       DATE            
-  , image           VARCHAR(255)
-  , rol_id          BIGINT        REFERENCES roles (id)
-  , language_id     BIGINT        REFERENCES languages (id)
-  , updated_at      TIMESTAMP(0)
-  , created_at      TIMESTAMP(0)  DEFAULT CURRENT_TIMESTAMP
-);
-
 DROP TABLE IF EXISTS roles CASCADE;
 
 CREATE TABLE roles
@@ -73,6 +50,30 @@ CREATE TABLE statuses
   , label       VARCHAR(64)     NOT NULL UNIQUE
   , created_at  TIMESTAMP(0)    DEFAULT CURRENT_TIMESTAMP
 );
+
+DROP TABLE IF EXISTS users CASCADE;
+
+CREATE TABLE users
+(
+    id              BIGSERIAL     PRIMARY KEY
+  , username        VARCHAR(32)   NOT NULL        UNIQUE
+  , password        VARCHAR(64)   NOT NULL
+  , email           VARCHAR(64)   NOT NULL        UNIQUE
+  , auth_key        VARCHAR(32)   DEFAULT NULL
+  , verf_key        VARCHAR(32)   DEFAULT NULL
+  , status_id       BIGINT        REFERENCES statuses (id)
+  , admin           BOOLEAN       DEFAULT FALSE
+  , privacity       BOOLEAN       DEFAULT FALSE
+  , name            VARCHAR(32)     
+  , surname         VARCHAR(32)     
+  , birthdate       DATE            
+  , image           VARCHAR(255)
+  , rol_id          BIGINT        REFERENCES roles (id)
+  , language_id     BIGINT        REFERENCES languages (id)
+  , updated_at      TIMESTAMP(0)
+  , created_at      TIMESTAMP(0)  DEFAULT CURRENT_TIMESTAMP
+);
+
 
 DROP TABLE IF EXISTS partners CASCADE;
 
