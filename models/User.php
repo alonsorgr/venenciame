@@ -26,7 +26,6 @@ use app\helpers\AmazonS3;
  * @property string $email
  * @property string|null $auth_key
  * @property string|null $verf_key
- * @property int|null $status
  * @property bool|null $admin
  * @property bool|null $privacity
  * @property string|null $name
@@ -42,15 +41,16 @@ use app\helpers\AmazonS3;
  * @property Partners[] $partners
  * @property Partners $partners0
  * @property Languages $language
+ * @property Statuses $status
  */
 class User extends \yii\db\ActiveRecord implements IdentityInterface
 {
     /**
      * Constantes de estado del usuario.
      */
-    const STATUS_DELETED = 0;
-    const STATUS_INACTIVE = 9;
-    const STATUS_ACTIVE = 10;
+    const STATUS_DELETED = 1;
+    const STATUS_INACTIVE = 2;
+    const STATUS_ACTIVE = 3;
 
     /**
      * Constantes de escenarios
@@ -98,8 +98,6 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     public function rules()
     {
         return [
-            ['status', 'default', 'value' => self::STATUS_INACTIVE],
-            ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_INACTIVE, self::STATUS_DELETED]],
             [['username', 'email'], 'required'],
             [
                 ['username', 'email'], 'unique',
@@ -117,8 +115,8 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
                     self::SCENARIO_CREATE
                 ]
             ],
-            [['rol_id', 'language_id'], 'default', 'value' => null],
-            [['rol_id', 'language_id'], 'integer'],
+            [['status_id', 'rol_id', 'language_id'], 'default', 'value' => null],
+            [['status_id', 'rol_id', 'language_id'], 'integer'],
             [['admin', 'privacity'], 'boolean'],
             [['birthdate', 'updated_at', 'created_at'], 'safe'],
             [['username', 'auth_key', 'verf_key', 'name', 'surname'], 'string', 'max' => 32],
@@ -127,6 +125,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
             [['image'], 'safe'],
             [['image'], 'string', 'max' => 255],
             [['language_id'], 'exist', 'skipOnError' => true, 'targetClass' => Languages::class, 'targetAttribute' => ['language_id' => 'id']],
+            [['status_id'], 'exist', 'skipOnError' => true, 'targetClass' => Statuses::className(), 'targetAttribute' => ['status_id' => 'id']],
         ];
     }
 
@@ -142,7 +141,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
             'email' => Yii::t('app', 'Correo electrónico'),
             'auth_key' => Yii::t('app', 'Auth Key'),
             'verf_key' => Yii::t('app', 'Verf Key'),
-            'status' => Yii::t('app', 'Status'),
+            'status_id' => Yii::t('app', 'Estado'),
             'admin' => Yii::t('app', 'Administrador del sitio'),
             'privacity' => Yii::t('app', 'Privacidad'),
             'name' => Yii::t('app', 'Nombre'),
@@ -382,7 +381,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
      */
     public function isActive()
     {
-        return $this->status === self::STATUS_ACTIVE;
+        return $this->status_id === self::STATUS_ACTIVE;
     }
 
     /**
@@ -392,7 +391,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
      */
     public function setActive()
     {
-        $this->status = self::STATUS_ACTIVE;
+        $this->status_id = self::STATUS_ACTIVE;
     }
 
     /**
@@ -402,7 +401,17 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
      */
     public function setInactive()
     {
-        $this->status = self::STATUS_INACTIVE;
+        $this->status_id = self::STATUS_INACTIVE;
+    }
+
+    /**
+     * Establece el stado del usuario como eliminado.
+     *
+     * @return void
+     */
+    public function setDeleted()
+    {
+        $this->status_id = self::STATUS_DELETED;
     }
 
     /**
@@ -423,16 +432,6 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     public function setScenarioUpdate()
     {
         $this->scenario = self::SCENARIO_UPDATE;
-    }
-
-    /**
-     * Establece el stado del usuario como eliminado.
-     *
-     * @return void
-     */
-    public function setDeleted()
-    {
-        $this->status = self::STATUS_DELETED;
     }
 
     /**
@@ -473,6 +472,16 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     public function getPartners()
     {
         return $this->hasOne(Partners::class, ['user_id' => 'id'])->inverseOf('user');
+    }
+
+    /**
+     * Obtiene consulta para [[Statuses]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getStatus()
+    {
+        return $this->hasOne(Statuses::class, ['id' => 'status_id'])->inverseOf('users');
     }
 
     /**
