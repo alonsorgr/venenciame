@@ -51,7 +51,7 @@ $this->registerJs($js);
 
 ?>
 
-<div class="partners-search">
+<div class="partners-search mb-5">
     <div class="row">
         <div class="card w-100">
             <?php $form = ActiveForm::begin([

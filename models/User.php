@@ -512,7 +512,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
      */
     public static function isPartner()
     {
-        return Partners::findOne(['id' => static::id()]) != null ?: false;
+        return Partners::findOne(['user_id' => static::id()]) != null ?: false;
     }
 
     /**
