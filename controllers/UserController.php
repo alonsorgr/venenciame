@@ -47,7 +47,7 @@ class UserController extends Controller
                         'allow' => true
                     ],
                     [
-                        'actions' => ['create', 'delete'],
+                        'actions' => ['create','delete', 'disable', 'enable'],
                         'allow' => true,
                         'roles' => ['@'],
                         'matchCallback' => function ($rule, $action) {
@@ -171,6 +171,58 @@ class UserController extends Controller
             Yii::$app->response->format = Response::FORMAT_JSON;
             return ActiveForm::validate($model);
         }
+    }
+
+    /**
+     * Acción de cambio de estado a activado del usuario.
+     * 
+     * @param   integer            $id      identificador de usuario.
+     * @return  yii\web\Response            el resultado de la representación.
+     * @throws  NotFoundHttpException       si el modelo no es encontrado.
+     */
+    public function actionEnable($id)
+    {
+        $model = $this->findModel($id);
+        $model->status_id = 3;
+        if ($model->save()) {
+            Yii::$app->session->setFlash(
+                'success',
+                Yii::t('app', 'Se ha habilitado al usuario correctamenete.')
+            );
+        } else {
+            Yii::$app->session->setFlash(
+                'success',
+                Yii::t('app', 'No se pudo habilitar al usuario.')
+            );
+        }
+
+        return $this->redirect(['/admin/index']);
+    }
+
+    /**
+     * Acción de cambio de estado a desactivado del usuario.
+     * 
+     * @param   integer            $id      identificador de usuario.
+     * @return  yii\web\Response            el resultado de la representación.
+     * @throws  NotFoundHttpException       si el modelo no es encontrado.
+     */
+    public function actionDisable($id)
+    {
+        $model = $this->findModel($id);
+        $model->status_id = 2;
+        if ($model->save()) {
+            Yii::$app->session->setFlash(
+                'success',
+                Yii::t('app', 'Se ha deshabilitado al usuario correctamenete.')
+            );
+        } else {
+            Yii::$app->session->setFlash(
+                'success',
+                Yii::t('app', 'No se pudo deshabilitar al usuario.')
+            );
+        }
+
+        return $this->redirect(['/admin/index']);
     }
 
     /**

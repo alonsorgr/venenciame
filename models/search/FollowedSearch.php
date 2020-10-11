@@ -49,7 +49,7 @@ class FollowedSearch extends Partners
      */
     public function search($params)
     {
-        $query = Partners::find()->joinWith(['followers f'], true)->where(['f.user_id' => $params['id']]);;
+        $query = Partners::find()->joinWith(['followers f'], true)->where(['f.user_id' => $params['id']]);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,

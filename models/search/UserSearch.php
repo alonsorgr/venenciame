@@ -1,11 +1,5 @@
 <?php
 
-/**
- * @link https://github.com/alonsorgr/venenciame/
- * @copyright Copyright (c) 2020 alonsorgr
- * @license https://github.com/alonsorgr/venenciame/blob/master/LICENSE.md
- */
-
 namespace app\models\search;
 
 use yii\base\Model;
@@ -13,10 +7,7 @@ use yii\data\ActiveDataProvider;
 use app\models\User;
 
 /**
- * Modelo que representa el modelo detrás de la forma de búsqueda de [[User]].
- *
- * @author Alonso García <alonsorgr@gmail.com>
- * @since 1.0
+ * UserSearch represents the model behind the search form of `app\models\User`.
  */
 class UserSearch extends User
 {
@@ -26,7 +17,7 @@ class UserSearch extends User
     public function rules()
     {
         return [
-            [['id', 'status', 'rol_id', 'language_id'], 'integer'],
+            [['id', 'status_id', 'rol_id', 'language_id'], 'integer'],
             [['username', 'password', 'email', 'auth_key', 'verf_key', 'name', 'surname', 'birthdate', 'image', 'updated_at', 'created_at'], 'safe'],
             [['admin', 'privacity'], 'boolean'],
         ];
@@ -38,7 +29,7 @@ class UserSearch extends User
     public function scenarios()
     {
         // bypass scenarios() implementation in the parent class
-        return parent::scenarios();
+        return Model::scenarios();
     }
 
     /**
@@ -69,7 +60,7 @@ class UserSearch extends User
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'status' => $this->status,
+            'status_id' => $this->status_id,
             'admin' => $this->admin,
             'privacity' => $this->privacity,
             'birthdate' => $this->birthdate,
