@@ -120,9 +120,11 @@ class SiteController extends Controller
             return $this->renderAjax('login', [
                 'model' => $model,
             ]);
-        } else {
-            return $this->goBack();
         }
+
+        return $this->render('login', [
+            'model' => $model,
+        ]);
     }
 
     /**
