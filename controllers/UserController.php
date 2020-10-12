@@ -65,7 +65,7 @@ class UserController extends Controller
                         'allow' => true,
                         'roles' => ['@'],
                         'matchCallback' => function ($rule, $action) {
-                            return User::isOwner();
+                            return User::isOwner() || User::isAdmin();
                         }
                     ],
                 ],

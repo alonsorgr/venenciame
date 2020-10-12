@@ -50,7 +50,7 @@ class PartnersController extends Controller
                         'allow' => true,
                         'roles' => ['@'],
                         'matchCallback' => function ($rule, $action) {
-                            return Partners::isOwner();
+                            return Partners::isOwner() || User::isAdmin();
                         }
                     ],
                     [
