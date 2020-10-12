@@ -15,10 +15,8 @@ use borales\extensions\phoneInput\PhoneInputValidator;
 
 /**
  * Esta es la clase modelo para la tabla "socios"..
- * 
  * @author Alonso García <alonsorgr@gmail.com>
  * @since 1.0
- * 
  * @property int $id
  * @property int $user_id
  * @property string $name
@@ -35,7 +33,6 @@ use borales\extensions\phoneInput\PhoneInputValidator;
  * @property string|null $email
  * @property string|null $updated_at
  * @property string $created_at
- * 
  * @property Followers[] $followers
  * @property Users[] $users
  * @property Countries $country

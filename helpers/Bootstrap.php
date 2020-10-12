@@ -68,13 +68,13 @@ class Bootstrap
      */
     public static function registerLoadingEffect($view)
     {
-        $view->registerJsFile("@web/js/effects.js", [
+        $view->registerJsFile('@web/js/effects.js', [
             'depends' => [
                 \yii\web\JqueryAsset::class,
             ]
         ]);
 
-        $view->registerJs("loading()", View::POS_READY);
+        $view->registerJs('loading()', View::POS_READY);
     }
 
     /**
@@ -174,5 +174,4 @@ class Bootstrap
             ],
         ];
     }
-
 }

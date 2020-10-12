@@ -60,7 +60,6 @@ class AmazonS3
             unlink($fileName);
 
             return $uploadFile;
-            
         } catch (\Exception $exception) {
             throw new BadRequestHttpException(Yii::t('app', 'The requested page does not exist.'));
         }

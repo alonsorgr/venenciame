@@ -66,5 +66,4 @@ class AdminController extends Controller
             'partnersDataProvider' => $partnersDataProvider,
         ]);
     }
-
 }

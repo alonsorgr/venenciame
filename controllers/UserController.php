@@ -21,7 +21,6 @@ use yii\filters\AccessControl;
 
 /**
  * Controlador de usuarios [[User]]
- *
  * @author Alonso García <alonsorgr@gmail.com>
  * @since 1.0
  */
@@ -92,7 +91,6 @@ class UserController extends Controller
 
     /**
      * Acción de renderizado vista de usuario.
-     * 
      * @param   integer            $id      identificador de usuario.
      * @return  yii\web\Response | string   el resultado de la representación.
      * @throws  NotFoundHttpException       si el modelo no es encontrado.
@@ -111,7 +109,6 @@ class UserController extends Controller
 
     /**
      * Acción de renderizado vista de creación de usuario.
-     * 
      * @return  yii\web\Response | string   el resultado de la representación.
      */
     public function actionCreate()
@@ -129,7 +126,6 @@ class UserController extends Controller
 
     /**
      * Acción de renderizado vista de edición usuario.
-     * 
      * @param   integer            $id      identificador de usuario.
      * @return  yii\web\Response | string   el resultado de la representación.
      * @throws  NotFoundHttpException       si el modelo no es encontrado.
@@ -149,7 +145,6 @@ class UserController extends Controller
 
     /**
      * Acción de renderizado vista de borrado de usuario.
-     * 
      * @param   integer            $id      identificador de usuario.
      * @return  yii\web\Response | string   el resultado de la representación.
      * @throws  NotFoundHttpException       si el modelo no es encontrado.
@@ -163,9 +158,8 @@ class UserController extends Controller
 
     /**
      * Acción de validación de formularios.
-     *
      * @param   integer $id     identificador de usuario.
-     * @return  array           de mensajes de error indexada por los ID de atributo. 
+     * @return  array           de mensajes de error indexada por los ID de atributo.
      */
     public function actionValidation($id = null)
     {
@@ -182,7 +176,6 @@ class UserController extends Controller
 
     /**
      * Acción de cambio de estado a activado del usuario.
-     * 
      * @param   integer            $id      identificador de usuario.
      * @return  yii\web\Response            el resultado de la representación.
      * @throws  NotFoundHttpException       si el modelo no es encontrado.
@@ -208,7 +201,6 @@ class UserController extends Controller
 
     /**
      * Acción de cambio de estado a desactivado del usuario.
-     * 
      * @param   integer            $id      identificador de usuario.
      * @return  yii\web\Response            el resultado de la representación.
      * @throws  NotFoundHttpException       si el modelo no es encontrado.
@@ -234,7 +226,6 @@ class UserController extends Controller
 
     /**
      * Encuentra el modelo de usuario en función de su valor de clave principal.
-     * 
      * @param   integer                 $id     identificador de usuario.
      * @return  User                            el modelo cargado.
      * @throws  NotFoundHttpException           si el modelo no es encontrado.

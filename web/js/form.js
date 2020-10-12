@@ -1,9 +1,9 @@
 /**
  * Función de revelado de contraseña en input.
- * 
  * @param {sitring} $input    selector id para el elemento input.
  */
-function passwordInput(input) {
+function passwordInput(input)
+{
     $($('#password-input-icon').on('click', function (event) {
         event.preventDefault();
         if ($('#'.concat(input)).attr("type") == "text") {

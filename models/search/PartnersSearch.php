@@ -93,7 +93,7 @@ class PartnersSearch extends Partners
             ->andFilterWhere(['ilike', 'partners.phone', $this->phone])
             ->andFilterWhere(['ilike', 'partners.url', $this->url])
             ->andFilterWhere(['ilike', 'partners.email', $this->email])
-            ->andFilterWhere(['ilike', 'u.username', $this->getAttribute('user.username')]);;
+            ->andFilterWhere(['ilike', 'u.username', $this->getAttribute('user.username')]);
 
         return $dataProvider;
     }

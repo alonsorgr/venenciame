@@ -12,15 +12,12 @@ use Yii;
 
 /**
  * Esta es la clase modelo para la tabla "followers".
- * 
  * @author Alonso García <alonsorgr@gmail.com>
  * @since 1.0
- * 
  * @property int $id
  * @property int $user_id
  * @property int $partner_id
  * @property string|null $created_at
- *
  * @property Partners $partner
  * @property Users $user
  */

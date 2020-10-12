@@ -12,10 +12,8 @@ use Yii;
 
 /**
  * Esta es la clase modelo para la tabla "statuses".
- * 
  * @author Alonso García <alonsorgr@gmail.com>
  * @since 1.0
- * 
  * @property int $id
  * @property string $label
  * @property string|null $created_at

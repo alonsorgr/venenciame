@@ -12,10 +12,8 @@ use Yii;
 
 /**
  * Esta es la clase modelo para la tabla "roles".
- * 
  * @author Alonso García <alonsorgr@gmail.com>
  * @since 1.0
- * 
  * @property int $id
  * @property string $label
  * @property string|null $updated_at

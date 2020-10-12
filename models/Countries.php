@@ -12,15 +12,12 @@ use Yii;
 
 /**
  * Esta es la clase modelo para la tabla "países".
- * 
  * @author Alonso García <alonsorgr@gmail.com>
  * @since 1.0
- * 
  * @property int $id
  * @property string $code
  * @property string $label
  * @property string|null $created_at
- *
  * @property Addresses[] $addresses
  * @property States[] $states
  */

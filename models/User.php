@@ -16,10 +16,8 @@ use app\helpers\AmazonS3;
 
 /**
  * Esta es la clase modelo para la tabla "users".
- * 
  * @author Alonso García <alonsorgr@gmail.com>
  * @since 1.0
- * 
  * @property int $id
  * @property string $username
  * @property string $password

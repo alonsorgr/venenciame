@@ -79,7 +79,7 @@ class DropdownSorter extends Widget
 
         $dropDown = Html::tag('div', '<a href="#" data-toggle="dropdown" class="dropdown-toggle">' . $this->label . '</a>' . \yii\bootstrap4\Dropdown::widget([
             'items' => $links,
-        ]),[]);
+        ]), []);
 
         return  $dropDown;
     }

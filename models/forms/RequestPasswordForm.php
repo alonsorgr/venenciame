@@ -86,10 +86,9 @@ class RequestPasswordForm extends Model
      */
     public function request()
     {
+
         if ($this->validate()) {
-
             $this->user->generatePasswordVerfKey();
-
             $isSend = Email::send([
                 'email' => $this->email,
                 'subject' => Yii::t('app', 'VENÉNCIAME - RECUPERAR CONTRASEÑA'),
