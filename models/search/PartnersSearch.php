@@ -36,22 +36,19 @@ class PartnersSearch extends Partners
      */
     public function scenarios()
     {
-        // bypass scenarios() implementation in the parent class
         return parent::scenarios();
     }
 
     /**
-     * Creates data provider instance with search query applied
+     * Crea una instancia de proveedor de datos con la consulta de búsqueda aplicada.
      *
-     * @param array $params
+     * @param   array                   $params     parámetros URL.
      *
-     * @return ActiveDataProvider
+     * @return  ActiveDataProvider      Proporciona datos realizando consultas a la base de datos mediante [[Query]].
      */
     public function search($params)
     {
         $query = Partners::find();
-
-        // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -60,12 +57,9 @@ class PartnersSearch extends Partners
         $this->load($params);
 
         if (!$this->validate()) {
-            // uncomment the following line if you do not want to return any records when validation fails
-            // $query->where('0=1');
             return $dataProvider;
         }
-
-        // grid filtering conditions
+        
         $query->andFilterWhere([
             'id' => $this->id,
             'user_id' => $this->user_id,

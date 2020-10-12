@@ -41,11 +41,11 @@ class FollowedSearch extends Partners
     }
 
     /**
-     * Creates data provider instance with search query applied
+     * Crea una instancia de proveedor de datos con la consulta de búsqueda aplicada.
      *
-     * @param array $params
+     * @param   array                   $params     parámetros URL.
      *
-     * @return ActiveDataProvider
+     * @return  ActiveDataProvider      Proporciona datos realizando consultas a la base de datos mediante [[Query]].
      */
     public function search($params)
     {

@@ -63,7 +63,7 @@ class Followers extends \yii\db\ActiveRecord
     }
 
     /**
-     * Gets query for [[Partner]].
+     * Obtiene consulta para [[Partners]].
      *
      * @return \yii\db\ActiveQuery
      */
@@ -73,7 +73,7 @@ class Followers extends \yii\db\ActiveRecord
     }
 
     /**
-     * Gets query for [[User]].
+     * Obtiene consulta para [[User]].
      *
      * @return \yii\db\ActiveQuery
      */
