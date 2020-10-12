@@ -526,13 +526,23 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     }
 
     /**
-     * Comprueba si el acceso del usuario es válido para determinada acción
+     * Comprueba si el acceso del usuario es válido para determinada acción.
      *
      * @return boolean  verdadero si es coinciden los id's.
      */
     public static function isOwner()
     {
         return intval(Yii::$app->getRequest()->getQueryParam('id')) === static::id();
+    }
+
+    /**
+     * Comprueba si el usuario está activo.
+     *
+     * @return boolean  verdadero si el usuario está activo.
+     */
+    public static function active()
+    {
+        return static::find()->where(['id' => intval(Yii::$app->getRequest()->getQueryParam('id'))])->one()->status_id === 3;
     }
 
     /**

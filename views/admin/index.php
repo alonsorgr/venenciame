@@ -4,6 +4,8 @@
 /* @var $this yii\web\View */
 /* @var $userSearchModel app\models\search\UserSearch */
 /* @var $userDataProvider yii\data\ActiveDataProvider */
+/* @var $partnersSearchModel app\models\search\PartnersSearch */
+/* @var $partnersDataProvider yii\data\ActiveDataProvider */
 
 use app\helpers\Bootstrap;
 use kartik\tabs\TabsX;
@@ -21,6 +23,14 @@ $this->params['breadcrumbs'][] = $this->title;
                 'content' => $this->render('tabs/_user', [
                     'userSearchModel' => $userSearchModel,
                     'userDataProvider' => $userDataProvider,
+                ]),
+            ]);
+            $items[] = Bootstrap::tabItem([
+                'icon' => 'fas fa-handshake',
+                'label' => Yii::t('app', 'Socios'),
+                'content' => $this->render('tabs/_partners', [
+                    'partnersSearchModel' => $partnersSearchModel,
+                    'partnersDataProvider' => $partnersDataProvider,
                 ]),
             ]);
             ?>

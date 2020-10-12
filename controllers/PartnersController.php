@@ -17,9 +17,7 @@ use yii\web\Response;
 use app\models\search\PartnersSearch;
 use app\models\Partners;
 use app\models\User;
-use app\models\States;
 use app\helpers\Email;
-use app\models\Followers;
 use app\models\forms\RequestPartnersForm;
 use app\models\search\FollowersSearch;
 use yii\filters\AccessControl;
@@ -43,15 +41,21 @@ class PartnersController extends Controller
                 'rules' => [
                     [
                         'actions' => ['index', 'view', 'request'],
-                        'allow' => true
+                        'allow' => true,
+                        'matchCallback' => function ($rule, $action) {
+                            return Partners::active();
+                        }
                     ],
                     [
                         'actions' => ['update'],
                         'allow' => true,
-                        'roles' => ['@']
+                        'roles' => ['@'],
+                        'matchCallback' => function ($rule, $action) {
+                            return Partners::isOwner();
+                        }
                     ],
                     [
-                        'actions' => ['create', 'delete'],
+                        'actions' => ['create', 'update', 'delete', 'disable', 'enable'],
                         'allow' => true,
                         'roles' => ['@'],
                         'matchCallback' => function ($rule, $action) {
@@ -206,6 +210,59 @@ class PartnersController extends Controller
             'model' => $model,
         ]);
     }
+
+    /**
+     * Acción de cambio de estado a activado del socio.
+     * 
+     * @param   integer            $id      identificador de socio.
+     * @return  yii\web\Response            el resultado de la representación.
+     * @throws  NotFoundHttpException       si el modelo no es encontrado.
+     */
+    public function actionEnable($id)
+    {
+        $model = $this->findModel($id);
+        $model->status_id = 3;
+        if ($model->save()) {
+            Yii::$app->session->setFlash(
+                'success',
+                Yii::t('app', 'Se ha habilitado al socio correctamenete.')
+            );
+        } else {
+            Yii::$app->session->setFlash(
+                'error',
+                Yii::t('app', 'No se pudo habilitar al socio.')
+            );
+        }
+
+        return $this->redirect(['/admin/index']);
+    }
+
+    /**
+     * Acción de cambio de estado a desactivado del socio.
+     * 
+     * @param   integer            $id      identificador de socio.
+     * @return  yii\web\Response            el resultado de la representación.
+     * @throws  NotFoundHttpException       si el modelo no es encontrado.
+     */
+    public function actionDisable($id)
+    {
+        $model = $this->findModel($id);
+        $model->status_id = 2;
+        if ($model->save()) {
+            Yii::$app->session->setFlash(
+                'success',
+                Yii::t('app', 'Se ha deshabilitado al socio correctamenete.')
+            );
+        } else {
+            Yii::$app->session->setFlash(
+                'error',
+                Yii::t('app', 'No se pudo deshabilitar al socio.')
+            );
+        }
+
+        return $this->redirect(['/admin/index']);
+    }
+
 
     /**
      * Encuentra el modelo de socio en función de su valor de clave principal.
