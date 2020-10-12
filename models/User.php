@@ -540,7 +540,12 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
      */
     public static function active()
     {
-        return static::find()->where(['id' => intval(Yii::$app->getRequest()->getQueryParam('id'))])->one()->status_id === 3;
+        $model = static::find()->where(['id' => intval(Yii::$app->getRequest()->getQueryParam('id'))]);
+        if ($model->exists()) {
+            return $model->one()->status_id === 3;
+        } else {
+            return false;
+        }
     }
 
     /**
