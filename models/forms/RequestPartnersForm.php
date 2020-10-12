@@ -8,6 +8,7 @@
 
 namespace app\models\forms;
 
+use app\helpers\Email;
 use Yii;
 use borales\extensions\phoneInput\PhoneInputValidator;
 use app\models\User;
@@ -15,6 +16,7 @@ use app\models\Countries;
 use app\models\Partners;
 use app\models\States;
 use app\models\Statuses;
+use yii\helpers\Url;
 
 /**
  * Modelo para formulario de solicitud de socio.
@@ -144,6 +146,15 @@ class RequestPartnersForm extends \yii\db\ActiveRecord
     public function request()
     {
         if ($this->validate()) {
+            Email::send([
+                'email' => Yii::$app->params['adminEmail'],
+                'subject' => Yii::t('app', 'SOLICITUD DE SOCIO'),
+                'body' => Email::link([
+                    'body' => Yii::t('app', 'Se ha creado una nueva solocitud de socio.'),
+                    'url' => Url::to(['admin/index'], true),
+                    'text' => Yii::t('app', 'Verificar socio'),
+                ]),
+            ]);
             $partner = new Partners([
                 'user_id' => $this->user->id,
                 'name' => $this->name,

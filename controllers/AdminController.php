@@ -52,7 +52,7 @@ class AdminController extends Controller
      * @return yii\web\Response | string    el resultado de la representación.
      */
     public function actionIndex()
-    {
+    {       
         $userSearchModel = new UserSearch();
         $userDataProvider = $userSearchModel->search(Yii::$app->request->queryParams);
 
