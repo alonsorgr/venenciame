@@ -149,7 +149,7 @@ class RequestPartnersForm extends \yii\db\ActiveRecord
                 'name' => $this->name,
                 'country_id' => $this->country_id,
                 'state_id' => $this->state_id,
-                'status_id' => Statuses::STATUS_MODERATION,
+                'status_id' => Statuses::STATUS_INACTIVE,
                 'city' => $this->city,
                 'zip_code' => $this->zip_code,
                 'address' => $this->address,
