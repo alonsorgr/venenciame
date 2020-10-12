@@ -80,7 +80,7 @@ use yii\helpers\Url;
             </ul>
         </div>
     </div>
-    <?php if (!Yii::$app->user->isGuest && !User::isPartner()) : ?>
+    <?php if (Yii::$app->user->isGuest && !User::isPartner()) : ?>
         <div class="row mt-4">
             <div class="card w-100">
                 <div class="card-header">

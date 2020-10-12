@@ -229,7 +229,11 @@ class Navigation
         ]);
 
         $items = null;
-        foreach (Partners::find()->where(['status_id' => 3])->all() as $value) {
+        $partners = Partners::find()->where(['status_id' => 3]);
+        if (!$partners->exists()) {
+            return '';
+        }
+        foreach ($partners->all() as $value) {
             $items[] = [
                 'encode' => false,
                 'label' => $value['name'],

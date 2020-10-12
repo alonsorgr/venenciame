@@ -39,8 +39,13 @@ class PartnersController extends Controller
                 'class' => AccessControl::class,
                 'rules' => [
                     [
-                        'actions' => ['index', 'view', 'request'],
+                        'actions' => ['index', 'view'],
                         'allow' => true,
+                    ],
+                    [
+                        'actions' => ['request'],
+                        'allow' => true,
+                        'roles' => ['@'],
                     ],
                     [
                         'actions' => ['update'],
@@ -164,6 +169,24 @@ class PartnersController extends Controller
      */
     public function actionRequest()
     {
+        if (Yii::$app->user->isGuest) {
+            Yii::$app->session->setFlash(
+                'warning',
+                Yii::t('app', 'Debe estar registrado en la web para poder participar y ser nuestros socios.')
+            );
+            return $this->redirect(['site/index']);
+        }
+
+        $exists = Partners::find()->where(['user_id' => User::id()])->exists();
+
+        if ($exists) {
+            Yii::$app->session->setFlash(
+                'warning',
+                Yii::t('app', 'Su cuenta de usurario ya tiene vinculada una cuenta de socio.')
+            );
+            return $this->redirect(['site/index']);
+        }
+
         $model = new RequestPartnersForm();
 
         if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {

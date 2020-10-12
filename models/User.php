@@ -500,7 +500,9 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
      */
     public static function partnerId()
     {
-        return !Yii::$app->user->isGuest ? Yii::$app->user->identity->partners->id : '';
+        $model = Partners::find()->where(['user_id' => static::id()]);
+        $id = $model->exists() ? $model->one()->id : '';
+        return !Yii::$app->user->isGuest ? $id : '';
     }
 
     /**
@@ -520,7 +522,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
      */
     public static function isPartner()
     {
-        return Partners::findOne(['user_id' => static::id()]) != null ?: false;
+        return Partners::find()->where(['user_id' => intval(static::id())])->exists();
     }
 
     /**
