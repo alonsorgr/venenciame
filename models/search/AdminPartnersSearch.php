@@ -18,7 +18,7 @@ use app\models\Partners;
  * @author Alonso García <alonsorgr@gmail.com>
  * @since 1.0
  */
-class PartnersSearch extends Partners
+class AdminPartnersSearch extends Partners
 {
     /**
      * {@inheritdoc}
@@ -56,7 +56,7 @@ class PartnersSearch extends Partners
      */
     public function search($params)
     {
-        $query = Partners::find()->joinWith('user u')->where(['partners.status_id' => 3]);
+        $query = Partners::find()->joinWith('user u');
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,

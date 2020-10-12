@@ -8,6 +8,8 @@
 
 namespace app\controllers;
 
+use app\models\search\AdminPartnersSearch;
+use app\models\search\PartnersSearch;
 use Yii;
 use yii\web\Controller;
 use yii\filters\AccessControl;
@@ -54,9 +56,14 @@ class AdminController extends Controller
         $userSearchModel = new UserSearch();
         $userDataProvider = $userSearchModel->search(Yii::$app->request->queryParams);
 
+        $partnersSearchModel = new AdminPartnersSearch();
+        $partnersDataProvider = $partnersSearchModel->search(Yii::$app->request->queryParams);
+
         return $this->render('index', [
             'userSearchModel' => $userSearchModel,
             'userDataProvider' => $userDataProvider,
+            'partnersSearchModel' => $partnersSearchModel,
+            'partnersDataProvider' => $partnersDataProvider,
         ]);
     }
 

@@ -57,7 +57,7 @@ class UserSearch extends User
      */
     public function search($params)
     {
-        $query = User::find()->joinWith('status s');;
+        $query = User::find()->joinWith('status s');
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -94,7 +94,7 @@ class UserSearch extends User
             ->andFilterWhere(['ilike', 'name', $this->name])
             ->andFilterWhere(['ilike', 'surname', $this->surname])
             ->andFilterWhere(['ilike', 'image', $this->image])
-            ->andFilterWhere(['ilike', 'g.denom', $this->getAttribute('status.label')]);
+            ->andFilterWhere(['ilike', 's.label', $this->getAttribute('status.label')]);
 
         return $dataProvider;
     }

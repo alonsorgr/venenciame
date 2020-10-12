@@ -46,6 +46,13 @@ use borales\extensions\phoneInput\PhoneInputValidator;
 class Partners extends \yii\db\ActiveRecord
 {
     /**
+     * Constantes de estado del usuario.
+     */
+    const STATUS_DELETED = 1;
+    const STATUS_INACTIVE = 2;
+    const STATUS_ACTIVE = 3;
+
+    /**
      * Constante de imagen de logo corporativo.
      */
     const IMAGE = '@web/img/partners.jpg';
@@ -124,7 +131,7 @@ class Partners extends \yii\db\ActiveRecord
         return [
             'id' => Yii::t('app', 'ID'),
             'user_id' => Yii::t('app', 'Usuario vinculado'),
-            'name' => Yii::t('app', 'Nombre de la bodega o empresa'),
+            'name' => Yii::t('app', 'Bodega o empresa'),
             'description' => Yii::t('app', 'Descripción'),
             'information' => Yii::t('app', 'Información adicional'),
             'image' => Yii::t('app', 'Logo corporativo'),
@@ -136,7 +143,7 @@ class Partners extends \yii\db\ActiveRecord
             'zip_code' => Yii::t('app', 'Código postal'),
             'address' => Yii::t('app', 'Dirección'),
             'phone' => Yii::t('app', 'Teléfono'),
-            'email' => Yii::t('app', 'Dirección de correo electrónico de contacto'),
+            'email' => Yii::t('app', 'Correo electrónico'),
             'url' => Yii::t('app', 'Sitio web'),
             'updated_at' => Yii::t('app', 'Updated At'),
             'created_at' => Yii::t('app', 'Socio desde '),
@@ -209,6 +216,46 @@ class Partners extends \yii\db\ActiveRecord
     }
 
     /**
+     * Determina si el usuario tiene la cuenta activa.
+     *
+     * @return boolean  verdadero si el usuario tiene la cuenta activa.
+     */
+    public function isActive()
+    {
+        return $this->status_id === self::STATUS_ACTIVE;
+    }
+
+    /**
+     * Establece el stado del usuario como activo.
+     *
+     * @return void
+     */
+    public function setActive()
+    {
+        $this->status_id = self::STATUS_ACTIVE;
+    }
+
+    /**
+     * Establece el stado del usuario como no activo.
+     *
+     * @return void
+     */
+    public function setInactive()
+    {
+        $this->status_id = self::STATUS_INACTIVE;
+    }
+
+    /**
+     * Establece el stado del usuario como eliminado.
+     *
+     * @return void
+     */
+    public function setDeleted()
+    {
+        $this->status_id = self::STATUS_DELETED;
+    }
+
+    /**
      * Obtiene consulta para [[Countries]].
      *
      * @return \yii\db\ActiveQuery
@@ -266,5 +313,25 @@ class Partners extends \yii\db\ActiveRecord
     public function getUsers()
     {
         return $this->hasMany(User::class, ['id' => 'user_id'])->viaTable('followers', ['partner_id' => 'id']);
+    }
+
+    /**
+     * Comprueba si el acceso del usuario es válido para determinada acción.
+     *
+     * @return boolean  verdadero si es coinciden los id's.
+     */
+    public static function isOwner()
+    {
+        return intval(Yii::$app->getRequest()->getQueryParam('user_id')) === User::id();
+    }
+
+    /**
+     * Comprueba si el socio está activo.
+     *
+     * @return boolean  verdadero si el socio está activo.
+     */
+    public static function active()
+    {
+        return static::find()->where(['id' => intval(Yii::$app->getRequest()->getQueryParam('id'))])->one()->status_id === 3;
     }
 }
