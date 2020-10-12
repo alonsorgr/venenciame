@@ -22,7 +22,7 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
         </div>
     </div>
-    <div class="row justify-content-end mb-3 mx-3">
+    <div class="row justify-content-end my-3 mx-3">
         <?= Html::a(Yii::t('app', 'Desconectarse'), Url::to(['site/logout']), [
             'data-method' => 'POST',
             'class' => 'btn btn-danger',

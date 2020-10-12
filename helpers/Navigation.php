@@ -197,7 +197,7 @@ class Navigation
                 $view,
                 $update,
                 User::isAdmin() ? static::horizontalDivider() : '',
-                $admin,
+                User::isAdmin() ? $admin : '',
                 User::isPartner() ? static::horizontalDivider() : '',
                 User::isPartner() ? $partner : '',
                 static::horizontalDivider(),

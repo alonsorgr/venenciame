@@ -43,7 +43,7 @@ class UserController extends Controller
                 'class' => AccessControl::class,
                 'rules' => [
                     [
-                        'actions' => ['index', 'view', 'validation'],
+                        'actions' => ['view', 'validation'],
                         'allow' => true
                     ],
                     [
@@ -191,7 +191,7 @@ class UserController extends Controller
             );
         } else {
             Yii::$app->session->setFlash(
-                'success',
+                'error',
                 Yii::t('app', 'No se pudo habilitar al usuario.')
             );
         }
@@ -217,7 +217,7 @@ class UserController extends Controller
             );
         } else {
             Yii::$app->session->setFlash(
-                'success',
+                'error',
                 Yii::t('app', 'No se pudo deshabilitar al usuario.')
             );
         }

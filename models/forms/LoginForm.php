@@ -66,6 +66,7 @@ class LoginForm extends Model
                 ['password'], 'required',
                 'message' => Yii::t('app', 'El campo de contraseña no puede estar vacío.')
             ],
+            ['login', 'isActive'],
             ['password', 'validatePassword'],
         ];
     }
@@ -93,6 +94,21 @@ class LoginForm extends Model
         if (!$this->hasErrors()) {
             if (!$this->user || !$this->user->validatePasswordHash($this->password)) {
                 $this->addError($attribute, Yii::t('app', 'En nombre de usuario, correo electrónico o la contraseña son incorrectos.'));
+            }
+        }
+    }
+
+    /**
+     * Comprueba que el usuario que desea conectarse está activo.
+     *
+     * @param string    $attribute      Atributo de login.
+     * @return void
+     */
+    public function isActive($attribute)
+    {
+        if (!$this->hasErrors()) {
+            if (!$this->user->isActive()) {
+                $this->addError($attribute, Yii::t('app', 'Su cuenta se encuentra actualmente inactiva.'));
             }
         }
     }

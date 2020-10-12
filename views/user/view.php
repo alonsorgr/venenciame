@@ -10,7 +10,6 @@ use yii\bootstrap4\Html;
 /* @var $followedProvider yii\data\ActiveDataProvider */
 
 $this->title = $model->username;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Usuarios'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>

@@ -26,6 +26,7 @@ use app\helpers\AmazonS3;
  * @property string $email
  * @property string|null $auth_key
  * @property string|null $verf_key
+ * @property int|null $status_id
  * @property bool|null $admin
  * @property bool|null $privacity
  * @property string|null $name

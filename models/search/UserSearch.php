@@ -18,7 +18,7 @@ class UserSearch extends User
     {
         return [
             [['id', 'status_id', 'rol_id', 'language_id'], 'integer'],
-            [['username', 'password', 'email', 'auth_key', 'verf_key', 'name', 'surname', 'birthdate', 'image', 'updated_at', 'created_at'], 'safe'],
+            [['username', 'password', 'email', 'auth_key', 'verf_key', 'name', 'surname', 'birthdate', 'image', 'updated_at', 'created_at', 'status.label'], 'safe'],
             [['admin', 'privacity'], 'boolean'],
         ];
     }
@@ -33,6 +33,14 @@ class UserSearch extends User
     }
 
     /**
+     * {@inheritdoc}
+     */
+    public function attributes()
+    {
+        return array_merge(parent::attributes(), ['status.label']);
+    }
+
+    /**
      * Creates data provider instance with search query applied
      *
      * @param array $params
@@ -41,13 +49,18 @@ class UserSearch extends User
      */
     public function search($params)
     {
-        $query = User::find();
+        $query = User::find()->joinWith('status s');;
 
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
+
+        $dataProvider->sort->attributes['status.label'] = [
+            'asc' => ['s.label' => SORT_ASC],
+            'desc' => ['s.label' => SORT_DESC],
+        ];
 
         $this->load($params);
 
@@ -77,7 +90,8 @@ class UserSearch extends User
             ->andFilterWhere(['ilike', 'verf_key', $this->verf_key])
             ->andFilterWhere(['ilike', 'name', $this->name])
             ->andFilterWhere(['ilike', 'surname', $this->surname])
-            ->andFilterWhere(['ilike', 'image', $this->image]);
+            ->andFilterWhere(['ilike', 'image', $this->image])
+            ->andFilterWhere(['ilike', 'g.denom', $this->getAttribute('status.label')]);
 
         return $dataProvider;
     }

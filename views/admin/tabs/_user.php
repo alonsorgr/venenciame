@@ -50,7 +50,7 @@ use app\models\Statuses;
                         ]
                     ],
                     [
-                        'attribute' => 'status_id',
+                        'attribute' => 'status.label',
                         'filter' => Html::activeDropDownList($userSearchModel, 'status_id', Statuses::labels(), [
                             'class' => 'form-control',
                             'prompt' => 'Buscar por estado',

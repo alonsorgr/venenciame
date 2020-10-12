@@ -5,8 +5,7 @@ use yii\bootstrap4\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\User */
 
-$this->title = Yii::t('app', 'Create User');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Users'), 'url' => ['index']];
+$this->title = Yii::t('app', 'Crear usuario');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="user-create">
