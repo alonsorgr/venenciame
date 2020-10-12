@@ -41,9 +41,6 @@ class PartnersController extends Controller
                     [
                         'actions' => ['index', 'view', 'request'],
                         'allow' => true,
-                        'matchCallback' => function ($rule, $action) {
-                            return Partners::active();
-                        }
                     ],
                     [
                         'actions' => ['update'],

@@ -44,9 +44,6 @@ class UserController extends Controller
                     [
                         'actions' => ['view'],
                         'allow' => true,
-                        'matchCallback' => function ($rule, $action) {
-                            return User::active();
-                        }
                     ],
                     [
                         'actions' => ['validation'],
