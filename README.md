@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="https://raw.githubusercontent.com/alonsorgr/venenciame/master/guia/images/logo.svg?token=AH3YUC4VV45VBYW34IA6PJC7I66YG" width=255>
+    <img src="https://svgshare.com/i/QU2.svg" width=255>
     <h1 align="center">Proyecto Integrado - Desarrollo de Aplicaciones Web</h1>
     <br>
 </p>
