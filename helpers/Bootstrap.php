@@ -59,24 +59,7 @@ class Bootstrap
         </div>
         EOT;
     }
-
-    /**
-     * Regitra el efecto de carga de peticiones.
-     *
-     * @param \yii\web\View    $view   vista donde se registrará la función.
-     * @return void
-     */
-    public static function registerLoadingEffect($view)
-    {
-        $view->registerJsFile('@web/js/effects.js', [
-            'depends' => [
-                \yii\web\JqueryAsset::class,
-            ]
-        ]);
-
-        $view->registerJs('loading()', View::POS_READY);
-    }
-
+    
     /**
      * Registra el diseño de los Tooltips de Bootstrap.
      *
@@ -108,6 +91,7 @@ class Bootstrap
             'title' => '<i class="' . $options['image'] . ' mr-3 ml-2"></i>' . $options['title'],
             'size' => !isset($options['size']) ?: $options['size'],
             'clientOptions' => ['method' => 'POST'],
+            'class' => 'slideInRight'
         ]);
         echo Html::tag('div', null, [
             'id' => 'content',
