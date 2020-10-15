@@ -2,7 +2,6 @@
 
 use yii\helpers\Url;
 use yii\bootstrap4\Html;
-use app\models\User;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\User */
