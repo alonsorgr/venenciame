@@ -15,7 +15,6 @@ use app\helpers\Navigation;
 use yii\helpers\Url;
 
 AppAsset::register($this);
-Bootstrap::registerLoadingEffect($this);
 Bootstrap::registerTooltip($this);
 
 $this->title = Yii::$app->name;
