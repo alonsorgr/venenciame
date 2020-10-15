@@ -10,7 +10,7 @@ use app\models\User;
 ?>
 
 <div class="user-small">
-    <div class="row">
+    <div itemscope itemtype="http://schema.org/Person" class="row">
         <div class="col-12 col-sm-auto">
             <div class="mx-auto">
                 <div class="col d-flex justify-content-center align-items-center">
@@ -30,15 +30,17 @@ use app\models\User;
             <div class="text-center text-sm-left">
                 <div class="d-block lead mb-2">
                     <?= Html::a(Html::encode($model->fullname), ['user/view', 'id' => $model->id], [
+                        'itemprop' => 'name',
                         'data-pjax' => 0,
                     ]) ?>
                 </div>
                 <div class="d-block mb-2">
                     <?= Html::a(Html::encode($model->username), ['user/view', 'id' => $model->id], [
+                        'itemprop' => 'alternateName',
                         'data-pjax' => 0,
                     ]) ?>
                 </div>
-                <div class="d-block mb-2">
+                <div itemprop="email" class="d-block mb-2">
                     <i class="fas fa-envelope mr-1"></i>
                     <?= Yii::$app->formatter->asEmail(Html::encode($model->email)) ?>
                 </div>
