@@ -47,7 +47,7 @@ if (!Yii::$app->user->isGuest) {
 ?>
 
 <div class="partner-small">
-    <div class="row">
+    <div itemscope itemtype="http://schema.org/Organization" class="row">
         <div class="col-12 col-sm-auto mt-4">
             <div class="mx-auto">
                 <div class="col d-flex justify-content-center align-items-center">
@@ -67,10 +67,11 @@ if (!Yii::$app->user->isGuest) {
             <div class="text-center text-sm-left">
                 <div class="d-block mb-xl-2 mt-2 lead">
                     <?= Html::a(Html::encode($model->name), ['partners/view', 'id' => $model->id], [
+                        'itemprop' => 'legalName',
                         'data-pjax' => 0,
                     ]) ?>
                 </div>
-                <cite class="d-block text-break font-italic mr-lg-5 mt-2">
+                <cite itemprop="description" class="d-block text-break font-italic mr-lg-5 mt-2">
                     <?= Html::encode($model->description) ?>
                 </cite>
             </div>
@@ -81,15 +82,15 @@ if (!Yii::$app->user->isGuest) {
                     ]) ?>
                     <i class="fas fa-calendar icon-sm ml-2"></i>
                 </small>
-                <div class="d-block mt-2 text-muted">
+                <div itemprop="url" class="d-block mt-2 text-muted">
                     <?= Yii::$app->formatter->asUrl($model->url) ?>
                     <i class="fas fa-link icon-sm ml-2"></i>
                 </div>
-                <div class="d-block mt-2 text-muted">
+                <div itemprop="email" class="d-block mt-2 text-muted">
                     <?= Yii::$app->formatter->asEmail($model->email) ?>
                     <i class="fas fa-envelope icon-sm ml-2"></i>
                 </div>
-                <div class="d-block mt-2 text-muted">
+                <div itemprop="location" class="d-block mt-2 text-muted">
                     <?= Html::encode($model->location) ?>
                 </div>
                 <div class="d-block justify-content-end mt-3">
