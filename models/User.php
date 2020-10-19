@@ -522,7 +522,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
      */
     public static function isPartner()
     {
-        return Partners::find()->where(['user_id' => intval(static::id())])->exists();
+        return Partners::find()->where(['user_id' => intval(static::id())])->andWhere(['status_id' => 3])->exists();
     }
 
     /**

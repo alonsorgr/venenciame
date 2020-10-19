@@ -177,16 +177,6 @@ class PartnersController extends Controller
             return $this->redirect(['site/index']);
         }
 
-        $exists = Partners::find()->where(['user_id' => User::id()])->exists();
-
-        if ($exists) {
-            Yii::$app->session->setFlash(
-                'warning',
-                Yii::t('app', 'Su cuenta de usurario ya tiene vinculada una cuenta de socio.')
-            );
-            return $this->redirect(['site/index']);
-        }
-
         $model = new RequestPartnersForm();
 
         if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
@@ -195,6 +185,15 @@ class PartnersController extends Controller
         }
 
         if ($model->load(Yii::$app->request->post())) {
+            $exists = Partners::find()->where(['user_id' => User::id()])->exists();
+
+            if ($exists) {
+                Yii::$app->session->setFlash(
+                    'warning',
+                    Yii::t('app', 'Su cuenta de usurario ya tiene vinculada una cuenta de socio.')
+                );
+                return $this->redirect(['site/index']);
+            }
             if ($model->request()) {
                 Yii::$app->session->setFlash('partnersFormSubmitted');
                 Email::send([
