@@ -96,7 +96,7 @@ class Partners extends \yii\db\ActiveRecord
             [['updated_at', 'created_at'], 'safe'],
             [['name'], 'string', 'max' => 32],
             [['description', 'image'], 'string', 'max' => 255],
-            [['city', 'zip_code', 'address','phone', 'url', 'email'], 'string', 'max' => 64],
+            [['city', 'zip_code', 'address', 'phone', 'url', 'email'], 'string', 'max' => 64],
             [['name'], 'unique'],
             [['user_id'], 'unique'],
             [
@@ -319,7 +319,10 @@ class Partners extends \yii\db\ActiveRecord
      */
     public static function isOwner()
     {
-        return intval(Yii::$app->getRequest()->getQueryParam('user_id')) === User::id();
+        return static::find()->where([
+            'id' => intval(Yii::$app->getRequest()->getQueryParam('id')),
+            'user_id' => intval(User::id()),
+        ])->exists();
     }
 
     /**

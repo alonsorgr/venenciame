@@ -158,9 +158,9 @@ class Navigation
         $partner = [
             'encode' => false,
             'label' => static::label([
-                'icon' => 'fas fa-handshake',
+                'icon' => 'fas fa-adjust partners-nav-icon',
                 'color' => 'text-primary',
-                'label' => Yii::t('app', 'Panel de ventas'),
+                'label' => Yii::t('app', 'Administrar mi bodega'),
             ]),
             'url' => ['partners/view', 'id' => User::id()], 'post',
             'linkOptions' => [

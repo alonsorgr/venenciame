@@ -8,6 +8,8 @@ use kartik\tabs\TabsX;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Partners */
+/* @var $followersSearch app\models\UserSearch */
+/* @var $followersProvider yii\data\ActiveDataProvider */
 
 $this->title = $model->name;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Socios'), 'url' => ['index']];
@@ -43,12 +45,23 @@ $this->params['breadcrumbs'][] = $this->title;
                     ]);
 
                     $items[] = Bootstrap::tabItem([
-                        'icon' => 'fas fa-star',
+                        'icon' => 'fas fa-info-circle',
                         'label' => Yii::t('app', 'Descripción'),
                         'content' => $this->render('tabs/_information.php', [
                             'model' => $model,
                         ]),
                     ]);
+                    
+                    if ($model->isOwner() || User::isAdmin()) {
+                        $items[] = Bootstrap::tabItem([
+                            'icon' => 'fas fa-cogs',
+                            'label' => Yii::t('app', 'Administrar'),
+                            'content' => $this->render('tabs/_administration.php', [
+                                'model' => $model,
+                            ]),
+                        ]);
+                    }
+
                     ?>
                     <?= TabsX::widget([
                         'id' => 'partner-view',
