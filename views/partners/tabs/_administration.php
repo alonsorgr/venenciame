@@ -30,7 +30,7 @@ use kartik\tabs\TabsX;
             ?>
 
             <?= TabsX::widget([
-                'id' => 'partner-administration',
+                'id' => 'partner-administration-view-container',
                 'items' => $items,
                 'position' => TabsX::POS_RIGHT,
                 'bordered' => true,

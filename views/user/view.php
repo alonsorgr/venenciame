@@ -50,6 +50,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ?>
             <div class="mt-5">
                 <?= TabsX::widget([
+                    'id' => 'user-view-container',
                     'items' => $items,
                     'position' => TabsX::POS_ABOVE,
                     'bordered' => true,
