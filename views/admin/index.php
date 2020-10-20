@@ -6,6 +6,12 @@
 /* @var $userDataProvider yii\data\ActiveDataProvider */
 /* @var $partnersSearchModel app\models\search\PartnersSearch */
 /* @var $partnersDataProvider yii\data\ActiveDataProvider */
+/* @var $categoriesSearchModel app\models\search\CategoriessSearch */
+/* @var $categoriesDataProvider yii\data\ActiveDataProvider */
+/* @var $denominationsSearchModel app\models\search\DenominationssSearch */
+/* @var $denominationsDataProvider yii\data\ActiveDataProvider */
+/* @var $vatsSearchModel app\models\search\VatsSearch */
+/* @var $vatssDataProvider yii\data\ActiveDataProvider */
 
 use app\helpers\Bootstrap;
 use kartik\tabs\TabsX;
@@ -47,6 +53,14 @@ $this->params['breadcrumbs'][] = $this->title;
                 'content' => $this->render('tabs/_denominations', [
                     'denominationsSearchModel' => $denominationsSearchModel,
                     'denominationsDataProvider' => $denominationsDataProvider,
+                ]),
+            ]);
+            $items[] = Bootstrap::tabItem([
+                'icon' => 'fas fa-money-bill',
+                'label' => Yii::t('app', 'Tipos de IVA'),
+                'content' => $this->render('tabs/_vats', [
+                    'vatsSearchModel' => $vatsSearchModel,
+                    'vatsDataProvider' => $vatsDataProvider,
                 ]),
             ]);
             ?>

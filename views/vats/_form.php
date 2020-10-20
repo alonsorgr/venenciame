@@ -12,14 +12,18 @@ use yii\bootstrap4\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'label')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'label')->textInput([
+        'maxlength' => true,
+        'placeholder' => Yii::t('app', 'Nombre del tipo de IVA'),
+    ]) ?>
 
-    <?= $form->field($model, 'value')->textInput() ?>
-
-    <?= $form->field($model, 'created_at')->textInput() ?>
+    <?= $form->field($model, 'value')->textInput([
+        'maxlength' => true,
+        'placeholder' => Yii::t('app', 'Valor del tipo de IVA'),
+    ]) ?>
 
     <div class="form-group">
-        <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton(Yii::t('app', 'Guardar'), ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

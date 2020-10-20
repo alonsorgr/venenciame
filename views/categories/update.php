@@ -8,7 +8,7 @@ use yii\bootstrap4\Html;
 $this->title = Yii::t('app', 'Actualizar categoría: {label}', [
     'label' => $model->label,
 ]);
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Categorías'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Categorías'), 'url' => ['/admin/index']];
 $this->params['breadcrumbs'][] = ['label' => $model->label, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = Yii::t('app', 'Actualizar');
 ?>

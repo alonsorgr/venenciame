@@ -17,6 +17,7 @@ use yii\web\Controller;
 use yii\filters\AccessControl;
 use app\models\User;
 use app\models\search\UserSearch;
+use app\models\search\VatsSearch;
 
 /**
  * Controlador de administración.
@@ -67,6 +68,9 @@ class AdminController extends Controller
         $denominationsSearchModel = new DenominationsSearch();
         $denominationsDataProvider = $denominationsSearchModel->search(Yii::$app->request->queryParams);
 
+        $vatsSearchModel = new VatsSearch();
+        $vatsDataProvider = $vatsSearchModel->search(Yii::$app->request->queryParams);
+
         return $this->render('index', [
             'userSearchModel' => $userSearchModel,
             'userDataProvider' => $userDataProvider,
@@ -76,6 +80,8 @@ class AdminController extends Controller
             'categoriesDataProvider' => $categoriesDataProvider,
             'denominationsSearchModel' => $denominationsSearchModel,
             'denominationsDataProvider' => $denominationsDataProvider,
+            'vatsSearchModel' => $vatsSearchModel,
+            'vatsDataProvider' => $vatsDataProvider,
         ]);
     }
 }

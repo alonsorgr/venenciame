@@ -52,8 +52,8 @@ class Vats extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'IVA'),
-            'label' => Yii::t('app', 'IVA'),
-            'value' => Yii::t('app', 'IVA'),
+            'label' => Yii::t('app', 'Nombre'),
+            'value' => Yii::t('app', 'Valor'),
             'created_at' => Yii::t('app', 'Created At'),
         ];
     }
