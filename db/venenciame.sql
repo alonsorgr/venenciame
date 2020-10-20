@@ -124,3 +124,13 @@ CREATE TABLE denominations
   , label       VARCHAR(64)     NOT NULL UNIQUE
   , created_at  TIMESTAMP(0)    DEFAULT CURRENT_TIMESTAMP
 );
+
+DROP TABLE IF EXISTS vats CASCADE;
+
+CREATE TABLE vats
+(
+    id          BIGSERIAL       PRIMARY KEY
+  , label       VARCHAR(64)     NOT NULL UNIQUE
+  , value       INTEGER         NOT NULL UNIQUE
+  , created_at  TIMESTAMP(0)    DEFAULT CURRENT_TIMESTAMP
+);

@@ -8,5 +8,8 @@ if [ "$1" != "test" ]; then
     psql -h localhost -U venenciame -d venenciame < $BASE_DIR/roles.sql
     psql -h localhost -U venenciame -d venenciame < $BASE_DIR/statuses.sql
     psql -h localhost -U venenciame -d venenciame < $BASE_DIR/users.sql
+    psql -h localhost -U venenciame -d venenciame < $BASE_DIR/categories.sql
+    psql -h localhost -U venenciame -d venenciame < $BASE_DIR/denominations.sql
+    psql -h localhost -U venenciame -d venenciame < $BASE_DIR/vats.sql
 fi
 psql -h localhost -U venenciame -d venenciame_test < $BASE_DIR/venenciame.sql
