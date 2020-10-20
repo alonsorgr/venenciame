@@ -1,21 +1,17 @@
 <?php
 
 /* @var $this yii\web\View */
-/* @var $userSearchModel app\models\search\UserSearch */
-/* @var $userDataProvider yii\data\ActiveDataProvider */
+/* @var $partnersSearchModel app\models\search\PartnersSearch */
+/* @var $partnersDataProvider yii\data\ActiveDataProvider */
 
-use yii\grid\GridView;
-use yii\widgets\Pjax;
 use yii\bootstrap4\Html;
-use kartik\datetime\DateTimePicker;
-use app\models\Statuses;
 use yii\helpers\Url;
 
 \yii\web\YiiAsset::register($this);
 
 ?>
 
-<div class="admin-users-small">
+<div class="admin-partners-small">
     <div class="row mt-5 justify-content-start">
         <div class="col-12 col-md-1">
             <div class="mx-auto">
@@ -23,8 +19,8 @@ use yii\helpers\Url;
                     <div class="user-box-small">
                         <div class="image-profile">
                             <?= Html::img(Html::encode(Url::base(true) . '/' . $model->link), [
-                                'alt' => Yii::t('app', 'Avatar de usuario'),
-                                'title' => Yii::t('app', 'Avatar de usuario'),
+                                'alt' => Yii::t('app', 'Logo corporativo'),
+                                'title' => Yii::t('app', 'Logo corporativo'),
                                 'width' => 32,
                                 'data-action' => 'zoom',
                             ]); ?>
@@ -36,12 +32,22 @@ use yii\helpers\Url;
         <div class="col-12 col-md-2">
             <div class="mx-auto">
                 <div class="text-center text-md-left font-weight-bold">
-                    <?= Yii::t('app', 'Nombre de usuario'); ?>
+                    <?= Yii::t('app', 'Nombre de bodega'); ?>
                 </div>
                 <div class="text-center text-md-left">
-                    <?= Html::a(Html::encode($model->username), ['user/view', 'id' => $model->id], [
+                    <?= Html::a(Html::encode($model->name), ['user/view', 'id' => $model->id], [
                         'data-pjax' => 0,
                     ]); ?>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-2">
+            <div class="mx-auto">
+                <div class="text-center text-md-left font-weight-bold">
+                    <?= Yii::t('app', 'Usuario vinculado'); ?>
+                </div>
+                <div class="text-center text-md-left">
+                    <?= Html::encode($model->user->username) ?>
                 </div>
             </div>
         </div>
@@ -52,16 +58,6 @@ use yii\helpers\Url;
                 </div>
                 <div class="text-center text-md-left">
                     <?= Yii::$app->formatter->asEmail($model->email); ?>
-                </div>
-            </div>
-        </div>
-        <div class="col-12 col-md-2">
-            <div class="mx-auto">
-                <div class="text-center text-md-left font-weight-bold">
-                    <?= Yii::t('app', 'Administrador del sitio'); ?>
-                </div>
-                <div class="text-center text-md-left">
-                    <?= Yii::$app->formatter->asBoolean($model->admin); ?>
                 </div>
             </div>
         </div>
@@ -92,43 +88,43 @@ use yii\helpers\Url;
                 </div>
                 <div class="d-flex justify-content-center">
                     <div class="d-flex justify-content-between">
-                        <?= Html::a('<i class="fas fa-eye text-info"></i>', ['user/view', 'id' => $model->id], [
+                        <?= Html::a('<i class="fas fa-eye text-info"></i>', ['partners/view', 'id' => $model->id], [
                             'class' => 'mr-2',
-                            'title' => Yii::t('app', 'Ver el perfil del usuario'),
+                            'title' => Yii::t('app', 'Ver el perfil del socio'),
                             'data-pjax' => 0,
                         ]);; ?>
-                        <?= Html::a('<i class="fas fa-user-edit text-primary"></i>', ['user/update', 'id' => $model->id], [
+                        <?= Html::a('<i class="fas fa-user-edit text-primary"></i>', ['partners/update', 'id' => $model->id], [
                             'class' => 'mr-2',
-                            'title' => Yii::t('app', 'Editar el perfil del usuario'),
+                            'title' => Yii::t('app', 'Editar el perfil del socio'),
                             'data-pjax' => 0,
                         ]); ?>
-                        <?= Html::a('<i class="fas fa-trash-alt text-danger"></i>', ['user/delete', 'id' => $model->id], [
+                        <?= Html::a('<i class="fas fa-trash-alt text-danger"></i>', ['partners/delete', 'id' => $model->id], [
                             'class' => 'mr-2',
-                            'title' => Yii::t('app', 'Eliminar el perfil del usuario'),
+                            'title' => Yii::t('app', 'Eliminar el perfil del socio'),
                             'data-pjax' => 0,
                             'data' => [
-                                'confirm' => Yii::t('app', '¿Está seguro que quiere eliminar a este usuario?'),
+                                'confirm' => Yii::t('app', '¿Está seguro que quiere eliminar a este socio?'),
                                 'method' => 'post',
                             ],
                         ]); ?>
                         <?php
                         if ($model->status_id == 3) {
-                            echo Html::a('<i class="fas fa-user-slash text-warning"></i>', ['user/disable', 'id' => $model->id], [
+                            echo Html::a('<i class="fas fa-handshake text-warning"></i>', ['partners/disable', 'id' => $model->id], [
                                 'class' => 'mr-2',
-                                'title' => Yii::t('app', 'Desactivar perfil del usuario'),
+                                'title' => Yii::t('app', 'Desactivar perfil del socio'),
                                 'data-pjax' => 0,
                                 'data' => [
-                                    'confirm' => Yii::t('app', '¿Está seguro que quiere desactivar a este usuario?'),
+                                    'confirm' => Yii::t('app', '¿Está seguro que quiere desactivar a este socio?'),
                                     'method' => 'post',
                                 ],
                             ]);
                         } elseif ($model->status_id == 2) {
-                            echo Html::a('<i class="fas fa-user text-success"></i>', ['user/enable', 'id' => $model->id], [
+                            echo Html::a('<i class="fas fa-handshake text-success"></i>', ['partners/enable', 'id' => $model->id], [
                                 'class' => 'mr-2',
-                                'title' => Yii::t('app', 'Activar perfil del usuario'),
+                                'title' => Yii::t('app', 'Activar perfil del socio'),
                                 'data-pjax' => 0,
                                 'data' => [
-                                    'confirm' => Yii::t('app', '¿Está seguro que quiere activar a este usuario?'),
+                                    'confirm' => Yii::t('app', '¿Está seguro que quiere activar a este socio?'),
                                     'method' => 'post',
                                 ],
                             ]);
