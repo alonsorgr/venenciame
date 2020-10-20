@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * @link https://github.com/alonsorgr/venenciame/
+ * @copyright Copyright (c) 2020 alonsorgr
+ * @license https://github.com/alonsorgr/venenciame/blob/master/LICENSE.md
+ */
+
 namespace app\controllers;
 
 use Yii;
@@ -12,7 +18,9 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * DenominationsController implements the CRUD actions for Denominations model.
+ * Controlador de usuarios [[Denominations]]
+ * @author Alonso García <alonsorgr@gmail.com>
+ * @since 2.0
  */
 class DenominationsController extends Controller
 {
@@ -45,8 +53,9 @@ class DenominationsController extends Controller
     }
 
     /**
-     * Lists all Denominations models.
-     * @return mixed
+     * Acción de renderizado vista de inicio de denominaciones.
+     *
+     * @return yii\web\Response | string    el resultado de la representación.
      */
     public function actionIndex()
     {
@@ -60,10 +69,10 @@ class DenominationsController extends Controller
     }
 
     /**
-     * Displays a single Denominations model.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
+     * Acción de renderizado vista de denominaciones.
+     * @param   integer            $id      identificador de denominaciones.
+     * @return  yii\web\Response | string   el resultado de la representación.
+     * @throws  NotFoundHttpException       si el modelo no es encontrado.
      */
     public function actionView($id)
     {
@@ -73,9 +82,8 @@ class DenominationsController extends Controller
     }
 
     /**
-     * Creates a new Denominations model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return mixed
+     * Acción de renderizado vista de creación de denominaciones.
+     * @return  yii\web\Response | string   el resultado de la representación.
      */
     public function actionCreate()
     {
@@ -91,11 +99,10 @@ class DenominationsController extends Controller
     }
 
     /**
-     * Updates an existing Denominations model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
+     * Acción de renderizado vista de edición denominaciones.
+     * @param   integer            $id      identificador de denominaciones.
+     * @return  yii\web\Response | string   el resultado de la representación.
+     * @throws  NotFoundHttpException       si el modelo no es encontrado.
      */
     public function actionUpdate($id)
     {
@@ -111,11 +118,10 @@ class DenominationsController extends Controller
     }
 
     /**
-     * Deletes an existing Denominations model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
+     * Acción de renderizado vista de borrado de denominaciones.
+     * @param   integer            $id      identificador de denominaciones.
+     * @return  yii\web\Response | string   el resultado de la representación.
+     * @throws  NotFoundHttpException       si el modelo no es encontrado.
      */
     public function actionDelete($id)
     {
@@ -125,11 +131,10 @@ class DenominationsController extends Controller
     }
 
     /**
-     * Finds the Denominations model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
-     * @return Denominations the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
+     * Encuentra el modelo de denominaciones en función de su valor de clave principal.
+     * @param   integer                 $id     identificador de denominaciones.
+     * @return  User                            el modelo cargado.
+     * @throws  NotFoundHttpException           si el modelo no es encontrado.
      */
     protected function findModel($id)
     {
