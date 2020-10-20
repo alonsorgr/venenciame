@@ -10,7 +10,7 @@ use yii\bootstrap4\Html;
 
 ?>
 <div class="admin-vats-index">
-    <?= Html::a('<i class="fas fa-plus mr-md-2"></i>' . Yii::t('app', 'Agregar tipo de IVA'), ['/vats/create'], [
+    <?= Html::a('<i class="fas fa-plus mr-2"></i>' . Yii::t('app', 'Agregar tipo de IVA'), ['/vats/create'], [
         'class' => 'btn btn-primary my-5'
     ]); ?>
     <?php Pjax::begin([

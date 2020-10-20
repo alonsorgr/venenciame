@@ -15,7 +15,7 @@ use app\models\Statuses;
 ?>
 
 <div class="admin-users">
-    <?= Html::a('<i class="fas fa-plus mr-md-2"></i>' . 'Registrar usuario', ['/user/create'], [
+    <?= Html::a('<i class="fas fa-plus mr-2"></i>' . 'Registrar usuario', ['/user/create'], [
         'class' => 'btn btn-primary mt-5'
     ]); ?>
     <?php Pjax::begin([

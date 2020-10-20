@@ -10,7 +10,7 @@ use yii\bootstrap4\Html;
 
 ?>
 <div class="admin-denominations-index">
-    <?= Html::a('<i class="fas fa-plus mr-md-2"></i>' . Yii::t('app', 'Agregar denominación de origen'), ['/denominations/create'], [
+    <?= Html::a('<i class="fas fa-plus mr-2"></i>' . Yii::t('app', 'Agregar denominación de origen'), ['/denominations/create'], [
         'class' => 'btn btn-primary my-5'
     ]); ?>
     <?php Pjax::begin([
