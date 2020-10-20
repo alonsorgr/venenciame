@@ -6,6 +6,12 @@
 /* @var $userDataProvider yii\data\ActiveDataProvider */
 /* @var $partnersSearchModel app\models\search\PartnersSearch */
 /* @var $partnersDataProvider yii\data\ActiveDataProvider */
+/* @var $categoriesSearchModel app\models\search\CategoriessSearch */
+/* @var $categoriesDataProvider yii\data\ActiveDataProvider */
+/* @var $denominationsSearchModel app\models\search\DenominationssSearch */
+/* @var $denominationsDataProvider yii\data\ActiveDataProvider */
+/* @var $vatsSearchModel app\models\search\VatsSearch */
+/* @var $vatssDataProvider yii\data\ActiveDataProvider */
 
 use app\helpers\Bootstrap;
 use kartik\tabs\TabsX;
@@ -33,9 +39,44 @@ $this->params['breadcrumbs'][] = $this->title;
                     'partnersDataProvider' => $partnersDataProvider,
                 ]),
             ]);
+            $items[] = Bootstrap::tabItem([
+                'icon' => 'fas fa-list-ul',
+                'label' => Yii::t('app', 'Categorías'),
+                'content' => $this->render('tabs/_categories', [
+                    'categoriesSearchModel' => $categoriesSearchModel,
+                    'categoriesDataProvider' => $categoriesDataProvider,
+                ]),
+            ]);
+            $items[] = Bootstrap::tabItem([
+                'icon' => 'fas fa-seedling',
+                'label' => Yii::t('app', 'Denominaciones'),
+                'content' => $this->render('tabs/_denominations', [
+                    'denominationsSearchModel' => $denominationsSearchModel,
+                    'denominationsDataProvider' => $denominationsDataProvider,
+                ]),
+            ]);
+            $items[] = Bootstrap::tabItem([
+                'icon' => 'fas fa-money-bill',
+                'label' => Yii::t('app', 'Tipos de IVA'),
+                'content' => $this->render('tabs/_vats', [
+                    'vatsSearchModel' => $vatsSearchModel,
+                    'vatsDataProvider' => $vatsDataProvider,
+                ]),
+            ]);
+            $items[] = Bootstrap::tabItem([
+                'icon' => 'fas fa-wine-glass',
+                'label' => Yii::t('app', 'Artículos'),
+                'content' => $this->render('tabs/_articles'),
+            ]);
+            $items[] = Bootstrap::tabItem([
+                'icon' => 'fas fa-truck',
+                'label' => Yii::t('app', 'Pedidos'),
+                'content' => $this->render('tabs/_orders'),
+            ]);
             ?>
             <div class="mt-5">
                 <?= TabsX::widget([
+                    'id' => 'admin-index-container',
                     'items' => $items,
                     'position' => TabsX::POS_ABOVE,
                     'bordered' => true,

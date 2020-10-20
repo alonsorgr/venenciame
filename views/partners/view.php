@@ -1,10 +1,8 @@
 <?php
 
-use app\helpers\Bootstrap;
-use yii\helpers\Url;
-use yii\bootstrap4\Html;
 use app\models\User;
 use kartik\tabs\TabsX;
+use app\helpers\Bootstrap;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Partners */
@@ -64,7 +62,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                     ?>
                     <?= TabsX::widget([
-                        'id' => 'partner-view-container',
+                        'id' => $model->isOwner() ? 'partner-view-container' : 'partner-view-container-0',
                         'items' => $items,
                         'position' => TabsX::POS_ABOVE,
                         'bordered' => true,

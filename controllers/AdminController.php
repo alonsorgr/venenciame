@@ -9,12 +9,15 @@
 namespace app\controllers;
 
 use app\models\search\AdminPartnersSearch;
+use app\models\search\CategoriesSearch;
+use app\models\search\DenominationsSearch;
 use app\models\search\PartnersSearch;
 use Yii;
 use yii\web\Controller;
 use yii\filters\AccessControl;
 use app\models\User;
 use app\models\search\UserSearch;
+use app\models\search\VatsSearch;
 
 /**
  * Controlador de administración.
@@ -59,11 +62,26 @@ class AdminController extends Controller
         $partnersSearchModel = new AdminPartnersSearch();
         $partnersDataProvider = $partnersSearchModel->search(Yii::$app->request->queryParams);
 
+        $categoriesSearchModel = new CategoriesSearch();
+        $categoriesDataProvider = $categoriesSearchModel->search(Yii::$app->request->queryParams);
+
+        $denominationsSearchModel = new DenominationsSearch();
+        $denominationsDataProvider = $denominationsSearchModel->search(Yii::$app->request->queryParams);
+
+        $vatsSearchModel = new VatsSearch();
+        $vatsDataProvider = $vatsSearchModel->search(Yii::$app->request->queryParams);
+
         return $this->render('index', [
             'userSearchModel' => $userSearchModel,
             'userDataProvider' => $userDataProvider,
             'partnersSearchModel' => $partnersSearchModel,
             'partnersDataProvider' => $partnersDataProvider,
+            'categoriesSearchModel' => $categoriesSearchModel,
+            'categoriesDataProvider' => $categoriesDataProvider,
+            'denominationsSearchModel' => $denominationsSearchModel,
+            'denominationsDataProvider' => $denominationsDataProvider,
+            'vatsSearchModel' => $vatsSearchModel,
+            'vatsDataProvider' => $vatsDataProvider,
         ]);
     }
 }
