@@ -49,7 +49,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ]);
             $items[] = Bootstrap::tabItem([
                 'icon' => 'fas fa-seedling',
-                'label' => Yii::t('app', 'Denominaciones de origen'),
+                'label' => Yii::t('app', 'Denominaciones'),
                 'content' => $this->render('tabs/_denominations', [
                     'denominationsSearchModel' => $denominationsSearchModel,
                     'denominationsDataProvider' => $denominationsDataProvider,
@@ -63,9 +63,20 @@ $this->params['breadcrumbs'][] = $this->title;
                     'vatsDataProvider' => $vatsDataProvider,
                 ]),
             ]);
+            $items[] = Bootstrap::tabItem([
+                'icon' => 'fas fa-wine-glass',
+                'label' => Yii::t('app', 'Artículos'),
+                'content' => $this->render('tabs/_articles'),
+            ]);
+            $items[] = Bootstrap::tabItem([
+                'icon' => 'fas fa-truck',
+                'label' => Yii::t('app', 'Pedidos'),
+                'content' => $this->render('tabs/_orders'),
+            ]);
             ?>
             <div class="mt-5">
                 <?= TabsX::widget([
+                    'id' => 'admin-index-container',
                     'items' => $items,
                     'position' => TabsX::POS_ABOVE,
                     'bordered' => true,
