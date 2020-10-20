@@ -1,10 +1,8 @@
 <?php
 
-use app\helpers\Bootstrap;
-use yii\helpers\Url;
-use yii\bootstrap4\Html;
 use app\models\User;
 use kartik\tabs\TabsX;
+use app\helpers\Bootstrap;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Partners */
