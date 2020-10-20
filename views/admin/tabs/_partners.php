@@ -40,7 +40,7 @@ use app\helpers\Bootstrap;
                 'itemView' => function ($model, $key, $index, $widget) {
                     return $this->render('_partners_small', ['model' => $model]);
                 },
-                'layout' => '<div class="d-flex justify-content-between mb-5">{summary}{sorter}</div>{items}{pager}</div>',
+                'layout' => '<div class="d-flex justify-content-between">{summary}{sorter}</div>{items}{pager}',
                 'pager' => Bootstrap::listViewPager(),
                 'sorter' => [
                     'class' => 'app\widgets\DropdownSorter',
@@ -58,4 +58,5 @@ use app\helpers\Bootstrap;
             ]); ?>
         </div>
     </div>
+    <?php Pjax::end(); ?>
 </div>

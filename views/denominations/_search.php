@@ -18,17 +18,21 @@ use yii\bootstrap4\ActiveForm;
         ],
     ]); ?>
 
-    <?= $form->field($model, 'id') ?>
-
-    <?= $form->field($model, 'label') ?>
-
-    <?= $form->field($model, 'created_at') ?>
-
-    <div class="form-group">
-        <?= Html::submitButton(Yii::t('app', 'Search'), ['class' => 'btn btn-primary']) ?>
-        <?= Html::resetButton(Yii::t('app', 'Reset'), ['class' => 'btn btn-outline-secondary']) ?>
+    <div class="row">
+        <div class="col-12 col-md-10">
+            <?= $form->field($model, 'label')->textInput([
+                'maxlength' => true,
+                'placeholder' => Yii::t('app', 'Buscar por etiqueta de denominación'),
+                'title' => Yii::t('app', 'Etiqueta de denominación'),
+            ]); ?>
+        </div>
+        <div class="col-12 col-md-2 my-4">
+            <?= Html::submitButton('<i class="fas fa-search mr-2"></i>' . Yii::t('app', 'Buscar'), [
+                'class' => 'btn btn-outline-primary btn-block',
+                'placeholder' => Yii::t('app', 'Buscar'),
+                'title' => Yii::t('app', 'Buscar'),
+            ]); ?>
+        </div>
     </div>
-
     <?php ActiveForm::end(); ?>
-
 </div>
