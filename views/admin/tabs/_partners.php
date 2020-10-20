@@ -15,7 +15,7 @@ use app\models\Statuses;
 ?>
 
 <div class="admin-partners">
-    <?= Html::a('<i class="fas fa-plus mr-md-2"></i>' . 'Registrar socio', ['/partners/create'], [
+    <?= Html::a('<i class="fas fa-plus mr-md-2"></i>' . Yii::t('app', 'Registrar socio'), ['/partners/create'], [
         'class' => 'btn btn-primary mt-5'
     ]); ?>
     <?php Pjax::begin([

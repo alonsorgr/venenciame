@@ -33,6 +33,14 @@ $this->params['breadcrumbs'][] = $this->title;
                     'partnersDataProvider' => $partnersDataProvider,
                 ]),
             ]);
+            $items[] = Bootstrap::tabItem([
+                'icon' => 'fas fa-list-ul',
+                'label' => Yii::t('app', 'Categorías'),
+                'content' => $this->render('tabs/_categories', [
+                    'categoriesSearchModel' => $categoriesSearchModel,
+                    'categoriesDataProvider' => $categoriesDataProvider,
+                ]),
+            ]);
             ?>
             <div class="mt-5">
                 <?= TabsX::widget([

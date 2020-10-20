@@ -5,26 +5,32 @@ use yii\widgets\Pjax;
 use yii\bootstrap4\Html;
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\search\CategoriesSearch */
-/* @var $dataProvider yii\data\ActiveDataProvider */
+/* @var $categoriesSearchModel app\models\search\CategoriesSearch */
+/* @var $categoriesDataProvider yii\data\ActiveDataProvider */
 
 $this->title = Yii::t('app', 'Categorías');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="categories-index">
+<div class="admin-categories-index">
     <?= Html::a('<i class="fas fa-plus mr-md-2"></i>' . Yii::t('app', 'Agregar categoría'), ['/categories/create'], [
         'class' => 'btn btn-primary my-5'
     ]); ?>
     <?php Pjax::begin([
-        'id' => 'categories-index-pjax',
+        'id' => 'admin-categories-pjax',
         'timeout' => '100000',
     ]); ?>
 
     <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
+        'dataProvider' => $categoriesDataProvider,
+        'filterModel' => $categoriesSearchModel,
         'columns' => [
-            'label',
+            [
+                'attribute' => 'label',
+                'filterInputOptions' => [
+                    'class'       => 'form-control',
+                    'placeholder' => 'Buscar por nombre de categoría',
+                ]
+            ],
             [
                 'class' => 'yii\grid\ActionColumn',
                 'template' => '<div class="d-flex justify-content-between">{view} {update} {delete}</div>',
@@ -58,4 +64,5 @@ $this->params['breadcrumbs'][] = $this->title;
     ]); ?>
 
     <?php Pjax::end(); ?>
+
 </div>

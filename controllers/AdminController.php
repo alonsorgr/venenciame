@@ -9,6 +9,7 @@
 namespace app\controllers;
 
 use app\models\search\AdminPartnersSearch;
+use app\models\search\CategoriesSearch;
 use app\models\search\PartnersSearch;
 use Yii;
 use yii\web\Controller;
@@ -59,11 +60,16 @@ class AdminController extends Controller
         $partnersSearchModel = new AdminPartnersSearch();
         $partnersDataProvider = $partnersSearchModel->search(Yii::$app->request->queryParams);
 
+        $categoriesSearchModel = new CategoriesSearch();
+        $categoriesDataProvider = $categoriesSearchModel->search(Yii::$app->request->queryParams);
+
         return $this->render('index', [
             'userSearchModel' => $userSearchModel,
             'userDataProvider' => $userDataProvider,
             'partnersSearchModel' => $partnersSearchModel,
             'partnersDataProvider' => $partnersDataProvider,
+            'categoriesSearchModel' => $categoriesSearchModel,
+            'categoriesDataProvider' => $categoriesDataProvider,
         ]);
     }
 }
