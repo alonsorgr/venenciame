@@ -57,7 +57,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ]);
             $items[] = Bootstrap::tabItem([
                 'icon' => 'fas fa-money-bill',
-                'label' => Yii::t('app', 'Tipos de IVA'),
+                'label' => Yii::t('app', 'IVA'),
                 'content' => $this->render('tabs/_vats', [
                     'vatsSearchModel' => $vatsSearchModel,
                     'vatsDataProvider' => $vatsDataProvider,

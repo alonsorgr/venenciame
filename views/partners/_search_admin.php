@@ -1,6 +1,5 @@
 <?php
 
-use app\models\Roles;
 use app\models\Statuses;
 use kartik\date\DatePicker;
 use kartik\datecontrol\DateControl;
@@ -9,11 +8,11 @@ use yii\bootstrap4\Html;
 use yii\bootstrap4\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\search\UserSearch */
+/* @var $model app\models\search\PartnersSearch */
 /* @var $form yii\bootstrap4\ActiveForm */
 ?>
 
-<div class="user-search">
+<div class="partners-search">
 
     <?php $form = ActiveForm::begin([
         'action' => ['index'],
@@ -24,10 +23,17 @@ use yii\bootstrap4\ActiveForm;
     ]); ?>
     <div class="row">
         <div class="col-12 col-md-2">
-            <?= $form->field($model, 'username')->textInput([
+            <?= $form->field($model, 'name')->textInput([
                 'maxlength' => true,
-                'placeholder' => Yii::t('app', 'Buscar por nombre de usuario'),
-                'title' => Yii::t('app', 'Nombre de usuario'),
+                'placeholder' => Yii::t('app', 'Buscar por nombre de bodega'),
+                'title' => Yii::t('app', 'Nombre de bodega'),
+            ]); ?>
+        </div>
+        <div class="col-12 col-md-2">
+            <?= $form->field($model, 'user.username')->textInput([
+                'maxlength' => true,
+                'placeholder' => Yii::t('app', 'Buscar por usuario vinculado'),
+                'title' => Yii::t('app', 'Usuario vinculado'),
             ]); ?>
         </div>
         <div class="col-12 col-md-2">
@@ -44,20 +50,6 @@ use yii\bootstrap4\ActiveForm;
                     'class' => 'form-control',
                     'placeholder' => Yii::t('app', 'Buscar por estado'),
                     'title' => Yii::t('app', 'Estado'),
-                ],
-                'theme' => Select2::THEME_MATERIAL,
-                'pluginOptions' => [
-                    'allowClear' => false,
-                ],
-            ]); ?>
-        </div>
-        <div class="col-12 col-md-2">
-            <?= $form->field($model, 'rol_id')->widget(Select2::class, [
-                'data' => Roles::labels(),
-                'options' => [
-                    'class' => 'form-control',
-                    'placeholder' => Yii::t('app', 'Buscar por rol de usuario'),
-                    'title' => Yii::t('app', 'Rol de usuario'),
                 ],
                 'theme' => Select2::THEME_MATERIAL,
                 'pluginOptions' => [
