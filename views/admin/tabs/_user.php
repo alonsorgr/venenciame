@@ -16,7 +16,7 @@ use app\helpers\Bootstrap;
 <div class="admin-users">
     <div class="row">
         <div class="col-12 col-xl-2">
-            <?= Html::a('<i class="fas fa-plus mr-2"></i>' . 'Registrar usuario', ['/user/create'], [
+            <?= Html::a('<i class="fas fa-plus mr-2"></i>' . Yii::t('app', 'Registrar usuario'), ['/user/create'], [
                 'class' => 'btn btn-primary my-5 btn-block'
             ]); ?>
         </div>

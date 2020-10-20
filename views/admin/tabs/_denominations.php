@@ -16,7 +16,7 @@ use app\helpers\Bootstrap;
 <div class="admin-denominations">
     <div class="row">
         <div class="col-12 col-xl-2">
-            <?= Html::a('<i class="fas fa-plus mr-2"></i>' . 'Agregar denominación', ['/denominations/create'], [
+            <?= Html::a('<i class="fas fa-plus mr-2"></i>' . Yii::t('app', 'Agregar denominación'), ['/denominations/create'], [
                 'class' => 'btn btn-primary my-5 btn-block'
             ]); ?>
         </div>
