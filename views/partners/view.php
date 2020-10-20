@@ -64,7 +64,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                     ?>
                     <?= TabsX::widget([
-                        'id' => 'partner-view-container',
+                        'id' => $model->isOwner() ? 'partner-view-container' : 'partner-view-container-0',
                         'items' => $items,
                         'position' => TabsX::POS_ABOVE,
                         'bordered' => true,

@@ -74,7 +74,6 @@ CREATE TABLE users
   , created_at      TIMESTAMP(0)  DEFAULT CURRENT_TIMESTAMP
 );
 
-
 DROP TABLE IF EXISTS partners CASCADE;
 
 CREATE TABLE partners
@@ -106,4 +105,22 @@ CREATE TABLE followers
   , user_id       BIGINT        NOT NULL  REFERENCES users (id)
   , partner_id    BIGINT        NOT NULL  REFERENCES partners (id)
   , created_at    TIMESTAMP(0)  DEFAULT CURRENT_TIMESTAMP
+);
+
+DROP TABLE IF EXISTS categories CASCADE;
+
+CREATE TABLE categories
+(
+    id          BIGSERIAL       PRIMARY KEY
+  , label       VARCHAR(64)     NOT NULL UNIQUE
+  , created_at  TIMESTAMP(0)    DEFAULT CURRENT_TIMESTAMP
+);
+
+DROP TABLE IF EXISTS denominations CASCADE;
+
+CREATE TABLE denominations
+(
+    id          BIGSERIAL       PRIMARY KEY
+  , label       VARCHAR(64)     NOT NULL UNIQUE
+  , created_at  TIMESTAMP(0)    DEFAULT CURRENT_TIMESTAMP
 );
