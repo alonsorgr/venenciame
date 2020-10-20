@@ -67,7 +67,7 @@ class DenominationsController extends Controller
         $model = new Denominations();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['/admin/index']);
         }
 
         return $this->render('create', [
@@ -87,7 +87,7 @@ class DenominationsController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['/admin/index']);
         }
 
         return $this->render('update', [
@@ -106,7 +106,7 @@ class DenominationsController extends Controller
     {
         $this->findModel($id)->delete();
 
-        return $this->redirect(['index']);
+        return $this->redirect(['/admin/index']);
     }
 
     /**

@@ -41,6 +41,14 @@ $this->params['breadcrumbs'][] = $this->title;
                     'categoriesDataProvider' => $categoriesDataProvider,
                 ]),
             ]);
+            $items[] = Bootstrap::tabItem([
+                'icon' => 'fas fa-seedling',
+                'label' => Yii::t('app', 'Denominaciones de origen'),
+                'content' => $this->render('tabs/_denominations', [
+                    'denominationsSearchModel' => $denominationsSearchModel,
+                    'denominationsDataProvider' => $denominationsDataProvider,
+                ]),
+            ]);
             ?>
             <div class="mt-5">
                 <?= TabsX::widget([
