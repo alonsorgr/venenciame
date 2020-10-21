@@ -65,11 +65,20 @@ $this->title = Yii::$app->name;
         ?>
 
         <div class="container-fluid">
-            <?= Breadcrumbs::widget([
-                'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-            ]) ?>
-            <?= Alert::widget() ?>
-            <?= $content ?>
+            <div class="row justify-content-between">
+                <?php $class = Yii::$app->controller->id === 'admin' ? 'col-xl-12' : 'col-xl-9' ?>
+                <div class="col-sm-12 <?= $class ?>">
+                    <?= Breadcrumbs::widget([
+                        'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+                    ]) ?>
+                    <?= Alert::widget() ?>
+                    <?= $content ?>
+                </div>
+                <?php $class = Yii::$app->controller->id === 'admin' ? 'd-none' : '' ?>
+                <div class="<?= $class ?>col-sm-12 col-xl-3 my-sm-5 my-xl-0 pl-sm-4 pr-sm-4 pl-xl-5">
+                    <?= $this->render('_sidebar'); ?>
+                </div>
+            </div>
         </div>
     </div>
     <?php Bootstrap::modal([
