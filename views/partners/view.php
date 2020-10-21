@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="partners-view">
     <div class="row justify-content-between">
-        <div class="col-xl-8">
+        <div class="col-xl-12">
             <div class="row mt-5">
                 <div class="col-12">
                     <?= $this->render('_small', [
@@ -70,9 +70,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     ]); ?>
                 </div>
             </div>
-        </div>
-        <div class="col-xl-3">
-            <?= $this->render('_sidebar'); ?>
         </div>
     </div>
 </div>

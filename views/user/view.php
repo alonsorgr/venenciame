@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <div class="user-view">
     <div class="row justify-content-between">
-        <div class="col-xl-8 mt-5">
+        <div class="col-xl-12 mt-5">
             <?= $this->render('_small', [
                 'model' => $model,
             ]); ?>
@@ -57,9 +57,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     'encodeLabels' => false,
                 ]); ?>
             </div>
-        </div>
-        <div class="col-xl-3">
-            <?= $this->render('_sidebar'); ?>
         </div>
     </div>
 </div>

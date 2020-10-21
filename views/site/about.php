@@ -12,7 +12,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-about">
     <div class="row my-4 justify-content-between">
-        <div class="col-xl-8">
+        <div class="col-xl-12">
             <div class="row display-4">
                 <div class="col mb-4">
                     <?= Yii::t('app', 'Acerca de {appname}', [
@@ -36,9 +36,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     'class' => 'blockquote-footer blockquote-text-size text-site'
                 ]) ?>
             </div>
-        </div>
-        <div class="col-xl-3">
-            <?= $this->render('_sidebar'); ?>
         </div>
     </div>
 </div>

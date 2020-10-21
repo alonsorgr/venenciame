@@ -13,7 +13,7 @@ $this->params['breadcrumbs'][] = Yii::t('app', 'Editar');
 ?>
 <div class="user-update">
     <div class="row my-4 justify-content-between">
-        <div class="col-xl-8">
+        <div class="col-xl-12">
             <div class="row display-5">
                 <div class="col mb-4">
                     <?= Yii::t('app', 'Editar perfil'); ?>
@@ -22,9 +22,6 @@ $this->params['breadcrumbs'][] = Yii::t('app', 'Editar');
             <?= $this->render('_form', [
                 'model' => $model,
             ]) ?>
-        </div>
-        <div class="col-xl-3">
-            <?= $this->render('_sidebar'); ?>
         </div>
     </div>
 </div>

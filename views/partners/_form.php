@@ -64,7 +64,7 @@ $header = Yii::$app->controller->action->id === 'request' ? Yii::t('app', 'Solic
         'enableAjaxValidation' => true,
     ]); ?>
     <div class="row my-4 justify-content-between">
-        <div class="col-xl-8">
+        <div class="col-xl-12">
             <div class="row display-5">
                 <div class="col mb-4">
                     <?= $header ?>
@@ -275,9 +275,6 @@ $header = Yii::$app->controller->action->id === 'request' ? Yii::t('app', 'Solic
                 ]); ?>
                 <?php ActiveForm::end(); ?>
             </div>
-        </div>
-        <div class="col-xl-3 mr-2">
-            <?= $this->render('_sidebar'); ?>
         </div>
     </div>
 </div>

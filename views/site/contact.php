@@ -37,7 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     <?php else : ?>
         <div class="row my-4 justify-content-between">
-            <div class="col-xl-6">
+            <div class="col-xl-12">
                 <div class="row display-4">
                     <div class="col">
                         <?= Yii::t('app', 'Contacta con {appname}', [
@@ -92,9 +92,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     ]); ?>
                 </div>
                 <?php ActiveForm::end(); ?>
-            </div>
-            <div class="col-xl-3">
-                <?= $this->render('_sidebar'); ?>
             </div>
         </div>
     <?php endif; ?>
