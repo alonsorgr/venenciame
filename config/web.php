@@ -70,14 +70,14 @@ $config = [
             'timeZone' => 'Europe/Madrid',
         ],
         
-        /* 'urlManager' => [
+        'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
                 '<controller:\w+>/<id:\d+>' => '<controller>/view',
                 '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
             ],
-        ], */
+        ],
        
     ],
     'container' => [
