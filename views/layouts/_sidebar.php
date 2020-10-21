@@ -35,7 +35,7 @@ use yii\helpers\Url;
         </div>
     <?php endif ?>
     <?php if (User::isPartner()) : ?>
-        <div class="row mt-4">
+        <div class="row my-4">
             <div class="w-100">
                 <div class="card-header">
                     <div class="lead"><?= Yii::t('app', 'Mis ventas') ?></div>
