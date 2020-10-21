@@ -152,8 +152,13 @@ class RequestPartnersForm extends \yii\db\ActiveRecord
                 'body' => Email::link([
                     'body' => Yii::t('app', 'Se ha creado una nueva solocitud de socio.'),
                     'url' => Url::to(['admin/index'], true),
-                    'text' => Yii::t('app', 'Verificar socio'),
-                ]),
+                    'text' => Yii::t('app', 'Ir al panel de administración'),
+                ]) .
+                Email::link([
+                    'body' => Yii::t('app', 'Comprobar perfil de socio.'),
+                    'url' => Url::to(['user/view', 'id' => $this->user->id], true),
+                    'text' => Yii::t('app', 'Comprobar'),
+                ]) ,
             ]);
             $partner = new Partners([
                 'user_id' => $this->user->id,

@@ -21,6 +21,7 @@ use app\helpers\Email;
 use app\models\forms\RequestPartnersForm;
 use app\models\search\FollowersSearch;
 use yii\filters\AccessControl;
+use yii\helpers\Url;
 
 /**
  * Controlador de socios [[Partners]]
@@ -228,7 +229,7 @@ class PartnersController extends Controller
     public function actionEnable($id)
     {
         $model = $this->findModel($id);
-        $model->status_id = 3;
+        $model->status_id = Partners::STATUS_ACTIVE;
         if ($model->save()) {
             Yii::$app->session->setFlash(
                 'success',
@@ -252,12 +253,21 @@ class PartnersController extends Controller
     public function actionDisable($id)
     {
         $model = $this->findModel($id);
-        $model->status_id = 2;
+        $model->status_id = Partners::STATUS_INACTIVE;
         if ($model->save()) {
             Yii::$app->session->setFlash(
                 'success',
                 Yii::t('app', 'Se ha deshabilitado al socio correctamenete.')
             );
+            Email::send([
+                'email' => $model->user->email,
+                'subject' => Yii::t('app', 'VENÉNCIAME - CUENTA DESHABILITADA'),
+                'body' => Email::link([
+                    'body' => Yii::t('app', 'Su cuenta de socio ha sido deshabilitada por el administrador.'),
+                    'url' => Url::to(['site/contact'], true),
+                    'text' => Yii::t('app', 'Contacto'),
+                ]) ,
+            ]);
         } else {
             Yii::$app->session->setFlash(
                 'error',
