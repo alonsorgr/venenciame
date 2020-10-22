@@ -380,7 +380,7 @@ class Navigation
     public static function label($options)
     {
         return <<<EOT
-        <div class="row">
+        <div class="row mr-4">
             <div class="col col-1">
                 <i class="{$options['icon']} {$options['color']}"></i>
             </div>
