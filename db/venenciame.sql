@@ -64,9 +64,9 @@ CREATE TABLE users
   , status_id       BIGINT        REFERENCES statuses (id)
   , admin           BOOLEAN       DEFAULT FALSE
   , privacity       BOOLEAN       DEFAULT FALSE
-  , name            VARCHAR(32)     
-  , surname         VARCHAR(32)     
-  , birthdate       DATE            
+  , name            VARCHAR(32)
+  , surname         VARCHAR(32)
+  , birthdate       DATE
   , image           VARCHAR(255)
   , rol_id          BIGINT        REFERENCES roles (id)
   , language_id     BIGINT        REFERENCES languages (id)
@@ -81,7 +81,7 @@ CREATE TABLE partners
     id            BIGSERIAL     PRIMARY KEY
   , user_id       BIGINT        UNIQUE      NOT NULL  REFERENCES users (id)
   , name          VARCHAR(32)   UNIQUE      NOT NULL
-  , description   VARCHAR(255)              
+  , description   VARCHAR(255)
   , information   TEXT
   , image         VARCHAR(255)
   , country_id    BIGINT        NOT NULL    REFERENCES countries (id)
@@ -133,4 +133,26 @@ CREATE TABLE vats
   , label       VARCHAR(64)     NOT NULL UNIQUE
   , value       INTEGER         NOT NULL UNIQUE
   , created_at  TIMESTAMP(0)    DEFAULT CURRENT_TIMESTAMP
+);
+
+DROP TABLE IF EXISTS articles CASCADE;
+
+CREATE TABLE articles
+(
+    id                  BIGSERIAL     PRIMARY KEY
+  , partner_id          BIGINT        NOT NULL    REFERENCES partners      (id)   ON DELETE CASCADE ON UPDATE CASCADE
+  , category_id         BIGINT        NOT NULL    REFERENCES categories    (id)   ON DELETE CASCADE ON UPDATE CASCADE
+  , denomination_id     BIGINT        NOT NULL    REFERENCES denominations (id)   ON DELETE CASCADE ON UPDATE CASCADE
+  , vat_id              BIGINT        NOT NULL    REFERENCES vats          (id)   ON DELETE CASCADE ON UPDATE CASCADE
+  , title               VARCHAR(50)   NOT NULL
+  , description         VARCHAR(50)   NOT NULL
+  , price               DECIMAL       NOT NULL
+  , stock               INTEGER       NOT NULL
+  , degrees             VARCHAR(50)   NOT NULL
+  , capacity            INTEGER       NOT NULL
+  , variety             VARCHAR(50)   NOT NULL
+  , pairing             VARCHAR(50)   NOT NULL
+  , review              TEXT          NOT NULL
+  , image               VARCHAR(255)  DEFAULT NULL
+  , created_at          TIMESTAMP(0)  DEFAULT CURRENT_TIMESTAMP
 );
