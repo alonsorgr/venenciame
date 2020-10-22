@@ -121,3 +121,9 @@ a.desc:after {
   content: "\f2ed";
   color: var(--danger);
 }
+
+.dropdown-item {
+  padding: 10px !important;
+  padding-left: 20px !important;
+  padding-left: 20px !important;
+}

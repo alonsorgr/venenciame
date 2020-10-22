@@ -8,6 +8,8 @@
 
 namespace app\helpers;
 
+use app\models\Categories;
+use app\models\Denominations;
 use app\models\Partners;
 use app\models\User;
 use Yii;
@@ -39,6 +41,10 @@ class Navigation
             ]),
 
             static::partners(),
+
+            static::categories(),
+
+            static::denominations(),
 
             static::user(),
 
@@ -256,6 +262,104 @@ class Navigation
     }
 
     /**
+     * Genera el menú de categorías en la barra de navegación.
+     *
+     * @return array    configuración del menú de categorías en la barra de navegación.
+     */
+    public static function categories()
+    {
+        $icon = Html::tag('span', '', [
+            'class' => 'fas fa-list-ul',
+        ]);
+
+        $label = Html::tag('span', Yii::t('app', 'Categorías'), [
+            'id' => 'categories-label',
+            'class' => 'ml-2 active',
+            'title' => Yii::t('app', 'Tipos de vino.'),
+        ]);
+
+        $item = Html::tag('div', $icon . $label, [
+            'id' => 'categories-menu',
+            'class' => 'nav-item active',
+        ]);
+
+        $items = null;
+        $categories = Categories::find();
+        if (!$categories->exists()) {
+            return '';
+        }
+        foreach ($categories->all() as $value) {
+            $items[] = [
+                'encode' => false,
+                'label' => $value['label'],
+                'url' => [
+                    'articles/index',
+                    'category_id' => $value['id'],
+                ]
+            ];
+        }
+
+        return [
+            'encode' => false,
+            'label' => $item,
+            'url' => '',
+            'linkOptions' => [
+                'class' => 'dropdown-menu-toggle',
+            ],
+            'items' => $items,
+        ];
+    }
+
+    /**
+     * Genera el menú de denominaciones en la barra de navegación.
+     *
+     * @return array    configuración del menú de denominaciones en la barra de navegación.
+     */
+    public static function denominations()
+    {
+        $icon = Html::tag('span', '', [
+            'class' => 'fas fa-seedling',
+        ]);
+
+        $label = Html::tag('span', Yii::t('app', 'Denominaciónes de origen'), [
+            'id' => 'denominations-label',
+            'class' => 'ml-2 active',
+            'title' => Yii::t('app', 'Tipos de vino.'),
+        ]);
+
+        $item = Html::tag('div', $icon . $label, [
+            'id' => 'denominations-menu',
+            'class' => 'nav-item active',
+        ]);
+
+        $items = null;
+        $denominations = Denominations::find();
+        if (!$denominations->exists()) {
+            return '';
+        }
+        foreach ($denominations->all() as $value) {
+            $items[] = [
+                'encode' => false,
+                'label' => $value['label'],
+                'url' => [
+                    'articles/index',
+                    'denomination_id' => $value['id'],
+                ],
+            ];
+        }
+
+        return [
+            'encode' => false,
+            'label' => $item,
+            'url' => '',
+            'linkOptions' => [
+                'class' => 'dropdown-menu-toggle',
+            ],
+            'items' => $items,
+        ];
+    }
+
+    /**
      * Genera un divisor horizontal para los elementos de un menú desplegable.
      *
      * @return string   divisor horizontal.
@@ -276,7 +380,7 @@ class Navigation
     public static function label($options)
     {
         return <<<EOT
-        <div class="row my-2 mr-4">
+        <div class="row">
             <div class="col col-1">
                 <i class="{$options['icon']} {$options['color']}"></i>
             </div>
