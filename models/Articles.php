@@ -8,7 +8,9 @@
 
 namespace app\models;
 
+use app\helpers\AmazonS3;
 use Yii;
+use yii\web\UploadedFile;
 
 /**
  * Esta es la clase modelo para la tabla "articles".
@@ -34,10 +36,30 @@ use Yii;
  * @property Categories $category
  * @property Denominations $denomination
  * @property Partners $partner
+ * @property Statuses $status
  * @property Vats $vat
  */
 class Articles extends \yii\db\ActiveRecord
 {
+    /**
+     * Constante de imagen de perfil de usuario.
+     */
+    const IMAGE = '@web/img/articles.jpg';
+
+    /**
+     * Variable de subida de imagen de perfil de usuario.
+     *
+     * @var string
+     */
+    public $upload;
+
+    /**
+     * Atributo virtual para enlace a imagen de perfil.
+     *
+     * @var string
+     */
+    private $_link = null;
+
     /**
      * {@inheritdoc}
      */
@@ -52,7 +74,7 @@ class Articles extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['partner_id', 'category_id', 'denomination_id', 'vat_id', 'title', 'description', 'price', 'stock', 'degrees', 'capacity', 'variety', 'pairing', 'review'], 'required'],
+            [['partner_id', 'category_id', 'denomination_id', 'vat_id', 'status_id', 'title', 'description', 'price', 'stock', 'degrees', 'capacity', 'variety', 'pairing', 'review'], 'required'],
             [['partner_id', 'category_id', 'denomination_id', 'vat_id', 'stock', 'capacity'], 'default', 'value' => null],
             [['partner_id', 'category_id', 'denomination_id', 'vat_id', 'stock', 'capacity'], 'integer'],
             [['price'], 'number'],
@@ -64,6 +86,7 @@ class Articles extends \yii\db\ActiveRecord
             [['denomination_id'], 'exist', 'skipOnError' => true, 'targetClass' => Denominations::class, 'targetAttribute' => ['denomination_id' => 'id']],
             [['partner_id'], 'exist', 'skipOnError' => true, 'targetClass' => Partners::class, 'targetAttribute' => ['partner_id' => 'id']],
             [['vat_id'], 'exist', 'skipOnError' => true, 'targetClass' => Vats::class, 'targetAttribute' => ['vat_id' => 'id']],
+            [['status_id'], 'exist', 'skipOnError' => true, 'targetClass' => Statuses::class, 'targetAttribute' => ['status_id' => 'id']],
         ];
     }
 
@@ -86,10 +109,64 @@ class Articles extends \yii\db\ActiveRecord
             'capacity' => Yii::t('app', 'Capacidad'),
             'variety' => Yii::t('app', 'Variedad'),
             'pairing' => Yii::t('app', 'Marinado'),
-            'review' => Yii::t('app', 'Opinión de Venénciame'),
+            'review' => Yii::t('app', 'Opinión del vendedor'),
             'image' => Yii::t('app', 'Imagen'),
+            'upload' => Yii::t('app', 'Subir imagen del artículo'),
+            'status_id' => Yii::t('app', 'Estado del artículo'),
             'created_at' => Yii::t('app', 'Creado el'),
         ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function beforeSave($insert)
+    {
+        if (!parent::beforeSave($insert)) {
+            return false;
+        }
+
+        $this->uploadImage();
+
+        return true;
+    }
+
+    /**
+     * Sube la imagen de artículo a Amazon Web Services S3.
+     *
+     * @return void
+     */
+    public function uploadImage()
+    {
+        $this->upload = UploadedFile::getInstance($this, 'upload');
+        if ($this->upload !== null) {
+            $this->image = AmazonS3::upload($this->upload, $this->id, AmazonS3::BUCKET_ARTICLES, $this->image);
+            $this->upload = null;
+        }
+    }
+
+    /**
+     * Genera un enlace a la imagen del artículo actual.
+     *
+     * @param   string    $link   enlace a imagen de perfil.
+     * @return  void
+     */
+    public function setLink($link)
+    {
+        $this->_link = $link;
+    }
+
+    /**
+     * Genera un enlace a la imagen del artículo actual.
+     *
+     * @return  string  enlace a imagen de perfil.
+     */
+    public function getLink()
+    {
+        if ($this->_link === null && !$this->isNewRecord) {
+            $this->setLink(AmazonS3::getLink($this->image, self::IMAGE, AmazonS3::ARTICLES, AmazonS3::BUCKET_ARTICLES));
+        }
+        return $this->_link;
     }
 
     /**
@@ -130,6 +207,16 @@ class Articles extends \yii\db\ActiveRecord
     public function getVat()
     {
         return $this->hasOne(Vats::class, ['id' => 'vat_id'])->inverseOf('articles');
+    }
+
+    /**
+     * Obtiene consulta para [[Statuses]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getStatus()
+    {
+        return $this->hasOne(Statuses::class, ['id' => 'status_id'])->inverseOf('articles');
     }
 
     /**

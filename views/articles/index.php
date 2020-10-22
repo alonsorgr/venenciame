@@ -7,7 +7,7 @@ use yii\widgets\Pjax;
 /* @var $searchModel app\models\search\ArticlesSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Articles');
+$this->title = Yii::t('app', 'Vinos');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="articles-index">

@@ -33,6 +33,7 @@ class AmazonS3
      */
     const USER = '@user/';
     const PARTNERS = '@partners/';
+    const ARTICLES = '@articles/';
 
     /**
      * Sube un fichero el servicio de Amazon S3.
