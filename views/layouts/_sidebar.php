@@ -62,11 +62,28 @@ use yii\helpers\Url;
                 <?php else : ?>
                     <?php if (Yii::$app->controller->action->id === 'update') : ?>
                         <li class="list-group-item">
+                            <?= Html::a(Yii::t('app', 'Desconectarse'), Url::to(['site/logout']), [
+                                'class' => 'show-modal-logout',
+                                'value' => Url::to(['site/logout']),
+                                'data-toggle' => 'modal',
+                                'data-target' => '#modal-logout-sidebar',
+                                'title' => Yii::t('app', 'Desconectarse del sitio')
+                            ]) ?>
+                        </li>
+                        <li class="list-group-item">
                             <?= Html::a(Yii::t('app', 'Perfil'), Url::to(['user/view', 'id' => Yii::$app->user->id]), [
                                 'class' => 'font-transition-small',
                                 'title' => Yii::t('app', 'Ir a tu perfil.'),
                             ]) ?>
                         </li>
+                        <?php if (User::isPartner()) : ?>
+                            <li class="list-group-item">
+                                <?= Html::a(Yii::t('app', 'Administrar cuenta de socio'), Url::to(['partners/view', 'id' => Yii::$app->user->identity->partners->id]), [
+                                    'class' => 'font-transition-small',
+                                    'title' => Yii::t('app', 'Ir al perfil de socio de tu cuenta.'),
+                                ]) ?>
+                            </li>
+                        <?php endif ?>
                     <?php else : ?>
                         <li class="list-group-item">
                             <?= Html::a(Yii::t('app', 'Perfil'), Url::to(['user/view', 'id' => Yii::$app->user->id]), [
