@@ -18,6 +18,8 @@ use Yii;
  * @property string $label
  * @property int $value
  * @property string|null $created_at
+ * 
+ * @property Articles[] $articles
  */
 class Vats extends \yii\db\ActiveRecord
 {
@@ -56,6 +58,16 @@ class Vats extends \yii\db\ActiveRecord
             'value' => Yii::t('app', 'Valor'),
             'created_at' => Yii::t('app', 'Created At'),
         ];
+    }
+
+    /**
+     * Obtiene consulta para [[Articles]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getArticles()
+    {
+        return $this->hasMany(Articles::class, ['vat_id' => 'id'])->inverseOf('vat');
     }
 
     /**

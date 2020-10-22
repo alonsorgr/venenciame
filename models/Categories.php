@@ -17,6 +17,8 @@ use Yii;
  * @property int $id
  * @property string $label
  * @property string|null $created_at
+ * 
+ * @property Articles[] $articles
  */
 class Categories extends \yii\db\ActiveRecord
 {
@@ -51,6 +53,16 @@ class Categories extends \yii\db\ActiveRecord
             'label' => Yii::t('app', 'Categoría'),
             'created_at' => Yii::t('app', 'Created At'),
         ];
+    }
+
+    /**
+     * Obtiene consulta para [[Articles]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getArticles()
+    {
+        return $this->hasMany(Articles::class, ['category_id' => 'id'])->inverseOf('category');
     }
 
     /**

@@ -17,6 +17,8 @@ use Yii;
  * @property int $id
  * @property string $label
  * @property string|null $created_at
+ * 
+ * @property Articles[] $articles
  */
 class Denominations extends \yii\db\ActiveRecord
 {
@@ -51,6 +53,16 @@ class Denominations extends \yii\db\ActiveRecord
             'label' => Yii::t('app', 'Denominación de origen'),
             'created_at' => Yii::t('app', 'Created At'),
         ];
+    }
+
+    /**
+     * Obtiene consulta para [[Articles]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getArticles()
+    {
+        return $this->hasMany(Articles::class, ['denomination_id' => 'id'])->inverseOf('denomination');
     }
 
     /**
