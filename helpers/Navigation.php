@@ -330,7 +330,7 @@ class Navigation
     public static function denominations()
     {
         $icon = Html::tag('span', '', [
-            'class' => 'fas fa-seedling',
+            'class' => 'fas fa-map-marker-alt',
         ]);
 
         $label = Html::tag('span', Yii::t('app', 'Denominaciónes de origen'), [

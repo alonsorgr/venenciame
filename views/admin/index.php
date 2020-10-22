@@ -48,7 +48,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 ]),
             ]);
             $items[] = Bootstrap::tabItem([
-                'icon' => 'fas fa-seedling',
+                'icon' => 'fas fa-map-marker-alt',
                 'label' => Yii::t('app', 'Denominaciones'),
                 'content' => $this->render('tabs/_denominations', [
                     'denominationsSearchModel' => $denominationsSearchModel,
