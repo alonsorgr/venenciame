@@ -75,7 +75,7 @@ $this->title = Yii::$app->name;
                     <?= $content ?>
                 </div>
                 <?php $class = Yii::$app->controller->id === 'admin' ? 'd-none' : '' ?>
-                <div class="<?= $class ?>col-sm-12 col-xl-3 my-sm-5 my-xl-0 pl-sm-4 pr-sm-4 pl-xl-5">
+                <div class="<?= $class ?> col-sm-12 col-xl-3 my-sm-5 my-xl-0 pl-sm-4 pr-sm-4 pl-xl-5">
                     <?= $this->render('_sidebar'); ?>
                 </div>
             </div>
