@@ -10,7 +10,7 @@ use yii\widgets\Pjax;
 /* @var $searchModel app\models\search\PartnersSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Socios');
+$this->title = Yii::t('app', 'Bodegas');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="partners-index">
