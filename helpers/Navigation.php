@@ -246,7 +246,13 @@ class Navigation
                 'url' => [
                     'partners/view',
                     'id' => $value['id'],
-                ]
+                ],
+                'linkOptions' => [
+                    'title' => Yii::t('app', 'Ver el perfil de la bodega {name}', [
+                        'name' => $value['name'],
+                    ]),
+                    'class' => 'text-capitalize',
+                ],
             ];
         }
 
@@ -295,7 +301,13 @@ class Navigation
                 'url' => [
                     'articles/index',
                     'category_id' => $value['id'],
-                ]
+                ],
+                'linkOptions' => [
+                    'title' => Yii::t('app', 'Filtrar vinos por la categoría {label}', [
+                        'label' => $value['label'],
+                    ]),
+                    'class' => 'text-capitalize',
+                ],
             ];
         }
 
@@ -344,6 +356,12 @@ class Navigation
                 'url' => [
                     'articles/index',
                     'denomination_id' => $value['id'],
+                ],
+                'linkOptions' => [
+                    'title' => Yii::t('app', 'Filtrar vinos por la denominación de origen {label}', [
+                        'label' => $value['label'],
+                    ]),
+                    'class' => 'text-capitalize',
                 ],
             ];
         }
