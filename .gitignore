@@ -42,3 +42,4 @@ tests/chromedriver
 # files
 web/aws/user/*
 web/aws/partners/*
+web/aws/articles/*
