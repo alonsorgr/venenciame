@@ -339,4 +339,14 @@ class Partners extends \yii\db\ActiveRecord
             return false;
         }
     }
+
+    /**
+     * Genera una lista con las etiquetas de los objetos [[Partners]]
+     *
+     * @return array    array con las etiquetas de [[Partners]] indexados por id.
+     */
+    public static function labels()
+    {
+        return static::find()->select('name')->orderBy('name')->indexBy('id')->column();
+    }
 }

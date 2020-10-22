@@ -11,9 +11,11 @@ namespace app\controllers;
 use Yii;
 use app\models\Articles;
 use app\models\search\ArticlesSearch;
+use yii\bootstrap4\ActiveForm;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\Response;
 
 /**
  * Controlador de artículos.
@@ -75,8 +77,19 @@ class ArticlesController extends Controller
     {
         $model = new Articles();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            return ActiveForm::validate($model);
+        }
+
+        if ($model->load(Yii::$app->request->post())) {
+            if ($model->save()) {
+                Yii::$app->session->setFlash(
+                    'info',
+                    Yii::t('app', 'Se ha creado el artículo, en breve será moderado por los administradores y será publicado si cumple los requisitos.<br> Será informado a través del correo electrónico')
+                );
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
         }
 
         return $this->render('create', [
@@ -93,6 +106,11 @@ class ArticlesController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+
+        if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            return ActiveForm::validate($model);
+        }
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);

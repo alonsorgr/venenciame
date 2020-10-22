@@ -17,6 +17,7 @@ $config = [
         '@aws' => 'aws',
         '@user' => '@aws/user',
         '@partners' => '@aws/partners',
+        '@articles' => '@aws/articles',
     ],
     'language' => 'es-ES',
     'components' => [

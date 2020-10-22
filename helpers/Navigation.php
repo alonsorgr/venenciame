@@ -40,6 +40,13 @@ class Navigation
                 'title' => Yii::t('app', 'Ir a la página principal'),
             ]),
 
+            static::item([
+                'icon' => 'fas fa-wine-glass-alt',
+                'label' => Yii::t('app', 'Vinos'),
+                'url' => ['/articles/index'],
+                'title' => Yii::t('app', 'Ir a la página principal de los vinos'),
+            ]),
+
             static::partners(),
 
             static::categories(),

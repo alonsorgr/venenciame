@@ -81,6 +81,16 @@ class Statuses extends \yii\db\ActiveRecord
     }
 
     /**
+     * Obtiene consulta para [[Statuses]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getArticles()
+    {
+        return $this->hasMany(Articles::class, ['status_id' => 'id'])->inverseOf('status');
+    }
+
+    /**
      * Genera una lista con las etiquetas de los objetos [[Statuses]]
      *
      * @return array    array con las etiquetas de [[Statuses]] indexados por id.

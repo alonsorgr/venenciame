@@ -64,7 +64,7 @@ $this->title = Yii::$app->name;
         NavBar::end();
         ?>
 
-        <div class="container-fluid">
+        <div class="container-fluid mb-5">
             <div class="row justify-content-between">
                 <?php $class = Yii::$app->controller->id === 'admin' ? 'col-xl-12' : 'col-xl-9' ?>
                 <div class="col-sm-12 <?= $class ?>">
