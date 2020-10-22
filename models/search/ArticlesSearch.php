@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * @link https://github.com/alonsorgr/venenciame/
+ * @copyright Copyright (c) 2020 alonsorgr
+ * @license https://github.com/alonsorgr/venenciame/blob/master/LICENSE.md
+ */
+
 namespace app\models\search;
 
 use yii\base\Model;
@@ -7,7 +13,10 @@ use yii\data\ActiveDataProvider;
 use app\models\Articles;
 
 /**
- * ArticlesSearch represents the model behind the search form of `app\models\Articles`.
+ * Modelo que representa el modelo detrás de la forma de búsqueda de [[Articles]].
+ *
+ * @author Alonso García <alonsorgr@gmail.com>
+ * @since 2.0
  */
 class ArticlesSearch extends Articles
 {
@@ -28,22 +37,19 @@ class ArticlesSearch extends Articles
      */
     public function scenarios()
     {
-        // bypass scenarios() implementation in the parent class
-        return Model::scenarios();
+        return parent::scenarios();
     }
 
     /**
-     * Creates data provider instance with search query applied
+     * Crea una instancia de proveedor de datos con la consulta de búsqueda aplicada.
      *
-     * @param array $params
+     * @param   array                   $params     parámetros URL.
      *
-     * @return ActiveDataProvider
+     * @return  ActiveDataProvider      Proporciona datos realizando consultas a la base de datos mediante [[Query]].
      */
     public function search($params)
     {
         $query = Articles::find();
-
-        // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -52,12 +58,9 @@ class ArticlesSearch extends Articles
         $this->load($params);
 
         if (!$this->validate()) {
-            // uncomment the following line if you do not want to return any records when validation fails
-            // $query->where('0=1');
             return $dataProvider;
         }
-
-        // grid filtering conditions
+        
         $query->andFilterWhere([
             'id' => $this->id,
             'partner_id' => $this->partner_id,

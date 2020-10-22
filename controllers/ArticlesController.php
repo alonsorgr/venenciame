@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * @link https://github.com/alonsorgr/venenciame/
+ * @copyright Copyright (c) 2020 alonsorgr
+ * @license https://github.com/alonsorgr/venenciame/blob/master/LICENSE.md
+ */
+
 namespace app\controllers;
 
 use Yii;
@@ -10,7 +16,10 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * ArticlesController implements the CRUD actions for Articles model.
+ * Controlador de artículos.
+ *
+ * @author Alonso García <alonsorgr@gmail.com>
+ * @since 2.0
  */
 class ArticlesController extends Controller
 {
@@ -21,7 +30,7 @@ class ArticlesController extends Controller
     {
         return [
             'verbs' => [
-                'class' => VerbFilter::className(),
+                'class' => VerbFilter::class,
                 'actions' => [
                     'delete' => ['POST'],
                 ],
@@ -30,8 +39,9 @@ class ArticlesController extends Controller
     }
 
     /**
-     * Lists all Articles models.
-     * @return mixed
+     * Acción de renderizado vista de inicio de artículos.
+     *
+     * @return yii\web\Response | string    el resultado de la representación.
      */
     public function actionIndex()
     {
@@ -45,10 +55,10 @@ class ArticlesController extends Controller
     }
 
     /**
-     * Displays a single Articles model.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
+     * Acción de renderizado vista de artículo.
+     * @param   integer            $id      identificador de artículo.
+     * @return  yii\web\Response | string   el resultado de la representación.
+     * @throws  NotFoundHttpException       si el modelo no es encontrado.
      */
     public function actionView($id)
     {
@@ -58,9 +68,8 @@ class ArticlesController extends Controller
     }
 
     /**
-     * Creates a new Articles model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return mixed
+     * Acción de renderizado vista de creación de artículo.
+     * @return  yii\web\Response | string   el resultado de la representación.
      */
     public function actionCreate()
     {
@@ -76,11 +85,10 @@ class ArticlesController extends Controller
     }
 
     /**
-     * Updates an existing Articles model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
+     * Acción de renderizado vista de edición artículo.
+     * @param   integer            $id      identificador de artículo.
+     * @return  yii\web\Response | string   el resultado de la representación.
+     * @throws  NotFoundHttpException       si el modelo no es encontrado.
      */
     public function actionUpdate($id)
     {
@@ -96,11 +104,10 @@ class ArticlesController extends Controller
     }
 
     /**
-     * Deletes an existing Articles model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
+     * Acción de renderizado vista de borrado de artículo.
+     * @param   integer            $id      identificador de artículo.
+     * @return  yii\web\Response | string   el resultado de la representación.
+     * @throws  NotFoundHttpException       si el modelo no es encontrado.
      */
     public function actionDelete($id)
     {
@@ -110,11 +117,10 @@ class ArticlesController extends Controller
     }
 
     /**
-     * Finds the Articles model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
-     * @return Articles the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
+     * Encuentra el modelo de artículo en función de su valor de clave principal.
+     * @param   integer                 $id     identificador de artículo.
+     * @return  User                            el modelo cargado.
+     * @throws  NotFoundHttpException           si el modelo no es encontrado.
      */
     protected function findModel($id)
     {
