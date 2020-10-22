@@ -131,4 +131,14 @@ class Articles extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Vats::class, ['id' => 'vat_id'])->inverseOf('articles');
     }
+
+    /**
+     * Genera una lista con las etiquetas de los objetos [[Articles]]
+     *
+     * @return array    array con las etiquetas de [[Articles]] indexados por id.
+     */
+    public static function labels()
+    {
+        return static::find()->select('title')->orderBy('title')->indexBy('id')->column();
+    }
 }
