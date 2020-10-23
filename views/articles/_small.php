@@ -31,12 +31,14 @@ use yii\bootstrap4\Html;
                         'data-pjax' => 0,
                     ]) ?>
                 </div>
-                <?= Html::a(null, null, [
-                    'id' => 'article-favorite-' . $model->id,
-                    'class' => 'far fa-star no-underline heart-size text-warning pr-md-3 pt-md-3',
-                    'data-pjax' => 0,
-                    'title' => Yii::t('app', 'Agregar a favoritos')
-                ]); ?>
+                <?php if (!Yii::$app->user->isGuest) : ?>
+                    <?= Html::a(null, null, [
+                        'id' => 'article-favorite-' . $model->id,
+                        'class' => 'far fa-star no-underline heart-size text-warning pr-md-3 pt-md-3',
+                        'data-pjax' => 0,
+                        'title' => Yii::t('app', 'Agregar a favoritos')
+                    ]); ?>
+                <?php endif ?>
             </div>
             <div class="row justify-content-md-between justify-content-center mb-3">
                 <div class="col-12 col-md-12 text-center text-md-left">
