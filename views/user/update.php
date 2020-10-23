@@ -5,8 +5,8 @@ use yii\bootstrap4\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\User */
 
-$this->title = Yii::t('app', 'Update User: {name}', [
-    'name' => $model->name,
+$this->title = Yii::t('app', 'Editar: {username}', [
+    'username' => $model->username,
 ]);
 $this->params['breadcrumbs'][] = ['label' => $model->username, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = Yii::t('app', 'Editar');

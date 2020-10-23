@@ -17,7 +17,7 @@ use yii\helpers\Url;
 AppAsset::register($this);
 Bootstrap::registerTooltip($this);
 
-$this->title = Yii::$app->name;
+//$this->title = Yii::$app->name;
 
 ?>
 <?php $this->beginPage() ?>
