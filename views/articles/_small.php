@@ -10,7 +10,7 @@ use yii\bootstrap4\Html;
 
 <section class="articles-small">
     <div itemscope itemtype="http://schema.org/Product" class="row">
-        <div class="col-sm-12 col-xl-2 d-flex justify-content-xl-start justify-content-center">
+        <div class="col-sm-12 col-xl-3 d-flex justify-content-xl-start justify-content-center">
             <div class="article-box mt-md-5 mt-sm-1">
                 <div class="image-article">
                     <?= Html::img(Html::encode(Url::base(true) . '/' . $model->link), [
@@ -22,26 +22,32 @@ use yii\bootstrap4\Html;
                 </div>
             </div>
         </div>
-        <div class="col-sm-12 col-xl-10">
+        <div class="col-sm-12 col-xl-9">
             <div class="row justify-content-md-between justify-content-center mb-3">
-                <div class="col-12 col-md-11 text-center text-md-left">
+                <div class="col-12 col-md-8 text-center text-md-left">
                     <?= Html::a(Html::encode($model->title), ['articles/view', 'id' => $model->id], [
                         'itemprop' => 'name',
                         'class' => 'display-5',
                         'data-pjax' => 0,
                     ]) ?>
                 </div>
-                <div class="col-12 col-md-1 text-center text-md-right">
-                    <?= Html::a(null, null, [
-                        'id' => 'article-favorite-' . $model->id,
-                        'class' => 'far fa-star no-underline heart-size text-warning',
-                        'data-pjax' => 0,
-                        'title' => Yii::t('app', 'Agregar a favoritos')
-                    ]); ?>
+                <?= Html::a(null, null, [
+                    'id' => 'article-favorite-' . $model->id,
+                    'class' => 'far fa-star no-underline heart-size text-warning pr-md-3 pt-md-3',
+                    'data-pjax' => 0,
+                    'title' => Yii::t('app', 'Agregar a favoritos')
+                ]); ?>
+            </div>
+            <div class="row justify-content-md-between justify-content-center mb-3">
+                <div class="col-12 col-md-12 text-center text-md-left">
+                    <div itemprop="description" class="font-weight-bold">
+                        <?= Yii::t('app', 'Descripción') ?>
+                    </div>
+                    <?= Html::encode($model->description) ?>
                 </div>
             </div>
             <div class="row justify-content-md-between justify-content-center mb-3">
-                <div class="col-12 col-md-10 text-center text-md-left">
+                <div class="col-12 col-md-8 text-center text-md-left">
                     <div class="font-weight-bold">
                         <?= Yii::t('app', 'Bodega') ?>
                     </div>
@@ -50,7 +56,7 @@ use yii\bootstrap4\Html;
                         'data-pjax' => 0,
                     ]); ?>
                 </div>
-                <div class="col-12 col-md-2 text-center text-md-right">
+                <div class="col-12 col-md-4 text-center text-md-right">
                     <div class="font-weight-bold">
                         <?= Yii::t('app', 'Capacidad') ?>
                     </div>
@@ -73,18 +79,22 @@ use yii\bootstrap4\Html;
             </div>
             <div class="row justify-content-md-between justify-content-center mb-3 mt-xl-5">
                 <div class="col-12 col-md-8 text-center text-md-left">
-                    <div itemprop="" class="display-6 d-inline">
+                    <div itemprop="" class="display-6 d-inline font-weight-bold">
                         <?= Html::encode(Yii::$app->formatter->asCurrency($model->amount)); ?>
                     </div>
-                    <div>
+                    <div class="mt-2">
                         <?= Html::encode(Yii::$app->formatter->asCurrency($model->price)) . ' sin ' . Html::encode($model->vat->label); ?>
                     </div>
                 </div>
                 <div class="col-12 col-md-4 text-center text-md-right">
                     <div class="font-weight-bold">
-                        <?= Yii::t('app', 'Unidades disponibles') ?>
+                        <?= Yii::t('app', 'Disponibilidad') ?>
                     </div>
-                    <?= Html::encode($model->stock) . ' uds.'; ?>
+                    <?php if ($model->isAvailable()) : ?>
+                        <i class="fas fa-check-circle text-success" title="<?= Yii::t('app', 'Hay artículos disponibles') ?>"></i>
+                    <?php else : ?>
+                        <i class="fas fa-exclamation-circle text-danger" title="<?= Yii::t('app', 'No hay artículos disponibles') ?>"></i>
+                    <?php endif ?>
                 </div>
             </div>
             <div class="row justify-content-md-end justify-content-center mb-4">

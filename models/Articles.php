@@ -211,6 +211,16 @@ class Articles extends \yii\db\ActiveRecord
     }
 
     /**
+     * Comprueba si el artículo tiene disponibilidad en stock.
+     *
+     * @return boolean  si hay artículos en stock.
+     */
+    public function isAvailable()
+    {
+        return $this->stock != 0;
+    }
+
+    /**
      * Obtiene consulta para [[Denominations]].
      *
      * @return \yii\db\ActiveQuery
