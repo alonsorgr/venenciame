@@ -1,6 +1,7 @@
 <?php
 
 use app\models\User;
+use kartik\rating\StarRating;
 use yii\helpers\Url;
 use yii\bootstrap4\Html;
 
@@ -85,14 +86,35 @@ if (!Yii::$app->user->isGuest) {
                 <?php endif ?>
             </div>
             <div class="row justify-content-md-between justify-content-center mb-3">
-                <div class="col-12 col-md-12 text-center text-md-left">
-                    <div itemprop="description" class="font-weight-bold">
-                        <?= Yii::t('app', 'Descripción') ?>
+                <div class="col-12 col-md-8 text-center text-md-left">
+                    <div class="font-weight-bold">
+                        <?= Yii::t('app', 'Disponibilidad') ?>
                     </div>
-                    <?= Html::encode($model->description) ?>
+                    <?php if ($model->isAvailable()) : ?>
+                        <i class="fas fa-check-circle text-success mt-2" title="<?= Yii::t('app', 'Hay artículos disponibles') ?>"></i>
+                    <?php else : ?>
+                        <i class="fas fa-exclamation-circle text-danger" title="<?= Yii::t('app', 'No hay artículos disponibles') ?>"></i>
+                    <?php endif ?>
+                </div>
+                <div class="col-12 col-md-4 text-center text-md-right">
+                    <div class="font-weight-bold">
+                        <?= Yii::t('app', 'Valoración') ?>
+                    </div>
+                    <?= StarRating::widget([
+                        'name' => 'rating',
+                        'pluginOptions' => [
+                            'min' => 0,
+                            'max' => 5,
+                            'step' => 1,
+                            'size' => 'sm',
+                            'theme' => 'krajee-svg',
+                            'showClear' => false,
+                            'showCaption' => false,
+                        ],
+                    ]); ?>
                 </div>
             </div>
-            <div class="row justify-content-md-between justify-content-center mb-3">
+            <div class="row justify-content-md-between justify-content-center mt-xl-3">
                 <div class="col-12 col-md-8 text-center text-md-left">
                     <div class="font-weight-bold">
                         <?= Yii::t('app', 'Bodega') ?>
@@ -109,7 +131,7 @@ if (!Yii::$app->user->isGuest) {
                     <?= Html::encode($model->capacity) . ' cl.'; ?>
                 </div>
             </div>
-            <div class="row justify-content-md-between justify-content-center mb-3">
+            <div class="row justify-content-md-between justify-content-center mt-xl-3">
                 <div class="col-12 col-md-8 text-center text-md-left">
                     <div itemprop="category" class="font-weight-bold">
                         <?= Yii::t('app', 'Tipo de vino') ?>
@@ -123,7 +145,7 @@ if (!Yii::$app->user->isGuest) {
                     <?= Html::encode($model->denomination->label); ?>
                 </div>
             </div>
-            <div class="row justify-content-md-between justify-content-center mb-3 mt-xl-5">
+            <div class="row justify-content-md-between justify-content-center mt-xl-5">
                 <div class="col-12 col-md-8 text-center text-md-left">
                     <div itemprop="" class="display-6 d-inline font-weight-bold">
                         <?= Html::encode(Yii::$app->formatter->asCurrency($model->amount)); ?>
@@ -132,22 +154,14 @@ if (!Yii::$app->user->isGuest) {
                         <?= Html::encode(Yii::$app->formatter->asCurrency($model->price)) . ' sin ' . Html::encode($model->vat->label); ?>
                     </div>
                 </div>
-                <div class="col-12 col-md-4 text-center text-md-right">
-                    <div class="font-weight-bold">
-                        <?= Yii::t('app', 'Disponibilidad') ?>
+                <div class="col-12 col-md-4 text-center text-md-right mt-2">
+                    <div class="row justify-content-md-end justify-content-center">
+                        <div class="col-md-12 text-center text-md-right">
+                            <?= Html::a('<i class="fas fa-cart-plus mr-2"></i>' . Yii::t('app', 'Agregar al carrito'), ['/carts/create'], [
+                                'class' => 'btn btn-primary btn-block'
+                            ]); ?>
+                        </div>
                     </div>
-                    <?php if ($model->isAvailable()) : ?>
-                        <i class="fas fa-check-circle text-success" title="<?= Yii::t('app', 'Hay artículos disponibles') ?>"></i>
-                    <?php else : ?>
-                        <i class="fas fa-exclamation-circle text-danger" title="<?= Yii::t('app', 'No hay artículos disponibles') ?>"></i>
-                    <?php endif ?>
-                </div>
-            </div>
-            <div class="row justify-content-md-end justify-content-center mb-4">
-                <div class="col-xl-4 col-md-12 text-center text-md-right">
-                    <?= Html::a('<i class="fas fa-cart-plus mr-2"></i>' . Yii::t('app', 'Agregar al carrito'), ['/carts/create'], [
-                        'class' => 'btn btn-primary btn-block'
-                    ]); ?>
                 </div>
             </div>
         </div>
