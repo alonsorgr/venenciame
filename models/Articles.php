@@ -61,6 +61,13 @@ class Articles extends \yii\db\ActiveRecord
     private $_link = null;
 
     /**
+     * Atributo para el precio con iva.
+     *
+     * @var string
+     */
+    private $_amount = null;
+
+    /**
      * {@inheritdoc}
      */
     public static function tableName()
@@ -167,6 +174,30 @@ class Articles extends \yii\db\ActiveRecord
             $this->setLink(AmazonS3::getLink($this->image, self::IMAGE, AmazonS3::ARTICLES, AmazonS3::BUCKET_ARTICLES));
         }
         return $this->_link;
+    }
+
+    /**
+     * Genera el precio del artículo con IVA.
+     *
+     * @param   string    $amount   precio con IVA.
+     * @return  void
+     */
+    public function setAmount($amount)
+    {
+        $this->_amount = $amount;
+    }
+
+    /**
+     * Genera el precio del artículo con IVA.
+     *
+     * @return  string  precio con IVA.
+     */
+    public function getAmount()
+    {
+        if ($this->_amount === null && !$this->isNewRecord) {
+            $this->setAmount(($this->price * $this->vat->value / 100) + $this->price);
+        }
+        return $this->_amount;
     }
 
     /**
