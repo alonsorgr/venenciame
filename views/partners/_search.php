@@ -2,6 +2,9 @@
 
 use app\models\Countries;
 use app\models\States;
+use app\models\Statuses;
+use kartik\date\DatePicker;
+use kartik\datecontrol\DateControl;
 use kartik\select2\Select2;
 use yii\bootstrap4\Html;
 use yii\bootstrap4\ActiveForm;
@@ -51,71 +54,60 @@ $this->registerJs($js);
 
 ?>
 
-<div class="partners-search mb-5">
-    <div class="row">
-        <div class="card w-100">
-            <?php $form = ActiveForm::begin([
-                'action' => ['index'],
-                'method' => 'get',
+<div class="partners-search">
+
+    <?php $form = ActiveForm::begin([
+        'action' => ['index'],
+        'method' => 'get',
+        'options' => [
+            'data-pjax' => 1
+        ],
+    ]); ?>
+    <div class="row justify-content-between">
+        <div class="col-12 col-md-3">
+            <?= $form->field($model, 'name')->textInput([
+                'maxlength' => true,
+                'placeholder' => Yii::t('app', 'Buscar por nombre'),
+                'title' => Yii::t('app', 'Buscar por nombre'),
+            ]); ?>
+        </div>
+        <div class="col-12 col-md-3">
+            <?= $form->field($model, 'country_id')->widget(Select2::class, [
+                'data' => Countries::labels(),
                 'options' => [
-                    'data-pjax' => 1
+                    'id' => 'form-country_id',
+                    'class' => 'form-control',
+                    'placeholder' => Yii::t('app', 'Buscar por país'),
+                    'title' => Yii::t('app', 'Buscar por país'),
+                ],
+                'theme' => Select2::THEME_MATERIAL,
+                'pluginOptions' => [
+                    'allowClear' => false,
                 ],
             ]); ?>
-            <div class="card-header">
-                <div class="lead"><?= Yii::t('app', 'Buscar') ?></div>
-            </div>
-            <div class="card-body">
-                <div class="mb-4">
-                    <?= $form->field($model, 'name')->textInput([
-                        'maxlength' => true,
-                        'placeholder' => Yii::t('app', 'Buscar por nombre de la empresa o bodega'),
-                        'title' => Yii::t('app', 'Buscar por nombre de la empresa o bodega'),
-                    ]); ?>
-                </div>
-                <div class="mb-4">
-                    <?= $form->field($model, 'city')->textInput([
-                        'maxlength' => true,
-                        'placeholder' => Yii::t('app', 'Buscar por localidad de su empresa'),
-                        'title' => Yii::t('app', 'Buscar por localidad de su empresa'),
-                    ]); ?>
-                </div>
-                <div class="mb-4">
-                    <?= $form->field($model, 'country_id')->widget(Select2::class, [
-                        'data' => Countries::labels(),
-                        'options' => [
-                            'id' => 'form-country_id',
-                            'class' => 'form-control',
-                            'placeholder' => Yii::t('app', 'Buscar por país de residencia fiscal'),
-                            'title' => Yii::t('app', 'Buscar por país de residencia fiscal'),
-                        ],
-                        'theme' => Select2::THEME_MATERIAL,
-                        'pluginOptions' => [
-                            'allowClear' => false,
-                        ],
-                    ]); ?>
-                </div>
-                <div class="mb-4">
-                    <?= $form->field($model, 'state_id')->widget(Select2::class, [
-                        'data' => States::labels(),
-                        'options' => [
-                            'id' => 'form-state_id',
-                            'class' => 'form-control',
-                            'placeholder' => Yii::t('app', 'Buscar por estado o provincia de residencia fiscal'),
-                            'title' => Yii::t('app', 'Buscar por estado o provincia de residencia fiscal'),
-                        ],
-                        'theme' => Select2::THEME_MATERIAL,
-                        'pluginOptions' => [
-                            'allowClear' => true,
-                        ],
-                    ]); ?>
-                </div>
-                <div class="form-group">
-                    <?= Html::submitButton(Yii::t('app', 'Buscar'), [
-                        'class' => 'btn btn-primary btn-block'
-                    ]) ?>
-                </div>
-            </div>
-            <?php ActiveForm::end(); ?>
+        </div>
+        <div class="col-12 col-md-3">
+            <?= $form->field($model, 'state_id')->widget(Select2::class, [
+                'data' => States::labels(),
+                'options' => [
+                    'id' => 'form-state_id',
+                    'class' => 'form-control',
+                    'placeholder' => Yii::t('app', 'Buscar por provincia'),
+                    'title' => Yii::t('app', 'Buscar por provincia'),
+                ],
+                'theme' => Select2::THEME_MATERIAL,
+                'pluginOptions' => [
+                    'allowClear' => true,
+                ],
+            ]); ?>
+        </div>
+        <div class="col-12 col-md-3 my-4">
+            <?= Html::submitButton('<i class="fas fa-search mr-2"></i>' . Yii::t('app', 'Buscar'), [
+                'class' => 'btn btn-outline-primary btn-block',
+                'placeholder' => Yii::t('app', 'Buscar'),
+                'title' => Yii::t('app', 'Buscar'),
+            ]); ?>
         </div>
     </div>
+    <?php ActiveForm::end(); ?>
 </div>

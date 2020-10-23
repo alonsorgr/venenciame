@@ -121,3 +121,11 @@ a.desc:after {
   content: "\f2ed";
   color: var(--danger);
 }
+
+#select2-form-country_id-container {
+  margin-bottom: 11px !important;
+}
+
+#select2-form-state_id-container {
+  margin-bottom: 11px !important;
+}

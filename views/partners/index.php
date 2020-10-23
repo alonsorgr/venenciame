@@ -18,8 +18,15 @@ $this->params['breadcrumbs'][] = $this->title;
         'id' => 'partners-index-pjax',
         'timeout' => '100000',
     ]); ?>
-    <div class="row justify-content-between">
-        <div class="col-xl-8">
+    <div class="row">
+        <div class="col-xl-12">
+            <?= $this->render('_search', [
+                'model' => $searchModel,
+            ]); ?>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xl-12">
             <?= ListView::widget([
                 'dataProvider' => $dataProvider,
                 'emptyText' => $this->render('/site/_empty'),
@@ -41,11 +48,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 'options' => [
                     'class' => 'listview',
                 ],
-            ]); ?>
-        </div>
-        <div class="col-xl-3">
-            <?= $this->render('_search', [
-                'model' => $searchModel,
             ]); ?>
         </div>
         <?php Pjax::end(); ?>

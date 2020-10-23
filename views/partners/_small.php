@@ -35,7 +35,12 @@ if (!Yii::$app->user->isGuest) {
                     $('#partner-follow-' + $id).removeClass('fas');
                     $('#partner-follow-' + $id).addClass(response.class);
                     $('#partner-follow-' + $id).prop('title', response.title);
-                    $.pjax.reload({ container: '#partners-followed-pjax', timeout: false });
+                    if($("#partners-followed-pjax").length) {
+                        $.pjax.reload({ container: '#partners-followed-pjax', timeout: false });
+                    }
+                    if($("#partners-index-pjax").length) {
+                        $.pjax.reload({ container: '#partners-index-pjax', timeout: false });
+                    }
                 }
             });
         });

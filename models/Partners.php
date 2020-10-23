@@ -128,7 +128,7 @@ class Partners extends \yii\db\ActiveRecord
         return [
             'id' => Yii::t('app', 'ID'),
             'user_id' => Yii::t('app', 'Usuario vinculado'),
-            'name' => Yii::t('app', 'Bodega o empresa'),
+            'name' => Yii::t('app', 'Bodega'),
             'description' => Yii::t('app', 'Descripción'),
             'information' => Yii::t('app', 'Información adicional'),
             'image' => Yii::t('app', 'Logo corporativo'),
