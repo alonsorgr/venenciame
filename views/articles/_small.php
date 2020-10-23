@@ -8,8 +8,8 @@ use yii\bootstrap4\Html;
 
 ?>
 
-<div class="articles-small">
-    <div class="row">
+<section class="articles-small">
+    <div itemscope itemtype="http://schema.org/Product" class="row">
         <div class="col-sm-12 col-xl-2 d-flex justify-content-xl-start justify-content-center">
             <div class="article-box mt-md-5 mt-sm-1">
                 <div class="image-article">
@@ -17,6 +17,7 @@ use yii\bootstrap4\Html;
                         'alt' => Yii::t('app', 'Logo corporativo'),
                         'title' => Yii::t('app', 'Logo corporativo'),
                         'data-action' => 'zoom',
+                        'itemprop' => 'image',
                     ]); ?>
                 </div>
             </div>
@@ -25,7 +26,7 @@ use yii\bootstrap4\Html;
             <div class="row justify-content-md-between justify-content-center mb-3">
                 <div class="col-12 col-md-11 text-center text-md-left">
                     <?= Html::a(Html::encode($model->title), ['articles/view', 'id' => $model->id], [
-                        'itemprop' => 'legalName',
+                        'itemprop' => 'name',
                         'class' => 'display-5',
                         'data-pjax' => 0,
                     ]) ?>
@@ -45,7 +46,7 @@ use yii\bootstrap4\Html;
                         <?= Yii::t('app', 'Bodega') ?>
                     </div>
                     <?= Html::a(Html::encode($model->partner->name), ['partners/view', 'id' => $model->partner->id], [
-                        'itemprop' => 'legalName',
+                        'itemprop' => 'manufacturer',
                         'data-pjax' => 0,
                     ]); ?>
                 </div>
@@ -58,13 +59,13 @@ use yii\bootstrap4\Html;
             </div>
             <div class="row justify-content-md-between justify-content-center mb-3">
                 <div class="col-12 col-md-8 text-center text-md-left">
-                    <div class="font-weight-bold">
+                    <div itemprop="category" class="font-weight-bold">
                         <?= Yii::t('app', 'Tipo de vino') ?>
                     </div>
                     <?= Html::encode($model->category->label); ?>
                 </div>
                 <div class="col-12 col-md-4 text-center text-md-right">
-                    <div class="font-weight-bold">
+                    <div itemprop="category" class="font-weight-bold">
                         <?= Yii::t('app', 'Denominación de origen') ?>
                     </div>
                     <?= Html::encode($model->denomination->label); ?>
@@ -72,7 +73,7 @@ use yii\bootstrap4\Html;
             </div>
             <div class="row justify-content-md-between justify-content-center mb-3 mt-xl-5">
                 <div class="col-12 col-md-8 text-center text-md-left">
-                    <div class="display-6 d-inline">
+                    <div itemprop="" class="display-6 d-inline">
                         <?= Html::encode(Yii::$app->formatter->asCurrency($model->amount)); ?>
                     </div>
                     <div>
@@ -96,4 +97,4 @@ use yii\bootstrap4\Html;
         </div>
     </div>
     <div class="mt-xl-1 horizontal-divider"></div>
-</div>
+</section>

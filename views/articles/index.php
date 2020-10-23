@@ -12,7 +12,7 @@ use yii\widgets\Pjax;
 $this->title = Yii::t('app', 'Vinos');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="articles-index">
+<article class="articles-index">
     <?php Pjax::begin([
         'id' => 'partners-index-pjax',
         'timeout' => '100000',
@@ -49,4 +49,4 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
         <?php Pjax::end(); ?>
     </div>
-</div>
+</article>
