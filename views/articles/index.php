@@ -1,8 +1,6 @@
 <?php
 
 use app\helpers\Bootstrap;
-use yii\bootstrap4\Html;
-use yii\grid\GridView;
 use yii\widgets\ListView;
 use yii\widgets\Pjax;
 /* @var $this yii\web\View */
@@ -14,7 +12,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <article class="articles-index">
     <?php Pjax::begin([
-        'id' => 'partners-index-pjax',
+        'id' => 'articles-index-pjax',
         'timeout' => '100000',
     ]); ?>
     <div class="row">

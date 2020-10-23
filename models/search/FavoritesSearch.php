@@ -10,15 +10,15 @@ namespace app\models\search;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Partners;
+use app\models\Articles;
 
 /**
- * Modelo que representa el modelo detrás de la forma de búsqueda de [[Partners]].
+ * Modelo que representa el modelo detrás de la forma de búsqueda de [[Articles]].
  *
  * @author Alonso García <alonsorgr@gmail.com>
- * @since 1.0
+ * @since 2.0
  */
-class FollowedSearch extends Partners
+class FavoritesSearch extends Articles
 {
     /**
      * {@inheritdoc}
@@ -26,8 +26,9 @@ class FollowedSearch extends Partners
     public function rules()
     {
         return [
-            [['id', 'user_id', 'country_id', 'state_id'], 'integer'],
-            [['name', 'description', 'information', 'image', 'city', 'zip_code', 'address', 'phone', 'updated_at', 'created_at'], 'safe'],
+            [['id', 'partner_id', 'category_id', 'denomination_id', 'vat_id', 'stock', 'capacity'], 'integer'],
+            [['title', 'description', 'degrees', 'variety', 'pairing', 'review', 'image', 'created_at'], 'safe'],
+            [['price'], 'number'],
         ];
     }
 
@@ -48,7 +49,7 @@ class FollowedSearch extends Partners
      */
     public function search($params)
     {
-        $query = Partners::find()->joinWith(['followers f'], true)->where(['f.user_id' => $params['id']])->andWhere(['status_id' => 3]);
+        $query = Articles::find()->joinWith(['favorites f'], true)->where(['f.user_id' => $params['id']])->andWhere(['status_id' => 3]);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -59,25 +60,26 @@ class FollowedSearch extends Partners
         if (!$this->validate()) {
             return $dataProvider;
         }
-
-        // grid filtering conditions
+        
         $query->andFilterWhere([
             'id' => $this->id,
-            'user_id' => $this->user_id,
-            'country_id' => $this->country_id,
-            'state_id' => $this->state_id,
-            'updated_at' => $this->updated_at,
+            'partner_id' => $this->partner_id,
+            'category_id' => $this->category_id,
+            'denomination_id' => $this->denomination_id,
+            'vat_id' => $this->vat_id,
+            'price' => $this->price,
+            'stock' => $this->stock,
+            'capacity' => $this->capacity,
             'created_at' => $this->created_at,
         ]);
 
-        $query->andFilterWhere(['ilike', 'name', $this->name])
+        $query->andFilterWhere(['ilike', 'title', $this->title])
             ->andFilterWhere(['ilike', 'description', $this->description])
-            ->andFilterWhere(['ilike', 'information', $this->information])
-            ->andFilterWhere(['ilike', 'image', $this->image])
-            ->andFilterWhere(['ilike', 'city', $this->city])
-            ->andFilterWhere(['ilike', 'zip_code', $this->zip_code])
-            ->andFilterWhere(['ilike', 'address', $this->address])
-            ->andFilterWhere(['ilike', 'phone', $this->phone]);
+            ->andFilterWhere(['ilike', 'degrees', $this->degrees])
+            ->andFilterWhere(['ilike', 'variety', $this->variety])
+            ->andFilterWhere(['ilike', 'pairing', $this->pairing])
+            ->andFilterWhere(['ilike', 'review', $this->review])
+            ->andFilterWhere(['ilike', 'image', $this->image]);
 
         return $dataProvider;
     }

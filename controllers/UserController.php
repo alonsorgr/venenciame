@@ -8,6 +8,7 @@
 
 namespace app\controllers;
 
+use app\models\search\FavoritesSearch;
 use Yii;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
@@ -97,10 +98,15 @@ class UserController extends Controller
         $followedSearch = new FollowedSearch();
         $followedProvider = $followedSearch->search(Yii::$app->request->queryParams);
 
+        $favoritesSearch = new FavoritesSearch();
+        $favoritesProvider = $favoritesSearch->search(Yii::$app->request->queryParams);
+
         return $this->render('view', [
             'model' => $this->findModel($id),
             'followedSearch' => $followedSearch,
             'followedProvider' => $followedProvider,
+            'favoritesSearch' => $favoritesSearch,
+            'favoritesProvider' => $favoritesProvider,
         ]);
     }
 

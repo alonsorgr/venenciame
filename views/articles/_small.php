@@ -1,10 +1,57 @@
 <?php
 
+use app\models\User;
 use yii\helpers\Url;
 use yii\bootstrap4\Html;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Articles */
+
+if (!Yii::$app->user->isGuest) {
+
+    $follow = Url::to(['favorites/set', 'user_id' => User::id(), 'article_id' => $model->id]);
+    $id = $model->id;
+
+    $js = <<<EOT
+    $(document).ready(function(){
+        $('#article-favorite-' + $id).css('cursor', 'pointer');
+        $.ajax({
+            type : 'GET',
+            url : '$follow',
+            success: function(response) {
+                response = JSON.parse(response);
+                $('#article-favorite-' + $id).removeClass('far');
+                $('#article-favorite-' + $id).addClass(response.class);
+                $('#article-favorite-' + $id).prop('title', response.title);
+            }
+        });
+        $('#article-favorite-' + $id).click(function(e){
+            e.preventDefault();
+            $.ajax({
+                type : 'POST',
+                url : '$follow',
+                success: function(response) {
+                    response = JSON.parse(response);
+                    $('#article-favorite-' + $id).removeClass('fas');
+                    $('#article-favorite-' + $id).addClass(response.class);
+                    $('#article-favorite-' + $id).prop('title', response.title);
+                    if($("#articles-favorites-pjax").length != 0) {
+                        $.pjax.reload({ container: '#articles-favorites-pjax', timeout: false });
+                    }
+                    if($("#articles-index-pjax").length != 0) {
+                        $.pjax.reload({ container: '#articles-index-pjax', timeout: false });
+                    }
+                    if($("#favorites-articles-pjax").length != 0) {
+                        $.pjax.reload({ container: '#favorites-articles-pjax', timeout: false });
+                    }
+                }
+            });
+        });
+    });
+    EOT;
+
+    $this->registerJs($js);
+}
 
 ?>
 

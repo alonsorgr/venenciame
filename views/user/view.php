@@ -8,6 +8,8 @@ use yii\bootstrap4\Html;
 /* @var $model app\models\User */
 /* @var $followedSearch app\models\search\FollowedSearch */
 /* @var $followedProvider yii\data\ActiveDataProvider */
+/* @var $favoritesSearch yii\data\ActiveDataProvider */
+/* @var $favoritesProvider yii\data\ActiveDataProvider */
 
 $this->title = $model->username;
 $this->params['breadcrumbs'][] = $this->title;
@@ -39,7 +41,10 @@ $this->params['breadcrumbs'][] = $this->title;
             $items[] = Bootstrap::tabItem([
                 'icon' => 'fas fa-star',
                 'label' => Yii::t('app', 'Favoritos'),
-                'content' => $this->render('tabs/_favorites.php'),
+                'content' => $this->render('tabs/_favorites.php', [
+                    'favoritesSearch' => $favoritesSearch,
+                    'favoritesProvider' => $favoritesProvider,
+                ]),
             ]);
 
             $items[] = Bootstrap::tabItem([

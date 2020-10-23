@@ -38,6 +38,7 @@ use yii\web\UploadedFile;
  * @property Partners $partner
  * @property Statuses $status
  * @property Vats $vat
+ * @property Favorites[] $favorites
  */
 class Articles extends \yii\db\ActiveRecord
 {
@@ -258,6 +259,16 @@ class Articles extends \yii\db\ActiveRecord
     public function getStatus()
     {
         return $this->hasOne(Statuses::class, ['id' => 'status_id'])->inverseOf('articles');
+    }
+
+    /**
+     * Obtiene consulta para [[Favorites]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getFavorites()
+    {
+        return $this->hasMany(Favorites::class, ['article_id' => 'id'])->inverseOf('article');
     }
 
     /**
