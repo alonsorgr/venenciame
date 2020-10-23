@@ -35,7 +35,8 @@ use app\helpers\AmazonS3;
  * @property int|null $language_id
  * @property string|null $updated_at
  * @property string|null $created_at
- *
+ * 
+ * @property Favorites[] $favorites
  * @property Followers[] $followers
  * @property Partners[] $partners
  * @property Partners $partners0
@@ -481,6 +482,16 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     public function getStatus()
     {
         return $this->hasOne(Statuses::class, ['id' => 'status_id'])->inverseOf('users');
+    }
+
+    /**
+     * Obtiene consulta para [[Favorites]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getFavorites()
+    {
+        return $this->hasMany(Favorites::class, ['user_id' => 'id'])->inverseOf('user');
     }
 
     /**
