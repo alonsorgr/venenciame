@@ -8,6 +8,7 @@
 
 namespace app\helpers;
 
+use Imagine\Image\Box;
 use Yii;
 use yii\imagine\Image;
 use yii\web\BadRequestHttpException;
@@ -50,7 +51,7 @@ class AmazonS3
             $fileName = Yii::getAlias('@uploads/' . $upload->baseName . '.' . $upload->extension);
             $upload->saveAs($fileName);
 
-            Image::resize($fileName, 400, 400, false)->save($fileName);
+            Image::resize($fileName, 256, 381, true, true)->save($fileName);
 
             if ($old !== null) {
                 Yii::$app->s3->delete($bucket, $old);

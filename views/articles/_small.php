@@ -43,7 +43,7 @@ if (!Yii::$app->user->isGuest) {
                     }
                     if($("#favorites-articles-pjax").length != 0) {
                         $.pjax.reload({ container: '#favorites-articles-pjax', timeout: false });
-                    }
+                    } 
                 }
             });
         });
@@ -58,16 +58,13 @@ if (!Yii::$app->user->isGuest) {
 <section class="articles-small">
     <div itemscope itemtype="http://schema.org/Product" class="row">
         <div class="col-sm-12 col-xl-3 d-flex justify-content-xl-start justify-content-center">
-            <div class="article-box mt-md-5 mt-sm-1">
-                <div class="image-article">
-                    <?= Html::img(Html::encode(Url::base(true) . '/' . $model->link), [
-                        'alt' => Yii::t('app', 'Logo corporativo'),
-                        'title' => Yii::t('app', 'Logo corporativo'),
-                        'data-action' => 'zoom',
-                        'itemprop' => 'image',
-                    ]); ?>
-                </div>
-            </div>
+            <?= Html::img(Html::encode(Url::base(true) . '/' . $model->link), [
+                'alt' => Yii::t('app', 'Logo corporativo'),
+                'title' => Yii::t('app', 'Logo corporativo'),
+                'data-action' => 'zoom',
+                'itemprop' => 'image',
+                'class' => 'img-fluid'
+            ]); ?>
         </div>
         <div class="col-sm-12 col-xl-9">
             <div class="row justify-content-md-between justify-content-center mb-3">

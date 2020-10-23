@@ -11,6 +11,7 @@ use yii\helpers\Url;
 ?>
 
 <div class="sidebar">
+    <div id="toast"></div>
     <?php if (!Yii::$app->user->isGuest) : ?>
         <div class="row mb-4">
             <div class="w-100">
