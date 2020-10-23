@@ -1,7 +1,9 @@
 <?php
 
+use app\helpers\Bootstrap;
 use yii\bootstrap4\Html;
 use yii\grid\GridView;
+use yii\widgets\ListView;
 use yii\widgets\Pjax;
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\search\ArticlesSearch */
@@ -11,43 +13,40 @@ $this->title = Yii::t('app', 'Vinos');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="articles-index">
-
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <p>
-        <?= Html::a(Yii::t('app', 'Create Articles'), ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
-
-    <?php Pjax::begin(); ?>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
-    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
-            'id',
-            'partner_id',
-            'category_id',
-            'denomination_id',
-            'vat_id',
-            //'title',
-            //'description',
-            //'price',
-            //'stock',
-            //'degrees',
-            //'capacity',
-            //'variety',
-            //'pairing',
-            //'review:ntext',
-            //'image',
-            //'created_at',
-
-            ['class' => 'yii\grid\ActionColumn'],
-        ],
+    <?php Pjax::begin([
+        'id' => 'partners-index-pjax',
+        'timeout' => '100000',
     ]); ?>
-
-    <?php Pjax::end(); ?>
-
+    <div class="row">
+        <div class="col-xl-12">
+            
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xl-12">
+            <?= ListView::widget([
+                'dataProvider' => $dataProvider,
+                'emptyText' => $this->render('/site/_empty'),
+                'itemView' => function ($model, $key, $index, $widget) {
+                    return $this->render('_small', ['model' => $model]);
+                },
+                'layout' => '<div class="d-flex justify-content-between mb-5">{summary}{sorter}</div>{items}{pager}',
+                'pager' => Bootstrap::listViewPager(),
+                'sorter' => [
+                    'class' => 'app\widgets\DropdownSorter',
+                    'label' => 'Ordenar por',
+                    'attributes' => [
+                        'title',
+                        'category_id',
+                        'denomination_id',
+                        'price',
+                    ],
+                ],
+                'options' => [
+                    'class' => 'listview',
+                ],
+            ]); ?>
+        </div>
+        <?php Pjax::end(); ?>
+    </div>
 </div>

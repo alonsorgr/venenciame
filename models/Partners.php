@@ -313,6 +313,16 @@ class Partners extends \yii\db\ActiveRecord
     }
 
     /**
+     * Obtiene consulta para [[Articles]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getArticles()
+    {
+        return $this->hasMany(Articles::class, ['partner_id' => 'id'])->inverseOf('partner');
+    }
+
+    /**
      * Comprueba si el acceso del usuario es válido para determinada acción.
      *
      * @return boolean  verdadero si es coinciden los id's.
