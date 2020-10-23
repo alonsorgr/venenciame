@@ -157,3 +157,13 @@ CREATE TABLE articles
   , image               VARCHAR(255)  DEFAULT NULL
   , created_at          TIMESTAMP(0)  DEFAULT CURRENT_TIMESTAMP
 );
+
+DROP TABLE IF EXISTS favorites CASCADE;
+
+CREATE TABLE favorites
+(
+    id            BIGSERIAL     PRIMARY KEY
+  , user_id       BIGINT        NOT NULL  REFERENCES users (id)
+  , article_id    BIGINT        NOT NULL  REFERENCES articles (id)
+  , created_at    TIMESTAMP(0)  DEFAULT CURRENT_TIMESTAMP
+);
