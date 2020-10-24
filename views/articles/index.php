@@ -1,6 +1,9 @@
 <?php
 
 use app\helpers\Bootstrap;
+use app\models\User;
+use yii\bootstrap4\Html;
+use yii\helpers\Url;
 use yii\widgets\ListView;
 use yii\widgets\Pjax;
 /* @var $this yii\web\View */
@@ -8,7 +11,7 @@ use yii\widgets\Pjax;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = Yii::t('app', 'Vinos');
-$this->params['breadcrumbs'][] = $this->title;
+//$this->params['breadcrumbs'][] = $this->title;
 ?>
 <article class="articles-index">
     <?php Pjax::begin([
@@ -16,12 +19,19 @@ $this->params['breadcrumbs'][] = $this->title;
         'timeout' => '100000',
     ]); ?>
     <div class="row">
-        <div class="col-xl-12">
-            
+        <div class="col-xl-3">
+            <div class="w-100">
+                <div class="card-header">
+                    <div class="lead"><?= Yii::t('app', 'Buscar') ?></div>
+                </div>
+                <div class="card-body">
+                    <?= $this->render('_search', [
+                        'model' => $searchModel,
+                    ]); ?>
+                </div>
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-xl-12">
+        <div class="col-xl-9">
             <?= ListView::widget([
                 'dataProvider' => $dataProvider,
                 'emptyText' => $this->render('/site/_empty'),

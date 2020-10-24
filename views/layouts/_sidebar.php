@@ -35,7 +35,7 @@ use yii\helpers\Url;
             </div>
         </div>
     <?php endif ?>
-    <div class="row my-4">
+    <div class="row mb-4">
         <div class="w-100">
             <div class="card-header">
                 <div class="lead"><?= Yii::t('app', 'Enlaces') ?></div>

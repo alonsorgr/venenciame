@@ -58,7 +58,7 @@ if (!Yii::$app->user->isGuest) {
 
 <section class="articles-small">
     <div itemscope itemtype="http://schema.org/Product" class="row">
-        <div class="col-sm-12 col-xl-3 d-flex justify-content-xl-start justify-content-center">
+        <div class="col-sm-12 col-xl-3 d-flex justify-content-center">
             <?= Html::img(Html::encode(Url::base(true) . '/' . $model->link), [
                 'alt' => Yii::t('app', 'Logo corporativo'),
                 'title' => Yii::t('app', 'Logo corporativo'),
@@ -88,7 +88,7 @@ if (!Yii::$app->user->isGuest) {
             <div class="row justify-content-md-between justify-content-center mb-3">
                 <div class="col-12 col-md-8 text-center text-md-left">
                     <div class="font-weight-bold">
-                        <?= Yii::t('app', 'Disponibilidad') ?>
+                        <?= Yii::t('app', 'Stock') ?>
                     </div>
                     <?php if ($model->isAvailable()) : ?>
                         <i class="fas fa-check-circle text-success mt-2" title="<?= Yii::t('app', 'Hay artículos disponibles') ?>"></i>
@@ -145,8 +145,8 @@ if (!Yii::$app->user->isGuest) {
                     <?= Html::encode($model->denomination->label); ?>
                 </div>
             </div>
-            <div class="row justify-content-md-between justify-content-center mt-xl-5">
-                <div class="col-12 col-md-8 text-center text-md-left">
+            <div class="row justify-content-md-between justify-content-center mt-xl-3">
+                <div class="col-12 col-md-7 text-center text-md-left">
                     <div itemprop="" class="display-6 d-inline font-weight-bold">
                         <?= Html::encode(Yii::$app->formatter->asCurrency($model->amount)); ?>
                     </div>
@@ -154,7 +154,7 @@ if (!Yii::$app->user->isGuest) {
                         <?= Html::encode(Yii::$app->formatter->asCurrency($model->price)) . ' sin ' . Html::encode($model->vat->label); ?>
                     </div>
                 </div>
-                <div class="col-12 col-md-4 text-center text-md-right mt-2">
+                <div class="col-12 col-md-5 text-center text-md-right mt-2">
                     <div class="row justify-content-md-end justify-content-center">
                         <div class="col-md-12 text-center text-md-right">
                             <?= Html::a('<i class="fas fa-cart-plus mr-2"></i>' . Yii::t('app', 'Agregar al carrito'), ['/carts/create'], [
@@ -166,5 +166,5 @@ if (!Yii::$app->user->isGuest) {
             </div>
         </div>
     </div>
-    <div class="mt-xl-1 horizontal-divider"></div>
+    <div class="horizontal-divider"></div>
 </section>
