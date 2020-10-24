@@ -49,6 +49,7 @@ if (!Yii::$app->user->isGuest) {
             });
         });
     });
+    $('#cuantity' + $id).inputSpinner();
     EOT;
 
     $this->registerJs($js);
@@ -68,8 +69,8 @@ if (!Yii::$app->user->isGuest) {
             ]); ?>
         </div>
         <div class="col-sm-12 col-xl-9">
-            <div class="row justify-content-md-between justify-content-center mb-3">
-                <div class="col-12 col-md-8 text-center text-md-left">
+            <div class="row justify-content-xl-between justify-content-center mb-3">
+                <div class="col-12 col-xl-8 text-center text-xl-left">
                     <?= Html::a(Html::encode($model->title), ['articles/view', 'id' => $model->id], [
                         'itemprop' => 'name',
                         'class' => 'display-5',
@@ -79,14 +80,14 @@ if (!Yii::$app->user->isGuest) {
                 <?php if (!Yii::$app->user->isGuest) : ?>
                     <?= Html::a(null, null, [
                         'id' => 'article-favorite-' . $model->id,
-                        'class' => 'far fa-star no-underline heart-size text-warning pr-md-3 pt-md-3',
+                        'class' => 'far fa-star no-underline heart-size text-warning pr-xl-3 pt-xl-3',
                         'data-pjax' => 0,
                         'title' => Yii::t('app', 'Agregar a favoritos')
                     ]); ?>
                 <?php endif ?>
             </div>
-            <div class="row justify-content-md-between justify-content-center mb-3">
-                <div class="col-12 col-md-8 text-center text-md-left">
+            <div class="row justify-content-xl-between justify-content-center mb-3">
+                <div class="col-12 col-xl-8 text-center text-xl-left">
                     <div class="font-weight-bold">
                         <?= Yii::t('app', 'Stock') ?>
                     </div>
@@ -96,7 +97,7 @@ if (!Yii::$app->user->isGuest) {
                         <i class="fas fa-exclamation-circle text-danger" title="<?= Yii::t('app', 'No hay artículos disponibles') ?>"></i>
                     <?php endif ?>
                 </div>
-                <div class="col-12 col-md-4 text-center text-md-right">
+                <div class="col-12 col-xl-4 text-center text-xl-right">
                     <div class="font-weight-bold">
                         <?= Yii::t('app', 'Valoración') ?>
                     </div>
@@ -114,8 +115,8 @@ if (!Yii::$app->user->isGuest) {
                     ]); ?>
                 </div>
             </div>
-            <div class="row justify-content-md-between justify-content-center mt-xl-3">
-                <div class="col-12 col-md-8 text-center text-md-left">
+            <div class="row justify-content-xl-between justify-content-center mt-xl-3">
+                <div class="col-12 col-xl-8 text-center text-xl-left">
                     <div class="font-weight-bold">
                         <?= Yii::t('app', 'Bodega') ?>
                     </div>
@@ -124,29 +125,29 @@ if (!Yii::$app->user->isGuest) {
                         'data-pjax' => 0,
                     ]); ?>
                 </div>
-                <div class="col-12 col-md-4 text-center text-md-right">
+                <div class="col-12 col-xl-4 text-center text-xl-right">
                     <div class="font-weight-bold">
                         <?= Yii::t('app', 'Capacidad') ?>
                     </div>
                     <?= Html::encode($model->capacity) . ' cl.'; ?>
                 </div>
             </div>
-            <div class="row justify-content-md-between justify-content-center mt-xl-3">
-                <div class="col-12 col-md-8 text-center text-md-left">
+            <div class="row justify-content-xl-between justify-content-center mt-xl-3">
+                <div class="col-12 col-xl-8 text-center text-xl-left">
                     <div itemprop="category" class="font-weight-bold">
                         <?= Yii::t('app', 'Tipo de vino') ?>
                     </div>
                     <?= Html::encode($model->category->label); ?>
                 </div>
-                <div class="col-12 col-md-4 text-center text-md-right">
+                <div class="col-12 col-xl-4 text-center text-xl-right">
                     <div itemprop="category" class="font-weight-bold">
                         <?= Yii::t('app', 'Denominación de origen') ?>
                     </div>
                     <?= Html::encode($model->denomination->label); ?>
                 </div>
             </div>
-            <div class="row justify-content-md-between justify-content-center mt-xl-3">
-                <div class="col-12 col-md-7 text-center text-md-left">
+            <div class="row justify-content-xl-between justify-content-center mt-xl-3">
+                <div class="col-12 col-xl-4 text-center text-xl-left">
                     <div itemprop="" class="display-6 d-inline font-weight-bold">
                         <?= Html::encode(Yii::$app->formatter->asCurrency($model->amount)); ?>
                     </div>
@@ -154,11 +155,21 @@ if (!Yii::$app->user->isGuest) {
                         <?= Html::encode(Yii::$app->formatter->asCurrency($model->price)) . ' sin ' . Html::encode($model->vat->label); ?>
                     </div>
                 </div>
-                <div class="col-12 col-md-5 text-center text-md-right mt-2">
-                    <div class="row justify-content-md-end justify-content-center">
-                        <div class="col-md-12 text-center text-md-right">
+                <div class="col-12 col-xl-8 text-center text-xl-right mt-2">
+                    <div class="row justify-content-xl-end justify-content-center">
+                        <div class="col-xl-5 text-center text-xl-right mb-sm-4">
+                            <?= Html::input('number', 'cuantity', '', [
+                                'id' => 'cuantity' . $id,
+                                'min' => 1,
+                                'max' => $model->stock,
+                                'class' => 'form-control',
+                                'placeholder' => Yii::t('app', 'Uds.'),
+                                'title' => Yii::t('app', 'Seleccione el número de unidades'),
+                            ]) ?>
+                        </div>
+                        <div class="col-xl-7 text-center text-xl-right">
                             <?= Html::a('<i class="fas fa-cart-plus mr-2"></i>' . Yii::t('app', 'Agregar al carrito'), ['/carts/create'], [
-                                'class' => 'btn btn-primary btn-block'
+                                'class' => 'btn btn-primary btn-block',
                             ]); ?>
                         </div>
                     </div>

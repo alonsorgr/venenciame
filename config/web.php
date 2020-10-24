@@ -13,6 +13,7 @@ $config = [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
         '@img' => 'img',
+        '@js' => 'js',
         '@uploads' => '@img/uploads',
         '@aws' => 'aws',
         '@user' => '@aws/user',

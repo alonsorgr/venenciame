@@ -15,6 +15,7 @@ use yii\bootstrap4\ActiveForm;
 <div class="articles-search">
 
     <?php $form = ActiveForm::begin([
+        'id' => 'articles-search',
         'action' => ['index'],
         'method' => 'get',
         'options' => [
@@ -112,7 +113,7 @@ use yii\bootstrap4\ActiveForm;
                     'title' => Yii::t('app', 'Buscar por maridaje'),
                 ]); ?>
             </div>
-            <?= Html::submitButton(Yii::t('app', 'Buscar'), ['class' => 'btn btn-outline-primary btn-block']) ?>
+            <?= Html::submitButton('<i class="fas fa-search mr-2"></i>' . Yii::t('app', 'Buscar'), ['class' => 'btn btn-outline-primary btn-block']) ?>
         </div>
     </div>
     <?php ActiveForm::end(); ?>
