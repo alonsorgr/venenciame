@@ -95,7 +95,7 @@ use yii\bootstrap4\ActiveForm;
                         'rightAlign' => false
                     ],
                     'displayOptions' =>  [
-                        'placeholder' => Yii::t('app', 'Buscar por precio'),
+                        'placeholder' => Yii::t('app', 'Buscar graduación alcohólica'),
                     ],
                 ]); ?>
             </div>
