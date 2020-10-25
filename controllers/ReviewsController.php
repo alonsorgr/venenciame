@@ -11,9 +11,11 @@ namespace app\controllers;
 use Yii;
 use app\models\Reviews;
 use app\models\search\ReviewsSearch;
+use yii\bootstrap4\ActiveForm;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\Response;
 
 /**
  * Controlador de reseñas.
@@ -74,6 +76,15 @@ class ReviewsController extends Controller
     public function actionCreate()
     {
         $model = new Reviews();
+
+        if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            return ActiveForm::validate($model);
+        }
+
+        if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
+            $model->save();
+        }
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);

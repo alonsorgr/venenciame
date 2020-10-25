@@ -11,6 +11,7 @@ namespace app\controllers;
 use Yii;
 use app\models\Articles;
 use app\models\search\ArticlesSearch;
+use app\models\search\ReviewsSearch;
 use app\models\User;
 use yii\bootstrap4\ActiveForm;
 use yii\filters\AccessControl;
@@ -99,8 +100,13 @@ class ArticlesController extends Controller
      */
     public function actionView($id)
     {
+        $reviewsSearch = new ReviewsSearch();
+        $reviewsProvider = $reviewsSearch->search(Yii::$app->request->queryParams);
+
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'reviewsSearch' => $reviewsSearch,
+            'reviewsProvider' => $reviewsProvider,
         ]);
     }
 

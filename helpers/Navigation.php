@@ -76,6 +76,13 @@ class Navigation
                 'data-target' => '#modal-register',
                 'value' => Url::to(['site/register']),
             ]) : '',
+
+            static::item([
+                'icon' => '',
+                'title' => '',
+                'label' => 'Valoraciones',
+                'url' => Url::to(['reviews/create'])
+            ])
         ];
     }
 

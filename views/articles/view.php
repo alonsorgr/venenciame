@@ -10,6 +10,8 @@ use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Articles */
+/* @var $reviewsModel app\models\search\ReviewsSearch */
+/* @var $reviewsProvider yii\data\ActiveDataProvider */
 
 $this->title = $model->title;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Vinos'), 'url' => ['index']];
@@ -39,7 +41,10 @@ $this->params['breadcrumbs'][] = $this->title;
             $items[] = Bootstrap::tabItem([
                 'icon' => 'fas fa-comments',
                 'label' => Yii::t('app', 'Reseñas'),
-                'content' => $this->render('tabs/_reviews'),
+                'content' => $this->render('tabs/_reviews', [
+                    'reviewsSearch' => $reviewsSearch,
+                    'reviewsProvider' => $reviewsProvider,
+                ]),
             ]);
             ?>
             <div class="mt-2">

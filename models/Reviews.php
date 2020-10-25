@@ -43,7 +43,7 @@ class Reviews extends \yii\db\ActiveRecord
             [['user_id', 'article_id', 'review', 'score'], 'required'],
             [['user_id', 'article_id', 'score'], 'default', 'value' => null],
             [['user_id', 'article_id', 'score'], 'integer'],
-            [['score'], 'length', 'min' => 0, 'max' => 5],
+            [['score'], 'in', 'range' => [1, 2, 3, 4, 5]],
             [['review'], 'string'],
             [['created_at'], 'safe'],
             [['user_id', 'article_id'], 'unique', 'targetAttribute' => ['user_id', 'article_id']],

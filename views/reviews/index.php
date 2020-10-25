@@ -1,43 +1,42 @@
 <?php
 
-use yii\bootstrap4\Html;
-use yii\grid\GridView;
+use app\helpers\Bootstrap;
+use app\models\Reviews;
+use yii\widgets\ListView;
 use yii\widgets\Pjax;
+
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\search\ReviewsSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Reviews');
-$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="reviews-index">
-
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <p>
-        <?= Html::a(Yii::t('app', 'Create Reviews'), ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
-
-    <?php Pjax::begin(); ?>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
-    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
-            'id',
-            'user_id',
-            'article_id',
-            'review:ntext',
-            'score',
-            //'created_at',
-
-            ['class' => 'yii\grid\ActionColumn'],
-        ],
+    <?php Pjax::begin([
+        'id' => 'reviews-pjax',
+        'timeout' => '100000',
     ]); ?>
-
-    <?php Pjax::end(); ?>
-
+    <div class="row">
+        <div class="col-xl-12 mt-5">
+            <?= ListView::widget([
+                'dataProvider' => $dataProvider,
+                'emptyText' => $this->render('/site/_empty'),
+                'itemView' => function ($model, $key, $index, $widget) {
+                    return $this->render('/reviews/_small', ['model' => $model]);
+                },
+                'layout' => '<div class="d-flex justify-content-between mb-5">{summary}{sorter}</div>{items}{pager}',
+                'pager' => Bootstrap::listViewPager(),
+                'sorter' => [
+                    'class' => 'app\widgets\DropdownSorter',
+                    'label' => 'Ordenar por',
+                    'attributes' => [
+                        'score',
+                    ],
+                ],
+                'options' => [
+                    'class' => 'listview',
+                ],
+            ]); ?>
+        </div>
+        <?php Pjax::end(); ?>
+    </div>
 </div>
