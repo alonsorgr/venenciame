@@ -42,6 +42,7 @@ use app\helpers\AmazonS3;
  * @property Partners $partners0
  * @property Languages $language
  * @property Statuses $status
+ * @property Reviews[] $reviews
  */
 class User extends \yii\db\ActiveRecord implements IdentityInterface
 {
@@ -492,6 +493,16 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     public function getFavorites()
     {
         return $this->hasMany(Favorites::class, ['user_id' => 'id'])->inverseOf('user');
+    }
+
+    /**
+     * Obtiene consulta para [[Reviews]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getReviews()
+    {
+        return $this->hasMany(Reviews::class, ['user_id' => 'id'])->inverseOf('user');
     }
 
     /**
