@@ -24,6 +24,7 @@ if (!Yii::$app->user->isGuest) {
                 $('#article-favorite-' + $id).removeClass('far');
                 $('#article-favorite-' + $id).addClass(response.class);
                 $('#article-favorite-' + $id).prop('title', response.title);
+                $('#cuantity' + $id).inputSpinner();
             }
         });
         $('#article-favorite-' + $id).click(function(e){
@@ -49,7 +50,6 @@ if (!Yii::$app->user->isGuest) {
             });
         });
     });
-    $('#cuantity' + $id).inputSpinner();
     EOT;
 
     $this->registerJs($js);

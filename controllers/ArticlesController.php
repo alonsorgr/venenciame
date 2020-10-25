@@ -45,9 +45,9 @@ class ArticlesController extends Controller
      *
      * @return yii\web\Response | string    el resultado de la representación.
      */
-    public function actionIndex($category_id = '', $denomination_id ='')
+    public function actionIndex()
     {
-        $searchModel = new ArticlesSearch(['denomination_id' => $denomination_id, 'category_id' => $category_id]);
+        $searchModel = new ArticlesSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
