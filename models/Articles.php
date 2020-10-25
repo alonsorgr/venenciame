@@ -39,6 +39,7 @@ use yii\web\UploadedFile;
  * @property Statuses $status
  * @property Vats $vat
  * @property Favorites[] $favorites
+ * @property Reviews[] $reviews
  */
 class Articles extends \yii\db\ActiveRecord
 {
@@ -269,6 +270,16 @@ class Articles extends \yii\db\ActiveRecord
     public function getFavorites()
     {
         return $this->hasMany(Favorites::class, ['article_id' => 'id'])->inverseOf('article');
+    }
+
+    /**
+     * Obtiene consulta para [[Reviews]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getReviews()
+    {
+        return $this->hasMany(Reviews::class, ['article_id' => 'id'])->inverseOf('article');
     }
 
     public static function isOwner()
