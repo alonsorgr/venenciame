@@ -24,7 +24,6 @@ if (!Yii::$app->user->isGuest) {
                 $('#article-favorite-' + $id).removeClass('far');
                 $('#article-favorite-' + $id).addClass(response.class);
                 $('#article-favorite-' + $id).prop('title', response.title);
-                $('#cuantity' + $id).inputSpinner();
             }
         });
         $('#article-favorite-' + $id).click(function(e){
@@ -54,6 +53,7 @@ if (!Yii::$app->user->isGuest) {
 
     $this->registerJs($js);
 }
+$this->registerJs("$('#cuantity' + '$model->id').inputSpinner()");
 
 ?>
 
@@ -159,7 +159,7 @@ if (!Yii::$app->user->isGuest) {
                     <div class="row justify-content-xl-end justify-content-center">
                         <div class="col-xl-5 text-center text-xl-right mb-sm-4">
                             <?= Html::input('number', 'cuantity', '', [
-                                'id' => 'cuantity' . $id,
+                                'id' => 'cuantity' . $model->id,
                                 'min' => 1,
                                 'max' => $model->stock,
                                 'class' => 'form-control',
