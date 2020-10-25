@@ -146,7 +146,7 @@ CREATE TABLE articles
   , vat_id              BIGINT        NOT NULL    REFERENCES vats          (id)   ON DELETE CASCADE ON UPDATE CASCADE
   , status_id           BIGINT        NOT NULL    REFERENCES statuses      (id)   ON DELETE CASCADE ON UPDATE CASCADE
   , title               VARCHAR(50)   NOT NULL
-  , description         VARCHAR(50)   NOT NULL
+  , description         VARCHAR(255)   NOT NULL
   , price               DECIMAL       NOT NULL
   , stock               INTEGER       NOT NULL
   , degrees             VARCHAR(50)   NOT NULL
@@ -163,7 +163,7 @@ DROP TABLE IF EXISTS favorites CASCADE;
 CREATE TABLE favorites
 (
     id            BIGSERIAL     PRIMARY KEY
-  , user_id       BIGINT        NOT NULL  REFERENCES users (id)
-  , article_id    BIGINT        NOT NULL  REFERENCES articles (id)
+  , user_id       BIGINT        NOT NULL  REFERENCES users (id) ON DELETE CASCADE ON UPDATE CASCADE
+  , article_id    BIGINT        NOT NULL  REFERENCES articles (id) ON DELETE CASCADE ON UPDATE CASCADE
   , created_at    TIMESTAMP(0)  DEFAULT CURRENT_TIMESTAMP
 );

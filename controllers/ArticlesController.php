@@ -34,7 +34,7 @@ class ArticlesController extends Controller
             'verbs' => [
                 'class' => VerbFilter::class,
                 'actions' => [
-                    'delete' => ['POST'],
+                    'delete' => Yii::$app->request->isGet ? ['get'] : ['post'],
                 ],
             ],
         ];
@@ -129,9 +129,27 @@ class ArticlesController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $model = $this->findModel($id);
 
-        return $this->redirect(['index']);
+        if (Yii::$app->request->isAjax) {
+            return $this->renderAjax('delete', [
+                'model' => $model,
+            ]);
+        } else {
+            if ($model->delete()) {
+                Yii::$app->session->setFlash(
+                    'success',
+                    Yii::t('app', 'Se ha eliminado correctamente el artículo.')
+                );
+                return $this->redirect(['partners/view', 'id' => $model->partner->id]);
+            } else {
+                Yii::$app->session->setFlash(
+                    'error',
+                    Yii::t('app', 'Hubo un error al eliminar el artículo, por favor, inténtelo de nuevo.')
+                );
+                return $this->redirect(['articles/view', 'id' => $id]);
+            }
+        }
     }
 
     /**

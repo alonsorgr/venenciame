@@ -271,6 +271,13 @@ class Articles extends \yii\db\ActiveRecord
         return $this->hasMany(Favorites::class, ['article_id' => 'id'])->inverseOf('article');
     }
 
+    public static function isOwner()
+    {
+        $model = Partners::find()->where(['user_id' => User::id()]);
+        $id = $model->exists() ? $model->one()->id : null;
+        return Articles::find()->where(['partner_id' => $id])->exists();
+    }
+
     /**
      * Genera una lista con las etiquetas de los objetos [[Articles]]
      *

@@ -43,7 +43,7 @@ if (!Yii::$app->user->isGuest) {
                     if($("#articles-index-pjax").length != 0) {
                         $.pjax.reload({ container: '#articles-index-pjax', timeout: false });
                     }
-                    if($("#favorites-articles-pjax").length != 0) {
+                    if($("#articles-favorites-pjax").length != 0) {
                         $.pjax.reload({ container: '#favorites-articles-pjax', timeout: false });
                     } 
                 }

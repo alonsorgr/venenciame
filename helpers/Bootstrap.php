@@ -110,7 +110,7 @@ class Bootstrap
         return Html::beginTag('div', [
             'class' => 'tab-group-header',
         ]) . Html::tag('h5', $title, [
-            'class' => 'lead text-secondary font-weight-bold',
+            'class' => 'lead text-primary font-weight-bold',
             'title' => Yii::t('app', $title),
         ]) . Html::tag('div', null, [
             'class' => 'mt-2 horizontal-divider',
