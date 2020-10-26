@@ -173,11 +173,25 @@ class Navigation
             'label' => static::label([
                 'icon' => 'fas fa-adjust partners-nav-icon',
                 'color' => 'text-primary',
-                'label' => Yii::t('app', 'Administrar mi bodega'),
+                'label' => Yii::t('app', 'Mi bodega'),
             ]),
             'url' => ['partners/view', 'id' => User::id()], 'post',
             'linkOptions' => [
                 'title' => Yii::t('app', 'Administrar las ventas de socio'),
+                'class' => 'text-capitalize',
+            ],
+        ];
+
+        $articles = [
+            'encode' => false,
+            'label' => static::label([
+                'icon' => 'fas fa-plus-circle partners-nav-icon',
+                'color' => 'text-primary',
+                'label' => Yii::t('app', 'Agregar un producto'),
+            ]),
+            'url' => ['articles/create'],
+            'linkOptions' => [
+                'title' => Yii::t('app', 'Agregar un producto'),
                 'class' => 'text-capitalize',
             ],
         ];
@@ -213,6 +227,7 @@ class Navigation
                 User::isAdmin() ? $admin : '',
                 User::isPartner() ? static::horizontalDivider() : '',
                 User::isPartner() ? $partner : '',
+                User::isPartner() ? $articles : '',
                 static::horizontalDivider(),
                 $logout,
             ]
