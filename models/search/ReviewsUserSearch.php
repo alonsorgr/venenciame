@@ -50,7 +50,7 @@ class ReviewsUserSearch extends Reviews
      */
     public function search($params)
     {
-        $query = Reviews::find()->where(['user_id' => User::id()]);
+        $query = Reviews::find()->where(['user_id' => intval(Yii::$app->getRequest()->getQueryParam('id'))]);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
