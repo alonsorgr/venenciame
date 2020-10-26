@@ -29,9 +29,9 @@ INSERT INTO users (
     language_id
   )
 VALUES (
-    'ana',
-    crypt('ana', gen_salt('bf', 10)),
-    'ana@venenciame.com',
+    'paula',
+    crypt('paula', gen_salt('bf', 10)),
+    'paula@venenciame.com',
     3,
     false,
     1,
