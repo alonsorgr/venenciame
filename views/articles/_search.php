@@ -1,6 +1,7 @@
 <?php
 
 use app\models\Categories;
+use app\models\Denominations;
 use app\models\Partners;
 use kartik\number\NumberControl;
 use kartik\select2\Select2;
@@ -61,7 +62,7 @@ use yii\bootstrap4\ActiveForm;
             </div>
             <div class="mb-2">
                 <?= $form->field($model, 'denomination_id')->widget(Select2::class, [
-                    'data' => Categories::labels(),
+                    'data' => Denominations::labels(),
                     'options' => [
                         'class' => 'form-control',
                         'placeholder' => Yii::t('app', 'Buscar por denominación'),

@@ -1,5 +1,7 @@
 <?php
 
+use yii\helpers\Url;
+
 $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
 $log = require __DIR__ . '/log.php';
@@ -21,6 +23,7 @@ $config = [
         '@articles' => '@aws/articles',
     ],
     'language' => 'es-ES',
+    'defaultRoute' => 'articles/index',
     'components' => [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation

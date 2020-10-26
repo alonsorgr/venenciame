@@ -156,7 +156,7 @@ class Articles extends \yii\db\ActiveRecord
     {
         $this->upload = UploadedFile::getInstance($this, 'upload');
         if ($this->upload !== null) {
-            $this->image = AmazonS3::upload($this->upload, $this->id, AmazonS3::BUCKET_ARTICLES, $this->image);
+            $this->image = AmazonS3::upload($this->upload, $this->title, AmazonS3::BUCKET_ARTICLES, $this->image);
             $this->upload = null;
         }
     }
