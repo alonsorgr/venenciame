@@ -168,7 +168,7 @@ class Partners extends \yii\db\ActiveRecord
     {
         $this->upload = UploadedFile::getInstance($this, 'upload');
         if ($this->upload !== null) {
-            $this->image = AmazonS3::upload($this->upload, $this->name, AmazonS3::BUCKET_PARTNERS, $this->image);
+            $this->image = AmazonS3::upload($this->upload, $this->id, AmazonS3::BUCKET_PARTNERS, $this->image);
             $this->upload = null;
         }
     }
@@ -192,7 +192,7 @@ class Partners extends \yii\db\ActiveRecord
     public function getLink()
     {
         if ($this->_link === null && !$this->isNewRecord) {
-            $this->setLink(AmazonS3::getLink($this->image, self::IMAGE, AmazonS3::PARTNERS, AmazonS3::BUCKET_USERS));
+            $this->setLink(AmazonS3::getLink($this->image, self::IMAGE, AmazonS3::PARTNERS, AmazonS3::BUCKET_PARTNERS));
         }
         return $this->_link;
     }

@@ -243,12 +243,12 @@ use yii\helpers\Url;
             ]); ?>
         </div>
     </div>
-    <div class="row">
-        <div class="col-xl-12 mb-3 mt-5">
-            <?= Bootstrap::header(Yii::t('app', 'Opciones')); ?>
+    <?php if (User::isAdmin()) : ?>
+        <div class="row">
+            <div class="col-xl-12 mb-3 mt-5">
+                <?= Bootstrap::header(Yii::t('app', 'Opciones')); ?>
+            </div>
         </div>
-    </div>
-    <?php if ($model->isNewRecord || User::isAdmin()) : ?>
         <div class="row">
             <div class="col-xl-6">
                 <?= $form->field($model, 'status_id')->widget(Select2::class, [
