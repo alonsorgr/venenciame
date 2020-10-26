@@ -70,6 +70,13 @@ class Articles extends \yii\db\ActiveRecord
     private $_amount = null;
 
     /**
+     * Atributo de puntuación total.
+     *
+     * @var double
+     */
+    private $_score = null;
+
+    /**
      * {@inheritdoc}
      */
     public static function tableName()
@@ -203,6 +210,35 @@ class Articles extends \yii\db\ActiveRecord
     }
 
     /**
+     * Estrablece la puntuación total.
+     *
+     * @param   string    $link   enlace a imagen de perfil.
+     * @return  void
+     */
+    public function setScore($score)
+    {
+        $this->_score = $score;
+    }
+
+    /**
+     * Genera la puntuación total.
+     *
+     * @return  string  puntuación total.
+     */
+    public function getScore()
+    {
+        if ($this->_score === null && !$this->isNewRecord) {
+            $total = null;
+            $length = $this->getReviews()->count();
+            foreach ($this->getReviews()->all() as  $value) {
+                $total += $value['score'];
+            }
+            $this->setScore($length !=0 ? round($total / $length, 2) : 0);
+        }
+        return $this->_score;
+    }
+
+    /**
      * Obtiene consulta para [[Categoiries]].
      *
      * @return \yii\db\ActiveQuery
@@ -282,11 +318,26 @@ class Articles extends \yii\db\ActiveRecord
         return $this->hasMany(Reviews::class, ['article_id' => 'id'])->inverseOf('article');
     }
 
+    /**
+     * Comprueba si el usuario actual es el propietario del artículo.
+     *
+     * @return boolean verdadero si es el propietario del artículo.
+     */
     public static function isOwner()
     {
         $model = Partners::find()->where(['user_id' => intval(User::id())]);
         $id = $model->exists() ? intval($model->one()->id) : intval(0);
         return Articles::find()->where(['partner_id' => $id])->exists();
+    }
+
+    /**
+     * Comprueba si el usuario conectado ha dejado una reseña.
+     *
+     * @return boolean  verdadero si ya tiene una reseña en el artículo.
+     */
+    public static function isReview()
+    {
+        return !Yii::$app->user->isGuest ? Reviews::find()->where(['user_id' => User::id()])->andWhere(['article_id' => Yii::$app->getRequest()->getQueryParam('id')])->exists() : false;
     }
 
     /**

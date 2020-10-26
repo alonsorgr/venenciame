@@ -10,9 +10,11 @@ namespace app\controllers;
 
 use Yii;
 use app\models\Articles;
+use app\models\Reviews;
 use app\models\search\ArticlesSearch;
 use app\models\search\ReviewsSearch;
 use app\models\User;
+use Github\Api\PullRequest\Review;
 use yii\bootstrap4\ActiveForm;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -192,7 +194,7 @@ class ArticlesController extends Controller
             }
         }
     }
-
+    
     /**
      * Encuentra el modelo de artículo en función de su valor de clave principal.
      * @param   integer                 $id     identificador de artículo.

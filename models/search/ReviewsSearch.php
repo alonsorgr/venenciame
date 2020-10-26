@@ -11,6 +11,7 @@ namespace app\models\search;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use app\models\Reviews;
+use Yii;
 
 /**
  * Modelo que representa el modelo detrás de la forma de búsqueda de [[Reviews]].
@@ -48,7 +49,7 @@ class ReviewsSearch extends Reviews
      */
     public function search($params)
     {
-        $query = Reviews::find();
+        $query = Reviews::find()->where(['article_id' => intval(Yii::$app->getRequest()->getQueryParam('id'))]);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,

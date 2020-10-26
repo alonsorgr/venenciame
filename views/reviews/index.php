@@ -40,3 +40,9 @@ use yii\widgets\Pjax;
         <?php Pjax::end(); ?>
     </div>
 </div>
+<?php Bootstrap::modal([
+    'id' => 'modal-reviews-article',
+    'image' => 'fas fa-comments',
+    'size' => 'modal-lg',
+    'title' => Yii::t('app', 'Agregar una reseña'),
+]) ?>

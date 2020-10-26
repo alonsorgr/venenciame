@@ -102,12 +102,15 @@ $this->registerJs("$('#cuantity' + '$model->id').inputSpinner()");
                         <?= Yii::t('app', 'Valoración') ?>
                     </div>
                     <?= StarRating::widget([
-                        'name' => 'rating',
+                        'id' => 'total-score' . $model->id,
+                        'name' => 'rating-article',
+                        'value' => $model->score,
                         'pluginOptions' => [
                             'min' => 0,
                             'max' => 5,
                             'step' => 1,
                             'size' => 'sm',
+                            'readonly' => true,
                             'theme' => 'krajee-svg',
                             'showClear' => false,
                             'showCaption' => false,

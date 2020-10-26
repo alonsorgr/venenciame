@@ -118,6 +118,7 @@ class UserController extends Controller
     {
         $model = new User();
         $model->setScenarioCreate();
+        $model->status_id = User::STATUS_INACTIVE;
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         }
