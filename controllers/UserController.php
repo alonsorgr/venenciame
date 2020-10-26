@@ -18,6 +18,7 @@ use yii\web\Response;
 use app\models\User;
 use app\models\search\UserSearch;
 use app\models\search\FollowedSearch;
+use app\models\search\ReviewsUserSearch;
 use yii\filters\AccessControl;
 
 /**
@@ -101,12 +102,17 @@ class UserController extends Controller
         $favoritesSearch = new FavoritesSearch();
         $favoritesProvider = $favoritesSearch->search(Yii::$app->request->queryParams);
 
+        $reviewsSearch = new ReviewsUserSearch();
+        $reviewsProvider = $reviewsSearch->search(Yii::$app->request->queryParams);
+
         return $this->render('view', [
             'model' => $this->findModel($id),
             'followedSearch' => $followedSearch,
             'followedProvider' => $followedProvider,
             'favoritesSearch' => $favoritesSearch,
             'favoritesProvider' => $favoritesProvider,
+            'reviewsSearch' => $reviewsSearch,
+            'reviewsProvider' => $reviewsProvider,
         ]);
     }
 

@@ -10,6 +10,8 @@ use yii\bootstrap4\Html;
 /* @var $followedProvider yii\data\ActiveDataProvider */
 /* @var $favoritesSearch yii\data\ActiveDataProvider */
 /* @var $favoritesProvider yii\data\ActiveDataProvider */
+/* @var $reviewsSearch yii\data\ActiveDataProvider */
+/* @var $reviewsProvider yii\data\ActiveDataProvider */
 
 $this->title = $model->username;
 $this->params['breadcrumbs'][] = $this->title;
@@ -26,7 +28,10 @@ $this->params['breadcrumbs'][] = $this->title;
             $items[] = Bootstrap::tabItem([
                 'icon' => 'fas fa-chart-line',
                 'label' => Yii::t('app', 'Actividad'),
-                'content' => $this->render('tabs/_activity.php'),
+                'content' => $this->render('tabs/_activity.php', [
+                    'reviewsSearch' => $reviewsSearch,
+                    'reviewsProvider' => $reviewsProvider,
+                ]),
             ]);
 
             $items[] = Bootstrap::tabItem([
