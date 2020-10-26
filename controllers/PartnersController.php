@@ -115,7 +115,7 @@ class PartnersController extends Controller
             'followersProvider' => $followersProvider,
             'articlesSearch' => $articlesSearch,
             'articlesProvider' => $articlesProvider,
-            'articlesViewSearch' => $articlesSearch,
+            'articlesViewSearch' => $articlesViewSearch,
             'articlesViewProvider' => $articlesViewProvider,
         ]);
     }
