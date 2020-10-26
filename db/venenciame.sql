@@ -144,9 +144,9 @@ CREATE TABLE articles
   , category_id         BIGINT        NOT NULL    REFERENCES categories    (id)   ON DELETE CASCADE ON UPDATE CASCADE
   , denomination_id     BIGINT        NOT NULL    REFERENCES denominations (id)   ON DELETE CASCADE ON UPDATE CASCADE
   , vat_id              BIGINT        NOT NULL    REFERENCES vats          (id)   ON DELETE CASCADE ON UPDATE CASCADE
-  , status_id           BIGINT        NOT NULL    REFERENCES statuses      (id)   ON DELETE CASCADE ON UPDATE CASCADE
+  , status_id           BIGINT        DEFAULT 2   REFERENCES statuses      (id)   ON DELETE CASCADE ON UPDATE CASCADE
   , title               VARCHAR(50)   NOT NULL
-  , description         VARCHAR(255)   NOT NULL
+  , description         VARCHAR(255)  NOT NULL
   , price               DECIMAL       NOT NULL
   , stock               INTEGER       NOT NULL
   , degrees             VARCHAR(50)   NOT NULL
