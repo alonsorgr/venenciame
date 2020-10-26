@@ -39,7 +39,6 @@ EOT;
 $this->registerJs($js);
 
 ?>
-
 <div class="reviews-form m-3">
     <div class="row">
         <div class="col-12">
