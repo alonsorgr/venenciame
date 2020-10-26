@@ -56,6 +56,8 @@ $this->params['breadcrumbs'][] = $this->title;
                             'label' => Yii::t('app', 'Administrar'),
                             'content' => $this->render('tabs/_administration.php', [
                                 'model' => $model,
+                                'articlesSearch' => $articlesSearch,
+                                'articlesProvider' => $articlesProvider,
                             ]),
                         ]);
                     }

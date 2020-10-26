@@ -19,6 +19,7 @@ use app\models\Partners;
 use app\models\User;
 use app\helpers\Email;
 use app\models\forms\RequestPartnersForm;
+use app\models\search\ArticlesPartnersSearch;
 use app\models\search\FollowersSearch;
 use yii\filters\AccessControl;
 use yii\helpers\Url;
@@ -101,10 +102,15 @@ class PartnersController extends Controller
         $followersSearch = new FollowersSearch();
         $followersProvider = $followersSearch->search(Yii::$app->request->queryParams);
 
+        $articlesSearch = new ArticlesPartnersSearch();
+        $articlesProvider = $articlesSearch->search(Yii::$app->request->queryParams);
+
         return $this->render('view', [
             'model' => $this->findModel($id),
             'followersSearch' => $followersSearch,
             'followersProvider' => $followersProvider,
+            'articlesSearch' => $articlesSearch,
+            'articlesProvider' => $articlesProvider,
         ]);
     }
 
