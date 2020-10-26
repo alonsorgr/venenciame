@@ -109,7 +109,7 @@ $this->registerJs("$('#cuantity' + '$model->id').inputSpinner()");
                             'min' => 0,
                             'max' => 5,
                             'step' => 1,
-                            'size' => 'sm',
+                            'size' => 'xs',
                             'readonly' => true,
                             'theme' => 'krajee-svg',
                             'showClear' => false,

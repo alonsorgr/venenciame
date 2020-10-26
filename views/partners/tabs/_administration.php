@@ -18,7 +18,9 @@ use kartik\tabs\TabsX;
                 'icon' => 'fas fa-home',
                 'label' => Yii::t('app', 'General'),
                 'content' => $this->render('administration/_main.php', [
-                    'model' => $model
+                    'model' => $model,
+                    'articlesSearch' => $articlesSearch,
+                    'articlesProvider' => $articlesProvider,
                 ]),
             ]);
 

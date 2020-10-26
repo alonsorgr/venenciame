@@ -5,6 +5,8 @@
 
 use app\helpers\Bootstrap;
 use yii\bootstrap4\Html;
+use yii\widgets\ListView;
+use yii\widgets\Pjax;
 
 \yii\web\YiiAsset::register($this);
 
@@ -29,5 +31,36 @@ use yii\bootstrap4\Html;
         <div class="col">
             <?= Bootstrap::header(Yii::t('app', 'Artículos pendientes de publicación')); ?>
         </div>
+    </div>
+    <?php Pjax::begin([
+        'id' => 'partners-articles-pjax',
+        'timeout' => '100000',
+    ]); ?>
+    <div class="row">
+        <div class="col-xl-12">
+            <?= ListView::widget([
+                'dataProvider' => $articlesProvider,
+                'emptyText' => $this->render('/site/_empty'),
+                'itemView' => function ($model, $key, $index, $widget) {
+                    return $this->render('/articles/_small', ['model' => $model]);
+                },
+                'layout' => '<div class="d-flex justify-content-between mb-5">{summary}{sorter}</div>{items}{pager}',
+                'pager' => Bootstrap::listViewPager(),
+                'sorter' => [
+                    'class' => 'app\widgets\DropdownSorter',
+                    'label' => 'Ordenar por',
+                    'attributes' => [
+                        'title',
+                        'category_id',
+                        'denomination_id',
+                        'price',
+                    ],
+                ],
+                'options' => [
+                    'class' => 'listview',
+                ],
+            ]); ?>
+        </div>
+        <?php Pjax::end(); ?>
     </div>
 </div>

@@ -30,7 +30,10 @@ $this->params['breadcrumbs'][] = $this->title;
                     $items[] = Bootstrap::tabItem([
                         'icon' => 'fas fa-chart-line',
                         'label' => Yii::t('app', 'Productos'),
-                        'content' => $this->render('tabs/_products.php'),
+                        'content' => $this->render('tabs/_products.php', [
+                            'articlesViewSearch' => $articlesSearch,
+                            'articlesViewProvider' => $articlesViewProvider,
+                        ]),
                     ]);
 
                     $items[] = Bootstrap::tabItem([
@@ -56,6 +59,8 @@ $this->params['breadcrumbs'][] = $this->title;
                             'label' => Yii::t('app', 'Administrar'),
                             'content' => $this->render('tabs/_administration.php', [
                                 'model' => $model,
+                                'articlesSearch' => $articlesSearch,
+                                'articlesProvider' => $articlesProvider,
                             ]),
                         ]);
                     }
