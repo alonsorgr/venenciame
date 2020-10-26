@@ -50,20 +50,34 @@ use yii\helpers\Url;
                     'title' => Yii::t('app', 'Escriba una descripción del artículo de vino'),
                 ]); ?>
             </div>
-            <div class="mb-4">
-                <?= $form->field($model, 'partner_id')->widget(Select2::class, [
-                    'data' => Partners::labels(),
-                    'options' => [
-                        'class' => 'form-control',
-                        'placeholder' => Yii::t('app', 'Seleccione una bodega'),
-                        'title' => Yii::t('app', 'Seleccione una bodega'),
-                    ],
-                    'theme' => Select2::THEME_MATERIAL,
-                    'pluginOptions' => [
-                        'allowClear' => false,
-                    ],
-                ]); ?>
+            <?php if (User::isAdmin()) : ?>
+                <div class="mb-4">
+                    <?= $form->field($model, 'partner_id')->widget(Select2::class, [
+                        'data' => Partners::labels(),
+                        'options' => [
+                            'class' => 'form-control',
+                            'placeholder' => Yii::t('app', 'Seleccione una bodega'),
+                            'title' => Yii::t('app', 'Seleccione una bodega'),
+                        ],
+                        'theme' => Select2::THEME_MATERIAL,
+                        'pluginOptions' => [
+                            'allowClear' => false,
+                        ],
+                    ]); ?>
+                </div>
+            <?php else : ?>
+                <div class="col">
+                    <?= $form->field($model, 'partner_id')->hiddenInput([
+                        'value' => User::partnerId(),
+                    ])->label(false); ?>
+                </div>
+            <?php endif ?>
+            <div class="col">
+                <?= $form->field($model, 'partner_id')->hiddenInput([
+                    'value' => User::partnerId(),
+                ])->label(false); ?>
             </div>
+
             <div class="mb-4">
                 <?= $form->field($model, 'category_id')->widget(Select2::class, [
                     'data' => Categories::labels(),
