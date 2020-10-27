@@ -7,8 +7,6 @@ use yii\helpers\Url;
 use yii\bootstrap4\Html;
 use app\helpers\Bootstrap;
 
-Bootstrap::registerTooltip($this);
-
 $this->title = Yii::t('app', 'Desconectarse');
 
 ?>

@@ -15,6 +15,7 @@ use app\helpers\Navigation;
 use yii\helpers\Url;
 
 AppAsset::register($this);
+// Bootstrap::registerTooltip($this);
 
 ?>
 <?php $this->beginPage() ?>

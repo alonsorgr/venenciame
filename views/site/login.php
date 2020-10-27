@@ -9,8 +9,6 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use app\helpers\Bootstrap;
 
-Bootstrap::registerTooltip($this);
-
 $this->registerJsFile("@web/js/form.js", [
     'depends' => [
         \yii\web\JqueryAsset::class,

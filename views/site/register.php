@@ -17,8 +17,6 @@ Modal::begin([
 echo $this->render('_privacity');
 Modal::end();
 
-Bootstrap::registerTooltip($this);
-
 $this->registerJsFile("@web/js/form.js", [
     'depends' => [
         \yii\web\JqueryAsset::class,

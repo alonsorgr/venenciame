@@ -5,8 +5,6 @@
 use yii\bootstrap4\Html;
 use app\helpers\Bootstrap;
 
-Bootstrap::registerTooltip($this);
-
 ?>
 <div class="site-logout CookieMonsterBox cookie">
     <div class="row justify-content-between m-4">
