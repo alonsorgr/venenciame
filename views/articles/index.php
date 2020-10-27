@@ -19,17 +19,17 @@ $this->title = Yii::t('app', 'Vinos');
         'timeout' => '100000',
     ]); ?>
     <div class="row">
-        <div class="col-xl-3 mb-5">
+        <div class="col-lg-3 mb-5">
             <div class="w-100">
                 <div class="card-header">
-                    <a data-toggle="collapse" href="#collapse-search-articles" aria-expanded="true" aria-controls="collapse-search-articles" id="collapse-search-articles-index" class="d-block collapse-link text-decoration-none">
+                    <a id="collapse-search-articles-btn" data-toggle="collapse" href="#collapse-search-articles" aria-expanded="true" aria-controls="collapse-search-articles" id="collapse-search-articles-index" class="d-block collapse-link text-decoration-none">
                         <div class="row justify-content-between">
                             <div class="lead ml-2"><?= Yii::t('app', 'Buscar') ?></div>
-                            <i id="collapse-serach-articles" class="fa fa-chevron-down mr-3 d-xl-none"></i>
+                            <i class="collapse-icon fa fa-chevron-down mr-3 d-xl-none"></i>
                         </div>
                     </a>
                 </div>
-                <div id="collapse-search-articles" class="collapse" aria-labelledby="collapse-search-articles-index">
+                <div id="collapse-search-articles" class="collapse d-lg-block" aria-labelledby="collapse-search-articles-index">
                     <div class="card-body">
                         <?= $this->render('_search', [
                             'model' => $searchModel,
@@ -38,7 +38,7 @@ $this->title = Yii::t('app', 'Vinos');
                 </div>
             </div>
         </div>
-        <div class="col-xl-9">
+        <div class="col-lg-9">
             <?= ListView::widget([
                 'dataProvider' => $dataProvider,
                 'emptyText' => $this->render('/site/_empty'),

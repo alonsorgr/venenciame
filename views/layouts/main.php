@@ -15,9 +15,6 @@ use app\helpers\Navigation;
 use yii\helpers\Url;
 
 AppAsset::register($this);
-Bootstrap::registerTooltip($this);
-
-//$this->title = Yii::$app->name;
 
 ?>
 <?php $this->beginPage() ?>
@@ -48,7 +45,7 @@ Bootstrap::registerTooltip($this);
             ]),
             'brandUrl' => Yii::$app->homeUrl,
             'options' => [
-                'class' => 'navbar-light bg-light navbar-expand-lg fixed-top shadow-lg',
+                'class' => 'navbar-light bg-light navbar-expand-xl fixed-top shadow-lg',
             ],
             'collapseOptions' => [
                 'class' => 'justify-content-end',
@@ -156,7 +153,7 @@ Bootstrap::registerTooltip($this);
             ]) ?>
         </div>
     </footer>
-    <div class="page-loader-wrapper">
+    <div class="page-loader-wrapper" style="z-index: 100;">
         <div class="loader">
             <div class="preloader">
                 <div class="spinner-layer pl-primary">

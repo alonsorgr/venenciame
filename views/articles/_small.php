@@ -160,7 +160,7 @@ $this->registerJs("$('#cuantity' + '$model->id').inputSpinner()");
                 </div>
                 <div class="col-12 col-xl-8 text-center text-xl-right mt-2">
                     <div class="row justify-content-xl-end justify-content-center">
-                        <div class="col-xl-5 text-center text-xl-right">
+                        <div class="col-xl-5 text-center text-xl-right" style="z-index: 100;">
                             <?= Html::input('number', 'cuantity', '', [
                                 'id' => 'cuantity' . $model->id,
                                 'min' => 1,

@@ -126,18 +126,25 @@ a.desc:after {
 .card-header .fa {
   transition: .3s transform ease-in-out;
 }
-
 .card-header .collapsed .fa {
-  margin-top: -8px;
   transform: rotate(90deg);
 }
 
-.collapse-link {
-  cursor: default;
-  text-decoration: none;
+@media screen and (max-width: 992px) {
+  .collapse-icon {
+    margin-top: 8px;
+  }
 }
 
-#collapse-serach-articles {
-  position: relative;
-  top: 5px;
+@media screen and (min-width: 992px) {
+  .collapse.hh {
+    display: block !important;
+  }
+  #collapse-search-articles-btn {
+    pointer-events: none;
+  }
+}
+
+#partner-view-container-0.nav-tabs>.nav-item {
+  width: 33% !important;
 }
