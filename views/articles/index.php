@@ -22,10 +22,10 @@ $this->title = Yii::t('app', 'Vinos');
         <div class="col-xl-3 mb-5">
             <div class="w-100">
                 <div class="card-header">
-                    <a data-toggle="collapse" href="#collapse-example" aria-expanded="true" aria-controls="collapse-example" id="heading-example" class="d-block text-decoration-none">
+                    <a data-toggle="collapse" href="#collapse-example" aria-expanded="true" aria-controls="collapse-example" id="heading-example" class="d-block collapse-link text-decoration-none">
                         <div class="row justify-content-between">
                             <div class="lead ml-2"><?= Yii::t('app', 'Buscar') ?></div>
-                            <i class="fa fa-chevron-down mr-3"></i>
+                            <i class="fa fa-chevron-down mr-3 d-xl-none"></i>
                         </div>
                     </a>
                 </div>

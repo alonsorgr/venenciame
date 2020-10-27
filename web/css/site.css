@@ -132,3 +132,8 @@ a.desc:after {
   margin-top: 3px;
   transform: rotate(90deg);
 }
+
+.collapse-link {
+  cursor: default;
+  text-decoration: none;
+}
