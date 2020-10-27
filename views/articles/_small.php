@@ -170,7 +170,7 @@ $this->registerJs("$('#cuantity' + '$model->id').inputSpinner()");
                                 'title' => Yii::t('app', 'Seleccione el número de unidades'),
                             ]) ?>
                         </div>
-                        <div class="col-xl-7 text-center text-xl-right mt-sm-4 mt-xl-0">
+                        <div class="col-xl-7 text-center text-xl-right mt-4 mt-xl-0">
                             <?= Html::a('<i class="fas fa-cart-plus mr-2"></i>' . Yii::t('app', 'Agregar al carrito'), ['/carts/create'], [
                                 'class' => 'btn btn-primary btn-block',
                             ]); ?>
