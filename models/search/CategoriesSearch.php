@@ -61,8 +61,8 @@ class CategoriesSearch extends Categories
         }
 
         $query->andFilterWhere([
-            'id' => $this->id,
-            'created_at' => $this->created_at,
+            'categories.id' => $this->id,
+            'categories.created_at' => $this->created_at,
         ]);
 
         $query->andFilterWhere(['ilike', 'label', $this->label]);

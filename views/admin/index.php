@@ -11,7 +11,9 @@
 /* @var $denominationsSearchModel app\models\search\DenominationssSearch */
 /* @var $denominationsDataProvider yii\data\ActiveDataProvider */
 /* @var $vatsSearchModel app\models\search\VatsSearch */
-/* @var $vatssDataProvider yii\data\ActiveDataProvider */
+/* @var $vatsDataProvider yii\data\ActiveDataProvider *
+/* @var $articlesSearchModel app\models\search\ArticlesSearch */
+/* @var $articlesDataProvider yii\data\ActiveDataProvider */
 
 use app\helpers\Bootstrap;
 use kartik\tabs\TabsX;
@@ -66,7 +68,10 @@ $this->params['breadcrumbs'][] = $this->title;
             $items[] = Bootstrap::tabItem([
                 'icon' => 'fas fa-wine-glass',
                 'label' => Yii::t('app', 'Artículos'),
-                'content' => $this->render('tabs/_articles'),
+                'content' => $this->render('tabs/_articles', [
+                    'articlesSearchModel' => $articlesSearchModel,
+                    'articlesDataProvider' => $articlesDataProvider,
+                ]),
             ]);
             $items[] = Bootstrap::tabItem([
                 'icon' => 'fas fa-truck',

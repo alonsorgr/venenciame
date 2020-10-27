@@ -75,25 +75,25 @@ class UserSearch extends User
         }
         
         $query->andFilterWhere([
-            'id' => $this->id,
-            'status_id' => $this->status_id,
-            'admin' => $this->admin,
-            'privacity' => $this->privacity,
-            'birthdate' => $this->birthdate,
-            'rol_id' => $this->rol_id,
-            'language_id' => $this->language_id,
-            'updated_at' => $this->updated_at,
-            'created_at' => $this->created_at,
+            'users.id' => $this->id,
+            'users.status_id' => $this->status_id,
+            'users.admin' => $this->admin,
+            'users.privacity' => $this->privacity,
+            'users.birthdate' => $this->birthdate,
+            'users.rol_id' => $this->rol_id,
+            'users.language_id' => $this->language_id,
+            'users.updated_at' => $this->updated_at,
+            'users.created_at' => $this->created_at,
         ]);
 
-        $query->andFilterWhere(['ilike', 'username', $this->username])
-            ->andFilterWhere(['ilike', 'password', $this->password])
-            ->andFilterWhere(['ilike', 'email', $this->email])
-            ->andFilterWhere(['ilike', 'auth_key', $this->auth_key])
-            ->andFilterWhere(['ilike', 'verf_key', $this->verf_key])
-            ->andFilterWhere(['ilike', 'name', $this->name])
-            ->andFilterWhere(['ilike', 'surname', $this->surname])
-            ->andFilterWhere(['ilike', 'image', $this->image])
+        $query->andFilterWhere(['ilike', 'users.username', $this->username])
+            ->andFilterWhere(['ilike', 'users.password', $this->password])
+            ->andFilterWhere(['ilike', 'users.email', $this->email])
+            ->andFilterWhere(['ilike', 'users.auth_key', $this->auth_key])
+            ->andFilterWhere(['ilike', 'users.verf_key', $this->verf_key])
+            ->andFilterWhere(['ilike', 'users.name', $this->name])
+            ->andFilterWhere(['ilike', 'users.surname', $this->surname])
+            ->andFilterWhere(['ilike', 'users.image', $this->image])
             ->andFilterWhere(['ilike', 's.label', $this->getAttribute('status.label')]);
 
         return $dataProvider;

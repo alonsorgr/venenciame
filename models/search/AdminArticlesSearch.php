@@ -20,7 +20,7 @@ use Yii;
  * @author Alonso García <alonsorgr@gmail.com>
  * @since 2.0
  */
-class ArticlesPartnersViewSearch extends Articles
+class AdminArticlesSearch extends Articles
 {
     /**
      * {@inheritdoc}
@@ -29,9 +29,17 @@ class ArticlesPartnersViewSearch extends Articles
     {
         return [
             [['id', 'partner_id', 'category_id', 'denomination_id', 'vat_id', 'stock', 'capacity'], 'integer'],
-            [['title', 'description', 'degrees', 'variety', 'pairing', 'review', 'image', 'created_at'], 'safe'],
+            [['title', 'description', 'degrees', 'variety', 'pairing', 'review', 'image', 'partner.name', 'created_at'], 'safe'],
             [['price'], 'number'],
         ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function attributes()
+    {
+        return array_merge(parent::attributes(), ['partner.name']);
     }
 
     /**
@@ -77,11 +85,16 @@ class ArticlesPartnersViewSearch extends Articles
      */
     public function search($params)
     {
-        $query = Articles::find()->where(['partner_id' => intval(Yii::$app->getRequest()->getQueryParam('id'))])->andWhere(['status_id' => Statuses::STATUS_ACTIVE]);
+        $query = Articles::find()->joinWith('partner p');
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
+
+        $dataProvider->sort->attributes['partner.name'] = [
+            'asc' => ['p.name' => SORT_ASC],
+            'desc' => ['p.name' => SORT_DESC],
+        ];
 
         $this->load($params);
 
@@ -107,7 +120,8 @@ class ArticlesPartnersViewSearch extends Articles
             ->andFilterWhere(['ilike', 'articles.pairing', $this->pairing])
             ->andFilterWhere(['ilike', 'articles.review', $this->review])
             ->andFilterWhere(['<=', 'articles.price', $this->price])
-            ->andFilterWhere(['ilike', 'articles.image', $this->image]);
+            ->andFilterWhere(['ilike', 'articles.image', $this->image])
+            ->andFilterWhere(['ilike', 'u.username', $this->getAttribute('partner.name')]);;
 
         return $dataProvider;
     }
