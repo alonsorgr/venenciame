@@ -10,7 +10,7 @@ body {
   padding: 0 0 60px;
 }
 
-.wrap > .container {
+.wrap>.container {
   padding: 70px 15px 20px;
 }
 
@@ -56,7 +56,8 @@ a.asc:after {
 
 a.desc:after {
   content:
-    /*"\e114"*/ "\e152";
+    /*"\e114"*/
+    "\e152";
 }
 
 .sort-numerical a.asc:after {
@@ -94,12 +95,12 @@ a.desc:after {
 }
 
 /* align the logout "link" (button in form) of the navbar */
-.nav li > form > button.logout {
+.nav li>form>button.logout {
   border: none;
 }
 
-.nav > li > form > button.logout:focus,
-.nav > li > form > button.logout:hover {
+.nav>li>form>button.logout:focus,
+.nav>li>form>button.logout:hover {
   background-color: transparent;
 }
 
@@ -120,4 +121,14 @@ a.desc:after {
 .glyphicon-trash:before {
   content: "\f2ed";
   color: var(--danger);
+}
+
+.card-header .fa {
+  margin-top: 6px;
+  transition: .3s transform ease-in-out;
+}
+
+.card-header .collapsed .fa {
+  margin-top: 3px;
+  transform: rotate(90deg);
 }

@@ -19,15 +19,22 @@ $this->title = Yii::t('app', 'Vinos');
         'timeout' => '100000',
     ]); ?>
     <div class="row">
-        <div class="col-xl-3">
+        <div class="col-xl-3 mb-5">
             <div class="w-100">
                 <div class="card-header">
-                    <div class="lead"><?= Yii::t('app', 'Buscar') ?></div>
+                    <a data-toggle="collapse" href="#collapse-example" aria-expanded="true" aria-controls="collapse-example" id="heading-example" class="d-block text-decoration-none">
+                        <div class="row justify-content-between">
+                            <div class="lead ml-2"><?= Yii::t('app', 'Buscar') ?></div>
+                            <i class="fa fa-chevron-down mr-3"></i>
+                        </div>
+                    </a>
                 </div>
-                <div class="card-body">
-                    <?= $this->render('_search', [
-                        'model' => $searchModel,
-                    ]); ?>
+                <div id="collapse-example" class="collapse d-lg-block" aria-labelledby="heading-example">
+                    <div class="card-body">
+                        <?= $this->render('_search', [
+                            'model' => $searchModel,
+                        ]); ?>
+                    </div>
                 </div>
             </div>
         </div>
