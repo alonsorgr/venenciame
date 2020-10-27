@@ -179,6 +179,7 @@ class RegisterForm extends ActiveRecord
             $this->setUser(new User([
                 'username' => $this->username,
                 'email' => $this->email,
+                'status_id' => User::STATUS_INACTIVE,
                 'privacity' => $this->privacity
             ]));
         }

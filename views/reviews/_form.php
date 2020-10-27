@@ -1,6 +1,7 @@
 <?php
 
 use app\helpers\Bootstrap;
+use app\helpers\Routes;
 use app\models\User;
 use kartik\rating\StarRating;
 use yii\bootstrap4\Html;
@@ -94,7 +95,7 @@ $this->registerJs($js);
             <div class="row">
                 <div class="col">
                     <?= $form->field($model, 'article_id')->hiddenInput([
-                        'value' => substr(trim(Yii::$app->request->referrer), -1),
+                        'value' => Routes::getId(Yii::$app->request->referrer),
                     ])->label(false); ?>
                 </div>
             </div>
