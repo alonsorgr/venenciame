@@ -124,15 +124,19 @@ a.desc:after {
 }
 
 .card-header .fa {
-  transition: .3s transform ease-in-out;
+  transition: .3s transform ease-in;
 }
 .card-header .collapsed .fa {
+  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
   transform: rotate(90deg);
 }
 
 @media screen and (max-width: 992px) {
   .collapse-icon {
-    margin-top: 8px;
+    margin-top: 6px;
   }
 }
 
