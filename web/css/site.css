@@ -145,6 +145,10 @@ a.desc:after {
   }
 }
 
-#partner-view-container-0.nav-tabs>.nav-item {
+#partner-view-container-0-container.nav-tabs>.nav-item {
   width: 33% !important;
+}
+
+#partner-view-container-0.nav-tabs>.nav-item {
+  width: 25% !important;
 }
