@@ -35,6 +35,24 @@ function setModalAnim(modal, event, anim) {
     });
 }
 
+function adjustCollapseView() {
+    var desktopView = $(document).width();
+    if (desktopView >= "768") {
+        $("#collapse-search-articles-index").attr("data-toggle", "");
+        $("#collapse-search-articles-index").css('pointer-events', 'none');
+        $("#collapse-search-articles").addClass('show');
+    } else {
+        $("#collapse-search-articles-index").attr("data-toggle", "collapse");
+        $("#collapse-search-articles-index").css('pointer-events', 'visible');
+        $("#collapse-search-articles").removeClass('show');
+    }
+}
+
+adjustCollapseView();
+$(window).on("resize", function () {
+    adjustCollapseView();
+});
+
 setModalAnim('#modal-login', 'show.bs.modal', 'slideInLeft');
 setModalAnim('#modal-register', 'show.bs.modal', 'slideInRight');
 

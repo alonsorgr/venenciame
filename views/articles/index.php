@@ -22,14 +22,14 @@ $this->title = Yii::t('app', 'Vinos');
         <div class="col-xl-3 mb-5">
             <div class="w-100">
                 <div class="card-header">
-                    <a data-toggle="collapse" href="#collapse-example" aria-expanded="true" aria-controls="collapse-example" id="heading-example" class="d-block collapse-link text-decoration-none">
+                    <a data-toggle="collapse" href="#collapse-search-articles" aria-expanded="true" aria-controls="collapse-search-articles" id="collapse-search-articles-index" class="d-block collapse-link text-decoration-none">
                         <div class="row justify-content-between">
                             <div class="lead ml-2"><?= Yii::t('app', 'Buscar') ?></div>
-                            <i class="fa fa-chevron-down mr-3 d-xl-none"></i>
+                            <i id="collapse-serach-articles" class="fa fa-chevron-down mr-3 d-xl-none"></i>
                         </div>
                     </a>
                 </div>
-                <div id="collapse-example" class="collapse d-lg-block" aria-labelledby="heading-example">
+                <div id="collapse-search-articles" class="collapse" aria-labelledby="collapse-search-articles-index">
                     <div class="card-body">
                         <?= $this->render('_search', [
                             'model' => $searchModel,
