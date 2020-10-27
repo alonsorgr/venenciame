@@ -90,25 +90,24 @@ class ArticlesPartnersSearch extends Articles
         }
         
         $query->andFilterWhere([
-            'id' => $this->id,
-            'partner_id' => $this->partner_id,
-            'category_id' => $this->category_id,
-            'denomination_id' => $this->denomination_id,
-            'vat_id' => $this->vat_id,
-            //'price' => $this->price,
-            'stock' => $this->stock,
-            'capacity' => $this->capacity,
-            'created_at' => $this->created_at,
+            'articles.id' => $this->id,
+            'articles.partner_id' => $this->partner_id,
+            'articles.category_id' => $this->category_id,
+            'articles.denomination_id' => $this->denomination_id,
+            'articles.vat_id' => $this->vat_id,
+            'articles.stock' => $this->stock,
+            'articles.capacity' => $this->capacity,
+            'articles.created_at' => $this->created_at,
         ]);
 
-        $query->andFilterWhere(['ilike', 'title', $this->title])
-            ->andFilterWhere(['ilike', 'description', $this->description])
-            ->andFilterWhere(['ilike', 'degrees', $this->degrees])
-            ->andFilterWhere(['ilike', 'variety', $this->variety])
-            ->andFilterWhere(['ilike', 'pairing', $this->pairing])
-            ->andFilterWhere(['ilike', 'review', $this->review])
-            ->andFilterWhere(['<=', 'price', $this->price])
-            ->andFilterWhere(['ilike', 'image', $this->image]);
+        $query->andFilterWhere(['ilike', 'articles.title', $this->title])
+            ->andFilterWhere(['ilike', 'articles.description', $this->description])
+            ->andFilterWhere(['ilike', 'articles.degrees', $this->degrees])
+            ->andFilterWhere(['ilike', 'articles.variety', $this->variety])
+            ->andFilterWhere(['ilike', 'articles.pairing', $this->pairing])
+            ->andFilterWhere(['ilike', 'articles.review', $this->review])
+            ->andFilterWhere(['<=', 'articles.price', $this->price])
+            ->andFilterWhere(['ilike', 'articles.image', $this->image]);
 
         return $dataProvider;
     }

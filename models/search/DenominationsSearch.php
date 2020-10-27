@@ -61,11 +61,11 @@ class DenominationsSearch extends Denominations
         }
 
         $query->andFilterWhere([
-            'id' => $this->id,
-            'created_at' => $this->created_at,
+            'denominations.id' => $this->id,
+            'denominations.created_at' => $this->created_at,
         ]);
 
-        $query->andFilterWhere(['ilike', 'label', $this->label]);
+        $query->andFilterWhere(['ilike', 'denominations.label', $this->label]);
 
         return $dataProvider;
     }

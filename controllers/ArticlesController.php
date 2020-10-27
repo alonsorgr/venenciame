@@ -8,11 +8,13 @@
 
 namespace app\controllers;
 
+use app\helpers\Email;
 use Yii;
 use app\models\Articles;
 use app\models\Reviews;
 use app\models\search\ArticlesSearch;
 use app\models\search\ReviewsSearch;
+use app\models\Statuses;
 use app\models\User;
 use Github\Api\PullRequest\Review;
 use yii\bootstrap4\ActiveForm;
@@ -20,6 +22,7 @@ use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\helpers\Url;
 use yii\web\Response;
 
 /**
@@ -193,6 +196,63 @@ class ArticlesController extends Controller
                 return $this->redirect(['articles/view', 'id' => $id]);
             }
         }
+    }
+
+    /**
+     * Acción de cambio de estado a activado del artículo.
+     * @param   integer            $id      identificador de artículo.
+     * @return  yii\web\Response            el resultado de la representación.
+     * @throws  NotFoundHttpException       si el modelo no es encontrado.
+     */
+    public function actionEnable($id)
+    {
+        $model = $this->findModel($id);
+        $model->status_id = Statuses::STATUS_ACTIVE;
+        if ($model->save()) {
+            Yii::$app->session->setFlash(
+                'success',
+                Yii::t('app', 'Se ha habilitado el artículo correctamenete.')
+            );
+        } else {
+            Yii::$app->session->setFlash(
+                'error',
+                Yii::t('app', 'No se pudo habilitar el artículo.')
+            );
+        }
+        return $this->redirect(['/admin/index']);
+    }
+
+    /**
+     * Acción de cambio de estado a desactivado del artículo.
+     * @param   integer            $id      identificador de artículo.
+     * @return  yii\web\Response            el resultado de la representación.
+     * @throws  NotFoundHttpException       si el modelo no es encontrado.
+     */
+    public function actionDisable($id)
+    {
+        $model = $this->findModel($id);
+        $model->status_id = Statuses::STATUS_DELETED;
+        if ($model->save()) {
+            Yii::$app->session->setFlash(
+                'success',
+                Yii::t('app', 'Se ha deshabilitado el artículo correctamenete.')
+            );
+            Email::send([
+                'email' => $model->partner->email,
+                'subject' => Yii::t('app', 'VENÉNCIAME - ARTÍCULO DESHABILITADO'),
+                'body' => Email::link([
+                    'body' => Yii::t('app', 'Su artículo ha sido deshabilitada por el administrador.'),
+                    'url' => Url::to(['site/contact'], true),
+                    'text' => Yii::t('app', 'Contacto'),
+                ]),
+            ]);
+        } else {
+            Yii::$app->session->setFlash(
+                'error',
+                Yii::t('app', 'No se pudo deshabilitar el artículo.')
+            );
+        }
+        return $this->redirect(['/admin/index']);
     }
     
     /**

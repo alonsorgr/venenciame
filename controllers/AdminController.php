@@ -8,7 +8,9 @@
 
 namespace app\controllers;
 
+use app\models\search\AdminArticlesSearch;
 use app\models\search\AdminPartnersSearch;
+use app\models\search\ArticlesSearch;
 use app\models\search\CategoriesSearch;
 use app\models\search\DenominationsSearch;
 use app\models\search\PartnersSearch;
@@ -70,6 +72,9 @@ class AdminController extends Controller
 
         $vatsSearchModel = new VatsSearch();
         $vatsDataProvider = $vatsSearchModel->search(Yii::$app->request->queryParams);
+        
+        $articlesSearchModel = new AdminArticlesSearch();
+        $articlesDataProvider = $articlesSearchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
             'userSearchModel' => $userSearchModel,
@@ -82,6 +87,8 @@ class AdminController extends Controller
             'denominationsDataProvider' => $denominationsDataProvider,
             'vatsSearchModel' => $vatsSearchModel,
             'vatsDataProvider' => $vatsDataProvider,
+            'articlesSearchModel' => $articlesSearchModel,
+            'articlesDataProvider' => $articlesDataProvider,
         ]);
     }
 }
