@@ -18,7 +18,7 @@ use yii\widgets\Pjax;
     <div class="row">
         <div class="col-xl-12">
             <?= ListView::widget([
-                'dataProvider' => $articlesViewProvider,
+                'dataProvider' => $articlesViewsProvider,
                 'emptyText' => $this->render('/site/_empty'),
                 'itemView' => function ($model, $key, $index, $widget) {
                     return $this->render('/articles/_small', ['model' => $model]);

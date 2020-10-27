@@ -106,8 +106,8 @@ class PartnersController extends Controller
         $articlesSearch = new ArticlesPartnersSearch();
         $articlesProvider = $articlesSearch->search(Yii::$app->request->queryParams);
 
-        $articlesViewSearch = new ArticlesPartnersViewSearch();
-        $articlesViewProvider = $articlesViewSearch->search(Yii::$app->request->queryParams);
+        $articlesViewsSearch = new ArticlesPartnersViewSearch();
+        $articlesViewsProvider = $articlesViewsSearch->search(Yii::$app->request->queryParams);
 
         return $this->render('view', [
             'model' => $this->findModel($id),
@@ -115,8 +115,8 @@ class PartnersController extends Controller
             'followersProvider' => $followersProvider,
             'articlesSearch' => $articlesSearch,
             'articlesProvider' => $articlesProvider,
-            'articlesViewSearch' => $articlesViewSearch,
-            'articlesViewProvider' => $articlesViewProvider,
+            'articlesViewsSearch' => $articlesViewsSearch,
+            'articlesViewsProvider' => $articlesViewsProvider,
         ]);
     }
 

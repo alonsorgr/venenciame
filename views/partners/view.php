@@ -31,8 +31,8 @@ $this->params['breadcrumbs'][] = $this->title;
                         'icon' => 'fas fa-chart-line',
                         'label' => Yii::t('app', 'Productos'),
                         'content' => $this->render('tabs/_products.php', [
-                            'articlesViewSearch' => $articlesViewsSearch,
-                            'articlesViewProvider' => $articlesViewProvider,
+                            'articlesViewsSearch' => $articlesViewsSearch,
+                            'articlesViewsProvider' => $articlesViewsProvider,
                         ]),
                     ]);
 
