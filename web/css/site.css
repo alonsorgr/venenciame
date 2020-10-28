@@ -170,3 +170,20 @@ a.desc:after {
     display: block;
   }
 }
+
+.img-thumbnail {
+  border-radius: 33px;
+  width: 61px;
+  height: 61px
+}
+
+.fab:before {
+  position: relative;
+  top: 13px
+}
+
+.smd {
+  width: 200px;
+  font-size: small;
+  text-align: center
+}
