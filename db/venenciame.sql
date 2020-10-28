@@ -180,3 +180,16 @@ CREATE TABLE reviews
   , created_at    TIMESTAMP(0)  DEFAULT CURRENT_TIMESTAMP
   , UNIQUE (user_id, article_id)
 );
+
+DROP TABLE IF EXISTS cart_items CASCADE;
+
+CREATE TABLE cart_items
+(
+    id            BIGSERIAL     PRIMARY KEY
+  , user_id       BIGINT        NOT NULL  REFERENCES users (id)       ON DELETE CASCADE ON UPDATE CASCADE
+  , article_id    BIGINT        NOT NULL  REFERENCES articles (id)    ON DELETE CASCADE ON UPDATE CASCADE
+  , status_id     BIGINT        NOT NULL  REFERENCES statuses (id)    ON DELETE CASCADE ON UPDATE CASCADE
+  , quantity      INTEGER       NOT NULL
+  , created_at    TIMESTAMP(0)  DEFAULT CURRENT_TIMESTAMP
+  , UNIQUE (user_id, article_id)
+);
