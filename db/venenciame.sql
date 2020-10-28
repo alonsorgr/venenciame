@@ -173,8 +173,8 @@ DROP TABLE IF EXISTS reviews CASCADE;
 CREATE TABLE reviews
 (
     id            BIGSERIAL     PRIMARY KEY
-  , user_id       BIGINT        NOT NULL  REFERENCES users (id)       ON DELETE CASCADE ON UPDATE CASCADE
-  , article_id    BIGINT        NOT NULL  REFERENCES articles (id)    ON DELETE CASCADE ON UPDATE CASCADE
+  , user_id       BIGINT        NOT NULL  REFERENCES users (id)   
+  , article_id    BIGINT        NOT NULL  REFERENCES articles (id)
   , review        TEXT          NOT NULL
   , score         INTEGER       NOT NULL  CONSTRAINT ck_value_min_max CHECK (score >= 0 AND score <=5)
   , created_at    TIMESTAMP(0)  DEFAULT CURRENT_TIMESTAMP
@@ -186,9 +186,9 @@ DROP TABLE IF EXISTS cart_items CASCADE;
 CREATE TABLE cart_items
 (
     id            BIGSERIAL     PRIMARY KEY
-  , user_id       BIGINT        NOT NULL  REFERENCES users (id)       ON DELETE CASCADE ON UPDATE CASCADE
-  , article_id    BIGINT        NOT NULL  REFERENCES articles (id)    ON DELETE CASCADE ON UPDATE CASCADE
-  , status_id     BIGINT        NOT NULL  REFERENCES statuses (id)    ON DELETE CASCADE ON UPDATE CASCADE
+  , user_id       BIGINT        NOT NULL  REFERENCES users (id)   
+  , article_id    BIGINT                  REFERENCES articles (id)
+  , status_id     BIGINT        NOT NULL  REFERENCES statuses (id)
   , quantity      INTEGER       NOT NULL
   , created_at    TIMESTAMP(0)  DEFAULT CURRENT_TIMESTAMP
   , UNIQUE (user_id, article_id)

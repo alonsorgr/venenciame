@@ -40,6 +40,7 @@ use yii\web\UploadedFile;
  * @property Vats $vat
  * @property Favorites[] $favorites
  * @property Reviews[] $reviews
+ * @property CartItems[] $cartItems
  */
 class Articles extends \yii\db\ActiveRecord
 {
@@ -316,6 +317,16 @@ class Articles extends \yii\db\ActiveRecord
     public function getReviews()
     {
         return $this->hasMany(Reviews::class, ['article_id' => 'id'])->inverseOf('article');
+    }
+
+    /**
+     * Obtiene consulta para [[CartItems]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCartItems()
+    {
+        return $this->hasMany(CartItems::class, ['article_id' => 'id'])->inverseOf('article');
     }
 
     /**

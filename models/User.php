@@ -43,6 +43,7 @@ use app\helpers\AmazonS3;
  * @property Languages $language
  * @property Statuses $status
  * @property Reviews[] $reviews
+ * @property CartItems[] $cartItems
  */
 class User extends \yii\db\ActiveRecord implements IdentityInterface
 {
@@ -503,6 +504,16 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     public function getReviews()
     {
         return $this->hasMany(Reviews::class, ['user_id' => 'id'])->inverseOf('user');
+    }
+
+    /**
+     * Obtiene consulta para [[CartItems]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCartItems()
+    {
+        return $this->hasMany(CartItems::class, ['user_id' => 'id'])->inverseOf('user');
     }
 
     /**
