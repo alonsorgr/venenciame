@@ -1,12 +1,19 @@
 <?php
 
+/**
+ * @link https://github.com/alonsorgr/venenciame/
+ * @copyright Copyright (c) 2020 alonsorgr
+ * @license https://github.com/alonsorgr/venenciame/blob/master/LICENSE.md
+ */
+
 namespace app\models;
 
 use Yii;
 
 /**
- * This is the model class for table "cart_items".
- *
+ * Esta es la clase modelo para la tabla "cart_items".
+ * @author Alonso García <alonsorgr@gmail.com>
+ * @since 3.0
  * @property int $id
  * @property int $user_id
  * @property int $article_id
@@ -16,7 +23,7 @@ use Yii;
  *
  * @property Articles $article
  * @property Statuses $status
- * @property Users $user
+ * @property User $user
  */
 class CartItems extends \yii\db\ActiveRecord
 {
@@ -39,9 +46,9 @@ class CartItems extends \yii\db\ActiveRecord
             [['user_id', 'article_id', 'status_id', 'quantity'], 'integer'],
             [['created_at'], 'safe'],
             [['user_id', 'article_id'], 'unique', 'targetAttribute' => ['user_id', 'article_id']],
-            [['article_id'], 'exist', 'skipOnError' => true, 'targetClass' => Articles::className(), 'targetAttribute' => ['article_id' => 'id']],
-            [['status_id'], 'exist', 'skipOnError' => true, 'targetClass' => Statuses::className(), 'targetAttribute' => ['status_id' => 'id']],
-            [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
+            [['article_id'], 'exist', 'skipOnError' => true, 'targetClass' => Articles::class, 'targetAttribute' => ['article_id' => 'id']],
+            [['status_id'], 'exist', 'skipOnError' => true, 'targetClass' => Statuses::class, 'targetAttribute' => ['status_id' => 'id']],
+            [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::class, 'targetAttribute' => ['user_id' => 'id']],
         ];
     }
 
@@ -61,32 +68,32 @@ class CartItems extends \yii\db\ActiveRecord
     }
 
     /**
-     * Gets query for [[Article]].
+     * Obtiene consulta para [[Articles]].
      *
      * @return \yii\db\ActiveQuery
      */
     public function getArticle()
     {
-        return $this->hasOne(Articles::className(), ['id' => 'article_id'])->inverseOf('cartItems');
+        return $this->hasOne(Articles::class, ['id' => 'article_id'])->inverseOf('cartItems');
     }
 
     /**
-     * Gets query for [[Status]].
+     * Obtiene consulta para [[Statuses]].
      *
      * @return \yii\db\ActiveQuery
      */
     public function getStatus()
     {
-        return $this->hasOne(Statuses::className(), ['id' => 'status_id'])->inverseOf('cartItems');
+        return $this->hasOne(Statuses::class, ['id' => 'status_id'])->inverseOf('cartItems');
     }
 
     /**
-     * Gets query for [[User]].
+     * Obtiene consulta para [[User]].
      *
      * @return \yii\db\ActiveQuery
      */
     public function getUser()
     {
-        return $this->hasOne(User::className(), ['id' => 'user_id'])->inverseOf('cartItems');
+        return $this->hasOne(User::class, ['id' => 'user_id'])->inverseOf('cartItems');
     }
 }

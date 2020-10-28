@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * @link https://github.com/alonsorgr/venenciame/
+ * @copyright Copyright (c) 2020 alonsorgr
+ * @license https://github.com/alonsorgr/venenciame/blob/master/LICENSE.md
+ */
+
 namespace app\controllers;
 
 use Yii;
@@ -10,7 +16,9 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * CartItemsController implements the CRUD actions for CartItems model.
+ * Controlador de carritos de la compra [[CartItems]]
+ * @author Alonso García <alonsorgr@gmail.com>
+ * @since 3.0
  */
 class CartItemsController extends Controller
 {
@@ -21,7 +29,7 @@ class CartItemsController extends Controller
     {
         return [
             'verbs' => [
-                'class' => VerbFilter::className(),
+                'class' => VerbFilter::class,
                 'actions' => [
                     'delete' => ['POST'],
                 ],
@@ -30,8 +38,9 @@ class CartItemsController extends Controller
     }
 
     /**
-     * Lists all CartItems models.
-     * @return mixed
+     * Acción de renderizado vista de inicio de carritos de la compra.
+     *
+     * @return yii\web\Response | string    el resultado de la representación.
      */
     public function actionIndex()
     {
@@ -45,10 +54,10 @@ class CartItemsController extends Controller
     }
 
     /**
-     * Displays a single CartItems model.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
+     * Acción de renderizado vista de carrito de la compra.
+     * @param   integer            $id      identificador de carrito de la compra.
+     * @return  yii\web\Response | string   el resultado de la representación.
+     * @throws  NotFoundHttpException       si el modelo no es encontrado.
      */
     public function actionView($id)
     {
@@ -58,9 +67,8 @@ class CartItemsController extends Controller
     }
 
     /**
-     * Creates a new CartItems model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return mixed
+     * Acción de renderizado vista de creación de carrito de la compra.
+     * @return  yii\web\Response | string   el resultado de la representación.
      */
     public function actionCreate()
     {
@@ -76,11 +84,10 @@ class CartItemsController extends Controller
     }
 
     /**
-     * Updates an existing CartItems model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
+     * Acción de renderizado vista de edición carrito de la compra.
+     * @param   integer            $id      identificador de carrito de la compra.
+     * @return  yii\web\Response | string   el resultado de la representación.
+     * @throws  NotFoundHttpException       si el modelo no es encontrado.
      */
     public function actionUpdate($id)
     {
@@ -96,11 +103,10 @@ class CartItemsController extends Controller
     }
 
     /**
-     * Deletes an existing CartItems model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
+     * Acción de renderizado vista de borrado de carrito de la compra.
+     * @param   integer            $id      identificador de carrito de la compra.
+     * @return  yii\web\Response | string   el resultado de la representación.
+     * @throws  NotFoundHttpException       si el modelo no es encontrado.
      */
     public function actionDelete($id)
     {
@@ -110,11 +116,10 @@ class CartItemsController extends Controller
     }
 
     /**
-     * Finds the CartItems model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
-     * @return CartItems the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
+     * Encuentra el modelo de carrito de la compra en función de su valor de clave principal.
+     * @param   integer                 $id     identificador de carrito de la compra.
+     * @return  User                            el modelo cargado.
+     * @throws  NotFoundHttpException           si el modelo no es encontrado.
      */
     protected function findModel($id)
     {
