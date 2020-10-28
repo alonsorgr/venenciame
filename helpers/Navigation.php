@@ -76,6 +76,14 @@ class Navigation
                 'data-target' => '#modal-register',
                 'value' => Url::to(['site/register']),
             ]) : '',
+
+            static::item([
+                'class' => '',
+                'icon' => 'f',
+                'label' => Yii::t('app', 'Carrito'),
+                'url' => Url::to(['cart-items/index']),
+                'title' => Yii::t('app', 'Carrito'),
+            ]),
         ];
     }
 
