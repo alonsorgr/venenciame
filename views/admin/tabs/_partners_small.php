@@ -13,22 +13,6 @@ use yii\helpers\Url;
 
 <div class="admin-partners-small">
     <div class="row mt-5 justify-content-start">
-        <div class="col-12 col-md-1">
-            <div class="mx-auto">
-                <div class="col d-flex justify-content-center align-items-center">
-                    <div class="user-box-small">
-                        <div class="image-profile">
-                            <?= Html::img(Html::encode(Url::base(true) . '/' . $model->link), [
-                                'alt' => Yii::t('app', 'Logo corporativo'),
-                                'title' => Yii::t('app', 'Logo corporativo'),
-                                'width' => 32,
-                                'data-action' => 'zoom',
-                            ]); ?>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
         <div class="col-12 col-md-2">
             <div class="mx-auto">
                 <div class="text-center text-md-left font-weight-bold">
@@ -81,7 +65,7 @@ use yii\helpers\Url;
                 </div>
             </div>
         </div>
-        <div class="col-12 col-md-1">
+        <div class="col-12 col-md-2">
             <div class="mx-auto">
                 <div class="text-center font-weight-bold mb-2">
                     <?= Yii::t('app', 'Acciones'); ?>
