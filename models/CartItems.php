@@ -41,7 +41,7 @@ class CartItems extends \yii\db\ActiveRecord
             [['user_id', 'article_id'], 'unique', 'targetAttribute' => ['user_id', 'article_id']],
             [['article_id'], 'exist', 'skipOnError' => true, 'targetClass' => Articles::className(), 'targetAttribute' => ['article_id' => 'id']],
             [['status_id'], 'exist', 'skipOnError' => true, 'targetClass' => Statuses::className(), 'targetAttribute' => ['status_id' => 'id']],
-            [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => Users::className(), 'targetAttribute' => ['user_id' => 'id']],
+            [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
         ];
     }
 
@@ -87,6 +87,6 @@ class CartItems extends \yii\db\ActiveRecord
      */
     public function getUser()
     {
-        return $this->hasOne(Users::className(), ['id' => 'user_id'])->inverseOf('cartItems');
+        return $this->hasOne(User::className(), ['id' => 'user_id'])->inverseOf('cartItems');
     }
 }
