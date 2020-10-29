@@ -56,16 +56,6 @@ $this->registerJs($js);
                 </div>
             </div>
         </div>
-        <div class="col-12 col-md-3">
-            <div class="mx-auto">
-                <div class="text-center text-md-left font-weight-bold">
-                    <?= Yii::t('app', 'Precio total'); ?>
-                </div>
-                <div class="text-center text-md-left mt-2">
-                    <?= Html::encode(Yii::$app->formatter->asCurrency($model->article->amount * $model->quantity)); ?>
-                </div>
-            </div>
-        </div>
         <div class="col-12 col-md-4">
             <div class="mx-auto">
                 <div class="text-center text-md-left font-weight-bold">
@@ -73,6 +63,16 @@ $this->registerJs($js);
                 </div>
                 <div class="text-center text-md-left mt-2">
                     <?= Html::encode(Yii::$app->formatter->asInteger($model->quantity)); ?>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-3">
+            <div class="mx-auto">
+                <div class="text-center text-md-left font-weight-bold">
+                    <?= Yii::t('app', 'Precio total'); ?>
+                </div>
+                <div class="text-center text-md-left mt-2">
+                    <?= Html::encode(Yii::$app->formatter->asCurrency($model->article->amount * $model->quantity)); ?>
                 </div>
             </div>
         </div>
