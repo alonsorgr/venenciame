@@ -45,7 +45,6 @@ class CartItems extends \yii\db\ActiveRecord
             [['user_id', 'article_id', 'status_id', 'quantity'], 'default', 'value' => null],
             [['user_id', 'article_id', 'status_id', 'quantity'], 'integer'],
             [['created_at'], 'safe'],
-            [['user_id', 'article_id'], 'unique', 'targetAttribute' => ['user_id', 'article_id']],
             [['article_id'], 'exist', 'skipOnError' => true, 'targetClass' => Articles::class, 'targetAttribute' => ['article_id' => 'id']],
             [['status_id'], 'exist', 'skipOnError' => true, 'targetClass' => Statuses::class, 'targetAttribute' => ['status_id' => 'id']],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::class, 'targetAttribute' => ['user_id' => 'id']],

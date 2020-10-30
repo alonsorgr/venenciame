@@ -52,6 +52,26 @@ if (!Yii::$app->user->isGuest) {
     EOT;
 
     $this->registerJs($js);
+
+    $url = Url::to(['cart-items/create', 'user_id' => User::id(), 'article_id' => $model->id]);
+
+    $js = <<<EOT
+    $('#article-to-cart' + '$model->id').click(function(e){
+        $.ajax({
+            type : 'POST',
+            url : '$url' + '&quantity=' + $('#cuantity' + '$model->id').val(),
+            success: function(response) {
+                alert(response);
+                response = JSON.parse(response);
+                if($("#articles-index-pjax").length != 0) {
+                    $.pjax.reload({ container: '#articles-index-pjax', timeout: false });
+                }
+            }
+        });
+    });
+    EOT;
+
+    $this->registerJs($js);
 }
 $this->registerJs("$('#cuantity' + '$model->id').inputSpinner()");
 
@@ -161,7 +181,7 @@ $this->registerJs("$('#cuantity' + '$model->id').inputSpinner()");
                 <div class="col-12 col-xl-8 text-center text-xl-right mt-2">
                     <div class="row justify-content-xl-end justify-content-center">
                         <div class="col-xl-5 text-center text-xl-right" style="z-index: 100;">
-                            <?= Html::input('number', 'cuantity', '', [
+                            <?= Html::input('number', 'quantity', 1, [
                                 'id' => 'cuantity' . $model->id,
                                 'min' => 1,
                                 'max' => $model->stock,
@@ -171,8 +191,11 @@ $this->registerJs("$('#cuantity' + '$model->id').inputSpinner()");
                             ]) ?>
                         </div>
                         <div class="col-xl-7 text-center text-xl-right mt-4 mt-xl-0">
-                            <?= Html::a('<i class="fas fa-cart-plus mr-2"></i>' . Yii::t('app', 'Agregar al carrito'), ['/carts/create'], [
+                            <?= Html::a('<i class="fas fa-cart-plus mr-2"></i>' . Yii::t('app', 'Agregar al carrito'), null, [
+                                'id' => 'article-to-cart' . $model->id,
                                 'class' => 'btn btn-primary btn-block',
+                                'data-pjax' => 0,
+                                'title' => Yii::t('app', 'Agregar artículo al carrito'),
                             ]); ?>
                         </div>
                     </div>

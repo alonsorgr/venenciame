@@ -8,6 +8,7 @@
 
 namespace app\controllers;
 
+use app\models\Articles;
 use Yii;
 use app\models\CartItems;
 use app\models\search\CartItemsSearch;
@@ -70,17 +71,30 @@ class CartItemsController extends Controller
      * Acción de renderizado vista de creación de carrito de la compra.
      * @return  yii\web\Response | string   el resultado de la representación.
      */
-    public function actionCreate()
+    public function actionCreate($user_id, $article_id, $quantity)
     {
-        $model = new CartItems();
+        //TODO: Actualizar documentación
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        $model = CartItems::find()->where(['user_id' => $user_id, 'article_id' => $article_id]);
+
+        if ($model->exists()) {
+            $model = $model->one();
+            $model->quantity = $model->quantity + $quantity;
+            if ($model->save()) {
+                return json_encode(['actualiza']);
+            }
+        } else {
+            $model = new CartItems();
         }
 
-        return $this->render('create', [
-            'model' => $model,
-        ]);
+        if (Yii::$app->request->isAjax) {
+            $model->user_id = $user_id;
+            $model->article_id = $article_id;
+            $model->quantity = $quantity;
+            if ($model->save()) {
+                return json_encode(['si']);
+            }
+        }
     }
 
     /**

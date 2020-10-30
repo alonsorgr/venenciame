@@ -187,9 +187,8 @@ CREATE TABLE cart_items
 (
     id            BIGSERIAL     PRIMARY KEY
   , user_id       BIGINT        NOT NULL  REFERENCES users (id)   
-  , article_id    BIGINT                  REFERENCES articles (id)
-  , status_id     BIGINT        NOT NULL  REFERENCES statuses (id)
+  , article_id    BIGINT        NOT NULL  REFERENCES articles (id)
+  , status_id     BIGINT                  REFERENCES statuses (id)
   , quantity      INTEGER       NOT NULL
   , created_at    TIMESTAMP(0)  DEFAULT CURRENT_TIMESTAMP
-  , UNIQUE (user_id, article_id)
 );
