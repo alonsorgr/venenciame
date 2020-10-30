@@ -32,7 +32,11 @@ use yii\bootstrap4\Html;
                             </div>
                         </div>
                         <div class="col-12 col-xl-11 text-center text-xl-left mt-2">
-                            <?= Html::a(Html::encode($model->user->username) . ' ', Url::to(['user/view', 'id' => User::id()])) . Yii::t('app', 'comentó el ') . Yii::$app->formatter->asDate($model->created_at) . ' ' . Yii::t('app', 'sobre ') .  Html::a(Html::encode($model->article->title), Url::to(['articles/view', 'id' => $model->article->id])) . '.'?> 
+                            <?= Html::a(Html::encode($model->user->username) . ' ', Url::to(['user/view', 'id' => $model->user_id]), [
+                                'data-pjax' => 0,
+                            ]) . Yii::t('app', 'comentó el ') . Yii::$app->formatter->asDate($model->created_at) . ' ' . Yii::t('app', 'sobre ') .  Html::a(Html::encode($model->article->title), Url::to(['articles/view', 'id' => $model->article->id]), [
+                                'data-pjax' => 0,
+                            ]) . '.'?> 
                         </div>
                     </div>
                 </div>
