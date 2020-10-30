@@ -22,7 +22,7 @@ $this->title = Yii::t('app', 'Vinos');
         <div class="col-xl-3 mb-5">
             <div class="card-border w-100">
                 <div class="card-header">
-                    <a id="collapse-search-articles-btn" data-toggle="collapse" href="#collapse-search-articles" aria-expanded="true" aria-controls="collapse-search-articles" id="collapse-search-articles-index" class="d-block collapse-link text-decoration-none">
+                    <a id="collapse-search-articles-btn" data-toggle="collapse" href="#collapse-search-articles" aria-expanded="true" aria-controls="collapse-search-articles" id="collapse-search-articles-index" class="d-block collapse-link text-decoration-none ml-4">
                         <div class="row justify-content-between">
                             <div>
                                 <i class="fas fa-search mx-2 d-inline"></i>
