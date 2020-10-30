@@ -3,9 +3,13 @@
 /* @var $this yii\web\View */
 
 use app\helpers\Bootstrap;
+use app\models\search\CartItemsSearch;
 use app\models\User;
 use yii\bootstrap4\Html;
 use yii\helpers\Url;
+
+$searchModel = new CartItemsSearch();
+$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
 \yii\web\YiiAsset::register($this);
 ?>
@@ -13,24 +17,16 @@ use yii\helpers\Url;
 <div class="sidebar">
     <div id="toast"></div>
     <?php if (!Yii::$app->user->isGuest) : ?>
-        <div class="row mb-4">
+        <div class="row">
             <div class="w-100">
                 <div class="card-header">
-                    <div class="lead"><?= Yii::t('app', 'Carrito') ?></div>
+                    <i class="fas fa-shopping-cart mr-2 d-inline"></i><div class="lead d-inline"><?= Yii::t('app', 'Carrito') ?></div>
                 </div>
                 <div class="card-body">
-                    <h5 class="card-title"><?= Yii::t('app', 'Artículos en el carrito') ?></h5>
-                    <div class="row justify-content-between">
-                        <div class="col-10 py-2">
-                            Amontillado
-                        </div>
-                        <div class="col-2">
-                            <div class="badge badge-secondary badge-pill p-2">
-                                1
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mt-xl-1 horizontal-divider"></div>
+                    <?= $this->render('/cart-items/index-sidebar', [
+                        'searchModel' => $searchModel,
+                        'dataProvider' => $dataProvider,
+                    ]); ?>
                 </div>
             </div>
         </div>
@@ -38,7 +34,7 @@ use yii\helpers\Url;
     <div class="row mb-4">
         <div class="w-100">
             <div class="card-header">
-                <div class="lead"><?= Yii::t('app', 'Compartir') ?></div>
+                <i class="fas fa-share-alt mr-2 d-inline"></i><div class="lead d-inline"><?= Yii::t('app', 'Compartir') ?></div>
             </div>
             <div class="card-body">
                 <div class="icon-container1 d-flex mt-2">
@@ -67,7 +63,7 @@ use yii\helpers\Url;
 <div class="row mb-4">
     <div class="w-100">
         <div class="card-header">
-            <div class="lead"><?= Yii::t('app', 'Enlaces') ?></div>
+            <i class="fas fa-link mr-2 d-inline"></i><div class="lead d-inline"><?= Yii::t('app', 'Enlaces') ?></div>
         </div>
         <ul class="list-group list-group-flush">
             <?php if (Yii::$app->user->isGuest) : ?>
@@ -175,7 +171,7 @@ use yii\helpers\Url;
         <div class="row my-4">
             <div class="w-100">
                 <div class="card-header">
-                    <div class="lead"><?= Yii::t('app', 'Mis ventas') ?></div>
+                    <i class="fas fa-money-check mr-2 d-inline"></i><div class="lead d-inline"><?= Yii::t('app', 'Mis ventas') ?></div>
                 </div>
                 <div class="card-body">
                     <h5 class="card-title"><?= Yii::t('app', 'Panel de administración de ventas de socios.') ?></h5>

@@ -61,10 +61,9 @@ if (!Yii::$app->user->isGuest) {
             type : 'POST',
             url : '$url' + '&quantity=' + $('#cuantity' + '$model->id').val(),
             success: function(response) {
-                alert(response);
                 response = JSON.parse(response);
                 if($("#articles-index-pjax").length != 0) {
-                    $.pjax.reload({ container: '#articles-index-pjax', timeout: false });
+                     $.pjax.reload({ container: '#cart-items-index-small-pjax', timeout: false });
                 }
             }
         });

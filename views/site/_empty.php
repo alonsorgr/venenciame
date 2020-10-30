@@ -9,7 +9,7 @@ use yii\helpers\Html;
 $title = Yii::t('app', 'No se encontraron resultados');
 
 ?>
-<div class="site-empty mt-5" id="site-empty">
+<div class="site-empty mt-2" id="site-empty">
     <div class="container text-center">
         <?=
             Html::img('@web/img/site/empty.svg', [

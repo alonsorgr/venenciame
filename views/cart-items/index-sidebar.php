@@ -1,6 +1,7 @@
 <?php
 
 use app\helpers\Bootstrap;
+use yii\bootstrap4\Html;
 use yii\widgets\ListView;
 use yii\widgets\Pjax;
 
@@ -8,23 +9,21 @@ use yii\widgets\Pjax;
 /* @var $searchModel app\models\search\CartItemsSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Mi carrito de la compra');
-$this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="cart-items-index">
+<div class="cart-items-index-small">
     <?php Pjax::begin([
-        'id' => 'cart-items-index-pjax',
+        'id' => 'cart-items-index-small-pjax',
         'timeout' => '100000',
     ]); ?>
     <div class="row">
         <div class="col-xl-12">
             <?= ListView::widget([
                 'dataProvider' => $dataProvider,
-                'emptyText' => $this->render('/site/_empty'),
+                'emptyText' => '<div class="lead text-center"><i class="fas fa-shopping-cart mr-2"></i>' . Yii::t('app', 'No hay artículos en el carrito') . '</div>',
                 'itemView' => function ($model, $key, $index, $widget) {
-                    return $this->render('/cart-items/_small', ['model' => $model]);
+                    return $this->render('/cart-items/_small-sidebar', ['model' => $model]);
                 },
-                'layout' => '<div class="d-flex justify-content-between mb-5">{summary}{sorter}</div>{items}{pager}',
+                'layout' => '<div class="d-flex justify-content-between mb-2"></div>{items}',
                 'pager' => Bootstrap::listViewPager(),
                 'sorter' => [
                     'class' => 'app\widgets\DropdownSorter',
@@ -37,6 +36,16 @@ $this->params['breadcrumbs'][] = $this->title;
                     'class' => 'listview',
                 ],
             ]); ?>
+        </div>
+        <div class="col-xl-12">
+            <?php if ($dataProvider->totalCount != 0) : ?>
+                <?= Html::a('<i class="fas fa-cart-arrow-down mr-2"></i>' . Yii::t('app', 'Realizar compra'), null, [
+                    'id' => 'btn-cart',
+                    'class' => 'btn btn-success btn-block mb-4',
+                    'data-pjax' => 0,
+                    'title' => Yii::t('app', 'Realizar compra'),
+                ]); ?>
+            <?php endif ?>
         </div>
         <?php Pjax::end(); ?>
     </div>
