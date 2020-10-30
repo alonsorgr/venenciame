@@ -42,6 +42,15 @@ class FollowersController extends Controller
     }
 
     /**
+     * {@inheritdoc}
+     */
+    public function beforeAction($action)
+    {
+        $this->enableCsrfValidation = false;
+        return parent::beforeAction($action);
+    }
+
+    /**
      * Acción de seguimiento de socios.
      *
      * @return string    objeto JSON.

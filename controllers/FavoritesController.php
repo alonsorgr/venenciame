@@ -41,6 +41,15 @@ class FavoritesController extends \yii\web\Controller
     }
 
     /**
+     * {@inheritdoc}
+     */
+    public function beforeAction($action)
+    {
+        $this->enableCsrfValidation = false;
+        return parent::beforeAction($action);
+    }
+
+    /**
      * Acción de agragación de favoritos.
      *
      * @return string    objeto JSON.

@@ -197,6 +197,7 @@ $this->registerJs("$('#cuantity' + '$model->id').inputSpinner()");
                                 'title' => Yii::t('app', 'Agregar artículo al carrito'),
                             ]); ?>
                         </div>
+                        <input type="hidden" name="_csrf" value="<?= Yii::$app->request->getCsrfToken() ?>" />
                     </div>
                 </div>
             </div>
