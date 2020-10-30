@@ -44,7 +44,7 @@ $this->registerJs($js);
         </div>
     </div>
     <div class="row justify-content-start">
-        <div class="col-2">
+        <div class="col-3">
             <div class="mx-auto">
                 <div class="col d-flex justify-content-center align-items-center">
                     <?= Html::img(Html::encode(Url::base(true) . '/' . $model->article->link), [
@@ -76,12 +76,12 @@ $this->registerJs($js);
                 </div>
             </div>
         </div>
-        <div class="col-4">
+        <div class="col-3">
             <div class="mx-auto">
-                <div class="d-flex justify-content-end font-weight-bold mb-2">
+                <div class="d-flex justify-content-center font-weight-bold mb-2">
                     <?= Yii::t('app', 'Acciones'); ?>
                 </div>
-                <div class="d-flex justify-content-end" style="margin-top: 10px;">
+                <div class="d-flex justify-content-center" style="margin-top: 10px;">
                     <?= Html::a(null, null, [
                         'id' => 'cart-items-delete' . $model->id,
                         'class' => 'fas fa-trash no-underline cursor-pointer text-danger',
