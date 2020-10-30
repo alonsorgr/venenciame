@@ -44,17 +44,29 @@ $this->registerJs($js);
         </div>
     </div>
     <div class="row justify-content-start">
-        <div class="col-4">
+        <div class="col-2">
+            <div class="mx-auto">
+                <div class="col d-flex justify-content-center align-items-center">
+                    <?= Html::img(Html::encode(Url::base(true) . '/' . $model->article->link), [
+                        'alt' => Yii::t('app', 'Imagen del artículo'),
+                        'title' => Yii::t('app', 'Imagen del artículo'),
+                        'width' => 32,
+                        'data-action' => 'zoom',
+                    ]); ?>
+                </div>
+            </div>
+        </div>
+        <div class="col-3">
             <div class="mx-auto">
                 <div class="text-center text-md-left font-weight-bold">
-                    <?= Yii::t('app', 'Uds'); ?>
+                    <?= Yii::t('app', 'Unidades'); ?>
                 </div>
                 <div class="text-center text-md-left mt-2">
                     <?= Html::encode(Yii::$app->formatter->asInteger($model->quantity)); ?>
                 </div>
             </div>
         </div>
-        <div class="col-4">
+        <div class="col-3">
             <div class="mx-auto">
                 <div class="text-center text-md-left font-weight-bold">
                     <?= Yii::t('app', 'Total'); ?>
@@ -66,7 +78,7 @@ $this->registerJs($js);
         </div>
         <div class="col-4">
             <div class="mx-auto">
-                <div class="d-flex justify-content-end text-center font-weight-bold mb-2">
+                <div class="d-flex justify-content-end font-weight-bold mb-2">
                     <?= Yii::t('app', 'Acciones'); ?>
                 </div>
                 <div class="d-flex justify-content-end" style="margin-top: 10px;">

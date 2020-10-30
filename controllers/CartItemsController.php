@@ -69,12 +69,14 @@ class CartItemsController extends Controller
 
     /**
      * Acción de renderizado vista de creación de carrito de la compra.
+     *
+     * @param integer $user_id      id del usuario.
+     * @param integer $article_id   id del artículo
+     * @param integer $quantity     cantidad.
      * @return  yii\web\Response | string   el resultado de la representación.
      */
     public function actionCreate($user_id, $article_id, $quantity)
     {
-        //TODO: Actualizar documentación
-
         $model = CartItems::find()->where(['user_id' => $user_id, 'article_id' => $article_id]);
 
         if ($model->exists()) {
@@ -92,7 +94,7 @@ class CartItemsController extends Controller
             $model->article_id = $article_id;
             $model->quantity = $quantity;
             if ($model->save()) {
-                return json_encode(['si']);
+                return json_encode(['crea']);
             }
         }
     }

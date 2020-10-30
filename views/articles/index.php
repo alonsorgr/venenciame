@@ -24,7 +24,10 @@ $this->title = Yii::t('app', 'Vinos');
                 <div class="card-header">
                     <a id="collapse-search-articles-btn" data-toggle="collapse" href="#collapse-search-articles" aria-expanded="true" aria-controls="collapse-search-articles" id="collapse-search-articles-index" class="d-block collapse-link text-decoration-none">
                         <div class="row justify-content-between">
-                            <div class="lead ml-2"><?= Yii::t('app', 'Buscar') ?></div>
+                            <div>
+                                <i class="fas fa-search mx-2 d-inline"></i>
+                                <div class="lead d-inline"><?= Yii::t('app', 'Buscar') ?></div>
+                            </div>
                             <i class="collapse-icon fa fa-chevron-down mr-3 d-xl-none"></i>
                         </div>
                     </a>

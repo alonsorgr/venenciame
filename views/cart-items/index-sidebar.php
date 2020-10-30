@@ -2,6 +2,7 @@
 
 use app\helpers\Bootstrap;
 use yii\bootstrap4\Html;
+use yii\helpers\Url;
 use yii\widgets\ListView;
 use yii\widgets\Pjax;
 
@@ -39,7 +40,7 @@ use yii\widgets\Pjax;
         </div>
         <div class="col-xl-12">
             <?php if ($dataProvider->totalCount != 0) : ?>
-                <?= Html::a('<i class="fas fa-cart-arrow-down mr-2"></i>' . Yii::t('app', 'Realizar compra'), null, [
+                <?= Html::a('<i class="fas fa-cart-arrow-down mr-2"></i>' . Yii::t('app', 'Realizar compra'), Url::to(['cart-items/index']), [
                     'id' => 'btn-cart',
                     'class' => 'btn btn-success btn-block mb-4',
                     'data-pjax' => 0,

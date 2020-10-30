@@ -2,7 +2,6 @@
 
 /* @var $this yii\web\View */
 
-use app\helpers\Bootstrap;
 use app\models\search\CartItemsSearch;
 use app\models\User;
 use yii\bootstrap4\Html;
@@ -16,7 +15,7 @@ $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
 <div class="sidebar">
     <div id="toast"></div>
-    <?php if (!Yii::$app->user->isGuest) : ?>
+    <?php if (!Yii::$app->user->isGuest && Yii::$app->controller->id != 'cart-items') : ?>
         <div class="row">
             <div class="w-100">
                 <div class="card-header">

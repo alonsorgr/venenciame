@@ -11,6 +11,7 @@ namespace app\models\search;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use app\models\CartItems;
+use app\models\User;
 
 /**
  * Modelo que representa el modelo detrás de la forma de búsqueda de [[CartItems]].
@@ -48,7 +49,7 @@ class CartItemsSearch extends CartItems
      */
     public function search($params)
     {
-        $query = CartItems::find();
+        $query = CartItems::find()->where(['user_id' => User::id()]);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
