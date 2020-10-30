@@ -65,13 +65,13 @@ use yii\helpers\Url;
                 </div>
             </div>
         </div>
-        <div class="col-12 col-md-2">
-            <div class="mx-auto">
+        <div class="col-12 col-md-2 d-flex justify-content-center justify-content-xl-end">
+            <div>
                 <div class="text-center font-weight-bold mb-2">
                     <?= Yii::t('app', 'Acciones'); ?>
                 </div>
                 <div class="d-flex justify-content-center">
-                    <div class="d-flex justify-content-between">
+                    <div class="d-flex justify-content-between admin-actions">
                         <?= Html::a('<i class="fas fa-eye text-info"></i>', ['partners/view', 'id' => $model->id], [
                             'class' => 'mr-2',
                             'title' => Yii::t('app', 'Ver el perfil del socio'),
