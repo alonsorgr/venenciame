@@ -9,13 +9,13 @@
 namespace app\controllers;
 
 use Yii;
+use yii\web\Controller;
+use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
+use yii\web\NotFoundHttpException;
+use app\models\User;
 use app\models\Denominations;
 use app\models\search\DenominationsSearch;
-use app\models\User;
-use yii\filters\AccessControl;
-use yii\web\Controller;
-use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 
 /**
  * Controlador de usuarios [[Denominations]]

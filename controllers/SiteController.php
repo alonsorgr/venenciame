@@ -8,7 +8,6 @@
 
 namespace app\controllers;
 
-use app\helpers\Cookies;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;

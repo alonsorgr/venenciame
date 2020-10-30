@@ -8,9 +8,9 @@
 
 namespace app\models;
 
-use app\helpers\AmazonS3;
 use Yii;
 use yii\web\UploadedFile;
+use app\helpers\AmazonS3;
 
 /**
  * Esta es la clase modelo para la tabla "articles".

@@ -8,13 +8,12 @@
 
 namespace app\controllers;
 
-use app\models\Articles;
 use Yii;
+use yii\web\Controller;
+use yii\filters\VerbFilter;
+use yii\web\NotFoundHttpException;
 use app\models\CartItems;
 use app\models\search\CartItemsSearch;
-use yii\web\Controller;
-use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 
 /**
  * Controlador de carritos de la compra [[CartItems]]

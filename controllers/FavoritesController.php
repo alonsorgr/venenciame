@@ -8,9 +8,9 @@
 
 namespace app\controllers;
 
-use app\models\Favorites;
 use Yii;
 use yii\filters\AccessControl;
+use app\models\Favorites;
 
 /**
  * Controlador de favoritos.

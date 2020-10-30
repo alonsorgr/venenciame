@@ -8,7 +8,6 @@
 
 namespace app\models\search;
 
-use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use app\models\Categories;
 

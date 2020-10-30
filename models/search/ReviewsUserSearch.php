@@ -8,11 +8,9 @@
 
 namespace app\models\search;
 
-use yii\base\Model;
+use Yii;
 use yii\data\ActiveDataProvider;
 use app\models\Reviews;
-use app\models\User;
-use Yii;
 
 /**
  * Modelo que representa el modelo detrás de la forma de búsqueda de [[Reviews]].

@@ -8,22 +8,20 @@
 
 namespace app\controllers;
 
-use app\helpers\Email;
 use Yii;
+use yii\web\Controller;
+use yii\filters\AccessControl;
+use yii\filters\VerbFilter;
+use yii\web\Response;
+use yii\bootstrap4\ActiveForm;
+use yii\helpers\Url;
+use yii\web\NotFoundHttpException;
+use app\models\User;
 use app\models\Articles;
-use app\models\Reviews;
+use app\models\Statuses;
 use app\models\search\ArticlesSearch;
 use app\models\search\ReviewsSearch;
-use app\models\Statuses;
-use app\models\User;
-use Github\Api\PullRequest\Review;
-use yii\bootstrap4\ActiveForm;
-use yii\filters\AccessControl;
-use yii\web\Controller;
-use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
-use yii\helpers\Url;
-use yii\web\Response;
+use app\helpers\Email;
 
 /**
  * Controlador de artículos.

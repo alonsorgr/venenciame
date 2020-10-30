@@ -11,7 +11,7 @@ use yii\widgets\Pjax;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 ?>
-<div class="cart-items-index-small">
+<div class="cart-items-index-sidebar">
     <?php Pjax::begin([
         'id' => 'cart-items-index-small-pjax',
         'timeout' => '100000',

@@ -11,19 +11,19 @@ namespace app\controllers;
 use Yii;
 use yii\web\Controller;
 use yii\bootstrap4\ActiveForm;
+use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\web\NotFoundHttpException;
 use yii\web\Response;
-use app\models\search\PartnersSearch;
-use app\models\Partners;
 use app\models\User;
-use app\helpers\Email;
+use app\models\Partners;
 use app\models\forms\RequestPartnersForm;
+use app\models\search\PartnersSearch;
 use app\models\search\ArticlesPartnersSearch;
 use app\models\search\ArticlesPartnersViewSearch;
 use app\models\search\FollowersSearch;
-use yii\filters\AccessControl;
 use yii\helpers\Url;
+use app\helpers\Email;
 
 /**
  * Controlador de socios [[Partners]]

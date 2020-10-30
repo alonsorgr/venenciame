@@ -8,16 +8,14 @@
 
 namespace app\controllers;
 
-use app\models\search\AdminArticlesSearch;
-use app\models\search\AdminPartnersSearch;
-use app\models\search\ArticlesSearch;
-use app\models\search\CategoriesSearch;
-use app\models\search\DenominationsSearch;
-use app\models\search\PartnersSearch;
 use Yii;
 use yii\web\Controller;
 use yii\filters\AccessControl;
 use app\models\User;
+use app\models\search\AdminArticlesSearch;
+use app\models\search\AdminPartnersSearch;
+use app\models\search\CategoriesSearch;
+use app\models\search\DenominationsSearch;
 use app\models\search\UserSearch;
 use app\models\search\VatsSearch;
 

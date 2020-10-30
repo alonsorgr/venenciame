@@ -9,13 +9,9 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\Followers;
-use app\models\search\FollowedSearch;
-use app\models\search\FollowersSearch;
-use yii\filters\AccessControl;
 use yii\web\Controller;
-use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
+use app\models\Followers;
 
 /**
  * Controlador de socios [[Followers]]

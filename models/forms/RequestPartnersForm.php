@@ -8,7 +8,6 @@
 
 namespace app\models\forms;
 
-use app\helpers\Email;
 use Yii;
 use borales\extensions\phoneInput\PhoneInputValidator;
 use app\models\User;
@@ -17,6 +16,7 @@ use app\models\Partners;
 use app\models\States;
 use app\models\Statuses;
 use yii\helpers\Url;
+use app\helpers\Email;
 
 /**
  * Modelo para formulario de solicitud de socio.

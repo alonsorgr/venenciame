@@ -8,9 +8,9 @@
 
 namespace app\controllers;
 
-use app\models\search\FavoritesSearch;
 use Yii;
 use yii\web\Controller;
+use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\bootstrap4\ActiveForm;
 use yii\web\NotFoundHttpException;
@@ -19,7 +19,7 @@ use app\models\User;
 use app\models\search\UserSearch;
 use app\models\search\FollowedSearch;
 use app\models\search\ReviewsUserSearch;
-use yii\filters\AccessControl;
+use app\models\search\FavoritesSearch;
 
 /**
  * Controlador de usuarios [[User]]

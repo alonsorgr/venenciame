@@ -9,8 +9,8 @@
 namespace app\models;
 
 use Yii;
-use app\helpers\AmazonS3;
 use yii\web\UploadedFile;
+use app\helpers\AmazonS3;
 use borales\extensions\phoneInput\PhoneInputValidator;
 
 /**
