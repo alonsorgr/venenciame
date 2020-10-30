@@ -8,6 +8,25 @@ use yii\bootstrap4\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Reviews */
 
+$url = Url::to(['reviews/delete', 'id' => $model->id]);
+
+$js = <<<EOT
+    $('#reviews-delete' + '$model->id').click(function(e){
+        $.ajax({
+            type : 'POST',
+            url : '$url',
+            success: function(response) {
+                response = JSON.parse(response);
+                if($("#reviews-pjax").length != 0) {
+                    $.pjax.reload({ container: '#reviews-pjax', timeout: false });
+                }
+            }
+        });
+    });
+EOT;
+
+$this->registerJs($js);
+
 ?>
 <div class="reviews-small">
     <div class="row">
@@ -36,11 +55,11 @@ use yii\bootstrap4\Html;
                                 'data-pjax' => 0,
                             ]) . Yii::t('app', 'comentó el ') . Yii::$app->formatter->asDate($model->created_at) . ' ' . Yii::t('app', 'sobre ') .  Html::a(Html::encode($model->article->title), Url::to(['articles/view', 'id' => $model->article->id]), [
                                 'data-pjax' => 0,
-                            ]) . '.'?> 
+                            ]) . '.' ?>
                         </div>
                     </div>
                 </div>
-                <div class="col-12 col-xl-6 d-flex justify-content-center justify-content-xl-end text-center text-xl-right">
+                <div class="col-12 col-xl-5 d-flex justify-content-center justify-content-xl-end text-center text-xl-right">
                     <?= StarRating::widget([
                         'name' => 'rating-small',
                         'value' => $model->score,
@@ -57,6 +76,16 @@ use yii\bootstrap4\Html;
                         ],
                     ]); ?>
                 </div>
+                <?php if (User::isAdmin()) : ?>
+                    <div class="col-12 col-xl-1 d-flex justify-content-center justify-content-xl-end text-center text-xl-right mt-xl-1">
+                        <?= Html::a(null, null, [
+                            'id' => 'reviews-delete' . $model->id,
+                            'class' => 'fas fa-trash no-underline cursor-pointer text-danger',
+                            'data-pjax' => 0,
+                            'title' => Yii::t('app', 'Eliminar reseña'),
+                        ]); ?>
+                    </div>
+                <?php endif ?>
             </div>
         </div>
     </div>

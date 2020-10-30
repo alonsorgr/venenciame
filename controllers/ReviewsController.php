@@ -113,9 +113,13 @@ class ReviewsController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $model = $this->findModel($id);
 
-        return $this->redirect(['index']);
+        if ((Yii::$app->request->isAjax && Yii::$app->request->isPost)) {
+            if ($model->delete()) {
+                return json_encode([]);
+            }
+        }
     }
 
     /**

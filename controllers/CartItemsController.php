@@ -149,7 +149,7 @@ class CartItemsController extends Controller
 
         if ((Yii::$app->request->isAjax && Yii::$app->request->isPost)) {
             if ($model->delete()) {
-                return json_encode(['hola']);
+                return json_encode([]);
             }
         }
     }
