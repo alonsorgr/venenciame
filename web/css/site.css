@@ -187,3 +187,7 @@ a.desc:after {
   font-size: small;
   text-align: center
 }
+
+.cursor-pointer {
+  cursor: pointer;
+}

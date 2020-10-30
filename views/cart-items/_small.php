@@ -82,9 +82,9 @@ $this->registerJs($js);
                     <?= Yii::t('app', 'Acciones'); ?>
                 </div>
                 <div class="d-flex justify-content-center mt-3">
-                    <?= Html::a(null, '', [
+                    <?= Html::a(null, null, [
                         'id' => 'cart-items-delete' . $model->id,
-                        'class' => 'fas fa-trash no-underline text-danger',
+                        'class' => 'fas fa-trash no-underline cursor-pointer text-danger',
                         'data-pjax' => 0,
                         'title' => Yii::t('app', 'Eliminar artículo del carrito'),
                     ]); ?>
