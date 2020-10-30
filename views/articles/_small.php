@@ -45,6 +45,7 @@ if (!Yii::$app->user->isGuest) {
                     if($("#articles-favorites-pjax").length != 0) {
                         $.pjax.reload({ container: '#favorites-articles-pjax', timeout: false });
                     } 
+                    $.pjax.reload({ container: '#reviews-pjax', timeout: false });
                 }
             });
         });
