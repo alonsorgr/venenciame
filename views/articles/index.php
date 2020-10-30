@@ -20,7 +20,7 @@ $this->title = Yii::t('app', 'Vinos');
     ]); ?>
     <div class="row">
         <div class="col-xl-3 mb-5">
-            <div class="w-100">
+            <div class="card-border w-100">
                 <div class="card-header">
                     <a id="collapse-search-articles-btn" data-toggle="collapse" href="#collapse-search-articles" aria-expanded="true" aria-controls="collapse-search-articles" id="collapse-search-articles-index" class="d-block collapse-link text-decoration-none">
                         <div class="row justify-content-between">
@@ -33,7 +33,7 @@ $this->title = Yii::t('app', 'Vinos');
                     </a>
                 </div>
                 <div id="collapse-search-articles" class="collapse d-lg-block" aria-labelledby="collapse-search-articles-index">
-                    <div class="card-body">
+                    <div class="card-body px-5">
                         <?= $this->render('_search', [
                             'model' => $searchModel,
                         ]); ?>
@@ -41,7 +41,7 @@ $this->title = Yii::t('app', 'Vinos');
                 </div>
             </div>
         </div>
-        <div class="col-12 col-xl-9">
+        <div class="col-xl-9">
             <?= ListView::widget([
                 'dataProvider' => $dataProvider,
                 'emptyText' => $this->render('/site/_empty'),

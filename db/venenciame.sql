@@ -173,8 +173,8 @@ DROP TABLE IF EXISTS reviews CASCADE;
 CREATE TABLE reviews
 (
     id            BIGSERIAL     PRIMARY KEY
-  , user_id       BIGINT        NOT NULL  REFERENCES users (id)   
-  , article_id    BIGINT        NOT NULL  REFERENCES articles (id)
+  , user_id       BIGINT        NOT NULL  REFERENCES users (id)     ON DELETE CASCADE ON UPDATE CASCADE
+  , article_id    BIGINT        NOT NULL  REFERENCES articles (id)  ON DELETE CASCADE ON UPDATE CASCADE
   , review        TEXT          NOT NULL
   , score         INTEGER       NOT NULL  CONSTRAINT ck_value_min_max CHECK (score >= 0 AND score <=5)
   , created_at    TIMESTAMP(0)  DEFAULT CURRENT_TIMESTAMP

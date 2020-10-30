@@ -31,7 +31,7 @@ $this->registerJs($js);
 ?>
 
 <div class="cart-items-small-sidebar">
-    <div class="row mb-2">
+    <div class="row">
         <div class="col-12">
             <div class="mx-auto">
                 <div class="lead text-center text-md-left mb-2">

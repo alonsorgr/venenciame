@@ -727,7 +727,7 @@ ALTER TABLE ONLY public.vats ALTER COLUMN id SET DEFAULT nextval('public.vats_id
 
 COPY public.articles (id, partner_id, category_id, denomination_id, vat_id, status_id, title, description, price, stock, degrees, capacity, variety, pairing, review, image, created_at) FROM stdin;
 1	1	7	4	2	3	Gitana	Una manzanilla fresca para beber.	5.50	10000	15	75	100% Palomino fino	Tapas, pescados, mariscos, ahumados.	Color: pajizo. Aroma: equilibrado, fresco, salino, expresivo, punzante. Boca: sabroso, fino amargor, largo. 	Gitana.jpg	2020-10-26 21:52:22
-2	1	2	2	2	3	 Valdespino Palo Cortado Cardenal VORS	Fino Inocente y del amontillado Tío Diego	195	10	20.5	75	100% Palomino fino	Ahumados, frutos secos, quesos curados.	The Cardenal may be showing its age a little, but the intensity is unfailing, overlaid with honeyed, buttery notes. The palate is vivid and very long. Memorable.	 Valdespino Palo Cortado Cardenal VORS.jpg	2020-10-26 22:00:38
+2	2	2	2	2	3	 Valdespino Palo Cortado Cardenal VORS	Fino Inocente y del amontillado Tío Diego	195	10	20.5	75	100% Palomino fino	Ahumados, frutos secos, quesos curados.	The Cardenal may be showing its age a little, but the intensity is unfailing, overlaid with honeyed, buttery notes. The palate is vivid and very long. Memorable.	 Valdespino Palo Cortado Cardenal VORS.jpg	2020-10-26 22:00:38
 \.
 
 
@@ -3579,4 +3579,3 @@ ALTER TABLE ONLY public.users
 --
 -- PostgreSQL database dump complete
 --
-

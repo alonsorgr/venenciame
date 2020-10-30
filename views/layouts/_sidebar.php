@@ -14,12 +14,12 @@ $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 ?>
 
 <div class="sidebar">
-    <div id="toast"></div>
     <?php if (!Yii::$app->user->isGuest && Yii::$app->controller->id != 'cart-items') : ?>
-        <div class="row">
-            <div class="w-100">
+        <div class="row mb-4">
+            <div class="w-100 card-border">
                 <div class="card-header">
-                    <i class="fas fa-shopping-cart mr-2 d-inline"></i><div class="lead d-inline"><?= Yii::t('app', 'Carrito') ?></div>
+                    <i class="fas fa-shopping-cart mr-2 d-inline"></i>
+                    <div class="lead d-inline"><?= Yii::t('app', 'Carrito') ?></div>
                 </div>
                 <div class="card-body">
                     <?= $this->render('/cart-items/index-sidebar', [
@@ -31,9 +31,10 @@ $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         </div>
     <?php endif ?>
     <div class="row mb-4">
-        <div class="w-100">
+        <div class="w-100 card-border">
             <div class="card-header">
-                <i class="fas fa-share-alt mr-2 d-inline"></i><div class="lead d-inline"><?= Yii::t('app', 'Compartir') ?></div>
+                <i class="fas fa-share-alt mr-2 d-inline"></i>
+                <div class="lead d-inline"><?= Yii::t('app', 'Compartir') ?></div>
             </div>
             <div class="card-body">
                 <div class="icon-container1 d-flex mt-2">
@@ -60,9 +61,10 @@ $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
     </div>
 </div>
 <div class="row mb-4">
-    <div class="w-100">
+    <div class="w-100 card-border">
         <div class="card-header">
-            <i class="fas fa-link mr-2 d-inline"></i><div class="lead d-inline"><?= Yii::t('app', 'Enlaces') ?></div>
+            <i class="fas fa-link mr-2 d-inline"></i>
+            <div class="lead d-inline"><?= Yii::t('app', 'Enlaces') ?></div>
         </div>
         <ul class="list-group list-group-flush">
             <?php if (Yii::$app->user->isGuest) : ?>
@@ -168,9 +170,10 @@ $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 <?php if (!Yii::$app->user->isGuest) : ?>
     <?php if (User::isPartner()) : ?>
         <div class="row my-4">
-            <div class="w-100">
+            <div class="w-100 card-border">
                 <div class="card-header">
-                    <i class="fas fa-money-check mr-2 d-inline"></i><div class="lead d-inline"><?= Yii::t('app', 'Mis ventas') ?></div>
+                    <i class="fas fa-money-check mr-2 d-inline"></i>
+                    <div class="lead d-inline"><?= Yii::t('app', 'Mis ventas') ?></div>
                 </div>
                 <div class="card-body">
                     <h5 class="card-title"><?= Yii::t('app', 'Panel de administración de ventas de socios.') ?></h5>
@@ -184,7 +187,7 @@ $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         </div>
     <?php else : ?>
         <div class="row my-4">
-            <div class="w-100">
+            <div class="w-100 card-border">
                 <div class="card-header">
                     <div class="lead"><?= Yii::t('app', 'Participa') ?></div>
                 </div>
