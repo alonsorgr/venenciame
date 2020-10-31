@@ -36,7 +36,7 @@ use app\helpers\AmazonS3;
  * @property Categories $category
  * @property Denominations $denomination
  * @property Partners $partner
- * @property Statuses $status
+ * @property Status $status
  * @property Vats $vat
  * @property Favorites[] $favorites
  * @property Reviews[] $reviews
@@ -103,7 +103,7 @@ class Articles extends \yii\db\ActiveRecord
             [['denomination_id'], 'exist', 'skipOnError' => true, 'targetClass' => Denominations::class, 'targetAttribute' => ['denomination_id' => 'id']],
             [['partner_id'], 'exist', 'skipOnError' => true, 'targetClass' => Partners::class, 'targetAttribute' => ['partner_id' => 'id']],
             [['vat_id'], 'exist', 'skipOnError' => true, 'targetClass' => Vats::class, 'targetAttribute' => ['vat_id' => 'id']],
-            [['status_id'], 'exist', 'skipOnError' => true, 'targetClass' => Statuses::class, 'targetAttribute' => ['status_id' => 'id']],
+            [['status_id'], 'exist', 'skipOnError' => true, 'targetClass' => Status::class, 'targetAttribute' => ['status_id' => 'id']],
         ];
     }
 
@@ -290,13 +290,13 @@ class Articles extends \yii\db\ActiveRecord
     }
 
     /**
-     * Obtiene consulta para [[Statuses]].
+     * Obtiene consulta para [[Status]].
      *
      * @return \yii\db\ActiveQuery
      */
     public function getStatus()
     {
-        return $this->hasOne(Statuses::class, ['id' => 'status_id'])->inverseOf('articles');
+        return $this->hasOne(Status::class, ['id' => 'status_id'])->inverseOf('articles');
     }
 
     /**

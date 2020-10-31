@@ -41,7 +41,7 @@ use app\helpers\AmazonS3;
  * @property Partners[] $partners
  * @property Partners $partners0
  * @property Languages $language
- * @property Statuses $status
+ * @property Status $status
  * @property Reviews[] $reviews
  * @property CartItems[] $cartItems
  */
@@ -120,7 +120,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
             [['image'], 'safe'],
             [['image'], 'string', 'max' => 255],
             [['language_id'], 'exist', 'skipOnError' => true, 'targetClass' => Languages::class, 'targetAttribute' => ['language_id' => 'id']],
-            [['status_id'], 'exist', 'skipOnError' => true, 'targetClass' => Statuses::class, 'targetAttribute' => ['status_id' => 'id']],
+            [['status_id'], 'exist', 'skipOnError' => true, 'targetClass' => Status::class, 'targetAttribute' => ['status_id' => 'id']],
         ];
     }
 
@@ -376,7 +376,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
      */
     public function isActive()
     {
-        return $this->status_id === Statuses::STATUS_ACTIVE;
+        return $this->status_id === Status::STATUS_ACTIVE;
     }
 
     /**
@@ -386,7 +386,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
      */
     public function setActive()
     {
-        $this->status_id = Statuses::STATUS_ACTIVE;
+        $this->status_id = Status::STATUS_ACTIVE;
     }
 
     /**
@@ -396,7 +396,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
      */
     public function setInactive()
     {
-        $this->status_id = Statuses::STATUS_INACTIVE;
+        $this->status_id = Status::STATUS_INACTIVE;
     }
 
     /**
@@ -406,7 +406,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
      */
     public function setDeleted()
     {
-        $this->status_id = Statuses::STATUS_DELETED;
+        $this->status_id = Status::STATUS_DELETED;
     }
 
     /**
@@ -470,13 +470,13 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     }
 
     /**
-     * Obtiene consulta para [[Statuses]].
+     * Obtiene consulta para [[Status]].
      *
      * @return \yii\db\ActiveQuery
      */
     public function getStatus()
     {
-        return $this->hasOne(Statuses::class, ['id' => 'status_id'])->inverseOf('users');
+        return $this->hasOne(Status::class, ['id' => 'status_id'])->inverseOf('users');
     }
 
     /**

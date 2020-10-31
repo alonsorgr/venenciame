@@ -37,7 +37,7 @@ use borales\extensions\phoneInput\PhoneInputValidator;
  * @property Users[] $users
  * @property Countries $country
  * @property States $state
- * @property Statuses $status
+ * @property Status $status
  * @property Users $user
  */
 class Partners extends \yii\db\ActiveRecord
@@ -105,7 +105,7 @@ class Partners extends \yii\db\ActiveRecord
             [['image'], 'file'],
             [['image'], 'safe'],
             [['email'], 'email'],
-            [['status_id'], 'exist', 'skipOnError' => true, 'targetClass' => Statuses::class, 'targetAttribute' => ['status_id' => 'id']],
+            [['status_id'], 'exist', 'skipOnError' => true, 'targetClass' => Status::class, 'targetAttribute' => ['status_id' => 'id']],
             [['country_id'], 'exist', 'skipOnError' => true, 'targetClass' => Countries::class, 'targetAttribute' => ['country_id' => 'id']],
             [['state_id'], 'exist', 'skipOnError' => true, 'targetClass' => States::class, 'targetAttribute' => ['state_id' => 'id']],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::class, 'targetAttribute' => ['user_id' => 'id']],
@@ -212,7 +212,7 @@ class Partners extends \yii\db\ActiveRecord
      */
     public function isActive()
     {
-        return $this->status_id === Statuses::STATUS_ACTIVE;
+        return $this->status_id === Status::STATUS_ACTIVE;
     }
 
     /**
@@ -222,7 +222,7 @@ class Partners extends \yii\db\ActiveRecord
      */
     public function setActive()
     {
-        $this->status_id = Statuses::STATUS_ACTIVE;
+        $this->status_id = Status::STATUS_ACTIVE;
     }
 
     /**
@@ -232,7 +232,7 @@ class Partners extends \yii\db\ActiveRecord
      */
     public function setInactive()
     {
-        $this->status_id = Statuses::STATUS_INACTIVE;
+        $this->status_id = Status::STATUS_INACTIVE;
     }
 
     /**
@@ -242,7 +242,7 @@ class Partners extends \yii\db\ActiveRecord
      */
     public function setDeleted()
     {
-        $this->status_id = Statuses::STATUS_DELETED;
+        $this->status_id = Status::STATUS_DELETED;
     }
 
     /**
@@ -266,13 +266,13 @@ class Partners extends \yii\db\ActiveRecord
     }
 
     /**
-     * Obtiene consulta para [[Statuses]].
+     * Obtiene consulta para [[Status]].
      *
      * @return \yii\db\ActiveQuery
      */
     public function getStatus()
     {
-        return $this->hasOne(Statuses::class, ['id' => 'status_id'])->inverseOf('partners');
+        return $this->hasOne(Status::class, ['id' => 'status_id'])->inverseOf('partners');
     }
 
     /**

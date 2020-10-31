@@ -8,7 +8,7 @@ use yii\grid\GridView;
 use yii\widgets\Pjax;
 use yii\bootstrap4\Html;
 use kartik\datetime\DateTimePicker;
-use app\models\Statuses;
+use app\models\Status;
 use yii\helpers\Url;
 
 \yii\web\YiiAsset::register($this);

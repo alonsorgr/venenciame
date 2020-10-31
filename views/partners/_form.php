@@ -14,7 +14,7 @@ use kartik\file\FileInput;
 use app\models\User;
 use app\models\Countries;
 use app\models\States;
-use app\models\Statuses;
+use app\models\Status;
 
 $url = Url::to(['states/states']);
 
@@ -251,7 +251,7 @@ $header = Yii::$app->controller->action->id === 'request' ? Yii::t('app', 'Solic
                         <div class="col-xl-6">
                             <div class="mb-4">
                                 <?= $form->field($model, 'status_id')->widget(Select2::class, [
-                                    'data' => Statuses::labels(),
+                                    'data' => Status::labels(),
                                     'options' => [
                                         'class' => 'form-control',
                                         'placeholder' => Yii::t('app', 'Estado de la cuenta'),

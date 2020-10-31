@@ -4,7 +4,7 @@ use app\helpers\Bootstrap;
 use app\models\Categories;
 use app\models\Denominations;
 use app\models\Partners;
-use app\models\Statuses;
+use app\models\Status;
 use app\models\User;
 use app\models\Vats;
 use kartik\file\FileInput;
@@ -252,7 +252,7 @@ use yii\helpers\Url;
         <div class="row">
             <div class="col-xl-6">
                 <?= $form->field($model, 'status_id')->widget(Select2::class, [
-                    'data' => Statuses::labels(),
+                    'data' => Status::labels(),
                     'options' => [
                         'class' => 'form-control',
                         'placeholder' => Yii::t('app', 'Estado de la publicación del artículo'),

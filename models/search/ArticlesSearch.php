@@ -11,7 +11,7 @@ namespace app\models\search;
 use Yii;
 use yii\data\ActiveDataProvider;
 use app\models\Articles;
-use app\models\Statuses;
+use app\models\Status;
 
 /**
  * Modelo que representa el modelo detrás de la forma de búsqueda de [[Articles]].
@@ -76,7 +76,7 @@ class ArticlesSearch extends Articles
      */
     public function search($params)
     {
-        $query = Articles::find()->where(['status_id' => Statuses::STATUS_ACTIVE]);
+        $query = Articles::find()->where(['status_id' => Status::STATUS_ACTIVE]);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,

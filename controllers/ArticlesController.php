@@ -18,7 +18,7 @@ use yii\helpers\Url;
 use yii\web\NotFoundHttpException;
 use app\models\User;
 use app\models\Articles;
-use app\models\Statuses;
+use app\models\Status;
 use app\models\search\ArticlesSearch;
 use app\models\search\ReviewsSearch;
 use app\helpers\Email;
@@ -205,7 +205,7 @@ class ArticlesController extends Controller
     public function actionEnable($id)
     {
         $model = $this->findModel($id);
-        $model->status_id = Statuses::STATUS_ACTIVE;
+        $model->status_id = Status::STATUS_ACTIVE;
         if ($model->save()) {
             Yii::$app->session->setFlash(
                 'success',
@@ -229,7 +229,7 @@ class ArticlesController extends Controller
     public function actionDisable($id)
     {
         $model = $this->findModel($id);
-        $model->status_id = Statuses::STATUS_DELETED;
+        $model->status_id = Status::STATUS_DELETED;
         if ($model->save()) {
             Yii::$app->session->setFlash(
                 'success',

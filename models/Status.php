@@ -18,7 +18,7 @@ use Yii;
  * @property string $label
  * @property string|null $created_at
  */
-class Statuses extends \yii\db\ActiveRecord
+class Status extends \yii\db\ActiveRecord
 {
     /**
      * Constantes de estados
@@ -32,7 +32,7 @@ class Statuses extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'statuses';
+        return 'status';
     }
 
     /**
@@ -81,7 +81,7 @@ class Statuses extends \yii\db\ActiveRecord
     }
 
     /**
-     * Obtiene consulta para [[Statuses]].
+     * Obtiene consulta para [[Status]].
      *
      * @return \yii\db\ActiveQuery
      */
@@ -91,9 +91,9 @@ class Statuses extends \yii\db\ActiveRecord
     }
 
     /**
-     * Genera una lista con las etiquetas de los objetos [[Statuses]]
+     * Genera una lista con las etiquetas de los objetos [[Status]]
      *
-     * @return array    array con las etiquetas de [[Statuses]] indexados por id.
+     * @return array    array con las etiquetas de [[Status]] indexados por id.
      */
     public static function labels()
     {

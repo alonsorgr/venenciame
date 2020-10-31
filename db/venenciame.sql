@@ -42,9 +42,9 @@ CREATE TABLE roles
   , created_at  TIMESTAMP(0) DEFAULT CURRENT_TIMESTAMP
 );
 
-DROP TABLE IF EXISTS statuses CASCADE;
+DROP TABLE IF EXISTS status CASCADE;
 
-CREATE TABLE statuses
+CREATE TABLE status
 (
     id          BIGSERIAL       PRIMARY KEY
   , label       VARCHAR(64)     NOT NULL UNIQUE
@@ -61,7 +61,7 @@ CREATE TABLE users
   , email           VARCHAR(64)   NOT NULL        UNIQUE
   , auth_key        VARCHAR(32)   DEFAULT NULL
   , verf_key        VARCHAR(32)   DEFAULT NULL
-  , status_id       BIGINT        REFERENCES statuses (id)
+  , status_id       BIGINT        REFERENCES status (id)
   , admin           BOOLEAN       DEFAULT FALSE
   , privacity       BOOLEAN       DEFAULT FALSE
   , name            VARCHAR(32)
@@ -86,7 +86,7 @@ CREATE TABLE partners
   , image         VARCHAR(255)
   , country_id    BIGINT        NOT NULL    REFERENCES countries (id)
   , state_id      BIGINT        NOT NULL    REFERENCES states (id)
-  , status_id     BIGINT                    REFERENCES statuses (id)
+  , status_id     BIGINT                    REFERENCES status (id)
   , city          VARCHAR(64)   NOT NULL
   , zip_code      VARCHAR(64)   NOT NULL
   , address       VARCHAR(64)   NOT NULL
@@ -144,7 +144,7 @@ CREATE TABLE articles
   , category_id         BIGINT        NOT NULL    REFERENCES categories    (id)   ON DELETE CASCADE ON UPDATE CASCADE
   , denomination_id     BIGINT        NOT NULL    REFERENCES denominations (id)   ON DELETE CASCADE ON UPDATE CASCADE
   , vat_id              BIGINT        NOT NULL    REFERENCES vats          (id)   ON DELETE CASCADE ON UPDATE CASCADE
-  , status_id           BIGINT        DEFAULT 2   REFERENCES statuses      (id)   ON DELETE CASCADE ON UPDATE CASCADE
+  , status_id           BIGINT        DEFAULT 2   REFERENCES status      (id)   ON DELETE CASCADE ON UPDATE CASCADE
   , title               VARCHAR(50)   NOT NULL
   , description         VARCHAR(255)  NOT NULL
   , price               DECIMAL       NOT NULL
@@ -188,7 +188,7 @@ CREATE TABLE cart_items
     id            BIGSERIAL     PRIMARY KEY
   , user_id       BIGINT        NOT NULL  REFERENCES users (id)   
   , article_id    BIGINT        NOT NULL  REFERENCES articles (id)
-  , status_id     BIGINT                  REFERENCES statuses (id)
+  , status_id     BIGINT                  REFERENCES status (id)
   , quantity      INTEGER       NOT NULL
   , created_at    TIMESTAMP(0)  DEFAULT CURRENT_TIMESTAMP
 );
