@@ -1,10 +1,10 @@
 <?php
 
-use app\helpers\Bootstrap;
-use yii\bootstrap4\Html;
-use yii\helpers\Url;
 use yii\widgets\ListView;
 use yii\widgets\Pjax;
+use yii\helpers\Url;
+use yii\bootstrap4\Html;
+use app\helpers\Bootstrap;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\search\CartItemsSearch */
@@ -26,13 +26,6 @@ use yii\widgets\Pjax;
                 },
                 'layout' => '{items}{pager}',
                 'pager' => Bootstrap::listViewPager(),
-                'sorter' => [
-                    'class' => 'app\widgets\DropdownSorter',
-                    'label' => 'Ordenar por',
-                    'attributes' => [
-                        'created_at',
-                    ],
-                ],
                 'options' => [
                     'class' => 'listview',
                 ],
