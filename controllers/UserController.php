@@ -20,6 +20,7 @@ use app\models\search\UserSearch;
 use app\models\search\FollowedSearch;
 use app\models\search\ReviewsUserSearch;
 use app\models\search\FavoritesSearch;
+use app\models\Statuses;
 
 /**
  * Controlador de usuarios [[User]]
@@ -124,7 +125,7 @@ class UserController extends Controller
     {
         $model = new User();
         $model->setScenarioCreate();
-        $model->status_id = User::STATUS_INACTIVE;
+        $model->status_id = Statuses::STATUS_INACTIVE;
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         }

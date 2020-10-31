@@ -48,13 +48,6 @@ use app\helpers\AmazonS3;
 class User extends \yii\db\ActiveRecord implements IdentityInterface
 {
     /**
-     * Constantes de estado del usuario.
-     */
-    const STATUS_DELETED = 1;
-    const STATUS_INACTIVE = 2;
-    const STATUS_ACTIVE = 3;
-
-    /**
      * Constantes de escenarios
      */
     const SCENARIO_CREATE = 'create';
@@ -383,7 +376,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
      */
     public function isActive()
     {
-        return $this->status_id === self::STATUS_ACTIVE;
+        return $this->status_id === Statuses::STATUS_ACTIVE;
     }
 
     /**
@@ -393,7 +386,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
      */
     public function setActive()
     {
-        $this->status_id = self::STATUS_ACTIVE;
+        $this->status_id = Statuses::STATUS_ACTIVE;
     }
 
     /**
@@ -403,7 +396,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
      */
     public function setInactive()
     {
-        $this->status_id = self::STATUS_INACTIVE;
+        $this->status_id = Statuses::STATUS_INACTIVE;
     }
 
     /**
@@ -413,7 +406,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
      */
     public function setDeleted()
     {
-        $this->status_id = self::STATUS_DELETED;
+        $this->status_id = Statuses::STATUS_DELETED;
     }
 
     /**

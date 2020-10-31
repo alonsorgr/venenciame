@@ -43,13 +43,6 @@ use borales\extensions\phoneInput\PhoneInputValidator;
 class Partners extends \yii\db\ActiveRecord
 {
     /**
-     * Constantes de estado del usuario.
-     */
-    const STATUS_DELETED = 1;
-    const STATUS_INACTIVE = 2;
-    const STATUS_ACTIVE = 3;
-
-    /**
      * Constante de imagen de logo corporativo.
      */
     const IMAGE = '@web/img/partners.jpg';
@@ -219,7 +212,7 @@ class Partners extends \yii\db\ActiveRecord
      */
     public function isActive()
     {
-        return $this->status_id === self::STATUS_ACTIVE;
+        return $this->status_id === Statuses::STATUS_ACTIVE;
     }
 
     /**
@@ -229,7 +222,7 @@ class Partners extends \yii\db\ActiveRecord
      */
     public function setActive()
     {
-        $this->status_id = self::STATUS_ACTIVE;
+        $this->status_id = Statuses::STATUS_ACTIVE;
     }
 
     /**
@@ -239,7 +232,7 @@ class Partners extends \yii\db\ActiveRecord
      */
     public function setInactive()
     {
-        $this->status_id = self::STATUS_INACTIVE;
+        $this->status_id = Statuses::STATUS_INACTIVE;
     }
 
     /**
@@ -249,7 +242,7 @@ class Partners extends \yii\db\ActiveRecord
      */
     public function setDeleted()
     {
-        $this->status_id = self::STATUS_DELETED;
+        $this->status_id = Statuses::STATUS_DELETED;
     }
 
     /**

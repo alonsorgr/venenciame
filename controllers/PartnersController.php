@@ -24,6 +24,7 @@ use app\models\search\ArticlesPartnersViewSearch;
 use app\models\search\FollowersSearch;
 use yii\helpers\Url;
 use app\helpers\Email;
+use app\models\Statuses;
 
 /**
  * Controlador de socios [[Partners]]
@@ -242,7 +243,7 @@ class PartnersController extends Controller
     public function actionEnable($id)
     {
         $model = $this->findModel($id);
-        $model->status_id = Partners::STATUS_ACTIVE;
+        $model->status_id = Statuses::STATUS_ACTIVE;
         if ($model->save()) {
             Yii::$app->session->setFlash(
                 'success',
@@ -266,7 +267,7 @@ class PartnersController extends Controller
     public function actionDisable($id)
     {
         $model = $this->findModel($id);
-        $model->status_id = Partners::STATUS_INACTIVE;
+        $model->status_id = Statuses::STATUS_INACTIVE;
         if ($model->save()) {
             Yii::$app->session->setFlash(
                 'success',
