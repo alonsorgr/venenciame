@@ -24,7 +24,7 @@ use yii\widgets\Pjax;
                 'itemView' => function ($model, $key, $index, $widget) {
                     return $this->render('/cart-items/_small-sidebar', ['model' => $model]);
                 },
-                'layout' => '<div class="d-flex justify-content-between mb-2"></div>{items}',
+                'layout' => '{items}{pager}',
                 'pager' => Bootstrap::listViewPager(),
                 'sorter' => [
                     'class' => 'app\widgets\DropdownSorter',
