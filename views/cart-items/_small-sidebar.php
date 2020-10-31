@@ -26,10 +26,7 @@ EOT;
 
 $this->registerJs($js);
 
-\yii\web\YiiAsset::register($this);
-
 ?>
-
 <div class="cart-items-small-sidebar">
     <div class="row">
         <div class="col-12">
@@ -41,16 +38,16 @@ $this->registerJs($js);
             </div>
         </div>
     </div>
-    <div class="row justify-content-start">
-        <div class="col-2">
+    <div class="row">
+        <div class="col-1">
             <?= Html::img(Html::encode(Url::base(true) . '/' . $model->article->link), [
                 'alt' => Yii::t('app', 'Imagen del artículo'),
                 'title' => Yii::t('app', 'Imagen del artículo'),
-                'width' => 32,
+                'width' => 24,
                 'data-action' => 'zoom',
             ]); ?>
         </div>
-        <div class="col-3 align-self-center">
+        <div class="col-4 align-self-center ml-3">
             <div class="font-weight-bold d-inline">
                 <?= Yii::t('app', 'Uds:'); ?>
             </div>
@@ -67,7 +64,7 @@ $this->registerJs($js);
             </div>
         </div>
         <div class="col-1 align-self-center">
-            <div class="">
+            <div class="d-flex justify-content-end">
                 <?= Html::a(null, null, [
                     'id' => 'cart-items-delete' . $model->id,
                     'class' => 'fas fa-trash no-underline cursor-pointer text-danger',
