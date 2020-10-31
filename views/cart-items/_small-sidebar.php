@@ -1,11 +1,10 @@
 <?php
 
 /* @var $this yii\web\View */
-/* @var $cartItemsSearchModel app\models\search\CartItemsSearch */
-/* @var $cartItemsProvider yii\data\ActiveDataProvider */
+/* @var $model app\models\CartItems */
 
-use yii\bootstrap4\Html;
 use yii\helpers\Url;
+use yii\bootstrap4\Html;
 
 $url = Url::to(['cart-items/delete', 'id' => $model->id]);
 
