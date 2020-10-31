@@ -74,19 +74,6 @@ class CartItemsController extends Controller
     }
 
     /**
-     * Acción de renderizado vista de carrito de la compra.
-     * @param   integer            $id      identificador de carrito de la compra.
-     * @return  yii\web\Response | string   el resultado de la representación.
-     * @throws  NotFoundHttpException       si el modelo no es encontrado.
-     */
-    public function actionView($id)
-    {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
-        ]);
-    }
-
-    /**
      * Acción de renderizado vista de creación de carrito de la compra.
      *
      * @param integer $user_id      id del usuario.
@@ -116,25 +103,6 @@ class CartItemsController extends Controller
                 return json_encode(['crea']);
             }
         }
-    }
-
-    /**
-     * Acción de renderizado vista de edición carrito de la compra.
-     * @param   integer            $id      identificador de carrito de la compra.
-     * @return  yii\web\Response | string   el resultado de la representación.
-     * @throws  NotFoundHttpException       si el modelo no es encontrado.
-     */
-    public function actionUpdate($id)
-    {
-        $model = $this->findModel($id);
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        }
-
-        return $this->render('update', [
-            'model' => $model,
-        ]);
     }
 
     /**
