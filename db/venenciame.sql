@@ -84,6 +84,7 @@ CREATE TABLE partners
   , description   VARCHAR(255)
   , information   TEXT
   , image         VARCHAR(255)
+  , image_id      VARCHAR(255)
   , country_id    BIGINT        NOT NULL    REFERENCES countries (id)
   , state_id      BIGINT        NOT NULL    REFERENCES states (id)
   , status_id     BIGINT                    REFERENCES status (id)
@@ -144,15 +145,16 @@ CREATE TABLE articles
   , category_id         BIGINT        NOT NULL    REFERENCES categories    (id)   ON DELETE CASCADE ON UPDATE CASCADE
   , denomination_id     BIGINT        NOT NULL    REFERENCES denominations (id)   ON DELETE CASCADE ON UPDATE CASCADE
   , vat_id              BIGINT        NOT NULL    REFERENCES vats          (id)   ON DELETE CASCADE ON UPDATE CASCADE
-  , status_id           BIGINT        DEFAULT 2   REFERENCES status      (id)   ON DELETE CASCADE ON UPDATE CASCADE
+  , status_id           BIGINT        DEFAULT 2   REFERENCES status        (id)   ON DELETE CASCADE ON UPDATE CASCADE
+  , name_id             VARCHAR(50)   UNIQUE      NOT NULL
   , title               VARCHAR(50)   NOT NULL
   , description         VARCHAR(255)  NOT NULL
   , price               DECIMAL       NOT NULL
   , stock               INTEGER       NOT NULL
-  , degrees             VARCHAR(50)   NOT NULL
+  , degrees             VARCHAR(255)  NOT NULL
   , capacity            INTEGER       NOT NULL
-  , variety             VARCHAR(50)   NOT NULL
-  , pairing             VARCHAR(50)   NOT NULL
+  , variety             VARCHAR(255)  NOT NULL
+  , pairing             VARCHAR(255)  NOT NULL
   , review              TEXT          NOT NULL
   , image               VARCHAR(255)  DEFAULT NULL
   , created_at          TIMESTAMP(0)  DEFAULT CURRENT_TIMESTAMP

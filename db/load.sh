@@ -11,6 +11,6 @@ if [ "$1" != "test" ]; then
     psql -h localhost -U venenciame -d venenciame < $BASE_DIR/categories.sql
     psql -h localhost -U venenciame -d venenciame < $BASE_DIR/denominations.sql
     psql -h localhost -U venenciame -d venenciame < $BASE_DIR/vats.sql
-    psql -h localhost -U venenciame -d venenciame < $BASE_DIR/data.sql
+    #psql -h localhost -U venenciame -d venenciame < $BASE_DIR/data.sql
 fi
 psql -h localhost -U venenciame -d venenciame_test < $BASE_DIR/venenciame.sql

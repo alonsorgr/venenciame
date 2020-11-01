@@ -42,6 +42,13 @@ $this->title = Yii::t('app', 'Vinos');
             </div>
         </div>
         <div class="col-xl-8">
+            <?php if ($dataProvider->totalCount != 0) : ?>
+                <div class="row mb-3">
+                    <div class="col">
+                        <div class="text-center text-xl-left display-5"><?= Yii::t('app', 'Todos los vinos'); ?></div>
+                    </div>
+                </div>
+            <?php endif ?>
             <?= ListView::widget([
                 'dataProvider' => $dataProvider,
                 'emptyText' => $this->render('/site/_empty'),

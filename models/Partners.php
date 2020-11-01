@@ -23,6 +23,7 @@ use borales\extensions\phoneInput\PhoneInputValidator;
  * @property string $description
  * @property string|null $information
  * @property string|null $image
+ * @property string|null $image_id
  * @property int $country_id
  * @property int $state_id
  * @property string $city
@@ -88,7 +89,7 @@ class Partners extends \yii\db\ActiveRecord
             [['information'], 'string'],
             [['updated_at', 'created_at'], 'safe'],
             [['name'], 'string', 'max' => 32],
-            [['description', 'image'], 'string', 'max' => 255],
+            [['description', 'image', 'image_id'], 'string', 'max' => 255],
             [['city', 'zip_code', 'address', 'phone', 'url', 'email'], 'string', 'max' => 64],
             [['name'], 'unique'],
             [['user_id'], 'unique'],
@@ -161,7 +162,7 @@ class Partners extends \yii\db\ActiveRecord
     {
         $this->upload = UploadedFile::getInstance($this, 'upload');
         if ($this->upload !== null) {
-            $this->image = AmazonS3::upload($this->upload, $this->id, AmazonS3::BUCKET_PARTNERS, $this->image);
+            $this->image = AmazonS3::upload($this->upload, $this->user->username, AmazonS3::BUCKET_PARTNERS, $this->image);
             $this->upload = null;
         }
     }

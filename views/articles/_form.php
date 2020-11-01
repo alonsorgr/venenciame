@@ -37,6 +37,13 @@ use yii\helpers\Url;
     <div class="row">
         <div class="col-xl-6">
             <div class="mb-4">
+                <?= $form->field($model, 'name_id')->textInput([
+                    'maxlength' => true,
+                    'placeholder' => Yii::t('app', 'El identificador único de su producto'),
+                    'title' => Yii::t('app', 'El identificador único de su producto'),
+                ]); ?>
+            </div>
+            <div class="mb-4">
                 <?= $form->field($model, 'title')->textInput([
                     'maxlength' => true,
                     'placeholder' => Yii::t('app', 'Escriba el nombre del artículo de vino'),
