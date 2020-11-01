@@ -134,13 +134,13 @@ a.desc:after {
   transform: rotate(90deg);
 }
 
-@media screen and (max-width: 992px) {
+@media screen and (max-width: 1200px) {
   .collapse-icon {
     margin-top: 6px;
   }
 }
 
-@media screen and (min-width: 992px) {
+@media screen and (min-width: 1199px) {
   .collapse.hh {
     display: block !important;
   }

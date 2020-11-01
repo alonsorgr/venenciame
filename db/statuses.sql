@@ -2,6 +2,6 @@
 -- Archivo de carga de estados --
 ---------------------------------
 
-INSERT INTO statuses (label) VALUES ('Borrado');
-INSERT INTO statuses (label) VALUES ('Inactivo');
-INSERT INTO statuses (label) VALUES ('Activo');
+INSERT INTO status (label) VALUES ('Borrado');
+INSERT INTO status (label) VALUES ('Inactivo');
+INSERT INTO status (label) VALUES ('Activo');

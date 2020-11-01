@@ -21,6 +21,7 @@ use app\helpers\AmazonS3;
  * @property int $category_id
  * @property int $denomination_id
  * @property int $vat_id
+ * @property string $name_id
  * @property string $title
  * @property string $description
  * @property float $price
@@ -36,7 +37,7 @@ use app\helpers\AmazonS3;
  * @property Categories $category
  * @property Denominations $denomination
  * @property Partners $partner
- * @property Statuses $status
+ * @property Status $status
  * @property Vats $vat
  * @property Favorites[] $favorites
  * @property Reviews[] $reviews
@@ -91,19 +92,21 @@ class Articles extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['partner_id', 'category_id', 'denomination_id', 'vat_id', 'title', 'description', 'price', 'stock', 'degrees', 'capacity', 'variety', 'pairing', 'review'], 'required'],
-            [['partner_id', 'category_id', 'denomination_id', 'vat_id', 'stock', 'capacity'], 'default', 'value' => null],
-            [['partner_id', 'category_id', 'denomination_id', 'vat_id', 'stock', 'capacity'], 'integer'],
+            [['partner_id', 'category_id', 'denomination_id', 'vat_id', 'name', 'title', 'description', 'price', 'stock', 'degrees', 'capacity', 'variety', 'pairing', 'review'], 'required'],
+            [['partner_id', 'category_id', 'denomination_id', 'vat_id', 'status_id', 'stock', 'capacity'], 'default', 'value' => null],
+            [['partner_id', 'category_id', 'denomination_id', 'vat_id', 'status_id', 'stock', 'capacity'], 'integer'],
             [['price'], 'number'],
             [['review'], 'string'],
             [['created_at'], 'safe'],
-            [['title', 'description', 'degrees', 'variety', 'pairing'], 'string', 'max' => 50],
-            [['image'], 'string', 'max' => 255],
+            [['name', 'title'], 'string', 'max' => 50],
+            [['description', 'degrees', 'variety', 'pairing', 'image'], 'string', 'max' => 255],
+            [['name_id'], 'unique'],
+            [['name_id'], 'trim'],
             [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => Categories::class, 'targetAttribute' => ['category_id' => 'id']],
             [['denomination_id'], 'exist', 'skipOnError' => true, 'targetClass' => Denominations::class, 'targetAttribute' => ['denomination_id' => 'id']],
             [['partner_id'], 'exist', 'skipOnError' => true, 'targetClass' => Partners::class, 'targetAttribute' => ['partner_id' => 'id']],
+            [['status_id'], 'exist', 'skipOnError' => true, 'targetClass' => Status::class, 'targetAttribute' => ['status_id' => 'id']],
             [['vat_id'], 'exist', 'skipOnError' => true, 'targetClass' => Vats::class, 'targetAttribute' => ['vat_id' => 'id']],
-            [['status_id'], 'exist', 'skipOnError' => true, 'targetClass' => Statuses::class, 'targetAttribute' => ['status_id' => 'id']],
         ];
     }
 
@@ -118,6 +121,7 @@ class Articles extends \yii\db\ActiveRecord
             'category_id' => Yii::t('app', 'Tipo de vino'),
             'denomination_id' => Yii::t('app', 'Denominación de origen'),
             'vat_id' => Yii::t('app', 'Tipo de IVA'),
+            'name_id' => Yii::t('app', 'Identificador del artículo'),
             'title' => Yii::t('app', 'Nombre'),
             'description' => Yii::t('app', 'Descripción'),
             'price' => Yii::t('app', 'Precio'),
@@ -157,7 +161,7 @@ class Articles extends \yii\db\ActiveRecord
     {
         $this->upload = UploadedFile::getInstance($this, 'upload');
         if ($this->upload !== null) {
-            $this->image = AmazonS3::upload($this->upload, $this->title, AmazonS3::BUCKET_ARTICLES, $this->image);
+            $this->image = AmazonS3::upload($this->upload, $this->name_id, AmazonS3::BUCKET_ARTICLES, $this->image);
             $this->upload = null;
         }
     }
@@ -290,13 +294,13 @@ class Articles extends \yii\db\ActiveRecord
     }
 
     /**
-     * Obtiene consulta para [[Statuses]].
+     * Obtiene consulta para [[Status]].
      *
      * @return \yii\db\ActiveQuery
      */
     public function getStatus()
     {
-        return $this->hasOne(Statuses::class, ['id' => 'status_id'])->inverseOf('articles');
+        return $this->hasOne(Status::class, ['id' => 'status_id'])->inverseOf('articles');
     }
 
     /**

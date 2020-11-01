@@ -14,7 +14,7 @@ use app\models\User;
 use app\models\Countries;
 use app\models\Partners;
 use app\models\States;
-use app\models\Statuses;
+use app\models\Status;
 use yii\helpers\Url;
 use app\helpers\Email;
 
@@ -165,7 +165,7 @@ class RequestPartnersForm extends \yii\db\ActiveRecord
                 'name' => $this->name,
                 'country_id' => $this->country_id,
                 'state_id' => $this->state_id,
-                'status_id' => Statuses::STATUS_INACTIVE,
+                'status_id' => Status::STATUS_INACTIVE,
                 'city' => $this->city,
                 'zip_code' => $this->zip_code,
                 'address' => $this->address,

@@ -13,6 +13,7 @@ use yii\db\ActiveRecord;
 use yii\helpers\Url;
 use app\models\User;
 use app\helpers\Email;
+use app\models\Status;
 
 /**
  * Modelo para formulario de registro de usuarios.
@@ -179,7 +180,7 @@ class RegisterForm extends ActiveRecord
             $this->setUser(new User([
                 'username' => $this->username,
                 'email' => $this->email,
-                'status_id' => User::STATUS_INACTIVE,
+                'status_id' => Status::STATUS_INACTIVE,
                 'privacity' => $this->privacity
             ]));
         }

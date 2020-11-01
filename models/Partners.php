@@ -23,6 +23,7 @@ use borales\extensions\phoneInput\PhoneInputValidator;
  * @property string $description
  * @property string|null $information
  * @property string|null $image
+ * @property string|null $image_id
  * @property int $country_id
  * @property int $state_id
  * @property string $city
@@ -37,18 +38,11 @@ use borales\extensions\phoneInput\PhoneInputValidator;
  * @property Users[] $users
  * @property Countries $country
  * @property States $state
- * @property Statuses $status
+ * @property Status $status
  * @property Users $user
  */
 class Partners extends \yii\db\ActiveRecord
 {
-    /**
-     * Constantes de estado del usuario.
-     */
-    const STATUS_DELETED = 1;
-    const STATUS_INACTIVE = 2;
-    const STATUS_ACTIVE = 3;
-
     /**
      * Constante de imagen de logo corporativo.
      */
@@ -95,7 +89,7 @@ class Partners extends \yii\db\ActiveRecord
             [['information'], 'string'],
             [['updated_at', 'created_at'], 'safe'],
             [['name'], 'string', 'max' => 32],
-            [['description', 'image'], 'string', 'max' => 255],
+            [['description', 'image', 'image_id'], 'string', 'max' => 255],
             [['city', 'zip_code', 'address', 'phone', 'url', 'email'], 'string', 'max' => 64],
             [['name'], 'unique'],
             [['user_id'], 'unique'],
@@ -112,7 +106,7 @@ class Partners extends \yii\db\ActiveRecord
             [['image'], 'file'],
             [['image'], 'safe'],
             [['email'], 'email'],
-            [['status_id'], 'exist', 'skipOnError' => true, 'targetClass' => Statuses::class, 'targetAttribute' => ['status_id' => 'id']],
+            [['status_id'], 'exist', 'skipOnError' => true, 'targetClass' => Status::class, 'targetAttribute' => ['status_id' => 'id']],
             [['country_id'], 'exist', 'skipOnError' => true, 'targetClass' => Countries::class, 'targetAttribute' => ['country_id' => 'id']],
             [['state_id'], 'exist', 'skipOnError' => true, 'targetClass' => States::class, 'targetAttribute' => ['state_id' => 'id']],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::class, 'targetAttribute' => ['user_id' => 'id']],
@@ -168,7 +162,7 @@ class Partners extends \yii\db\ActiveRecord
     {
         $this->upload = UploadedFile::getInstance($this, 'upload');
         if ($this->upload !== null) {
-            $this->image = AmazonS3::upload($this->upload, $this->id, AmazonS3::BUCKET_PARTNERS, $this->image);
+            $this->image = AmazonS3::upload($this->upload, $this->user->username, AmazonS3::BUCKET_PARTNERS, $this->image);
             $this->upload = null;
         }
     }
@@ -219,7 +213,7 @@ class Partners extends \yii\db\ActiveRecord
      */
     public function isActive()
     {
-        return $this->status_id === self::STATUS_ACTIVE;
+        return $this->status_id === Status::STATUS_ACTIVE;
     }
 
     /**
@@ -229,7 +223,7 @@ class Partners extends \yii\db\ActiveRecord
      */
     public function setActive()
     {
-        $this->status_id = self::STATUS_ACTIVE;
+        $this->status_id = Status::STATUS_ACTIVE;
     }
 
     /**
@@ -239,7 +233,7 @@ class Partners extends \yii\db\ActiveRecord
      */
     public function setInactive()
     {
-        $this->status_id = self::STATUS_INACTIVE;
+        $this->status_id = Status::STATUS_INACTIVE;
     }
 
     /**
@@ -249,7 +243,7 @@ class Partners extends \yii\db\ActiveRecord
      */
     public function setDeleted()
     {
-        $this->status_id = self::STATUS_DELETED;
+        $this->status_id = Status::STATUS_DELETED;
     }
 
     /**
@@ -273,13 +267,13 @@ class Partners extends \yii\db\ActiveRecord
     }
 
     /**
-     * Obtiene consulta para [[Statuses]].
+     * Obtiene consulta para [[Status]].
      *
      * @return \yii\db\ActiveQuery
      */
     public function getStatus()
     {
-        return $this->hasOne(Statuses::class, ['id' => 'status_id'])->inverseOf('partners');
+        return $this->hasOne(Status::class, ['id' => 'status_id'])->inverseOf('partners');
     }
 
     /**

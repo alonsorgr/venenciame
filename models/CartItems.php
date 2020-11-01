@@ -22,7 +22,7 @@ use Yii;
  * @property string|null $created_at
  *
  * @property Articles $article
- * @property Statuses $status
+ * @property Status $status
  * @property User $user
  */
 class CartItems extends \yii\db\ActiveRecord
@@ -46,7 +46,7 @@ class CartItems extends \yii\db\ActiveRecord
             [['user_id', 'article_id', 'status_id', 'quantity'], 'integer'],
             [['created_at'], 'safe'],
             [['article_id'], 'exist', 'skipOnError' => true, 'targetClass' => Articles::class, 'targetAttribute' => ['article_id' => 'id']],
-            [['status_id'], 'exist', 'skipOnError' => true, 'targetClass' => Statuses::class, 'targetAttribute' => ['status_id' => 'id']],
+            [['status_id'], 'exist', 'skipOnError' => true, 'targetClass' => Status::class, 'targetAttribute' => ['status_id' => 'id']],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::class, 'targetAttribute' => ['user_id' => 'id']],
         ];
     }
@@ -77,13 +77,13 @@ class CartItems extends \yii\db\ActiveRecord
     }
 
     /**
-     * Obtiene consulta para [[Statuses]].
+     * Obtiene consulta para [[Status]].
      *
      * @return \yii\db\ActiveQuery
      */
     public function getStatus()
     {
-        return $this->hasOne(Statuses::class, ['id' => 'status_id'])->inverseOf('cartItems');
+        return $this->hasOne(Status::class, ['id' => 'status_id'])->inverseOf('cartItems');
     }
 
     /**

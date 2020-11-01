@@ -19,7 +19,7 @@ $this->title = Yii::t('app', 'Vinos');
         'timeout' => '100000',
     ]); ?>
     <div class="row">
-        <div class="col-xl-3 mb-5">
+        <div class="col-xl-4 mb-5">
             <div class="card-border w-100">
                 <div class="card-header">
                     <a id="collapse-search-articles-btn" data-toggle="collapse" href="#collapse-search-articles" aria-expanded="true" aria-controls="collapse-search-articles" id="collapse-search-articles-index" class="d-block collapse-link text-decoration-none ml-4">
@@ -32,7 +32,7 @@ $this->title = Yii::t('app', 'Vinos');
                         </div>
                     </a>
                 </div>
-                <div id="collapse-search-articles" class="collapse d-lg-block" aria-labelledby="collapse-search-articles-index">
+                <div id="collapse-search-articles" class="collapse d-xl-block" aria-labelledby="collapse-search-articles-index">
                     <div class="card-body px-5">
                         <?= $this->render('_search', [
                             'model' => $searchModel,
@@ -41,7 +41,14 @@ $this->title = Yii::t('app', 'Vinos');
                 </div>
             </div>
         </div>
-        <div class="col-xl-9">
+        <div class="col-xl-8">
+            <?php if ($dataProvider->totalCount != 0) : ?>
+                <div class="row mb-3">
+                    <div class="col">
+                        <div class="text-center text-xl-left display-5"><?= Yii::t('app', 'Todos los vinos'); ?></div>
+                    </div>
+                </div>
+            <?php endif ?>
             <?= ListView::widget([
                 'dataProvider' => $dataProvider,
                 'emptyText' => $this->render('/site/_empty'),

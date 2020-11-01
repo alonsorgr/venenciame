@@ -2,7 +2,7 @@
 
 use app\models\Countries;
 use app\models\States;
-use app\models\Statuses;
+use app\models\Status;
 use kartik\date\DatePicker;
 use kartik\datecontrol\DateControl;
 use kartik\select2\Select2;
