@@ -33,7 +33,7 @@
         var props = {
             decrementButton: "<strong>&minus;</strong>", // button text
             incrementButton: "<strong>&plus;</strong>", // ..
-            groupClass: "", // css class of the resulting input-group
+            groupClass: "flex-nowrap", // css class of the resulting input-group
             buttonsClass: "btn-primary",
             buttonsWidth: "2.5rem",
             textAlign: "center", // alignment of the entered number
@@ -42,7 +42,7 @@
             buttonsOnly: false, // set this `true` to disable the possibility to enter or paste the number via keyboard
             locale: navigator.language, // the locale, per default detected automatically from the browser
             template: // the template of the input
-                '<div class="input-group ${groupClass}">' +
+                '<div class="input-group ${groupClass}" style="min-width: 100px !important">' +
                 '<div class="input-group-prepend"><button style="min-width: ${buttonsWidth}; max-height: 45px;" class="btn btn-decrement ${buttonsClass} btn-minus" type="button">${decrementButton}</button></div>' +
                 '<input type="text" inputmode="decimal" style="text-align: ${textAlign}; max-height: 45px;" class="form-control form-control-text-input"/>' +
                 '<div class="input-group-append"><button style="min-width: ${buttonsWidth}; max-height: 45px;" class="btn btn-increment ${buttonsClass} btn-plus" type="button">${incrementButton}</button></div>' +

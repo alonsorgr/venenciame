@@ -190,7 +190,7 @@ $this->registerJs("$('#cuantity' + '$model->id').inputSpinner()");
                 </div>
             </div>
             <div class="row justify-content-center justify-content-xl-end mt-4">
-                <div class="col-4 col-xl-5 mb-0">
+                <div class="col-3 col-xl-5 mb-0">
                     <div class="text-center text-xl-right" style="z-index: 100;">
                         <?= Html::input('number', 'quantity', 1, [
                             'id' => 'cuantity' . $model->id,
@@ -205,7 +205,7 @@ $this->registerJs("$('#cuantity' + '$model->id').inputSpinner()");
                 <div class="col-xl-7 mt-4 mt-xl-0">
                     <?= Html::a('<i class="fas fa-cart-plus mr-2"></i>' . Yii::t('app', 'Agregar al carrito'), null, [
                         'id' => 'article-to-cart' . $model->id,
-                        'class' => 'btn btn-primary btn-block text-nowrap',
+                        'class' => 'btn btn-primary btn-block',
                         'data-pjax' => 0,
                         'title' => Yii::t('app', 'Agregar artículo al carrito'),
                     ]); ?>

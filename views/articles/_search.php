@@ -114,7 +114,7 @@ use yii\bootstrap4\ActiveForm;
                     'title' => Yii::t('app', 'Buscar por maridaje'),
                 ]); ?>
             </div>
-            <?= Html::submitButton('<i class="fas fa-search mr-2"></i>' . Yii::t('app', 'Buscar'), ['class' => 'btn btn-outline-primary btn-block']) ?>
+            <?= Html::submitButton('<i class="fas fa-search mr-2"></i>' . Yii::t('app', 'Buscar'), ['class' => 'btn btn-primary btn-block']) ?>
         </div>
     </div>
     <?php ActiveForm::end(); ?>

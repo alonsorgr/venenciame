@@ -62,9 +62,11 @@ $this->title = Yii::t('app', 'Vinos');
                     'label' => 'Ordenar por',
                     'attributes' => [
                         'title',
+                        'partner_id',
                         'category_id',
                         'denomination_id',
                         'price',
+                        'degrees',
                     ],
                 ],
                 'options' => [
