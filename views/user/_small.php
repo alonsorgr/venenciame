@@ -9,48 +9,42 @@ use yii\bootstrap4\Html;
 ?>
 
 <div class="user-small">
-    <div itemscope itemtype="http://schema.org/Person" class="row">
-        <div class="col-12 col-sm-auto">
-            <div class="mx-auto">
-                <div class="col d-flex justify-content-center align-items-center">
-                    <div class="user-box">
-                        <div class="image-profile">
-                            <?= Html::img(Html::encode(Url::base(true) . '/' . $model->link), [
-                                'alt' => Yii::t('app', 'Imagen de usuario'),
-                                'data-action' => 'zoom',
-                                'title' => Yii::t('app', 'Imagen de usuario'),
-                            ]); ?>
-                        </div>
-                    </div>
+    <div itemscope itemtype="http://schema.org/Person" class="row justify-content-between">
+        <div class="col-xl-2 d-flex justify-content-center justify-content-xl-start">
+            <?= Html::img(Html::encode(Url::base(true) . '/' . $model->link), [
+                'alt' => Yii::t('app', 'Imagen de usuario'),
+                'data-action' => 'zoom',
+                'title' => Yii::t('app', 'Imagen de usuario'),
+                'class' => 'user-avatar',
+            ]); ?>
+        </div>
+        <div class="col-xl-8">
+            <div class="row justify-content-center justify-content-xl-start">
+                <?= Html::a(Html::encode($model->fullname), ['user/view', 'id' => $model->id], [
+                    'class' => 'lead',
+                    'itemprop' => 'name',
+                    'data-pjax' => 0,
+                ]); ?>
+            </div>
+            <div class="row justify-content-center justify-content-xl-start mt-2">
+                <?= Html::a(Html::encode($model->username), ['user/view', 'id' => $model->id], [
+                    'itemprop' => 'alternateName',
+                    'data-pjax' => 0,
+                ]); ?>
+            </div>
+            <div class="row justify-content-center justify-content-xl-start align-items-baseline mt-2">
+                <div itemprop="email">
+                    <i class="fas fa-envelope mr-1"></i>
+                    <?= Yii::$app->formatter->asEmail(Html::encode($model->email)); ?>
                 </div>
             </div>
         </div>
-        <div class="col d-flex flex-column flex-sm-row justify-content-between">
-            <div class="text-center text-sm-left">
-                <div class="d-block lead mb-2">
-                    <?= Html::a(Html::encode($model->fullname), ['user/view', 'id' => $model->id], [
-                        'itemprop' => 'name',
-                        'data-pjax' => 0,
-                    ]) ?>
-                </div>
-                <div class="d-block mb-2">
-                    <?= Html::a(Html::encode($model->username), ['user/view', 'id' => $model->id], [
-                        'itemprop' => 'alternateName',
-                        'data-pjax' => 0,
-                    ]) ?>
-                </div>
-                <div itemprop="email" class="d-block mb-2">
-                    <i class="fas fa-envelope mr-1"></i>
-                    <?= Yii::$app->formatter->asEmail(Html::encode($model->email)) ?>
-                </div>
-            </div>
-            <div class="text-center text-sm-right">
-                <small class="text-muted">
-                    <i class="fas fa-calendar icon-sm mr-1"></i>
-                    <?= Yii::t('app', 'Registrado el {date}', [
-                        'date' => Html::encode(Yii::$app->formatter->asDate($model->created_at)),
-                    ]) ?>
-                </small>
+        <div class="col-xl-2">
+            <div class="row justify-content-center justify-content-xl-start align-items-baseline mt-sm-2 d-xl-inline-block">
+                <i class="fas fa-calendar mr-2"></i>
+                <?= Yii::t('app', 'Registrado el {date}', [
+                    'date' => Html::encode(Yii::$app->formatter->asDate($model->created_at)),
+                ]); ?>
             </div>
         </div>
     </div>

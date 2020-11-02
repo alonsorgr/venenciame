@@ -164,7 +164,7 @@ a.desc:after {
   }
 }
 
-@media (max-width: 992px) {
+@media (max-width: 1200px) {
   #user-view-container.nav-tabs>.nav-item {
     width: 100% !important;
     display: block;
@@ -198,4 +198,9 @@ a.desc:after {
 
 .card-border {
   border: 1px solid #F7F7F7 !important;
+}
+
+.user-avatar {
+  width: 128px !important;
+  height: 128px !important;
 }
