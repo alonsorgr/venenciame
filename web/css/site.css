@@ -219,3 +219,8 @@ a.desc:after {
   height: 256px !important;
   margin-bottom: 20px !important;
 }
+
+
+.btn-search {
+  box-shadow: none;
+}

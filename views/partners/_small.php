@@ -69,7 +69,7 @@ if (!Yii::$app->user->isGuest) {
                     'data-pjax' => 0,
                 ]); ?>
             </div>
-            <div class="row justify-content-center justify-content-xl-start mt-2">
+            <div class="row justify-content-center justify-content-xl-start text-center text-xl-left mt-2">
                 <?= Html::encode($model->description); ?>
             </div>
             <div class="row justify-content-center justify-content-xl-start align-items-baseline mt-2">

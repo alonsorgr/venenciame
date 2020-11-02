@@ -64,46 +64,16 @@ $this->registerJs($js);
         ],
     ]); ?>
     <div class="row justify-content-between">
-        <div class="col-12 col-md-3">
+        <div class="col-xl-11">
             <?= $form->field($model, 'name')->textInput([
                 'maxlength' => true,
-                'placeholder' => Yii::t('app', 'Buscar por nombre'),
-                'title' => Yii::t('app', 'Buscar por nombre'),
+                'placeholder' => Yii::t('app', 'Buscar por bodega'),
+                'title' => Yii::t('app', 'Buscar por bodega'),
             ]); ?>
         </div>
-        <div class="col-12 col-md-3">
-            <?= $form->field($model, 'country_id')->widget(Select2::class, [
-                'data' => Countries::labels(),
-                'options' => [
-                    'id' => 'form-country_id',
-                    'class' => 'form-control',
-                    'placeholder' => Yii::t('app', 'Buscar por país'),
-                    'title' => Yii::t('app', 'Buscar por país'),
-                ],
-                'theme' => Select2::THEME_MATERIAL,
-                'pluginOptions' => [
-                    'allowClear' => false,
-                ],
-            ]); ?>
-        </div>
-        <div class="col-12 col-md-3">
-            <?= $form->field($model, 'state_id')->widget(Select2::class, [
-                'data' => States::labels(),
-                'options' => [
-                    'id' => 'form-state_id',
-                    'class' => 'form-control',
-                    'placeholder' => Yii::t('app', 'Buscar por provincia'),
-                    'title' => Yii::t('app', 'Buscar por provincia'),
-                ],
-                'theme' => Select2::THEME_MATERIAL,
-                'pluginOptions' => [
-                    'allowClear' => true,
-                ],
-            ]); ?>
-        </div>
-        <div class="col-12 col-md-3 my-4">
-            <?= Html::submitButton('<i class="fas fa-search mr-2"></i>' . Yii::t('app', 'Buscar'), [
-                'class' => 'btn btn-outline-primary btn-block',
+        <div class="col-xl-1 d-flex justify-content-start justify-content-xl-end my-4">
+            <?= Html::submitButton('<i class="fas fa-search mr"></i>', [
+                'class' => 'btn btn-outline-primary btn-search',
                 'placeholder' => Yii::t('app', 'Buscar'),
                 'title' => Yii::t('app', 'Buscar'),
             ]); ?>
