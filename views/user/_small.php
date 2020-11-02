@@ -7,7 +7,6 @@ use yii\bootstrap4\Html;
 /* @var $model app\models\User */
 
 ?>
-
 <div class="user-small">
     <div itemscope itemtype="http://schema.org/Person" class="row justify-content-between">
         <div class="col-xl-2 d-flex justify-content-center justify-content-xl-start">
@@ -15,7 +14,7 @@ use yii\bootstrap4\Html;
                 'alt' => Yii::t('app', 'Imagen de usuario'),
                 'data-action' => 'zoom',
                 'title' => Yii::t('app', 'Imagen de usuario'),
-                'class' => 'user-avatar',
+                'class' => 'avatar circle-avatar',
             ]); ?>
         </div>
         <div class="col-xl-8">

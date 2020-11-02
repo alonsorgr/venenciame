@@ -92,13 +92,13 @@ class Articles extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['partner_id', 'category_id', 'denomination_id', 'vat_id', 'name', 'title', 'description', 'price', 'stock', 'degrees', 'capacity', 'variety', 'pairing', 'review'], 'required'],
+            [['partner_id', 'category_id', 'denomination_id', 'vat_id', 'name_id', 'title', 'description', 'price', 'stock', 'degrees', 'capacity', 'variety', 'pairing', 'review'], 'required'],
             [['partner_id', 'category_id', 'denomination_id', 'vat_id', 'status_id', 'stock', 'capacity'], 'default', 'value' => null],
             [['partner_id', 'category_id', 'denomination_id', 'vat_id', 'status_id', 'stock', 'capacity'], 'integer'],
             [['price'], 'number'],
             [['review'], 'string'],
             [['created_at'], 'safe'],
-            [['name', 'title'], 'string', 'max' => 50],
+            [['name_id', 'title'], 'string', 'max' => 50],
             [['description', 'degrees', 'variety', 'pairing', 'image'], 'string', 'max' => 255],
             [['name_id'], 'unique'],
             [['name_id'], 'trim'],

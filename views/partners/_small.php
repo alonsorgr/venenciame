@@ -52,63 +52,60 @@ if (!Yii::$app->user->isGuest) {
 ?>
 
 <div class="partner-small">
-    <div itemscope itemtype="http://schema.org/Organization" class="row">
-        <div class="col-12 col-sm-auto mt-4">
-            <div class="mx-auto">
-                <div class="col d-flex justify-content-center align-items-center">
-                    <div class="user-box">
-                        <div class="image-profile">
-                            <?= Html::img(Html::encode(Url::base(true) . '/' . $model->link), [
-                                'alt' => Yii::t('app', 'Logo corporativo'),
-                                'title' => Yii::t('app', 'Logo corporativo'),
-                                'data-action' => 'zoom',
-                            ]); ?>
-                        </div>
-                    </div>
+    <div itemscope itemtype="http://schema.org/Organization" class="row justify-content-between">
+        <div class="col-xl-2 d-flex justify-content-center justify-content-xl-start">
+            <?= Html::img(Html::encode(Url::base(true) . '/' . $model->link), [
+                'alt' => Yii::t('app', 'Logo corporativo'),
+                'data-action' => 'zoom',
+                'title' => Yii::t('app', 'Logo corporativo'),
+                'class' => 'avatar',
+            ]); ?>
+        </div>
+        <div class="col-xl-6">
+            <div class="row justify-content-center justify-content-xl-start">
+                <?= Html::a(Html::encode($model->name), ['partners/view', 'id' => $model->id], [
+                    'class' => 'lead',
+                    'itemprop' => 'legalName',
+                    'data-pjax' => 0,
+                ]); ?>
+            </div>
+            <div class="row justify-content-center justify-content-xl-start mt-2">
+                <?= Html::encode($model->description); ?>
+            </div>
+            <div class="row justify-content-center justify-content-xl-start align-items-baseline mt-2">
+                <div itemprop="email">
+                    <i class="fas fa-envelope mr-1"></i>
+                    <?= Yii::$app->formatter->asEmail(Html::encode($model->email)); ?>
                 </div>
             </div>
         </div>
-        <div class="col d-flex flex-column flex-sm-row justify-content-between mt-4">
-            <div class="text-center text-sm-left">
-                <div class="d-block mb-xl-2 mt-2 lead">
-                    <?= Html::a(Html::encode($model->name), ['partners/view', 'id' => $model->id], [
-                        'itemprop' => 'legalName',
+        <div class="col-xl-4 pr-xl-5">
+            <div class="row justify-content-center justify-content-xl-end my-2">
+                <?php if (!Yii::$app->user->isGuest) : ?>
+                    <?= Html::a(null, null, [
+                        'id' => 'partner-follow-' . $id,
+                        'class' => 'far fa-heart no-underline heart-size text-danger',
                         'data-pjax' => 0,
-                    ]) ?>
-                </div>
-                <cite itemprop="description" class="d-block text-break font-italic mr-lg-5 mt-2">
-                    <?= Html::encode($model->description) ?>
-                </cite>
+                    ]); ?>
+                <?php endif; ?>
             </div>
-            <div class="text-center text-nowrap text-sm-right mt-3">
-                <small class="text-muted">
-                    <?= Yii::t('app', 'Registrado el {date}', [
-                        'date' => Html::encode(Yii::$app->formatter->asDate($model->created_at)),
-                    ]) ?>
-                    <i class="fas fa-calendar icon-sm ml-2"></i>
-                </small>
-                <div itemprop="url" class="d-block mt-2 text-muted">
-                    <?= Yii::$app->formatter->asUrl($model->url) ?>
-                    <i class="fas fa-link icon-sm ml-2"></i>
-                </div>
-                <div itemprop="email" class="d-block mt-2 text-muted">
-                    <?= Yii::$app->formatter->asEmail($model->email) ?>
-                    <i class="fas fa-envelope icon-sm ml-2"></i>
-                </div>
-                <div itemprop="location" class="d-block mt-2 text-muted">
-                    <?= Html::encode($model->location) ?>
-                </div>
-                <div class="d-block justify-content-end mt-3">
-                    <?php if (!Yii::$app->user->isGuest) : ?>
-                        <?= Html::a(null, null, [
-                            'id' => 'partner-follow-' . $id,
-                            'class' => 'far fa-heart no-underline heart-size text-danger',
-                            'data-pjax' => 0,
-                        ]); ?>
-                    <?php endif; ?>
+            <div class="row justify-content-center justify-content-xl-end align-items-baseline mt-sm-2">
+                <i class="fas fa-calendar mr-2"></i>
+                <?= Yii::t('app', 'Registrado el {date}', [
+                    'date' => Html::encode(Yii::$app->formatter->asDate($model->created_at)),
+                ]); ?>
+            </div>
+            <div itemprop="url" class="row justify-content-center justify-content-xl-end align-items-baseline mt-sm-2">
+                <i class="fas fa-link mr-2"></i>
+                <?= Yii::$app->formatter->asUrl($model->url); ?>
+            </div>
+            <div itemprop="location" class="row justify-content-center justify-content-xl-end align-items-baseline mt-sm-2">
+                <div class="text-nowrap">
+                    <i class="fas fa-map-marker-alt d-inline mr-2"></i>
+                    <?= Html::encode($model->location) . '.'; ?>
                 </div>
             </div>
         </div>
     </div>
-    <div class="my-xl-3 horizontal-divider"></div>
+    <div class="mt-xl-0 horizontal-divider"></div>
 </div>

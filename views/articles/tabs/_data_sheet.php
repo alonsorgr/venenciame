@@ -22,6 +22,14 @@ use yii\bootstrap4\Html;
     <div class="row">
         <div class="col mt-5 text-center text-xl-left">
             <div class="font-weight-bold">
+                <?= Yii::t('app', 'Graduación alcohólica'); ?>
+            </div>
+            <?= Yii::$app->formatter->asPercent(Html::encode($model->degrees)) . ' vol'; ?>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col mt-5 text-center text-xl-left">
+            <div class="font-weight-bold">
                 <?= Yii::t('app', 'Variedad de la uva'); ?>
             </div>
             <?= Html::encode($model->variety) ?>

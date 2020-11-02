@@ -20,20 +20,20 @@ $this->title = Yii::t('app', 'Vinos');
     ]); ?>
     <div class="row">
         <div class="col-xl-4 mb-5">
-            <div class="card-border w-100">
+            <div class="card-border">
                 <div class="card-header">
-                    <a id="collapse-search-articles-btn" data-toggle="collapse" href="#collapse-search-articles" aria-expanded="true" aria-controls="collapse-search-articles" id="collapse-search-articles-index" class="d-block collapse-link text-decoration-none ml-4">
+                    <a id="collapse-search-articles-btn" data-toggle="collapse" href="#collapse-search-articles" aria-expanded="true" aria-controls="collapse-search-articles" id="collapse-search-articles-index" class="d-block collapse-link text-decoration-none ml-3">
                         <div class="row justify-content-between">
                             <div>
-                                <i class="fas fa-search mx-2 d-inline"></i>
-                                <div class="lead d-inline"><?= Yii::t('app', 'Buscar') ?></div>
+                                <i class="fas fa-search d-inline mr-2" style="color: #3B525A"></i>
+                                <div class="lead d-inline lead"><?= Yii::t('app', 'Buscar') ?></div>
                             </div>
                             <i class="collapse-icon fa fa-chevron-down mr-3 d-xl-none"></i>
                         </div>
                     </a>
                 </div>
                 <div id="collapse-search-articles" class="collapse d-xl-block" aria-labelledby="collapse-search-articles-index">
-                    <div class="card-body px-5">
+                    <div class="card-body">
                         <?= $this->render('_search', [
                             'model' => $searchModel,
                         ]); ?>

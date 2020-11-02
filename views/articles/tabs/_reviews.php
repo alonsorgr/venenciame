@@ -13,8 +13,15 @@ use yii\helpers\Url;
 ?>
 
 <div class="article-reviews">
+    <div class="row">
+        <div class="col-12">
+            <?= $this->render('/reviews/index', [
+                'dataProvider' => $reviewsProvider
+            ]); ?>
+        </div>
+    </div>
     <?php if (!Articles::isReview()) : ?>
-        <div id="reviews-btn" class="row mt-5">
+        <div id="reviews-btn" class="row justify-content-center mt-5">
             <div class="col-12 col-xl-4">
                 <?php if (!Yii::$app->user->isGuest) : ?>
                     <?= Html::a('<i class="fas fa-comments mr-2"></i>' . Yii::t('app', 'Agregar una reseña'), Url::to(['reviews/create']), [
@@ -28,11 +35,4 @@ use yii\helpers\Url;
             </div>
         </div>
     <?php endif ?>
-    <div class="row">
-        <div class="col-12">
-            <?= $this->render('/reviews/index', [
-                'dataProvider' => $reviewsProvider
-            ]); ?>
-        </div>
-    </div>
 </div>

@@ -24,7 +24,7 @@ use yii\bootstrap4\ActiveForm;
         ],
     ]); ?>
     <div class="row">
-        <div class="col p-0">
+        <div class="col-12">
             <div class="mb-2">
                 <?= $form->field($model, 'title')->textInput([
                     'maxlength' => true,
