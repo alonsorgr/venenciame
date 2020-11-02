@@ -37,7 +37,7 @@ $this->registerJs($js);
             </div>
         </div>
     </div>
-    <div class="row">
+    <div class="row flex-nowrap">
         <div class="col-1">
             <?= Html::img(Html::encode(Url::base(true) . '/' . $model->article->link), [
                 'alt' => Yii::t('app', 'Imagen del artículo'),
@@ -46,7 +46,7 @@ $this->registerJs($js);
                 'data-action' => 'zoom',
             ]); ?>
         </div>
-        <div class="col-4 align-self-center ml-3">
+        <div class="col-3 align-self-center ml-3">
             <div class="font-weight-bold d-inline">
                 <?= Yii::t('app', 'Uds:'); ?>
             </div>
@@ -62,7 +62,7 @@ $this->registerJs($js);
                 <?= Html::encode(Yii::$app->formatter->asCurrency($model->article->amount * $model->quantity)); ?>
             </div>
         </div>
-        <div class="col-1 align-self-center">
+        <div class="col-2 align-self-center">
             <div class="d-flex justify-content-end">
                 <?= Html::a(null, null, [
                     'id' => 'cart-items-delete' . $model->id,
