@@ -34,23 +34,15 @@ $this->registerJs($js);
             <div class="row justify-content-between">
                 <div class="col-12 col-xl-6">
                     <div class="row">
-                        <div class="col-12 col-xl-1">
-                            <div class="mx-auto">
-                                <div class="col d-flex justify-content-center align-items-center">
-                                    <div class="user-box-small">
-                                        <div class="image-profile">
-                                            <?= Html::img(Html::encode(Url::base(true) . '/' . $model->user->link), [
-                                                'alt' => Yii::t('app', 'Avatar de usuario'),
-                                                'title' => Yii::t('app', 'Avatar de usuario'),
-                                                'width' => 32,
-                                                'data-action' => 'zoom',
-                                            ]); ?>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="col-xl-1 d-flex justify-content-center justify-content-xl-start">
+                            <?= Html::img(Html::encode(Url::base(true) . '/' . $model->user->link), [
+                                'alt' => Yii::t('app', 'Imagen de usuario'),
+                                'data-action' => 'zoom',
+                                'title' => Yii::t('app', 'Imagen de usuario'),
+                                'class' => 'avatar-small circle-avatar',
+                            ]); ?>
                         </div>
-                        <div class="col-12 col-xl-11 text-center text-xl-left mt-2">
+                        <div class="col-xl-10 text-center text-xl-left mt-2">
                             <?= Html::a(Html::encode($model->user->username) . ' ', Url::to(['user/view', 'id' => $model->user_id]), [
                                 'data-pjax' => 0,
                             ]) . Yii::t('app', 'comentó el ') . Yii::$app->formatter->asDate($model->created_at) . ' ' . Yii::t('app', 'sobre ') .  Html::a(Html::encode($model->article->title), Url::to(['articles/view', 'id' => $model->article->id]), [
@@ -59,7 +51,7 @@ $this->registerJs($js);
                         </div>
                     </div>
                 </div>
-                <div class="col-12 col-xl-5 d-flex justify-content-center justify-content-xl-end text-center text-xl-right">
+                <div class="col-xl-5 d-flex justify-content-center justify-content-xl-end text-center text-xl-right mt-3">
                     <?= StarRating::widget([
                         'name' => 'rating-small',
                         'value' => $model->score,
@@ -77,7 +69,7 @@ $this->registerJs($js);
                     ]); ?>
                 </div>
                 <?php if (User::isAdmin()) : ?>
-                    <div class="col-12 col-xl-1 d-flex justify-content-center justify-content-xl-end text-center text-xl-right mt-xl-1">
+                    <div class="col-12 col-xl-1 d-flex justify-content-center justify-content-xl-end text-center text-xl-right mt-3">
                         <?= Html::a(null, null, [
                             'id' => 'reviews-delete' . $model->id,
                             'class' => 'fas fa-trash no-underline cursor-pointer text-danger',
@@ -90,7 +82,7 @@ $this->registerJs($js);
         </div>
     </div>
     <div class="row mb-3">
-        <div class="col-12 text-center text-xl-left">
+        <div class="col-12 text-center text-xl-left mt-3">
             <?= Html::encode($model->review); ?>
         </div>
     </div>

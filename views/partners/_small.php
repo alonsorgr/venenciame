@@ -99,7 +99,7 @@ if (!Yii::$app->user->isGuest) {
                 <i class="fas fa-link mr-2"></i>
                 <?= Yii::$app->formatter->asUrl($model->url); ?>
             </div>
-            <div itemprop="location" class="row justify-content-center justify-content-xl-end align-items-baseline mt-sm-2">
+            <div itemprop="location" class="row justify-content-center justify-content-xl-end align-items-baseline mt-sm-2 mb-4">
                 <div class="text-nowrap">
                     <i class="fas fa-map-marker-alt d-inline mr-2"></i>
                     <?= Html::encode($model->location) . '.'; ?>
