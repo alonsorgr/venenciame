@@ -110,7 +110,7 @@ $this->registerJs("$('#cuantity' + '$model->id').inputSpinner()");
 
 <section class="articles-small">
     <div itemscope itemtype="http://schema.org/Product" class="row justify-content-start">
-        <div class="col-xl-2 d-flex justify-content-center justify-content-xl-start">
+        <div class="col-xl-2 d-flex justify-content-center">
             <?= Html::img(Html::encode(Url::base(true) . '/' . $model->link), [
                 'alt' => Yii::t('app', 'Imagen artículo'),
                 'title' => Yii::t('app', 'Imagen artículo'),
