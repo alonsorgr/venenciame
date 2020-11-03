@@ -33,6 +33,7 @@ class AppAsset extends AssetBundle
         'js/zoom.min.js',
         'js/effects.js',
         'js/input-spinner.js',
+        'js/notify.min.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',

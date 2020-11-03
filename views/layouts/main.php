@@ -154,7 +154,7 @@ AppAsset::register($this);
             ]) ?>
         </div>
     </footer>
-    <div class="page-loader-wrapper" style="z-index: 100;">
+    <!-- <div class="page-loader-wrapper" style="z-index: 100;">
         <div class="loader">
             <div class="preloader">
                 <div class="spinner-layer pl-primary">
@@ -167,7 +167,7 @@ AppAsset::register($this);
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <?= Cookies::register(); ?>
     <?php $this->endBody() ?>
 </body>

@@ -9,6 +9,14 @@ use app\models\User;
 
 if (!Yii::$app->user->isGuest) {
 
+    $notifyFollow = Yii::t('app', 'Has agregado a favoritos a {partner}', [
+        'partner' => $model->name,
+    ]);
+
+    $notifyUnfollow = Yii::t('app', 'Has eliminado de favoritos a {partner}', [
+        'partner' => $model->name,
+    ]);
+
     $follow = Url::to(['followers/follow', 'user_id' => User::id(), 'partner_id' => $model->id]);
     $id = $model->id;
 
@@ -40,6 +48,19 @@ if (!Yii::$app->user->isGuest) {
                     }
                     if($("#partners-index-pjax").length != 0) {
                         $.pjax.reload({ container: '#partners-index-pjax', timeout: false });
+                    }
+                    if (response.class == 'fas') {
+                        $('#partner-follow-' + $id).notify('$notifyFollow', {
+                            style: 'bootstrap',
+                            className: 'success',
+                            position: 'right'
+                        });
+                    } else {
+                        $('#partner-follow-' + $id).notify('$notifyUnfollow', {
+                            style: 'bootstrap',
+                            className: 'error',
+                            position: 'right'
+                        });
                     }
                 }
             });

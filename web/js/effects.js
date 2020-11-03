@@ -13,7 +13,7 @@ function loading() {
     loader();
 }
 
-loading();
+// loading();
 
 /**
  * Asigna una animación de entrada en una ventana modal.
