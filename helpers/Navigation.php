@@ -355,7 +355,7 @@ class Navigation
             'class' => 'fas fa-map-marker-alt',
         ]);
 
-        $label = Html::tag('span', Yii::t('app', 'Denominaciónes de origen'), [
+        $label = Html::tag('span', Yii::t('app', 'Denominaciónes'), [
             'id' => 'denominations-label',
             'class' => 'ml-2 active',
             'title' => Yii::t('app', 'Tipos de vino.'),
