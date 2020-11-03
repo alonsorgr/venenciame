@@ -100,7 +100,7 @@ class CartItemsController extends Controller
             $model->article_id = $article_id;
             $model->quantity = $quantity;
             if ($model->save()) {
-                return json_encode(['class' => 'far']);
+                return json_encode(['class' => 'fas']);
             }
         }
     }
