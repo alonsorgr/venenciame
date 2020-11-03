@@ -37,24 +37,31 @@ $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
                 <div class="lead d-inline"><?= Yii::t('app', 'Compartir') ?></div>
             </div>
             <div class="card-body">
-                <div class="icon-container1 d-flex mt-2">
-                    <?= Html::a('<i class=" img-thumbnail fab fa-twitter fa-2x" style="color:#0098F4;background-color: aliceblue"></i>
+                <div class="row justify-content-center">
+                    <div class="col-3 text-center">
+                        <?= Html::a('<i class=" img-thumbnail fab fa-twitter fa-2x" style="color:#0098F4;background-color: aliceblue"></i>
                         <p class="mt-2">Twitter</p>', 'https://twitter.com/home?status=http://venenciame.herokuapp.com', [
-                        'class' => 'smd'
-                    ]) ?>
-
-                    <?= Html::a('<i class=" img-thumbnail fab fa-facebook fa-2x" style="color:#4E4990;background-color: aliceblue"></i>
+                            'class' => 'smd'
+                        ]) ?>
+                    </div>
+                    <div class="col-3 text-center">
+                        <?= Html::a('<i class=" img-thumbnail fab fa-facebook fa-2x" style="color:#4E4990;background-color: aliceblue"></i>
                         <p class="mt-2">Facebook</p>', 'https://www.facebook.com/sharer/sharer.php?u=http://venenciame.herokuapp.com', [
-                        'class' => 'smd'
-                    ]) ?>
-                    <?= Html::a('<i class=" img-thumbnail fab fa-linkedin fa-2x" style="color:#0067B1;background-color: aliceblue"></i>
+                            'class' => 'smd'
+                        ]) ?>
+                    </div>
+                    <div class="col-3 text-center">
+                        <?= Html::a('<i class=" img-thumbnail fab fa-linkedin fa-2x" style="color:#0067B1;background-color: aliceblue"></i>
                         <p class="mt-2">Linkedin</p>', 'https://www.linkedin.com/shareArticle?mini=true&url=http://venenciame.herokuapp.com&title=&summary=&source=', [
-                        'class' => 'smd'
-                    ]) ?>
-                    <?= Html::a('<i class=" img-thumbnail fab fa-pinterest fa-2x" style="color:#DC0000;background-color: aliceblue"></i>
+                            'class' => 'smd'
+                        ]) ?>
+                    </div>
+                    <div class="col-3 text-center">
+                        <?= Html::a('<i class=" img-thumbnail fab fa-pinterest fa-2x" style="color:#DC0000;background-color: aliceblue"></i>
                         <p class="mt-2">Pinterest</p>', 'https://pinterest.com/pin/create/button/?url=http://venenciame.herokuapp.com&media=&description=', [
-                        'class' => 'smd'
-                    ]) ?>
+                            'class' => 'smd'
+                        ]) ?>
+                    </div>
                 </div>
             </div>
         </div>
