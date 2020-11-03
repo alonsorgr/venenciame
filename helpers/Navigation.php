@@ -51,8 +51,6 @@ class Navigation
 
             static::categories(),
 
-            static::denominations(),
-
             static::user(),
 
             Yii::$app->user->isGuest ? static::item([
