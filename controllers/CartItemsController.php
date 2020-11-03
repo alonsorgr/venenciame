@@ -89,7 +89,7 @@ class CartItemsController extends Controller
             $model = $model->one();
             $model->quantity = $model->quantity + $quantity;
             if ($model->save()) {
-                return json_encode(['actualiza']);
+                return json_encode(['class' => 'fas']);
             }
         } else {
             $model = new CartItems();
@@ -100,7 +100,7 @@ class CartItemsController extends Controller
             $model->article_id = $article_id;
             $model->quantity = $quantity;
             if ($model->save()) {
-                return json_encode(['crea']);
+                return json_encode(['class' => 'far']);
             }
         }
     }

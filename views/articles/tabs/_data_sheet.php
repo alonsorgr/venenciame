@@ -24,7 +24,7 @@ use yii\bootstrap4\Html;
             <div class="font-weight-bold">
                 <?= Yii::t('app', 'Graduación alcohólica'); ?>
             </div>
-            <?= Yii::$app->formatter->asPercent(Html::encode($model->degrees)) . ' vol'; ?>
+            <?= Html::encode($model->degrees) . '% vol.'; ?>
         </div>
     </div>
     <div class="row">

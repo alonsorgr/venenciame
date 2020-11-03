@@ -9,11 +9,11 @@ use app\models\User;
 
 if (!Yii::$app->user->isGuest) {
 
-    $notifyFollow = Yii::t('app', 'Has agregado a favoritos a {partner}', [
+    $notifyFollow = Yii::t('app', 'Has comenzado a seguir a {partner}', [
         'partner' => $model->name,
     ]);
 
-    $notifyUnfollow = Yii::t('app', 'Has eliminado de favoritos a {partner}', [
+    $notifyUnfollow = Yii::t('app', 'Has dejado de seguir a {partner}', [
         'partner' => $model->name,
     ]);
 
@@ -53,13 +53,13 @@ if (!Yii::$app->user->isGuest) {
                         $('#partner-follow-' + $id).notify('$notifyFollow', {
                             style: 'bootstrap',
                             className: 'success',
-                            position: 'right'
+                            position: 'bottom center'
                         });
                     } else {
                         $('#partner-follow-' + $id).notify('$notifyUnfollow', {
                             style: 'bootstrap',
                             className: 'error',
-                            position: 'right'
+                            position: 'bottom center'
                         });
                     }
                 }

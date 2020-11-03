@@ -10,6 +10,18 @@ use yii\bootstrap4\Html;
 
 if (!Yii::$app->user->isGuest) {
 
+    $notifyAddToFavorites = Yii::t('app', 'Has agregado a favoritos a {article}', [
+        'article' => $model->title,
+    ]);
+
+    $notifyRemoveTofavorites = Yii::t('app', 'Has eliminado de favoritos a {article}', [
+        'article' => $model->title,
+    ]);
+
+    $notifyAddToCart = Yii::t('app', 'Has agregado al carrito a {cart}', [
+        'cart' => $model->title,
+    ]);
+
     $follow = Url::to(['favorites/set', 'user_id' => User::id(), 'article_id' => $model->id]);
     $id = $model->id;
 
@@ -45,7 +57,19 @@ if (!Yii::$app->user->isGuest) {
                     if($("#articles-favorites-pjax").length != 0) {
                         $.pjax.reload({ container: '#favorites-articles-pjax', timeout: false });
                     } 
-                    $.pjax.reload({ container: '#reviews-pjax', timeout: false });
+                    if (response.class == 'fas') {
+                        $('#article-favorite-' + $id).notify('$notifyAddToFavorites', {
+                            style: 'bootstrap',
+                            className: 'success',
+                            position: 'bottom center'
+                        });
+                    } else {
+                        $('#article-favorite-' + $id).notify('$notifyRemoveTofavorites', {
+                            style: 'bootstrap',
+                            className: 'error',
+                            position: 'bottom center'
+                        });
+                    }
                 }
             });
         });
@@ -65,6 +89,13 @@ if (!Yii::$app->user->isGuest) {
                 response = JSON.parse(response);
                 if($("#cart-items-index-small-pjax").length != 0) {
                      $.pjax.reload({ container: '#cart-items-index-small-pjax', timeout: false });
+                }
+                if (response.class === 'fas') {
+                    $('#article-to-cart' + '$model->id').notify('$notifyAddToCart', {
+                        style: 'bootstrap',
+                        className: 'success',
+                        position: 'bottom center'
+                    });
                 }
             }
         });
