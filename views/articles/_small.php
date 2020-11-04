@@ -8,9 +8,10 @@ use yii\bootstrap4\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Articles */
 
+$this->registerJsFile('@js/notification.js');
+
 if (!Yii::$app->user->isGuest) {
 
-    $this->registerJsFile('@js/notification.js');
 
     $notifyAddToFavorites = Yii::t('app', 'Has agregado a favoritos a {article}', [
         'article' => $model->title,
@@ -93,6 +94,14 @@ if (!Yii::$app->user->isGuest) {
     });
     EOT;
 
+    $this->registerJs($js);
+} else {
+    $notifyLoginToAddToCart = Yii::t('app', 'Debes estar registrado para poder agregar el arículo al carrito de la compra');
+    $js = <<<EOT
+        $('#article-to-cart' + '$model->id').click(function(e){
+            notification('#article-to-cart' + '$model->id', '$notifyLoginToAddToCart', 'success');
+        });
+    EOT;
     $this->registerJs($js);
 }
 $this->registerJs("$('#cuantity' + '$model->id').inputSpinner()");
