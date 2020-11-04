@@ -65,10 +65,19 @@ class CartItemsController extends Controller
      */
     public function actionIndex()
     {
+        $model = CartItems::find()->where(['user_id' => User::id()])->all();
+
+        $total = 0;
+
+        foreach ($model as $value) {
+            $total += ($value->article->price * $value->article->vat->value /100) * $value['quantity'] + $value->article->price;
+        }
+
         $searchModel = new CartItemsSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
+            'total' => $total,
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
