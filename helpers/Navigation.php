@@ -86,7 +86,7 @@ class Navigation
 
             !Yii::$app->user->isGuest ? static::item([
                 'id' => 'cart',
-                'icon' => 'fas fa-shopping-cart',
+                'icon' => 'fas fa-shopping-cart ml-xl-3',
                 'label' => '<span id="shopping-cart-counter" class="count-badge badge badge-pill badge-success px-1"></span>',
                 'url' => Url::to(['cart-items/index']),
                 'title' => Yii::t('app', 'Carrito de la compra'),

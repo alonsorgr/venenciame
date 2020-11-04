@@ -85,7 +85,7 @@ if (!Yii::$app->user->isGuest) {
                     $.pjax.reload({ container: '#cart-items-index-small-pjax', timeout: false });
                 }
                 if (response.class === 'fas') {
-                    notification('#notifications', '$notifyAddToCart', 'success');
+                    notification('#cart', '$notifyAddToCart', 'success');
                 }
                 $('#shopping-cart-counter').text(response.count);
             }
