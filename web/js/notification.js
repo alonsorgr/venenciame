@@ -6,7 +6,7 @@
  * @param string position   posición de la notificación.
  * @param string style      estilo de la notificación.
  */
-function notification(id, text, type, position = 'bottom left', style = 'app') {
+function notification(id, text, type, position = 'bottom center', style = 'app') {
     $.notify.addStyle('app', {
         html: "<div style='z-index: 99999'><i class='fas fa-check-circle mr-2' style='color: #797979'></i><span data-notify-text/></div>",
         classes: {

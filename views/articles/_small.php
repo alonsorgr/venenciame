@@ -82,11 +82,12 @@ if (!Yii::$app->user->isGuest) {
             success: function(response) {
                 response = JSON.parse(response);
                 if($("#cart-items-index-small-pjax").length != 0) {
-                     $.pjax.reload({ container: '#cart-items-index-small-pjax', timeout: false });
+                    $.pjax.reload({ container: '#cart-items-index-small-pjax', timeout: false });
                 }
                 if (response.class === 'fas') {
                     notification('#notifications', '$notifyAddToCart', 'success');
                 }
+                $('#shopping-cart-counter').text(response.count);
             }
         });
     });

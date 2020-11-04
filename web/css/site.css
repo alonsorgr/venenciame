@@ -223,3 +223,8 @@ a.desc:after {
 .btn-search {
   box-shadow: none;
 }
+
+#shopping-cart-counter {
+  position: relative;
+  top: -10px;
+}
