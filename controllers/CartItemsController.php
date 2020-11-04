@@ -15,6 +15,7 @@ use yii\filters\AccessControl;
 use yii\web\NotFoundHttpException;
 use app\models\CartItems;
 use app\models\search\CartItemsSearch;
+use app\models\User;
 
 /**
  * Controlador de carritos de la compra [[CartItems]]
@@ -33,7 +34,7 @@ class CartItemsController extends Controller
                 'class' => AccessControl::class,
                 'rules' => [
                     [
-                        'actions' => ['index', 'create', 'delete'],
+                        'actions' => ['index', 'create', 'delete', 'count'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -75,7 +76,6 @@ class CartItemsController extends Controller
 
     /**
      * Acción de renderizado vista de creación de carrito de la compra.
-     *
      * @param integer $user_id      id del usuario.
      * @param integer $article_id   id del artículo
      * @param integer $quantity     cantidad.
@@ -84,12 +84,13 @@ class CartItemsController extends Controller
     public function actionCreate($user_id, $article_id, $quantity)
     {
         $model = CartItems::find()->where(['user_id' => $user_id, 'article_id' => $article_id]);
-
+        
         if ($model->exists()) {
             $model = $model->one();
             $model->quantity = $model->quantity + $quantity;
             if ($model->save()) {
-                return json_encode(['class' => 'fas']);
+                $count = CartItems::find()->where(['user_id' => User::id()])->count();
+                return json_encode(['class' => 'fas', 'count' => $count]);
             }
         } else {
             $model = new CartItems();
@@ -100,8 +101,21 @@ class CartItemsController extends Controller
             $model->article_id = $article_id;
             $model->quantity = $quantity;
             if ($model->save()) {
-                return json_encode(['class' => 'fas']);
+                $count = CartItems::find()->where(['user_id' => User::id()])->count();
+                return json_encode(['class' =>'fas', 'count' => $count]);
             }
+        }
+    }
+
+    /**
+     * Acción de contador de artículos en el carrito
+     * @return  yii\web\Response | string   el resultado de la representación.
+     */
+    public function actionCount()
+    {
+        if (Yii::$app->request->isAjax) {
+            $count = CartItems::find()->where(['user_id' => User::id()])->count();
+            return json_encode(['count' => $count]);
         }
     }
 

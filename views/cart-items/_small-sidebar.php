@@ -6,7 +6,9 @@
 use yii\helpers\Url;
 use yii\bootstrap4\Html;
 
+
 $url = Url::to(['cart-items/delete', 'id' => $model->id]);
+$urlCount = Url::to(['cart-items/count']);
 
 $js = <<<EOT
     $('#cart-items-delete' + '$model->id').click(function(e){
@@ -18,6 +20,14 @@ $js = <<<EOT
                 if($("#cart-items-index-small-pjax").length != 0) {
                     $.pjax.reload({ container: '#cart-items-index-small-pjax', timeout: false });
                 }
+                $.ajax({
+                    type : 'POST',
+                    url : '$urlCount',
+                    success: function(response) {
+                        response = JSON.parse(response);
+                        $('#shopping-cart-counter').text(response.count);
+                    }
+                });
             }
         });
     });

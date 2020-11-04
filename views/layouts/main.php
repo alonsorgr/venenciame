@@ -15,7 +15,21 @@ use app\helpers\Navigation;
 use yii\helpers\Url;
 
 AppAsset::register($this);
-// Bootstrap::registerTooltip($this);
+
+if (!Yii::$app->user->isGuest) {
+    $url = Url::to(['cart-items/count']);
+    $js = <<<EOT
+        $.ajax({
+            type : 'POST',
+            url : '$url',
+            success: function(response) {
+                response = JSON.parse(response);
+                $('#shopping-cart-counter').text(response.count);
+            }
+        });
+    EOT;
+    $this->registerJs($js);
+}
 
 ?>
 <?php $this->beginPage() ?>

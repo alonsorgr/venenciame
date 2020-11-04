@@ -8,6 +8,7 @@
 
 namespace app\helpers;
 
+use app\models\CartItems;
 use app\models\Categories;
 use app\models\Denominations;
 use app\models\Partners;
@@ -33,14 +34,6 @@ class Navigation
     public static function items()
     {
         return [
-            !Yii::$app->user->isGuest ? static::item([
-                'id' => 'notifications',
-                'icon' => 'fas fas fa-bell',
-                'label' => '',
-                'url' => null,
-                'title' => Yii::t('app', 'Notificaciones'),
-            ]) : '',
-
             static::item([
                 'icon' => 'fa-home',
                 'label' => Yii::t('app', 'Inicio'),
@@ -81,6 +74,22 @@ class Navigation
                 'data-toggle' => 'modal',
                 'data-target' => '#modal-register',
                 'value' => Url::to(['site/register']),
+            ]) : '',
+
+            !Yii::$app->user->isGuest ? static::item([
+                'id' => 'notifications',
+                'icon' => 'fas fa-bell ml-xl-2',
+                'label' => '',
+                'url' => null,
+                'title' => Yii::t('app', 'Notificaciones'),
+            ]) : '',
+
+            !Yii::$app->user->isGuest ? static::item([
+                'id' => 'cart',
+                'icon' => 'fas fa-shopping-cart',
+                'label' => '<span id="shopping-cart-counter" class="count-badge badge badge-pill badge-success px-1"></span>',
+                'url' => Url::to(['cart-items/index']),
+                'title' => Yii::t('app', 'Carrito de la compra'),
             ]) : '',
         ];
     }
