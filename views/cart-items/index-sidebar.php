@@ -20,7 +20,7 @@ use app\helpers\Bootstrap;
         <div class="col-xl-12">
             <?= ListView::widget([
                 'dataProvider' => $dataProvider,
-                'emptyText' => '<div class="lead"><i class="fas fa-exclamation-circle mr-2"></i>' . Yii::t('app', 'No hay artículos en el carrito') . '</div>',
+                'emptyText' => '<div><i class="fas fa-exclamation-circle mr-2"></i>' . Yii::t('app', 'No hay artículos en el carrito') . '</div>',
                 'itemView' => function ($model, $key, $index, $widget) {
                     return $this->render('/cart-items/_small-sidebar', ['model' => $model]);
                 },
