@@ -33,6 +33,14 @@ class Navigation
     public static function items()
     {
         return [
+            !Yii::$app->user->isGuest ? static::item([
+                'id' => 'notifications',
+                'icon' => 'fas fas fa-bell',
+                'label' => '',
+                'url' => null,
+                'title' => Yii::t('app', 'Notificaciones'),
+            ]) : '',
+
             static::item([
                 'icon' => 'fa-home',
                 'label' => Yii::t('app', 'Inicio'),
@@ -90,6 +98,7 @@ class Navigation
             'label' => '<i class="fas ' . $options['icon'] . ' mr-1"></i>' . $options['label'],
             'url' => $options['url'],
             'options' => [
+                'id' => !isset($options['id']) ?: $options['id'],
                 'class' => !isset($options['class']) ?: $options['class'],
                 'title' => $options['title'],
                 'data-toggle' => !isset($options['data-toggle']) ?: $options['data-toggle'],

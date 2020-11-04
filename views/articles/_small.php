@@ -10,6 +10,8 @@ use yii\bootstrap4\Html;
 
 if (!Yii::$app->user->isGuest) {
 
+    $this->registerJsFile('@js/notification.js');
+
     $notifyAddToFavorites = Yii::t('app', 'Has agregado a favoritos a {article}', [
         'article' => $model->title,
     ]);
@@ -58,17 +60,9 @@ if (!Yii::$app->user->isGuest) {
                         $.pjax.reload({ container: '#favorites-articles-pjax', timeout: false });
                     } 
                     if (response.class == 'fas') {
-                        $('#article-favorite-' + $id).notify('$notifyAddToFavorites', {
-                            style: 'bootstrap',
-                            className: 'success',
-                            position: 'bottom center'
-                        });
+                        notification('#notifications', '$notifyAddToFavorites', 'success');
                     } else {
-                        $('#article-favorite-' + $id).notify('$notifyRemoveTofavorites', {
-                            style: 'bootstrap',
-                            className: 'error',
-                            position: 'bottom center'
-                        });
+                        notification('#notifications', '$notifyRemoveTofavorites', 'error');
                     }
                 }
             });
@@ -91,11 +85,7 @@ if (!Yii::$app->user->isGuest) {
                      $.pjax.reload({ container: '#cart-items-index-small-pjax', timeout: false });
                 }
                 if (response.class === 'fas') {
-                    $('#article-to-cart' + '$model->id').notify('$notifyAddToCart', {
-                        style: 'bootstrap',
-                        className: 'success',
-                        position: 'bottom center'
-                    });
+                    notification('#notifications', '$notifyAddToCart', 'success');
                 }
             }
         });

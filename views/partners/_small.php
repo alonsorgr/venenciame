@@ -7,7 +7,10 @@ use app\models\User;
 /* @var $this yii\web\View */
 /* @var $model app\models\Partners */
 
+
 if (!Yii::$app->user->isGuest) {
+    
+    $this->registerJsFile('@js/notification.js');
 
     $notifyFollow = Yii::t('app', 'Has comenzado a seguir a {partner}', [
         'partner' => $model->name,
@@ -50,17 +53,9 @@ if (!Yii::$app->user->isGuest) {
                         $.pjax.reload({ container: '#partners-index-pjax', timeout: false });
                     }
                     if (response.class == 'fas') {
-                        $('#partner-follow-' + $id).notify('$notifyFollow', {
-                            style: 'bootstrap',
-                            className: 'success',
-                            position: 'bottom center'
-                        });
+                        notification('#notifications', '$notifyFollow', 'success');
                     } else {
-                        $('#partner-follow-' + $id).notify('$notifyUnfollow', {
-                            style: 'bootstrap',
-                            className: 'error',
-                            position: 'bottom center'
-                        });
+                        notification('#notifications', '$notifyUnfollow', 'error');
                     }
                 }
             });
