@@ -233,6 +233,7 @@ a.desc:after {
 
 .map-box {
   width: 100%;
+  height: 600px;
   border-radius: 4px;
   padding: 3px;
   background: #fff;

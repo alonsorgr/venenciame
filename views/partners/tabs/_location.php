@@ -10,14 +10,14 @@ $icon = Yii::getAlias('@web/img/site/marker-icon.png');
 ?>
 <?php if ($model->latitude !== '' && $model->longitude !== '') : ?>
     <div class="partners-location">
-        <div class="row mt-4">
+        <div class="row mt-5">
             <div class="col">
                 <?= Bootstrap::header(Yii::t('app', 'Ubicación de la bodega {partner}', [
                     'partner' => $model->name,
                 ])); ?>
             </div>
         </div>
-        <div id="map" class="map-box map mt-3" style="height: 600px;"></div>
+        <div id="map" class="map-box map mt-1"></div>
     </div>
     <script>
         var map = L.map('map', {
