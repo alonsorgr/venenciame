@@ -52,6 +52,14 @@ $this->params['breadcrumbs'][] = $this->title;
                             'model' => $model,
                         ]),
                     ]);
+
+                    $items[] = Bootstrap::tabItem([
+                        'icon' => 'fas fa-map-marker-alt',
+                        'label' => Yii::t('app', 'Localización'),
+                        'content' => $this->render('tabs/_location.php', [
+                            'model' => $model,
+                        ]),
+                    ]);
                     
                     if ($model->isOwner() || User::isAdmin()) {
                         $items[] = Bootstrap::tabItem([

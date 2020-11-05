@@ -17,24 +17,18 @@ use yii\web\View;
  * @author Qiang Xue <qiang.xue@gmail.com>
  * @since 2.0
  */
-class AppAsset extends AssetBundle
+class MapAsset extends AssetBundle
 {
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-        'css/bootstrap.min.css',
-        'css/site.css',
-        'css/loading.min.css',
-        'css/zoom.min.css',
-        'css/animate.min.css',
+        'css/leaflet.css',
     ];
     public $js = [
-        'js/form.js',
-        'js/modal.js',
-        'js/zoom.min.js',
-        'js/effects.js',
-        'js/input-spinner.js',
-        'js/notify.min.js',
+        'js/leaflet/leaflet.js',
+        'js/leaflet/sidebar.js',
+        'js/leaflet/control.js',
+        'js/leaflet/polyline.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',
@@ -42,4 +36,10 @@ class AppAsset extends AssetBundle
         'yii\bootstrap4\BootstrapPluginAsset',
         'rmrevin\yii\fontawesome\CdnFreeAssetBundle',
     ];
+
+    public function init()
+    {
+        $this->jsOptions['position'] = View::POS_HEAD;
+        parent::init();
+    }
 }

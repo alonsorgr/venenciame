@@ -9,12 +9,14 @@ use yii\bootstrap4\Nav;
 use yii\bootstrap4\NavBar;
 use yii\bootstrap4\Breadcrumbs;
 use app\assets\AppAsset;
+use app\assets\MapAsset;
 use app\helpers\Bootstrap;
 use app\helpers\Cookies;
 use app\helpers\Navigation;
 use yii\helpers\Url;
 
 AppAsset::register($this);
+MapAsset::register($this);
 
 if (!Yii::$app->user->isGuest) {
     $url = Url::to(['cart-items/count']);
