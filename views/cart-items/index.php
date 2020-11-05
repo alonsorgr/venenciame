@@ -49,7 +49,7 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </div>
     <div class="row mt-4">
-        <div class="col-9 col-xl-3">
+        <div class="col-9 col-xl-5">
             <?= Yii::t('app', 'Total'); ?>
         </div>
         <div class="col-3 col-xl-3 text-right font-weight-bold display-6">
@@ -57,19 +57,19 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </div>
     <div class="row">
-        <div class="col-xl-6">
+        <div class="col-xl-8">
             <div class="horizontal-divider mt-1"></div>
         </div>
     </div>
     <div class="row mt-2">
-        <div class="col-xl-3">
+        <div class="col-xl-4">
             <?= Html::a('<i class="fas fa-credit-card mr-2"></i>' . Yii::t('app', 'Pasar por caja'), null, [
                 'class' => 'btn btn-success btn-block',
                 'data-pjax' => 0,
                 'title' => Yii::t('app', 'Pasar por caja'),
             ]); ?>
         </div>
-        <div class="col-xl-3 mt-sm-3 mt-xl-0">
+        <div class="col-xl-4 mt-sm-3 mt-xl-0">
             <?= Html::a('<i class="fas fa-undo-alt mr-2"></i>' . Yii::t('app', 'Seguir comprando'), ['articles/index'], [
                 'class' => 'btn btn-outline-primary btn-block',
                 'data-pjax' => 0,
