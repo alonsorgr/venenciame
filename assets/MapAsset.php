@@ -26,9 +26,6 @@ class MapAsset extends AssetBundle
     ];
     public $js = [
         'js/leaflet/leaflet.js',
-        'js/leaflet/sidebar.js',
-        'js/leaflet/control.js',
-        'js/leaflet/polyline.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',
