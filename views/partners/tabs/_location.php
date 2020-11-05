@@ -20,8 +20,8 @@ $icon = Yii::getAlias('@web/img/site/marker-icon-red.png');
 </div>
 <script>
     var map = L.map('map', {
-        center: [36.776949, -6.350443],
-        zoom: 16
+        center: ['<?= $model->latitude ?>', '<?= $model->longitude ?>'],
+        zoom: 8
     });
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -35,7 +35,7 @@ $icon = Yii::getAlias('@web/img/site/marker-icon-red.png');
         popupAnchor: [1, -34]
     });
 
-    var maker = L.marker([36.776949, -6.350443], {
+    var maker = L.marker(['<?= $model->latitude ?>', '<?= $model->longitude ?>'], {
         icon: icon,
     }).bindTooltip('<div><div class="d-inline font-weight-bold"><?= Yii::t('app', 'País') ?></div><div><?= $model->country->label ?></div>' +
         '<div><div class="d-inline font-weight-bold"><?= Yii::t('app', 'Provincia') ?></div><div><?= $model->state->label ?></div>' +

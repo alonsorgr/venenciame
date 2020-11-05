@@ -241,6 +241,29 @@ $header = Yii::$app->controller->action->id === 'request' ? Yii::t('app', 'Solic
                         </div>
                     </div>
                 </div>
+                <div class="row mt-3">
+                    <div class="col-xl-12 mb-3">
+                        <?= Bootstrap::header(Yii::t('app', 'Ubicación')); ?>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xl-6">
+                        <div class="mb-4">
+                            <?= $form->field($model, 'latitude')->textInput([
+                                'maxlength' => true,
+                                'placeholder' => Yii::t('app', 'Introduzca la latitud de la ubicación de su empresa o bodega'),
+                                'title' => Yii::t('app', 'Introduzca la latitud de la ubicación de su empresa o bodega'),
+                            ]); ?>
+                        </div>
+                        <div class="mb-4">
+                            <?= $form->field($model, 'longitude')->textInput([
+                                'maxlength' => true,
+                                'placeholder' => Yii::t('app', 'Introduzca la longitud de la ubicación de su empresa o bodega'),
+                                'title' => Yii::t('app', 'Introduzca la longitud de la ubicación de su empresa o bodega'),
+                            ]); ?>
+                        </div>
+                    </div>
+                </div>
                 <?php if ($model->isNewRecord || Yii::$app->user->identity->admin) : ?>
                     <div class="row mt-3">
                         <div class="col-xl-12 mb-3">

@@ -32,6 +32,8 @@ use borales\extensions\phoneInput\PhoneInputValidator;
  * @property string $phone
  * @property string|null $url
  * @property string|null $email
+ * @property string|null $latitude
+ * @property string|null $longitude
  * @property string|null $updated_at
  * @property string $created_at
  * @property Followers[] $followers
@@ -89,7 +91,7 @@ class Partners extends \yii\db\ActiveRecord
             [['information'], 'string'],
             [['updated_at', 'created_at'], 'safe'],
             [['name'], 'string', 'max' => 32],
-            [['description', 'image', 'image_id'], 'string', 'max' => 255],
+            [['description', 'image','image_id', 'latitude', 'longitude'], 'string', 'max' => 255],
             [['city', 'zip_code', 'address', 'phone', 'url', 'email'], 'string', 'max' => 64],
             [['name'], 'unique'],
             [['user_id'], 'unique'],
@@ -136,6 +138,8 @@ class Partners extends \yii\db\ActiveRecord
             'phone' => Yii::t('app', 'Teléfono'),
             'email' => Yii::t('app', 'Correo electrónico'),
             'url' => Yii::t('app', 'Sitio web'),
+            'latitude' => Yii::t('app', 'Latitud'),
+            'longitude' => Yii::t('app', 'Longitud'),
             'updated_at' => Yii::t('app', 'Updated At'),
             'created_at' => Yii::t('app', 'Socio desde '),
         ];
