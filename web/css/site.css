@@ -10,7 +10,7 @@ body {
   padding: 0 0 60px;
 }
 
-.wrap>.container {
+.wrap > .container {
   padding: 70px 15px 20px;
 }
 
@@ -56,8 +56,7 @@ a.asc:after {
 
 a.desc:after {
   content:
-    /*"\e114"*/
-    "\e152";
+    /*"\e114"*/ "\e152";
 }
 
 .sort-numerical a.asc:after {
@@ -95,12 +94,12 @@ a.desc:after {
 }
 
 /* align the logout "link" (button in form) of the navbar */
-.nav li>form>button.logout {
+.nav li > form > button.logout {
   border: none;
 }
 
-.nav>li>form>button.logout:focus,
-.nav>li>form>button.logout:hover {
+.nav > li > form > button.logout:focus,
+.nav > li > form > button.logout:hover {
   background-color: transparent;
 }
 
@@ -124,7 +123,7 @@ a.desc:after {
 }
 
 .card-header .fa {
-  transition: .3s transform ease-in;
+  transition: 0.3s transform ease-in;
 }
 .card-header .collapsed .fa {
   -webkit-transform: rotate(90deg);
@@ -149,23 +148,27 @@ a.desc:after {
   }
 }
 
-#partner-view-container-0-container.nav-tabs>.nav-item {
-  width: 33% !important;
-}
-
-#partner-view-container-0.nav-tabs>.nav-item {
+#partner-view-container-0-container.nav-tabs > .nav-item {
   width: 25% !important;
 }
 
+#partner-view-container-0.nav-tabs > .nav-item {
+  width: 20% !important;
+}
+
 @media (max-width: 1200px) {
-  #partner-view-container-0.nav-tabs>.nav-item {
+  #partner-view-container-0.nav-tabs > .nav-item {
+    width: 100% !important;
+    display: block;
+  }
+  #partner-view-container-0-container > .nav-item {
     width: 100% !important;
     display: block;
   }
 }
 
 @media (max-width: 1200px) {
-  #user-view-container.nav-tabs>.nav-item {
+  #user-view-container.nav-tabs > .nav-item {
     width: 100% !important;
     display: block;
   }
@@ -174,18 +177,18 @@ a.desc:after {
 .img-thumbnail {
   border-radius: 33px;
   width: 61px;
-  height: 61px
+  height: 61px;
 }
 
 .fab:before {
   position: relative;
-  top: 13px
+  top: 13px;
 }
 
 .smd {
   width: 200px;
   font-size: small;
-  text-align: center
+  text-align: center;
 }
 
 .cursor-pointer {
@@ -197,7 +200,7 @@ a.desc:after {
 }
 
 .card-border {
-  border: 1px solid #F7F7F7 !important;
+  border: 1px solid #f7f7f7 !important;
 }
 
 .avatar {
@@ -210,8 +213,8 @@ a.desc:after {
   height: 32px !important;
 }
 
-.circle-avatar  {
-    border-radius: 100% !important;
+.circle-avatar {
+  border-radius: 100% !important;
 }
 
 .img-article {
@@ -227,4 +230,15 @@ a.desc:after {
 #shopping-cart-counter {
   position: relative;
   top: -10px;
+}
+
+.map-box {
+  width: 100%;
+  border-radius: 4px;
+  padding: 3px;
+  background: #fff;
+  -webkit-box-shadow: 0px 5px 25px 0px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0px 5px 25px 0px rgba(0, 0, 0, 0.2);
+  -ms-box-shadow: 0px 5px 25px 0px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 5px 25px 0px rgba(0, 0, 0, 0.2);
 }

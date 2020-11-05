@@ -94,6 +94,8 @@ CREATE TABLE partners
   , phone         VARCHAR(64)   NOT NULL
   , url           VARCHAR(64)
   , email         VARCHAR(64)
+  , latitude      VARCHAR(255)
+  , longitude     VARCHAR(255)
   , updated_at    TIMESTAMP(0)
   , created_at    TIMESTAMP(0)  NOT NULL    DEFAULT CURRENT_TIMESTAMP
 );
