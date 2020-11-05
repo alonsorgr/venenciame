@@ -70,7 +70,7 @@ class CartItemsController extends Controller
         $total = 0;
 
         foreach ($model as $value) {
-            $total += ($value->article->price * $value->article->vat->value /100) * $value['quantity'] + $value->article->price;
+            $total += (($value->article->price * $value->article->vat->value /100) + $value->article->price) * $value['quantity'];
         }
 
         $searchModel = new CartItemsSearch();
