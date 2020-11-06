@@ -269,7 +269,7 @@ return [
     'Información adicional de su empresa o bodega' => '',
     'Inicia sesión en el sitio' => '',
     'Iniciar sesión' => '',
-    'Inicio' => 'Home',
+    'Inicio' => '',
     'Introduzca el asunto de su mensaje' => '',
     'Introduzca el combre de la empresa o bodega' => '',
     'Introduzca el contenido de su mensaje' => '',
