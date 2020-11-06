@@ -8,11 +8,9 @@
 
 namespace app\helpers;
 
-use kartik\dialog\Dialog;
 use Yii;
-use yii\bootstrap4\Html;
 use yii\bootstrap4\Modal;
-use yii\web\View;
+use yii\bootstrap4\Html;
 
 /**
  * Clase auxiliar para la administración y generación de elementos Html.
