@@ -1,4 +1,135 @@
 ---------------------------------------------
+-- Archivo de carga de tipos de categorías --
+---------------------------------------------
+
+INSERT INTO categories(label)
+     VALUES ('Tinto')
+          , ('Blanco')
+          , ('Espumoso')
+          , ('Generoso')
+          , ('Dulce')
+          , ('Rosado')
+          , ('Manzanilla')
+          , ('Fino')
+          , ('Vermouth')
+          , ('Vino Azul');
+
+
+-----------------------------------------------------------
+-- Archivo de carga de tipos de denominaciones de origen --
+-----------------------------------------------------------
+
+INSERT INTO denominations(label)
+     VALUES ('Condado de Huelva')
+          , ('Jerez-Sherry-Xérès')
+          , ('Málaga')
+          , ('Manzanilla de Sanlúcar')
+          , ('Montilla-Moriles')
+          , ('Lebrija')
+          , ('Sierras de Málaga')
+          , ('Vino Naranja del Condado de Huelva');
+
+---------------------------------
+-- Archivo de carga de idiomas --
+---------------------------------
+
+INSERT INTO languages (code, label) VALUES ('ES', 'Español');
+INSERT INTO languages (code, label) VALUES ('EN', 'English');
+INSERT INTO languages (code, label) VALUES ('GE', 'Deutsche');
+INSERT INTO languages (code, label) VALUES ('FR', 'Français');
+INSERT INTO languages (code, label) VALUES ('PT', 'Português');
+
+----------------------------------------
+-- Archivo de carga de tipos de roles --
+----------------------------------------
+
+INSERT INTO roles (label) VALUES ('Administrador');
+INSERT INTO roles (label) VALUES ('Cliente');
+INSERT INTO roles (label) VALUES ('Usuario');
+INSERT INTO roles (label) VALUES ('Repartidor');
+
+---------------------------------
+-- Archivo de carga de estados --
+---------------------------------
+
+INSERT INTO status (label) VALUES ('Borrado');
+INSERT INTO status (label) VALUES ('Inactivo');
+INSERT INTO status (label) VALUES ('Activo');
+INSERT INTO status (label) VALUES ('Recogido en origen');
+INSERT INTO status (label) VALUES ('En reparto');
+INSERT INTO status (label) VALUES ('Entregado');
+
+----------------------------------
+-- Archivo de carga de usuarios --
+----------------------------------
+
+INSERT INTO users
+(
+   username
+ , password
+ , email
+ , status_id
+ , admin
+ , rol_id
+ , language_id
+)
+VALUES 
+(
+   'admin'
+ , crypt('admin', gen_salt('bf', 10))
+ , 'alonsorgr@venenciame.com'
+ , 3
+ , true
+ , 1
+ , 1
+);
+
+INSERT INTO users (
+    username,
+    password,
+    email,
+    status_id,
+    admin,
+    rol_id,
+    language_id
+  )
+VALUES (
+    'paula',
+    crypt('paula', gen_salt('bf', 10)),
+    'paula@venenciame.com',
+    3,
+    false,
+    2,
+    1
+);
+
+INSERT INTO users (
+    username,
+    password,
+    email,
+    status_id,
+    admin,
+    rol_id,
+    language_id
+  )
+VALUES (
+    'repartidor',
+    crypt('repartidor', gen_salt('bf', 10)),
+    'repartidor@venenciame.com',
+    3,
+    false,
+    4,
+    1
+);
+
+--------------------------------------
+-- Archivo de carga de tipos de IVA --
+--------------------------------------
+
+INSERT INTO vats (label, value) VALUES ('IVA del 10%', 10);
+INSERT INTO vats (label, value) VALUES ('IVA del 21%', 21);
+
+---------------------------------------------
 -- Archivo de carga de países y provincias --
 ---------------------------------------------
 
@@ -386,111 +517,3 @@ INSERT INTO states (label, country_id) VALUES ('Lisboa e Vale do Tejo', 5);
 INSERT INTO states (label, country_id) VALUES ('Madeira', 5);
 INSERT INTO states (label, country_id) VALUES ('Norte', 5);
 INSERT INTO states (label, country_id) VALUES ('Paivas', 5);
-
----------------------------------------------
--- Archivo de carga de tipos de categorías --
----------------------------------------------
-
-INSERT INTO categories(label)
-     VALUES ('Tinto')
-          , ('Blanco')
-          , ('Espumoso')
-          , ('Generoso')
-          , ('Dulce')
-          , ('Rosado')
-          , ('Manzanilla')
-          , ('Fino')
-          , ('Vermouth')
-          , ('Vino Azul');
-
-
------------------------------------------------------------
--- Archivo de carga de tipos de denominaciones de origen --
------------------------------------------------------------
-
-INSERT INTO denominations(label)
-     VALUES ('Condado de Huelva')
-          , ('Jerez-Sherry-Xérès')
-          , ('Málaga')
-          , ('Manzanilla de Sanlúcar')
-          , ('Montilla-Moriles')
-          , ('Lebrija')
-          , ('Sierras de Málaga')
-          , ('Vino Naranja del Condado de Huelva');
-
----------------------------------
--- Archivo de carga de idiomas --
----------------------------------
-
-INSERT INTO languages (code, label) VALUES ('ES', 'Español');
-INSERT INTO languages (code, label) VALUES ('EN', 'English');
-INSERT INTO languages (code, label) VALUES ('GE', 'Deutsche');
-INSERT INTO languages (code, label) VALUES ('FR', 'Français');
-INSERT INTO languages (code, label) VALUES ('PT', 'Português');
-
-----------------------------------------
--- Archivo de carga de tipos de roles --
-----------------------------------------
-
-INSERT INTO roles (label) VALUES ('Administrador');
-INSERT INTO roles (label) VALUES ('Cliente');
-INSERT INTO roles (label) VALUES ('Usuario');
-
----------------------------------
--- Archivo de carga de estados --
----------------------------------
-
-INSERT INTO status (label) VALUES ('Borrado');
-INSERT INTO status (label) VALUES ('Inactivo');
-INSERT INTO status (label) VALUES ('Activo');
-
-----------------------------------
--- Archivo de carga de usuarios --
-----------------------------------
-
-INSERT INTO users
-(
-   username
- , password
- , email
- , status_id
- , admin
- , rol_id
- , language_id
-)
-VALUES 
-(
-   'admin'
- , crypt('admin', gen_salt('bf', 10))
- , 'alonsorgr@venenciame.com'
- , 3
- , true
- , 1
- , 1
-);
-
-INSERT INTO users (
-    username,
-    password,
-    email,
-    status_id,
-    admin,
-    rol_id,
-    language_id
-  )
-VALUES (
-    'paula',
-    crypt('paula', gen_salt('bf', 10)),
-    'paula@venenciame.com',
-    3,
-    false,
-    1,
-    1
-  );
-
-  --------------------------------------
--- Archivo de carga de tipos de IVA --
---------------------------------------
-
-INSERT INTO vats (label, value) VALUES ('IVA del 10%', 10);
-INSERT INTO vats (label, value) VALUES ('IVA del 21%', 21);

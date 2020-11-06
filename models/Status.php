@@ -26,6 +26,9 @@ class Status extends \yii\db\ActiveRecord
     const STATUS_DELETED = 1;
     const STATUS_INACTIVE = 2;
     const STATUS_ACTIVE = 3;
+    const STATUS_COLLECTED_AT_ORIGIN = 4;
+    const STATUS_DISTRIBUTION = 5;
+    const STATUS_DELIVERED = 6;
 
     /**
      * {@inheritdoc}
