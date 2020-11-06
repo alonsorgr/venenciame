@@ -18,7 +18,7 @@ use app\models\Favorites;
  * @author Alonso García <alonsorgr@gmail.com>
  * @since 1.0
  */
-class FavoritesController extends \yii\web\Controller
+class FavoritesController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -30,7 +30,7 @@ class FavoritesController extends \yii\web\Controller
                 'class' => AccessControl::class,
                 'rules' => [
                     [
-                        'actions' => ['set'],
+                        'actions' => ['favorite'],
                         'allow' => true,
                         'roles' => ['@'],
 

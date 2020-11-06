@@ -19,7 +19,7 @@ use app\models\States;
  * @author Alonso García <alonsorgr@gmail.com>
  * @since 1.0
  */
-class StatesController extends \yii\web\Controller
+class StatesController extends Controller
 {
     /**
      * {@inheritdoc}
