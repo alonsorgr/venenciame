@@ -9,7 +9,6 @@
 namespace app\controllers;
 
 use Yii;
-use yii\web\Controller;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\bootstrap4\ActiveForm;
