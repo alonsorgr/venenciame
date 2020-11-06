@@ -13,7 +13,7 @@ use yii\filters\AccessControl;
 use app\models\Favorites;
 
 /**
- * Controlador de favoritos.
+ * Controlador de favoritos [[Favorites]]
  *
  * @author Alonso García <alonsorgr@gmail.com>
  * @since 1.0
@@ -54,7 +54,7 @@ class FavoritesController extends \yii\web\Controller
      *
      * @return string    objeto JSON.
      */
-    public function actionSet($user_id, $article_id)
+    public function actionFavorite($user_id, $article_id)
     {
         $model = new Favorites();
         $where = ['user_id' => $user_id, 'article_id' => $article_id];
@@ -80,5 +80,4 @@ class FavoritesController extends \yii\web\Controller
             }
         }
     }
-
 }

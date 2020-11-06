@@ -19,6 +19,7 @@ use app\models\search\VatsSearch;
 
 /**
  * Controlador de usuarios [[Vats]]
+ * 
  * @author Alonso García <alonsorgr@gmail.com>
  * @since 2.0
  */
@@ -70,6 +71,7 @@ class VatsController extends Controller
 
     /**
      * Acción de renderizado vista de tipos de IVA.
+     * 
      * @param   integer            $id      identificador de tipos de IVA.
      * @return  yii\web\Response | string   el resultado de la representación.
      * @throws  NotFoundHttpException       si el modelo no es encontrado.
@@ -83,6 +85,7 @@ class VatsController extends Controller
 
     /**
      * Acción de renderizado vista de creación de tipos de IVA.
+     * 
      * @return  yii\web\Response | string   el resultado de la representación.
      */
     public function actionCreate()
@@ -100,6 +103,7 @@ class VatsController extends Controller
 
     /**
      * Acción de renderizado vista de edición tipos de IVA.
+     * 
      * @param   integer            $id      identificador de tipos de IVA.
      * @return  yii\web\Response | string   el resultado de la representación.
      * @throws  NotFoundHttpException       si el modelo no es encontrado.
@@ -119,6 +123,7 @@ class VatsController extends Controller
 
     /**
      * Acción de renderizado vista de borrado de tipos de IVA.
+     * 
      * @param   integer            $id      identificador de tipos de IVA.
      * @return  yii\web\Response | string   el resultado de la representación.
      * @throws  NotFoundHttpException       si el modelo no es encontrado.
@@ -132,6 +137,7 @@ class VatsController extends Controller
 
     /**
      * Encuentra el modelo de tipos de IVA en función de su valor de clave principal.
+     * 
      * @param   integer                 $id     identificador de tipos de IVA.
      * @return  User                            el modelo cargado.
      * @throws  NotFoundHttpException           si el modelo no es encontrado.

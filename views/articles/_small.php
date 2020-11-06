@@ -25,7 +25,7 @@ if (!Yii::$app->user->isGuest) {
         'cart' => $model->title,
     ]);
 
-    $follow = Url::to(['favorites/set', 'user_id' => User::id(), 'article_id' => $model->id]);
+    $follow = Url::to(['favorites/favorite', 'user_id' => User::id(), 'article_id' => $model->id]);
     $id = $model->id;
 
     $js = <<<EOT

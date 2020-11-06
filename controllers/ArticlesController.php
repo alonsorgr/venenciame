@@ -24,7 +24,7 @@ use app\models\search\ReviewsSearch;
 use app\helpers\Email;
 
 /**
- * Controlador de artículos.
+ * Controlador de artículos [[Articles]]
  *
  * @author Alonso García <alonsorgr@gmail.com>
  * @since 2.0
@@ -97,6 +97,7 @@ class ArticlesController extends Controller
 
     /**
      * Acción de renderizado vista de artículo.
+     * 
      * @param   integer            $id      identificador de artículo.
      * @return  yii\web\Response | string   el resultado de la representación.
      * @throws  NotFoundHttpException       si el modelo no es encontrado.
@@ -115,6 +116,7 @@ class ArticlesController extends Controller
 
     /**
      * Acción de renderizado vista de creación de artículo.
+     * 
      * @return  yii\web\Response | string   el resultado de la representación.
      */
     public function actionCreate()
@@ -143,6 +145,7 @@ class ArticlesController extends Controller
 
     /**
      * Acción de renderizado vista de edición artículo.
+     * 
      * @param   integer            $id      identificador de artículo.
      * @return  yii\web\Response | string   el resultado de la representación.
      * @throws  NotFoundHttpException       si el modelo no es encontrado.
@@ -167,6 +170,7 @@ class ArticlesController extends Controller
 
     /**
      * Acción de renderizado vista de borrado de artículo.
+     * 
      * @param   integer            $id      identificador de artículo.
      * @return  yii\web\Response | string   el resultado de la representación.
      * @throws  NotFoundHttpException       si el modelo no es encontrado.
@@ -198,6 +202,7 @@ class ArticlesController extends Controller
 
     /**
      * Acción de cambio de estado a activado del artículo.
+     * 
      * @param   integer            $id      identificador de artículo.
      * @return  yii\web\Response            el resultado de la representación.
      * @throws  NotFoundHttpException       si el modelo no es encontrado.
@@ -222,6 +227,7 @@ class ArticlesController extends Controller
 
     /**
      * Acción de cambio de estado a desactivado del artículo.
+     * 
      * @param   integer            $id      identificador de artículo.
      * @return  yii\web\Response            el resultado de la representación.
      * @throws  NotFoundHttpException       si el modelo no es encontrado.
@@ -255,6 +261,7 @@ class ArticlesController extends Controller
     
     /**
      * Encuentra el modelo de artículo en función de su valor de clave principal.
+     * 
      * @param   integer                 $id     identificador de artículo.
      * @return  User                            el modelo cargado.
      * @throws  NotFoundHttpException           si el modelo no es encontrado.

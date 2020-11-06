@@ -12,6 +12,7 @@
  <exclude-pattern>docs/*</exclude-pattern>
  <exclude-pattern>guia/*</exclude-pattern>
  <exclude-pattern>web/assets/*</exclude-pattern>
+ <exclude-pattern>web/*</exclude-pattern>
 
  <rule ref="vendor/yiisoft/yii2-coding-standards/Yii2"/>
 </ruleset>

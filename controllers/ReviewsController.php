@@ -10,13 +10,15 @@ namespace app\controllers;
 
 use Yii;
 use yii\web\Controller;
+use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\web\NotFoundHttpException;
 use app\models\Reviews;
 use app\models\search\ReviewsSearch;
+use app\models\User;
 
 /**
- * Controlador de reseñas.
+ * Controlador de reseñas [[Reviews]].
  *
  * @author Alonso García <alonsorgr@gmail.com>
  * @since 2.0
@@ -29,6 +31,28 @@ class ReviewsController extends Controller
     public function behaviors()
     {
         return [
+            'access' => [
+                'class' => AccessControl::class,
+                'rules' => [
+                    [
+                        'actions' => ['index'],
+                        'allow' => true,
+                    ],
+                    [
+                        'actions' => ['create'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                    [
+                        'actions' => ['delete'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                        'matchCallback' => function ($rule, $action) {
+                            return User::isAdmin();
+                        },
+                    ],
+                ],
+            ],
             'verbs' => [
                 'class' => VerbFilter::class,
                 'actions' => [
@@ -36,6 +60,17 @@ class ReviewsController extends Controller
                 ],
             ],
         ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function beforeAction($action)
+    {
+        if ($action == 'create' || $action == 'delete') {
+            $this->enableCsrfValidation = false;
+        }
+        return parent::beforeAction($action);
     }
 
     /**
@@ -56,7 +91,8 @@ class ReviewsController extends Controller
 
     /**
      * Acción de renderizado vista de reseñas.
-     * @param   integer            $id      identificador de reseñas.
+     *
+     * @param   int            $id      identificador de reseñas.
      * @return  yii\web\Response | string   el resultado de la representación.
      * @throws  NotFoundHttpException       si el modelo no es encontrado.
      */
@@ -69,6 +105,7 @@ class ReviewsController extends Controller
 
     /**
      * Acción de renderizado vista de creación de reseñas.
+     *
      * @return  yii\web\Response | string   el resultado de la representación.
      */
     public function actionCreate()
@@ -88,7 +125,8 @@ class ReviewsController extends Controller
 
     /**
      * Acción de renderizado vista de edición reseñas.
-     * @param   integer            $id      identificador de reseñas.
+     *
+     * @param   int            $id      identificador de reseñas.
      * @return  yii\web\Response | string   el resultado de la representación.
      * @throws  NotFoundHttpException       si el modelo no es encontrado.
      */
@@ -107,7 +145,8 @@ class ReviewsController extends Controller
 
     /**
      * Acción de renderizado vista de borrado de reseñas.
-     * @param   integer            $id      identificador de reseñas.
+     *
+     * @param   int            $id      identificador de reseñas.
      * @return  yii\web\Response | string   el resultado de la representación.
      * @throws  NotFoundHttpException       si el modelo no es encontrado.
      */
@@ -124,7 +163,8 @@ class ReviewsController extends Controller
 
     /**
      * Encuentra el modelo de reseñas en función de su valor de clave principal.
-     * @param   integer                 $id     identificador de reseñas.
+     *
+     * @param   int                 $id     identificador de reseñas.
      * @return  User                            el modelo cargado.
      * @throws  NotFoundHttpException           si el modelo no es encontrado.
      */

@@ -18,7 +18,8 @@ use app\models\search\CartItemsSearch;
 use app\models\User;
 
 /**
- * Controlador de carritos de la compra [[CartItems]]
+ * Controlador de carritos de la compra. [[CartItems]]
+ * 
  * @author Alonso García <alonsorgr@gmail.com>
  * @since 3.0
  */
@@ -85,6 +86,7 @@ class CartItemsController extends Controller
 
     /**
      * Acción de renderizado vista de creación de carrito de la compra.
+     * 
      * @param integer $user_id      id del usuario.
      * @param integer $article_id   id del artículo
      * @param integer $quantity     cantidad.
@@ -117,7 +119,8 @@ class CartItemsController extends Controller
     }
 
     /**
-     * Acción de contador de artículos en el carrito
+     * Acción de contador de artículos en el carrito.
+     * 
      * @return  yii\web\Response | string   el resultado de la representación.
      */
     public function actionCount()
@@ -130,6 +133,7 @@ class CartItemsController extends Controller
 
     /**
      * Acción de renderizado vista de borrado de carrito de la compra.
+     * 
      * @param   integer            $id      identificador de carrito de la compra.
      * @return  yii\web\Response | string   el resultado de la representación.
      * @throws  NotFoundHttpException       si el modelo no es encontrado.
@@ -147,6 +151,7 @@ class CartItemsController extends Controller
 
     /**
      * Encuentra el modelo de carrito de la compra en función de su valor de clave principal.
+     * 
      * @param   integer                 $id     identificador de carrito de la compra.
      * @return  User                            el modelo cargado.
      * @throws  NotFoundHttpException           si el modelo no es encontrado.

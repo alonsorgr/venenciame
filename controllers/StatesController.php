@@ -15,6 +15,7 @@ use app\models\States;
 
 /**
  * Controlador de estados [[States]]
+ * 
  * @author Alonso García <alonsorgr@gmail.com>
  * @since 1.0
  */
@@ -42,6 +43,7 @@ class StatesController extends \yii\web\Controller
 
     /**
      * Acción de volcado de datos de estados o provincias.
+     * 
      * @param   int   $id   identificador del país.
      * @return  array       el objeto de respuesta actual.
      */

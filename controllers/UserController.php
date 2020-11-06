@@ -24,6 +24,7 @@ use app\models\Status;
 
 /**
  * Controlador de usuarios [[User]]
+ * 
  * @author Alonso García <alonsorgr@gmail.com>
  * @since 1.0
  */
@@ -91,6 +92,7 @@ class UserController extends Controller
 
     /**
      * Acción de renderizado vista de usuario.
+     * 
      * @param   integer            $id      identificador de usuario.
      * @return  yii\web\Response | string   el resultado de la representación.
      * @throws  NotFoundHttpException       si el modelo no es encontrado.
@@ -119,6 +121,7 @@ class UserController extends Controller
 
     /**
      * Acción de renderizado vista de creación de usuario.
+     * 
      * @return  yii\web\Response | string   el resultado de la representación.
      */
     public function actionCreate()
@@ -137,6 +140,7 @@ class UserController extends Controller
 
     /**
      * Acción de renderizado vista de edición usuario.
+     * 
      * @param   integer            $id      identificador de usuario.
      * @return  yii\web\Response | string   el resultado de la representación.
      * @throws  NotFoundHttpException       si el modelo no es encontrado.
@@ -156,6 +160,7 @@ class UserController extends Controller
 
     /**
      * Acción de renderizado vista de borrado de usuario.
+     * 
      * @param   integer            $id      identificador de usuario.
      * @return  yii\web\Response | string   el resultado de la representación.
      * @throws  NotFoundHttpException       si el modelo no es encontrado.
@@ -168,25 +173,8 @@ class UserController extends Controller
     }
 
     /**
-     * Acción de validación de formularios.
-     * @param   integer $id     identificador de usuario.
-     * @return  array           de mensajes de error indexada por los ID de atributo.
-     */
-    public function actionValidation($id = null)
-    {
-        if ($id !== null) {
-            $model = $this->findModel($id);
-        } else {
-            $model = new User();
-        }
-        if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
-            Yii::$app->response->format = Response::FORMAT_JSON;
-            return ActiveForm::validate($model);
-        }
-    }
-
-    /**
      * Acción de cambio de estado a activado del usuario.
+     * 
      * @param   integer            $id      identificador de usuario.
      * @return  yii\web\Response            el resultado de la representación.
      * @throws  NotFoundHttpException       si el modelo no es encontrado.
@@ -212,6 +200,7 @@ class UserController extends Controller
 
     /**
      * Acción de cambio de estado a desactivado del usuario.
+     * 
      * @param   integer            $id      identificador de usuario.
      * @return  yii\web\Response            el resultado de la representación.
      * @throws  NotFoundHttpException       si el modelo no es encontrado.
@@ -233,6 +222,25 @@ class UserController extends Controller
         }
 
         return $this->redirect(['/admin/index']);
+    }
+
+    /**
+     * Acción de validación de formularios.
+     * 
+     * @param   integer $id     identificador de usuario.
+     * @return  array           de mensajes de error indexada por los ID de atributo.
+     */
+    public function actionValidation($id = null)
+    {
+        if ($id !== null) {
+            $model = $this->findModel($id);
+        } else {
+            $model = new User();
+        }
+        if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            return ActiveForm::validate($model);
+        }
     }
 
     /**

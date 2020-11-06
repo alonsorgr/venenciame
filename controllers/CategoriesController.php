@@ -18,7 +18,8 @@ use app\models\Categories;
 use app\models\search\CategoriesSearch;
 
 /**
- * Controlador de usuarios [[Categories]]
+ * Controlador de categorías [[Categories]]
+ *
  * @author Alonso García <alonsorgr@gmail.com>
  * @since 2.0
  */
@@ -39,7 +40,7 @@ class CategoriesController extends Controller
                         'roles' => ['@'],
                         'matchCallback' => function ($rule, $action) {
                             return User::isAdmin();
-                        }
+                        },
                     ],
                 ],
             ],
@@ -70,7 +71,8 @@ class CategoriesController extends Controller
 
     /**
      * Acción de renderizado vista de categoría.
-     * @param   integer            $id      identificador de categoría.
+     *
+     * @param   int            $id      identificador de categoría.
      * @return  yii\web\Response | string   el resultado de la representación.
      * @throws  NotFoundHttpException       si el modelo no es encontrado.
      */
@@ -83,6 +85,7 @@ class CategoriesController extends Controller
 
     /**
      * Acción de renderizado vista de creación de categorías.
+     *
      * @return  yii\web\Response | string   el resultado de la representación.
      */
     public function actionCreate()
@@ -100,7 +103,8 @@ class CategoriesController extends Controller
 
     /**
      * Acción de renderizado vista de edición categorías.
-     * @param   integer            $id      identificador de categorías.
+     *
+     * @param   int            $id      identificador de categorías.
      * @return  yii\web\Response | string   el resultado de la representación.
      * @throws  NotFoundHttpException       si el modelo no es encontrado.
      */
@@ -119,7 +123,8 @@ class CategoriesController extends Controller
 
     /**
      * Acción de renderizado vista de borrado de categorías.
-     * @param   integer            $id      identificador de categorías.
+     *
+     * @param   int            $id      identificador de categorías.
      * @return  yii\web\Response | string   el resultado de la representación.
      * @throws  NotFoundHttpException       si el modelo no es encontrado.
      */
@@ -132,7 +137,8 @@ class CategoriesController extends Controller
 
     /**
      * Encuentra el modelo de categorías en función de su valor de clave principal.
-     * @param   integer                 $id     identificador de categorías.
+     *
+     * @param   int                 $id     identificador de categorías.
      * @return  User                            el modelo cargado.
      * @throws  NotFoundHttpException           si el modelo no es encontrado.
      */
