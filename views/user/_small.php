@@ -9,7 +9,7 @@ use yii\bootstrap4\Html;
 ?>
 <div class="user-small">
     <div itemscope itemtype="http://schema.org/Person" class="row justify-content-between">
-        <div class="col-xl-2 d-flex justify-content-center justify-content-xl-start">
+        <div class="col-xl-2 d-flex justify-content-center justify-content-xl-start mb-3">
             <?= Html::img(Html::encode(Url::base(true) . '/' . $model->link), [
                 'alt' => Yii::t('app', 'Imagen de usuario'),
                 'data-action' => 'zoom',
