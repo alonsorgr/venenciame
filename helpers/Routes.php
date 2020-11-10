@@ -8,6 +8,8 @@
 
 namespace app\helpers;
 
+use Yii;
+
 /**
  * Clase auxiliar para la administración y generación rutas.
  *
@@ -20,10 +22,12 @@ class Routes
      * Devuelve el valor del parámetro id de una query.
      *
      * @param string $url   url para obtener id
-     * @return void
      */
     public static function getId($url)
     {
+        if (Yii::$app->urlManager->enablePrettyUrl) {
+            return substr($url, strripos($url, '/') + 1);
+        }
         $url = parse_url($url);
         return substr($url['query'], strripos($url['query'], '=') + 1);
     }
