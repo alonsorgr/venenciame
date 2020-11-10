@@ -8,6 +8,7 @@
 
 namespace app\helpers;
 
+use kartik\mpdf\Pdf;
 use Yii;
 
 /**
@@ -22,6 +23,7 @@ class Email
      * Genera y envía un correo electrónico.
      *
      * @return array configuración de elementos de correo electrónico.
+     * @param mixed $options
      */
     public static function send($options)
     {
@@ -38,6 +40,7 @@ class Email
      * Genera un enlace en para redireccionar hacia una acción de un correo electrónico.
      *
      * @return array configuración de elementos del enlace de correo electrónico.
+     * @param mixed $options
      */
     public static function link($options)
     {

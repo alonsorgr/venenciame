@@ -8,6 +8,7 @@
 
 namespace app\controllers;
 
+use app\helpers\Email;
 use Yii;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
@@ -321,7 +322,7 @@ class SiteController extends Controller
     /**
      * Acción de pago de artículos en PayPal.
      *
-     * @return yii\web\Response     el objeto de respuesta actual..
+     * @return yii\web\Response     el objeto de respuesta actual.
      */
     public function actionMakePayment()
     {
@@ -330,6 +331,16 @@ class SiteController extends Controller
         if (isset(Yii::$app->request->get()['success']) && Yii::$app->request->get()['success'] == 'true') {
             Yii::$app->PayPalRestApi->processPayment($params);
             unset($params);
+
+            $model = CartItems::find()->where(['user_id' => User::id()])->all();
+
+            Email::send([
+                'email' => Yii::$app->user->identity->email,
+                'subject' => Yii::t('app', 'VENÉNCIAME - FACTURA DE COMPRA'),
+                'body' => $this->renderPartial('_invoice', [
+                    'model' => $model,
+                ])
+            ]);
 
             CartItems::deleteAll(['user_id' => User::id()]);
 
@@ -340,9 +351,9 @@ class SiteController extends Controller
             Yii::$app->session->setFlash(
                 'success',
                 Yii::t('app', 'Puede ver el estado de su pedido en la sección de pedidos de su perfil:') .
-                Html::a(Yii::t('app', 'Mis Pedidos'), Url::to(['user/view', 'id' => User::id()]), [
-                    'class' => 'ml-2 font-weight-bold',
-                ])
+                    Html::a(Yii::t('app', 'Mis compras'), Url::to(['user/view', 'id' => User::id()]), [
+                        'class' => 'ml-2 font-weight-bold',
+                    ])
             );
             return $this->redirect('/site/index');
         }
