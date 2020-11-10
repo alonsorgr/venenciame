@@ -8,17 +8,17 @@
 
 namespace app\models\search;
 
+use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\CartItems;
-use app\models\User;
+use app\models\OrderItems;
 
 /**
- * Modelo que representa el modelo detrás de la forma de búsqueda de [[CartItems]].
+ * Modelo que representa el modelo detrás de la forma de búsqueda de [[OrderItems]].
  *
  * @author Alonso García <alonsorgr@gmail.com>
  * @since 3.0
  */
-class CartItemsSearch extends CartItems
+class OrderItemsSearch extends OrderItems
 {
     /**
      * {@inheritdoc}
@@ -26,7 +26,8 @@ class CartItemsSearch extends CartItems
     public function rules()
     {
         return [
-            [['id', 'user_id', 'article_id', 'status_id', 'quantity'], 'integer'],
+            [['id', 'article_id', 'quantity'], 'integer'],
+            [['price'], 'number'],
             [['created_at'], 'safe'],
         ];
     }
@@ -45,9 +46,10 @@ class CartItemsSearch extends CartItems
      * @param   array                   $params     parámetros URL.
      * @return  ActiveDataProvider      Proporciona datos realizando consultas a la base de datos mediante [[Query]].
      */
+
     public function search($params)
     {
-        $query = CartItems::find()->where(['user_id' => User::id()]);
+        $query = OrderItems::find();
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -61,10 +63,9 @@ class CartItemsSearch extends CartItems
 
         $query->andFilterWhere([
             'id' => $this->id,
-            'user_id' => $this->user_id,
             'article_id' => $this->article_id,
-            'status_id' => $this->status_id,
             'quantity' => $this->quantity,
+            'price' => $this->price,
             'created_at' => $this->created_at,
         ]);
 

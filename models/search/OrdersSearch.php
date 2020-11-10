@@ -8,17 +8,17 @@
 
 namespace app\models\search;
 
+use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\CartItems;
-use app\models\User;
+use app\models\Orders;
 
 /**
- * Modelo que representa el modelo detrás de la forma de búsqueda de [[CartItems]].
+ * Modelo que representa el modelo detrás de la forma de búsqueda de [[Orders]].
  *
  * @author Alonso García <alonsorgr@gmail.com>
  * @since 3.0
  */
-class CartItemsSearch extends CartItems
+class OrdersSearch extends Orders
 {
     /**
      * {@inheritdoc}
@@ -26,7 +26,8 @@ class CartItemsSearch extends CartItems
     public function rules()
     {
         return [
-            [['id', 'user_id', 'article_id', 'status_id', 'quantity'], 'integer'],
+            [['id', 'status_id', 'user_id', 'dealer_id'], 'integer'],
+            [['total_price'], 'number'],
             [['created_at'], 'safe'],
         ];
     }
@@ -36,6 +37,7 @@ class CartItemsSearch extends CartItems
      */
     public function scenarios()
     {
+        // bypass scenarios() implementation in the parent class
         return parent::scenarios();
     }
 
@@ -47,7 +49,7 @@ class CartItemsSearch extends CartItems
      */
     public function search($params)
     {
-        $query = CartItems::find()->where(['user_id' => User::id()]);
+        $query = Orders::find();
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -61,10 +63,10 @@ class CartItemsSearch extends CartItems
 
         $query->andFilterWhere([
             'id' => $this->id,
-            'user_id' => $this->user_id,
-            'article_id' => $this->article_id,
             'status_id' => $this->status_id,
-            'quantity' => $this->quantity,
+            'user_id' => $this->user_id,
+            'dealer_id' => $this->dealer_id,
+            'total_price' => $this->total_price,
             'created_at' => $this->created_at,
         ]);
 

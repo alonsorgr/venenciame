@@ -71,7 +71,6 @@ class ArticlesPartnersViewSearch extends Articles
      * Crea una instancia de proveedor de datos con la consulta de búsqueda aplicada.
      *
      * @param   array                   $params     parámetros URL.
-     *
      * @return  ActiveDataProvider      Proporciona datos realizando consultas a la base de datos mediante [[Query]].
      */
     public function search($params)

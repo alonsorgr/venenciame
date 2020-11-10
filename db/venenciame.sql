@@ -196,3 +196,26 @@ CREATE TABLE cart_items
   , quantity      INTEGER       NOT NULL
   , created_at    TIMESTAMP(0)  DEFAULT CURRENT_TIMESTAMP
 );
+
+DROP TABLE IF EXISTS orders CASCADE;
+
+CREATE TABLE orders
+(
+    id            BIGSERIAL     PRIMARY KEY
+  , status_id     BIGINT        REFERENCES status (id)
+  , user_id       BIGINT        NOT NULL  REFERENCES users (id)
+  , dealer_id     BIGINT                  REFERENCES users (id)
+  , total_price   DECIMAL       NOT NULL
+  , created_at    TIMESTAMP(0)  DEFAULT CURRENT_TIMESTAMP
+);
+
+DROP TABLE IF EXISTS order_items CASCADE;
+
+CREATE TABLE order_items
+(
+    id            BIGSERIAL     PRIMARY KEY
+  , article_id    BIGINT        NOT NULL  REFERENCES articles (id)
+  , quantity      INTEGER       NOT NULL
+  , price         DECIMAL       NOT NULL
+  , created_at    TIMESTAMP(0)  DEFAULT CURRENT_TIMESTAMP
+);
