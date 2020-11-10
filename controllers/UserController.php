@@ -244,6 +244,7 @@ class UserController extends Controller
 
     /**
      * Encuentra el modelo de usuario en función de su valor de clave principal.
+     * 
      * @param   integer                 $id     identificador de usuario.
      * @return  User                            el modelo cargado.
      * @throws  NotFoundHttpException           si el modelo no es encontrado.

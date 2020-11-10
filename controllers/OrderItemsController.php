@@ -1,16 +1,24 @@
 <?php
 
+/**
+ * @link https://github.com/alonsorgr/venenciame/
+ * @copyright Copyright (c) 2020 alonsorgr
+ * @license https://github.com/alonsorgr/venenciame/blob/master/LICENSE.md
+ */
+
 namespace app\controllers;
 
 use Yii;
+use yii\filters\VerbFilter;
+use yii\web\NotFoundHttpException;
 use app\models\OrderItems;
 use app\models\search\OrderItemsSearch;
-use yii\web\Controller;
-use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 
 /**
- * OrderItemsController implements the CRUD actions for OrderItems model.
+ * Controlador de elemento de pedidos [[OrderItems]].
+ *
+ * @author Alonso García <alonsorgr@gmail.com>
+ * @since 3.0
  */
 class OrderItemsController extends Controller
 {
@@ -21,7 +29,7 @@ class OrderItemsController extends Controller
     {
         return [
             'verbs' => [
-                'class' => VerbFilter::className(),
+                'class' => VerbFilter::class,
                 'actions' => [
                     'delete' => ['POST'],
                 ],
@@ -30,8 +38,9 @@ class OrderItemsController extends Controller
     }
 
     /**
-     * Lists all OrderItems models.
-     * @return mixed
+     * Acción de renderizado vista de inicio de elementos de pedidos.
+     *
+     * @return yii\web\Response | string    el resultado de la representación.
      */
     public function actionIndex()
     {
@@ -45,10 +54,11 @@ class OrderItemsController extends Controller
     }
 
     /**
-     * Displays a single OrderItems model.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
+     * Acción de renderizado vista de elemento de pedido.
+     *
+     * @param   int                $id      identificador de elemento de pedido.
+     * @return  yii\web\Response | string   el resultado de la representación.
+     * @throws  NotFoundHttpException       si el modelo no es encontrado.
      */
     public function actionView($id)
     {
@@ -58,9 +68,9 @@ class OrderItemsController extends Controller
     }
 
     /**
-     * Creates a new OrderItems model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return mixed
+     * Acción de renderizado vista de creación de elemento de pedido.
+     *
+     * @return  yii\web\Response | string   el resultado de la representación.
      */
     public function actionCreate()
     {
@@ -76,11 +86,11 @@ class OrderItemsController extends Controller
     }
 
     /**
-     * Updates an existing OrderItems model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
+     * Acción de renderizado vista de edición elemento de pedido.
+     *
+     * @param   int                $id      identificador de elemento de pedido.
+     * @return  yii\web\Response | string   el resultado de la representación.
+     * @throws  NotFoundHttpException       si el modelo no es encontrado.
      */
     public function actionUpdate($id)
     {
@@ -96,11 +106,11 @@ class OrderItemsController extends Controller
     }
 
     /**
-     * Deletes an existing OrderItems model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
+     * Acción de renderizado vista de borrado de elemento de pedido.
+     *
+     * @param   int                $id      identificador de elemento de pedido.
+     * @return  yii\web\Response | string   el resultado de la representación.
+     * @throws  NotFoundHttpException       si el modelo no es encontrado.
      */
     public function actionDelete($id)
     {
@@ -110,11 +120,11 @@ class OrderItemsController extends Controller
     }
 
     /**
-     * Finds the OrderItems model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
-     * @return OrderItems the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
+     * Encuentra el modelo de elemento de pedido en función de su valor de clave principal.
+     *
+     * @param   int                     $id     identificador de elemento de pedido.
+     * @return  User                            el modelo cargado.
+     * @throws  NotFoundHttpException           si el modelo no es encontrado.
      */
     protected function findModel($id)
     {
