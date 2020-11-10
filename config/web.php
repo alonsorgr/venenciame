@@ -69,20 +69,24 @@ $config = [
             'key' => getenv('S3_KEY'),
             'secret' => getenv('S3_SECRET'),
         ],
+        'PayPalRestApi' => [
+            'class' => 'bitcko\paypalrestapi\PayPalRestApi',
+            'redirectUrl' => '/site/make-payment',
+        ],
         'log' => $log,
         'db' => $db,
         'formatter' => [
             'timeZone' => 'Europe/Madrid',
         ],
         
-        /* 'urlManager' => [
+        'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
                 '<controller:\w+>/<id:\d+>' => '<controller>/view',
                 '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
             ],
-        ], */
+        ],
        
     ],
     'container' => [

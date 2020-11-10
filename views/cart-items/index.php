@@ -2,6 +2,7 @@
 
 use app\helpers\Bootstrap;
 use yii\bootstrap4\Html;
+use yii\helpers\Url;
 use yii\widgets\ListView;
 use yii\widgets\Pjax;
 
@@ -63,7 +64,7 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
     <div class="row mt-2">
         <div class="col-xl-4">
-            <?= Html::a('<i class="fas fa-credit-card mr-2"></i>' . Yii::t('app', 'Pasar por caja'), null, [
+            <?= Html::a('<i class="fas fa-credit-card mr-2"></i>' . Yii::t('app', 'Pasar por caja'), Url::to(['site/checkout']), [
                 'class' => 'btn btn-success btn-block',
                 'data-pjax' => 0,
                 'title' => Yii::t('app', 'Pasar por caja'),
