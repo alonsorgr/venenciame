@@ -8,8 +8,6 @@ use yii\bootstrap4\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Articles */
 
-$this->registerJsFile('@js/notification.js');
-
 if (!Yii::$app->user->isGuest) {
 
 
