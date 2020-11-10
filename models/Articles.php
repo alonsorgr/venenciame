@@ -8,9 +8,9 @@
 
 namespace app\models;
 
+use app\helpers\AmazonS3;
 use Yii;
 use yii\web\UploadedFile;
-use app\helpers\AmazonS3;
 
 /**
  * Esta es la clase modelo para la tabla "articles".
@@ -42,6 +42,7 @@ use app\helpers\AmazonS3;
  * @property Favorites[] $favorites
  * @property Reviews[] $reviews
  * @property CartItems[] $cartItems
+ * @property OrderItems[] $orderItems
  */
 class Articles extends \yii\db\ActiveRecord
 {
@@ -74,7 +75,7 @@ class Articles extends \yii\db\ActiveRecord
     /**
      * Atributo de puntuación total.
      *
-     * @var double
+     * @var float
      */
     private $_score = null;
 
@@ -154,8 +155,6 @@ class Articles extends \yii\db\ActiveRecord
 
     /**
      * Sube la imagen de artículo a Amazon Web Services S3.
-     *
-     * @return void
      */
     public function uploadImage()
     {
@@ -170,7 +169,6 @@ class Articles extends \yii\db\ActiveRecord
      * Genera un enlace a la imagen del artículo actual.
      *
      * @param   string    $link   enlace a imagen de perfil.
-     * @return  void
      */
     public function setLink($link)
     {
@@ -194,7 +192,6 @@ class Articles extends \yii\db\ActiveRecord
      * Genera el precio del artículo con IVA.
      *
      * @param   string    $amount   precio con IVA.
-     * @return  void
      */
     public function setAmount($amount)
     {
@@ -218,7 +215,7 @@ class Articles extends \yii\db\ActiveRecord
      * Estrablece la puntuación total.
      *
      * @param   string    $link   enlace a imagen de perfil.
-     * @return  void
+     * @param mixed $score
      */
     public function setScore($score)
     {
@@ -238,7 +235,7 @@ class Articles extends \yii\db\ActiveRecord
             foreach ($this->getReviews()->all() as  $value) {
                 $total += $value['score'];
             }
-            $this->setScore($length !=0 ? round($total / $length, 2) : 0);
+            $this->setScore($length != 0 ? round($total / $length, 2) : 0);
         }
         return $this->_score;
     }
@@ -256,7 +253,7 @@ class Articles extends \yii\db\ActiveRecord
     /**
      * Comprueba si el artículo tiene disponibilidad en stock.
      *
-     * @return boolean  si hay artículos en stock.
+     * @return bool  si hay artículos en stock.
      */
     public function isAvailable()
     {
@@ -334,21 +331,31 @@ class Articles extends \yii\db\ActiveRecord
     }
 
     /**
+     * Obtiene consulta para [[OrderItems]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getOrderItems()
+    {
+        return $this->hasMany(OrderItems::class, ['article_id' => 'id'])->inverseOf('article');
+    }
+
+    /**
      * Comprueba si el usuario actual es el propietario del artículo.
      *
-     * @return boolean verdadero si es el propietario del artículo.
+     * @return bool verdadero si es el propietario del artículo.
      */
     public static function isOwner()
     {
-        $model = Partners::find()->where(['user_id' => intval(User::id())]);
-        $id = $model->exists() ? intval($model->one()->id) : intval(0);
-        return Articles::find()->where(['partner_id' => $id])->exists();
+        $model = Partners::find()->where(['user_id' => (int) (User::id())]);
+        $id = $model->exists() ? (int) ($model->one()->id) : (int) 0;
+        return self::find()->where(['partner_id' => $id])->exists();
     }
 
     /**
      * Comprueba si el usuario conectado ha dejado una reseña.
      *
-     * @return boolean  verdadero si ya tiene una reseña en el artículo.
+     * @return bool  verdadero si ya tiene una reseña en el artículo.
      */
     public static function isReview()
     {
@@ -356,7 +363,7 @@ class Articles extends \yii\db\ActiveRecord
     }
 
     /**
-     * Genera una lista con las etiquetas de los objetos [[Articles]]
+     * Genera una lista con las etiquetas de los objetos [[Articles]].
      *
      * @return array    array con las etiquetas de [[Articles]] indexados por id.
      */
