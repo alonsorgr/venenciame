@@ -10,12 +10,15 @@ namespace app\controllers;
 
 use Yii;
 use yii\filters\AccessControl;
-use yii\web\Response;
 use yii\filters\VerbFilter;
+use yii\web\Response;
 use yii\bootstrap4\ActiveForm;
+use yii\helpers\Url;
+use yii\bootstrap4\Html;
 use app\models\User;
-use app\models\forms\LoginForm;
+use app\models\CartItems;
 use app\models\forms\ContactForm;
+use app\models\forms\LoginForm;
 use app\models\forms\RegisterForm;
 use app\models\forms\RequestPasswordForm;
 use app\models\forms\ResetPasswordForm;
@@ -36,10 +39,10 @@ class SiteController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::class,
-                'only' => ['logout'],
+                'only' => ['logout', 'checkout', 'make-payment'],
                 'rules' => [
                     [
-                        'actions' => ['logout'],
+                        'actions' => ['logout', 'checkout', 'make-payment'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -77,16 +80,6 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        /* $faker = \Faker\Factory::create();
-        for ( $i = 1; $i <= 2000; $i++ )
-        {
-            $user = new User();
-            $user->username = $faker->username;
-            $user->password = '123';
-            $user->email = $faker->email;
-            $user->save();
-      
-        } */
         return $this->render('index');
     }
 
@@ -134,10 +127,9 @@ class SiteController extends Controller
     {
         if (Yii::$app->request->isAjax) {
             return $this->renderAjax('logout');
-        } else {
-            Yii::$app->user->logout();
-            return $this->goHome();
         }
+        Yii::$app->user->logout();
+        return $this->goHome();
     }
 
     /**
@@ -153,7 +145,7 @@ class SiteController extends Controller
             Yii::$app->response->format = Response::FORMAT_JSON;
             return ActiveForm::validate($model);
         }
-        
+
         if ($model->load(Yii::$app->request->post())) {
             if ($model->register()) {
                 Yii::$app->session->setFlash(
@@ -177,6 +169,8 @@ class SiteController extends Controller
      * Acción de renderizado de vista de activación registro de usuarios.
      *
      * @return yii\web\Response    el objeto de respuesta actual.
+     * @param mixed $id
+     * @param mixed $auth_key
      */
     public function actionActivateAccount($id, $auth_key)
     {
@@ -191,12 +185,11 @@ class SiteController extends Controller
                     Yii::t('app', 'Su dirección de correo electrónico ha sido confirmada, ahora puede iniciar sesión.')
                 );
                 return $this->goBack();
-            } else {
-                Yii::$app->session->setFlash(
-                    'danger',
-                    Yii::t('app', 'Ocurrió un error al validar la cuenta por correo electrónico, por favor, inténtelo de nuevo.')
-                );
             }
+            Yii::$app->session->setFlash(
+                'danger',
+                Yii::t('app', 'Ocurrió un error al validar la cuenta por correo electrónico, por favor, inténtelo de nuevo.')
+            );
         }
         return $this->goHome();
     }
@@ -238,6 +231,8 @@ class SiteController extends Controller
      * Acción de renderizado de vista de petición de restablecimiento de contraseña de usuarios.
      *
      * @return yii\web\Response | string    el objeto de respuesta actual | el resultado de la representación.
+     * @param mixed $id
+     * @param mixed $verf_key
      */
     public function actionResetPassword($id, $verf_key)
     {
@@ -273,6 +268,93 @@ class SiteController extends Controller
             'model' => $model,
         ]);
     }
+
+    /**
+     * Acción de checkout de artículos en PayPal.
+     *
+     * @return yii\web\Response     el objeto de respuesta actual..
+     */
+    public function actionCheckout()
+    {
+        $model = CartItems::find()->where(['user_id' => User::id()])->all();
+
+        $total = 0;
+
+        foreach ($model as $value) {
+            $items[] = [
+                'name' => $value->article->title,
+                'price' => ($value->article->price * $value->article->vat->value / 100) + $value->article->price,
+                'quantity' => $value['quantity'],
+                'currency' => 'EUR',
+            ];
+
+            $total += (($value->article->price * $value->article->vat->value / 100) + $value->article->price) * $value['quantity'];
+        }
+
+        $params = [
+            'method' => 'paypal',
+            'intent' => 'sale',
+            'order' => [
+                'description' => 'Payment description',
+                'subtotal' => $total,
+                'shippingCost' => 0,
+                'total' => $total,
+                'currency' => 'EUR',
+                'items' => $items,
+            ],
+        ];
+
+
+        if (Yii::$app->PayPalRestApi->checkout($params)) {
+            $_SESSION['params'] = [
+                'order' => [
+                    'description' => $params['order']['description'],
+                    'subtotal' => $params['order']['subtotal'],
+                    'shippingCost' => $params['order']['shippingCost'],
+                    'total' => $params['order']['total'],
+                    'currency' => $params['order']['currency'],
+                ],
+            ];
+        }
+    }
+
+    /**
+     * Acción de pago de artículos en PayPal.
+     *
+     * @return yii\web\Response     el objeto de respuesta actual..
+     */
+    public function actionMakePayment()
+    {
+        $params = $_SESSION['params'];
+
+        if (isset(Yii::$app->request->get()['success']) && Yii::$app->request->get()['success'] == 'true') {
+            Yii::$app->PayPalRestApi->processPayment($params);
+            unset($params);
+
+            CartItems::deleteAll(['user_id' => User::id()]);
+
+            Yii::$app->session->setFlash(
+                'success',
+                Yii::t('app', 'La compra se ha realizado con éxito.')
+            );
+            Yii::$app->session->setFlash(
+                'success',
+                Yii::t('app', 'Puede ver el estado de su pedido en la sección de pedidos de su perfil:') .
+                Html::a(Yii::t('app', 'Mis Pedidos'), Url::to(['user/view', 'id' => User::id()]), [
+                    'class' => 'ml-2 font-weight-bold',
+                ])
+            );
+            return $this->redirect('/site/index');
+        }
+
+        Yii::$app->session->setFlash(
+            'danger',
+            Yii::t('app', 'No se pudo realizar la compra, por favor, inténtelo de nuevo.')
+        );
+
+        return $this->redirect('/cart-items/index');
+    }
+
 
     /**
      * Acción de renderizado de vista de contacto.

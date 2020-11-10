@@ -20,4 +20,7 @@ return [
         Module::FORMAT_TIME => 'php:H:i:s',
         Module::FORMAT_DATETIME => 'php:Y-m-d H:i:s',
     ],
+
+    'payPalClientId'=> getenv('PAYPAL_ID'),
+    'payPalClientSecret'=>getenv('PAYPAL_SECRET'),
 ];

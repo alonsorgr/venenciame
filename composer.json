@@ -42,7 +42,8 @@
         "yiisoft/yii2-gii": "~2.1.0",
         "squizlabs/php_codesniffer": "^2.0",
         "kartik-v/yii2-number": "dev-master",
-        "kartik-v/yii2-widget-rating": "dev-master"
+        "kartik-v/yii2-widget-rating": "dev-master",
+        "bitcko/yii2-bitcko-paypal-api": "dev-master"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",
