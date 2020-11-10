@@ -39,9 +39,9 @@ class Orders extends \yii\db\ActiveRecord
             [['user_id', 'total_price'], 'required'],
             [['total_price'], 'number'],
             [['created_at'], 'safe'],
-            [['status_id'], 'exist', 'skipOnError' => true, 'targetClass' => Status::className(), 'targetAttribute' => ['status_id' => 'id']],
-            [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => Users::className(), 'targetAttribute' => ['user_id' => 'id']],
-            [['dealer_id'], 'exist', 'skipOnError' => true, 'targetClass' => Users::className(), 'targetAttribute' => ['dealer_id' => 'id']],
+            [['status_id'], 'exist', 'skipOnError' => true, 'targetClass' => Status::class, 'targetAttribute' => ['status_id' => 'id']],
+            [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::class, 'targetAttribute' => ['user_id' => 'id']],
+            [['dealer_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::class, 'targetAttribute' => ['dealer_id' => 'id']],
         ];
     }
 
@@ -52,41 +52,41 @@ class Orders extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'status_id' => Yii::t('app', 'Status ID'),
-            'user_id' => Yii::t('app', 'User ID'),
-            'dealer_id' => Yii::t('app', 'Dealer ID'),
-            'total_price' => Yii::t('app', 'Total Price'),
-            'created_at' => Yii::t('app', 'Created At'),
+            'status_id' => Yii::t('app', 'Estado'),
+            'user_id' => Yii::t('app', 'Usuario'),
+            'dealer_id' => Yii::t('app', 'Repartidor'),
+            'total_price' => Yii::t('app', 'Precio total'),
+            'created_at' => Yii::t('app', 'Fecha'),
         ];
     }
 
     /**
-     * Gets query for [[Status]].
+     * Obtiene consulta para [[Status]].
      *
      * @return \yii\db\ActiveQuery
      */
     public function getStatus()
     {
-        return $this->hasOne(Status::className(), ['id' => 'status_id'])->inverseOf('orders');
+        return $this->hasOne(Status::class, ['id' => 'status_id'])->inverseOf('orders');
     }
 
     /**
-     * Gets query for [[User]].
+     * Obtiene consulta para [[User]].
      *
      * @return \yii\db\ActiveQuery
      */
     public function getUser()
     {
-        return $this->hasOne(Users::className(), ['id' => 'user_id'])->inverseOf('orders');
+        return $this->hasOne(User::class, ['id' => 'user_id'])->inverseOf('orders');
     }
 
     /**
-     * Gets query for [[Dealer]].
+     * Obtiene consulta para [[User]].
      *
      * @return \yii\db\ActiveQuery
      */
     public function getDealer()
     {
-        return $this->hasOne(Users::className(), ['id' => 'dealer_id'])->inverseOf('orders0');
+        return $this->hasOne(User::class, ['id' => 'dealer_id'])->inverseOf('orders0');
     }
 }

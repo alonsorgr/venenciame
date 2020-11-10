@@ -36,7 +36,7 @@ class OrderItems extends \yii\db\ActiveRecord
             [['article_id', 'quantity'], 'integer'],
             [['price'], 'number'],
             [['created_at'], 'safe'],
-            [['article_id'], 'exist', 'skipOnError' => true, 'targetClass' => Articles::className(), 'targetAttribute' => ['article_id' => 'id']],
+            [['article_id'], 'exist', 'skipOnError' => true, 'targetClass' => Articles::class, 'targetAttribute' => ['article_id' => 'id']],
         ];
     }
 
@@ -47,20 +47,20 @@ class OrderItems extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'article_id' => Yii::t('app', 'Article ID'),
-            'quantity' => Yii::t('app', 'Quantity'),
-            'price' => Yii::t('app', 'Price'),
-            'created_at' => Yii::t('app', 'Created At'),
+            'article_id' => Yii::t('app', 'Artículo'),
+            'quantity' => Yii::t('app', 'Cantidad'),
+            'price' => Yii::t('app', 'Precio'),
+            'created_at' => Yii::t('app', 'Fecha'),
         ];
     }
 
     /**
-     * Gets query for [[Article]].
+     * Obtiene consulta para [[Articles]].
      *
      * @return \yii\db\ActiveQuery
      */
     public function getArticle()
     {
-        return $this->hasOne(Articles::className(), ['id' => 'article_id'])->inverseOf('orderItems');
+        return $this->hasOne(Articles::class, ['id' => 'article_id'])->inverseOf('orderItems');
     }
 }
