@@ -1,12 +1,19 @@
 <?php
 
+/**
+ * @link https://github.com/alonsorgr/venenciame/
+ * @copyright Copyright (c) 2020 alonsorgr
+ * @license https://github.com/alonsorgr/venenciame/blob/master/LICENSE.md
+ */
+
 namespace app\models;
 
 use Yii;
 
 /**
- * This is the model class for table "orders".
- *
+ * Esta es la clase modelo para la tabla "order_items".
+ * @author Alonso García <alonsorgr@gmail.com>
+ * @since 3.0
  * @property int $id
  * @property int|null $status_id
  * @property int $user_id
