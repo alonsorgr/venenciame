@@ -69,7 +69,7 @@ $config = [
             'key' => getenv('S3_KEY'),
             'secret' => getenv('S3_SECRET'),
         ],
-        'PayPalRestApi' => [
+        'paypal' => [
             'class' => 'bitcko\paypalrestapi\PayPalRestApi',
             'redirectUrl' => '/site/make-payment',
         ],

@@ -306,7 +306,7 @@ class SiteController extends Controller
         ];
 
 
-        if (Yii::$app->PayPalRestApi->checkout($params)) {
+        if (Yii::$app->paypal->checkout($params)) {
             $_SESSION['params'] = [
                 'order' => [
                     'description' => $params['order']['description'],
@@ -329,7 +329,7 @@ class SiteController extends Controller
         $params = $_SESSION['params'];
 
         if (isset(Yii::$app->request->get()['success']) && Yii::$app->request->get()['success'] == 'true') {
-            Yii::$app->PayPalRestApi->processPayment($params);
+            Yii::$app->paypal->processPayment($params);
             unset($params);
 
             $model = CartItems::find()->where(['user_id' => User::id()])->all();
