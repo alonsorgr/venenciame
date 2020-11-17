@@ -10,5 +10,3 @@
 La funcionalidad principal del proyecto será la posibilidad de que los usuarios registrados puedan comprar vinos Españoles con denominación de origen. Asimismo, ofrecer al mayorista un servicio de venta con el cliente.
 ### Documentación
 - [Documentación](https://github.com/alonsorgr/venenciame)
-### Despliegue
-- [Venénciame Heroku](https://venenciame.herokuapp.com/)
