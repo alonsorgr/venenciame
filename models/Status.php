@@ -94,6 +94,16 @@ class Status extends \yii\db\ActiveRecord
     }
 
     /**
+     * Obtiene consulta para [[Orders]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getOrders()
+    {
+        return $this->hasMany(Orders::class, ['status_id' => 'id'])->inverseOf('status');
+    }
+
+    /**
      * Genera una lista con las etiquetas de los objetos [[Status]]
      *
      * @return array    array con las etiquetas de [[Status]] indexados por id.
@@ -102,4 +112,5 @@ class Status extends \yii\db\ActiveRecord
     {
         return static::find()->select('label')->orderBy('label')->indexBy('id')->column();
     }
+    
 }

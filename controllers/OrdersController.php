@@ -12,6 +12,7 @@ use Yii;
 use yii\filters\VerbFilter;
 use yii\web\NotFoundHttpException;
 use app\models\Orders;
+use app\models\search\OrderItemsSearch;
 use app\models\search\OrdersSearch;
 
 /**
@@ -62,7 +63,12 @@ class OrdersController extends Controller
      */
     public function actionView($id)
     {
+        $searchModel = new OrderItemsSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
         return $this->render('view', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
             'model' => $this->findModel($id),
         ]);
     }
