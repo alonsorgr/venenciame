@@ -21,6 +21,7 @@ use Yii;
  * @property float $total_price
  * @property string|null $created_at
  *
+ * @property OrderItems[] $orderItems
  * @property Status $status
  * @property Users $user
  * @property Users $dealer
@@ -95,5 +96,15 @@ class Orders extends \yii\db\ActiveRecord
     public function getDealer()
     {
         return $this->hasOne(User::class, ['id' => 'dealer_id'])->inverseOf('orders0');
+    }
+
+    /**
+     * Obtiene consulta para [[Orders]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getOrderItems()
+    {
+        return $this->hasMany(OrderItems::class, ['order_id' => 'id'])->inverseOf('order');
     }
 }

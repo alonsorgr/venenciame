@@ -20,6 +20,7 @@ use Yii;
  * @property float $price
  * @property string|null $created_at
  *
+ * @property Orders $order
  * @property Articles $article
  */
 class OrderItems extends \yii\db\ActiveRecord
@@ -44,6 +45,7 @@ class OrderItems extends \yii\db\ActiveRecord
             [['price'], 'number'],
             [['created_at'], 'safe'],
             [['article_id'], 'exist', 'skipOnError' => true, 'targetClass' => Articles::class, 'targetAttribute' => ['article_id' => 'id']],
+            [['order_id'], 'exist', 'skipOnError' => true, 'targetClass' => Orders::class, 'targetAttribute' => ['order_id' => 'id']],
         ];
     }
 
@@ -55,6 +57,7 @@ class OrderItems extends \yii\db\ActiveRecord
         return [
             'id' => Yii::t('app', 'ID'),
             'article_id' => Yii::t('app', 'Artículo'),
+            'order_id' => Yii::t('app', 'Pedido'),
             'quantity' => Yii::t('app', 'Cantidad'),
             'price' => Yii::t('app', 'Precio'),
             'created_at' => Yii::t('app', 'Fecha'),
@@ -69,5 +72,15 @@ class OrderItems extends \yii\db\ActiveRecord
     public function getArticle()
     {
         return $this->hasOne(Articles::class, ['id' => 'article_id'])->inverseOf('orderItems');
+    }
+
+    /**
+     * Obtiene consulta para [[Orders]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getOrder()
+    {
+        return $this->hasOne(Orders::class, ['id' => 'order_id'])->inverseOf('orderItems');
     }
 }

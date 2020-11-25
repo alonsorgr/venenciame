@@ -9,20 +9,23 @@
 namespace app\controllers;
 
 use app\helpers\Email;
-use Yii;
-use yii\filters\AccessControl;
-use yii\filters\VerbFilter;
-use yii\web\Response;
-use yii\bootstrap4\ActiveForm;
-use yii\helpers\Url;
-use yii\bootstrap4\Html;
-use app\models\User;
 use app\models\CartItems;
 use app\models\forms\ContactForm;
 use app\models\forms\LoginForm;
 use app\models\forms\RegisterForm;
 use app\models\forms\RequestPasswordForm;
 use app\models\forms\ResetPasswordForm;
+use app\models\OrderItems;
+use app\models\Orders;
+use app\models\Status;
+use app\models\User;
+use Yii;
+use yii\bootstrap4\ActiveForm;
+use yii\bootstrap4\Html;
+use yii\filters\AccessControl;
+use yii\filters\VerbFilter;
+use yii\helpers\Url;
+use yii\web\Response;
 
 /**
  * Controlador del sitio.
@@ -339,8 +342,31 @@ class SiteController extends Controller
                 'subject' => Yii::t('app', 'VENÉNCIAME - FACTURA DE COMPRA'),
                 'body' => $this->renderPartial('_invoice', [
                     'model' => $model,
-                ])
+                ]),
             ]);
+
+            $total = 0;
+
+            foreach ($model as $value) {
+                $total += (($value->article->price * $value->article->vat->value / 100) + $value->article->price) * $value['quantity'];
+            }
+
+            $order = new Orders();
+            $order->status_id = Status::STATUS_COLLECTED_AT_ORIGIN;
+            $order->user_id = User::id();
+            $order->total_price = $total;
+
+            $order->save();
+
+            $orderItems = new OrderItems();
+
+            foreach ($model as $value) {
+                $orderItems->order_id = $order->id;
+                $orderItems->article_id = $value->article->id;
+                $orderItems->quantity = $value['quantity'];
+                $orderItems->price = ($value->article->price * $value->article->vat->value / 100) + $value->article->price;
+                $orderItems->save();
+            }
 
             CartItems::deleteAll(['user_id' => User::id()]);
 

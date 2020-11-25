@@ -215,6 +215,7 @@ CREATE TABLE order_items
 (
     id            BIGSERIAL     PRIMARY KEY
   , article_id    BIGINT        NOT NULL  REFERENCES articles (id)
+  , order_id      BIGINT        NOT NULL  REFERENCES orders (id)
   , quantity      INTEGER       NOT NULL
   , price         DECIMAL       NOT NULL
   , created_at    TIMESTAMP(0)  DEFAULT CURRENT_TIMESTAMP
