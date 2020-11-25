@@ -13,12 +13,12 @@ use yii\widgets\Pjax;
 <div class="orders-view">
     <div class="row">
         <div class="col-xl-1">
-            <div class="col d-flex justify-content-center">
-                <i class="fab fa-elementor display-4 text-primary"></i>
+            <div class="col d-flex justify-content-center align-items-center">
+                <i class="fas fa-truck-moving text-primary fa-4x"></i>
             </div>
         </div>
         <div class="col-xl-2">
-            <div class="text-center text-md-left font-weight-bold mt-3">
+            <div class="text-center text-md-left font-weight-bold">
                 <?= Yii::t('app', 'Número de pedido'); ?>
             </div>
             <div class="text-center text-md-left mt-2">
@@ -26,7 +26,7 @@ use yii\widgets\Pjax;
             </div>
         </div>
         <div class="col-xl-7">
-            <div class="text-center text-md-left font-weight-bold mt-3">
+            <div class="text-center text-md-left font-weight-bold">
                 <?= Yii::t('app', 'Estado del pedido'); ?>
             </div>
             <div class="text-center text-md-left mt-2">
@@ -35,7 +35,7 @@ use yii\widgets\Pjax;
         </div>
         <div class="col-xl-2">
             <div class="text-center text-md-right">
-                <div class="text-center text-md-right font-weight-bold mt-3">
+                <div class="text-center text-md-right font-weight-bold">
                     <?= Yii::t('app', 'Precio total'); ?>
                 </div>
                 <div class="text-center text-md-right mt-2">
@@ -44,28 +44,28 @@ use yii\widgets\Pjax;
             </div>
         </div>
     </div>
-    <div class="row justify-content-end mt-2">
+    <div class="my-xl-3 horizontal-divider"></div>
+    <div class="row justify-content-end">
         <div class="col-xl-12 d-flex justify-content-end">
             <a data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
                 <i class="collapse-icon fa fa-chevron-down"></i>
             </a>
         </div>
     </div>
-
     <div class="row">
         <div class="col">
             <?php Pjax::begin([
                 'id' => 'cart-items-index-pjax',
                 'timeout' => '100000',
             ]); ?>
-            <div class="collapse mt-4" id="collapseExample">
+            <div class="collapse" id="collapseExample">
                 <?= ListView::widget([
                     'dataProvider' => $dataProvider,
                     'emptyText' => $this->render('/site/_empty'),
                     'itemView' => function ($model, $key, $index, $widget) {
                         return $this->render('/order-items/view', ['model' => $model]);
                     },
-                    'layout' => '<div class="d-flex justify-content-between mb-5">{summary}{sorter}</div>{items}{pager}',
+                    'layout' => '<div class="d-flex justify-content-between"></div>{items}{pager}',
                     'pager' => Bootstrap::listViewPager(),
                     'sorter' => [
                         'class' => 'app\widgets\DropdownSorter',

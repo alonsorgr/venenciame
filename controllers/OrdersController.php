@@ -64,6 +64,7 @@ class OrdersController extends Controller
     public function actionView($id)
     {
         $searchModel = new OrderItemsSearch();
+        $searchModel->find()->where(['order_id' => $id]);
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('view', [
