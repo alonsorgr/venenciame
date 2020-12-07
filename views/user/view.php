@@ -8,10 +8,14 @@ use yii\bootstrap4\Html;
 /* @var $model app\models\User */
 /* @var $followedSearch app\models\search\FollowedSearch */
 /* @var $followedProvider yii\data\ActiveDataProvider */
-/* @var $favoritesSearch yii\data\ActiveDataProvider */
+/* @var $favoritesSearch yii\data\FavoritesSearch*/
 /* @var $favoritesProvider yii\data\ActiveDataProvider */
-/* @var $reviewsSearch yii\data\ActiveDataProvider */
+/* @var $reviewsSearch yii\data\ReviewsSearch */
 /* @var $reviewsProvider yii\data\ActiveDataProvider */
+/* @var $ordersSearch yii\data\OrdersSearch */
+/* @var $ordersProvider yii\data\ActiveDataProvider */
+/* @var $ordersItemsSearch yii\data\OrdersItemsSearch */
+/* @var $ordersItemsProvider yii\data\ActiveDataProvider */
 
 $this->title = $model->username;
 $this->params['breadcrumbs'][] = $this->title;
@@ -55,7 +59,12 @@ $this->params['breadcrumbs'][] = $this->title;
             $items[] = Bootstrap::tabItem([
                 'icon' => 'fas fa-money-check',
                 'label' => Yii::t('app', 'Compras'),
-                'content' => $this->render('tabs/_purchases.php'),
+                'content' => $this->render('tabs/_orders.php', [
+                    'ordersSearch' => $ordersSearch,
+                    'ordersProvider' => $ordersProvider,
+                    'orderItemsSearch' => $orderItemsSearch,
+                    'orderItemsProvider' => $orderItemsProvider,
+                ]),
             ]);
             ?>
             <div class="mt-5">

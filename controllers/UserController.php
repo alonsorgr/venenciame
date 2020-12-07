@@ -19,6 +19,8 @@ use app\models\search\UserSearch;
 use app\models\search\FollowedSearch;
 use app\models\search\ReviewsUserSearch;
 use app\models\search\FavoritesSearch;
+use app\models\search\OrderItemsSearch;
+use app\models\search\OrdersSearch;
 use app\models\Status;
 
 /**
@@ -107,6 +109,12 @@ class UserController extends Controller
         $reviewsSearch = new ReviewsUserSearch();
         $reviewsProvider = $reviewsSearch->search(Yii::$app->request->queryParams);
 
+        $ordersSearch = new OrdersSearch();
+        $ordersProvider = $ordersSearch->search(Yii::$app->request->queryParams);
+
+        $orderItemsSearch = new OrderItemsSearch();
+        $orderItemsProvider = $orderItemsSearch->search(Yii::$app->request->queryParams);
+
         return $this->render('view', [
             'model' => $this->findModel($id),
             'followedSearch' => $followedSearch,
@@ -115,6 +123,10 @@ class UserController extends Controller
             'favoritesProvider' => $favoritesProvider,
             'reviewsSearch' => $reviewsSearch,
             'reviewsProvider' => $reviewsProvider,
+            'ordersSearch' => $ordersSearch,
+            'ordersProvider' => $ordersProvider,
+            'orderItemsSearch' => $orderItemsSearch,
+            'orderItemsProvider' => $orderItemsProvider,
         ]);
     }
 
