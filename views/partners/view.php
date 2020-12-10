@@ -69,6 +69,10 @@ $this->params['breadcrumbs'][] = $this->title;
                                 'model' => $model,
                                 'articlesSearch' => $articlesSearch,
                                 'articlesProvider' => $articlesProvider,
+                                'ordersSearch' => $ordersSearch,
+                                'ordersProvider' => $ordersProvider,
+                                'orderItemsSearch' => $orderItemsSearch,
+                                'orderItemsProvider' => $orderItemsProvider,
                             ]),
                         ]);
                     }

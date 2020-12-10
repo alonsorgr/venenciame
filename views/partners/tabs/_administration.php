@@ -27,7 +27,12 @@ use kartik\tabs\TabsX;
             $items[] = Bootstrap::tabItem([
                 'icon' => 'fas fa-cart-arrow-down',
                 'label' => Yii::t('app', 'Ventas'),
-                'content' => $this->render('administration/_sales.php'),
+                'content' => $this->render('administration/_sales.php', [
+                    'ordersSearch' => $ordersSearch,
+                    'ordersProvider' => $ordersProvider,
+                    'orderItemsSearch' => $orderItemsSearch,
+                    'orderItemsProvider' => $orderItemsProvider,
+                ]),
             ]);
             ?>
 

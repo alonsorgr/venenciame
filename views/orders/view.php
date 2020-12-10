@@ -1,6 +1,8 @@
 <?php
 
 use app\helpers\Bootstrap;
+use app\models\Status;
+use kartik\select2\Select2;
 use yii\bootstrap4\Html;
 use yii\widgets\ListView;
 use yii\widgets\Pjax;
@@ -18,27 +20,27 @@ use yii\widgets\Pjax;
             </div>
         </div>
         <div class="col-xl-2">
-            <div class="text-center text-md-left font-weight-bold">
+            <div class="text-center text-xl-left font-weight-bold mt-2">
                 <?= Yii::t('app', 'Número de pedido'); ?>
             </div>
-            <div class="text-center text-md-left mt-2">
+            <div class="text-center text-xl-left mt-2">
                 <?= Html::encode($model->id); ?>
             </div>
         </div>
         <div class="col-xl-7">
-            <div class="text-center text-md-left font-weight-bold">
+            <div class="text-center text-xl-left font-weight-bold mt-2">
                 <?= Yii::t('app', 'Estado del pedido'); ?>
             </div>
-            <div class="text-center text-md-left mt-2">
+            <div class="text-center text-xl-left mt-2">
                 <?= Html::encode($model->status->label); ?>
             </div>
         </div>
         <div class="col-xl-2">
-            <div class="text-center text-md-right">
-                <div class="text-center text-md-right font-weight-bold">
+            <div class="text-center text-xl-right">
+                <div class="text-center text-xl-right font-weight-bold mt-2">
                     <?= Yii::t('app', 'Precio total'); ?>
                 </div>
-                <div class="text-center text-md-right mt-2">
+                <div class="text-center text-xl-right mt-2">
                     <?= Html::encode(Yii::$app->formatter->asCurrency($model->total_price)); ?>
                 </div>
             </div>

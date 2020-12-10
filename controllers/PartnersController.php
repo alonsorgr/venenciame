@@ -24,6 +24,8 @@ use app\models\search\ArticlesPartnersViewSearch;
 use app\models\search\FollowersSearch;
 use app\models\Status;
 use app\helpers\Email;
+use app\models\search\OrderItemsSearch;
+use app\models\search\OrdersSearch;
 
 /**
  * Controlador de socios [[Partners]].
@@ -112,6 +114,12 @@ class PartnersController extends Controller
         $articlesViewsSearch = new ArticlesPartnersViewSearch();
         $articlesViewsProvider = $articlesViewsSearch->search(Yii::$app->request->queryParams);
 
+        $ordersSearch = new OrdersSearch();
+        $ordersProvider = $ordersSearch->search(Yii::$app->request->queryParams);
+
+        $orderItemsSearch = new OrderItemsSearch();
+        $orderItemsProvider = $orderItemsSearch->search(Yii::$app->request->queryParams);
+
         return $this->render('view', [
             'model' => $this->findModel($id),
             'followersSearch' => $followersSearch,
@@ -120,6 +128,10 @@ class PartnersController extends Controller
             'articlesProvider' => $articlesProvider,
             'articlesViewsSearch' => $articlesViewsSearch,
             'articlesViewsProvider' => $articlesViewsProvider,
+            'ordersSearch' => $ordersSearch,
+            'ordersProvider' => $ordersProvider,
+            'orderItemsSearch' => $orderItemsSearch,
+            'orderItemsProvider' => $orderItemsProvider,
         ]);
     }
 
