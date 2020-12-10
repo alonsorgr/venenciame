@@ -118,7 +118,7 @@ class AdminArticlesSearch extends Articles
             ->andFilterWhere(['ilike', 'articles.review', $this->review])
             ->andFilterWhere(['<=', 'articles.price', $this->price])
             ->andFilterWhere(['ilike', 'articles.image', $this->image])
-            ->andFilterWhere(['ilike', 'u.username', $this->getAttribute('partner.name')]);;
+            ->andFilterWhere(['ilike', 'u.username', $this->getAttribute('partner.name')]);
 
         return $dataProvider;
     }

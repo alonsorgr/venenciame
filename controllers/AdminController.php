@@ -15,6 +15,8 @@ use app\models\search\AdminArticlesSearch;
 use app\models\search\AdminPartnersSearch;
 use app\models\search\CategoriesSearch;
 use app\models\search\DenominationsSearch;
+use app\models\search\OrderItemsSearch;
+use app\models\search\OrdersSearch;
 use app\models\search\UserSearch;
 use app\models\search\VatsSearch;
 
@@ -73,6 +75,12 @@ class AdminController extends Controller
         $articlesSearchModel = new AdminArticlesSearch();
         $articlesDataProvider = $articlesSearchModel->search(Yii::$app->request->queryParams);
 
+        $ordersSearch = new OrdersSearch();
+        $ordersProvider = $ordersSearch->search(Yii::$app->request->queryParams);
+
+        $orderItemsSearch = new OrderItemsSearch();
+        $orderItemsProvider = $orderItemsSearch->search(Yii::$app->request->queryParams);
+
         return $this->render('index', [
             'userSearchModel' => $userSearchModel,
             'userDataProvider' => $userDataProvider,
@@ -86,6 +94,10 @@ class AdminController extends Controller
             'vatsDataProvider' => $vatsDataProvider,
             'articlesSearchModel' => $articlesSearchModel,
             'articlesDataProvider' => $articlesDataProvider,
+            'ordersSearch' => $ordersSearch,
+            'ordersProvider' => $ordersProvider,
+            'orderItemsSearch' => $orderItemsSearch,
+            'orderItemsProvider' => $orderItemsProvider,
         ]);
     }
 }

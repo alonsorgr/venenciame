@@ -76,7 +76,12 @@ $this->params['breadcrumbs'][] = $this->title;
             $items[] = Bootstrap::tabItem([
                 'icon' => 'fas fa-truck',
                 'label' => Yii::t('app', 'Pedidos'),
-                'content' => $this->render('tabs/_orders'),
+                'content' => $this->render('tabs/_orders' ,[
+                    'ordersSearch' => $ordersSearch,
+                    'ordersProvider' => $ordersProvider,
+                    'orderItemsSearch' => $orderItemsSearch,
+                    'orderItemsProvider' => $orderItemsProvider,
+                ]),
             ]);
             ?>
             <div class="mt-5">
