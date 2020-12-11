@@ -20,7 +20,6 @@ use yii\helpers\Url;
 ?>
 
 <div class="articles-form">
-
     <?php $form = ActiveForm::begin([
         'id' => 'user-form',
         'enableAjaxValidation' => true,

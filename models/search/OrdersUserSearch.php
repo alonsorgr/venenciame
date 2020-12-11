@@ -11,6 +11,7 @@ namespace app\models\search;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use app\models\Orders;
+use app\models\User;
 use Yii;
 
 /**
@@ -19,7 +20,7 @@ use Yii;
  * @author Alonso García <alonsorgr@gmail.com>
  * @since 3.0
  */
-class OrdersSearch extends Orders
+class OrdersUserSearch extends Orders
 {
     /**
      * {@inheritdoc}
@@ -71,7 +72,7 @@ class OrdersSearch extends Orders
      */
     public function search($params)
     {
-        $query = Orders::find()->joinWith('user u');
+        $query = Orders::find()->joinWith('user u')->where(['user_id' => User::id()]);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,

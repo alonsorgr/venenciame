@@ -21,6 +21,7 @@ use app\models\search\ReviewsUserSearch;
 use app\models\search\FavoritesSearch;
 use app\models\search\OrderItemsSearch;
 use app\models\search\OrdersSearch;
+use app\models\search\OrdersUserSearch;
 use app\models\Status;
 
 /**
@@ -109,7 +110,7 @@ class UserController extends Controller
         $reviewsSearch = new ReviewsUserSearch();
         $reviewsProvider = $reviewsSearch->search(Yii::$app->request->queryParams);
 
-        $ordersSearch = new OrdersSearch();
+        $ordersSearch = new OrdersUserSearch();
         $ordersProvider = $ordersSearch->search(Yii::$app->request->queryParams);
 
         $orderItemsSearch = new OrderItemsSearch();

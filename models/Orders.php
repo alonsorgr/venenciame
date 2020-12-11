@@ -28,6 +28,8 @@ use Yii;
  */
 class Orders extends \yii\db\ActiveRecord
 {
+    private $_dealers;
+
     /**
      * {@inheritdoc}
      */
@@ -66,6 +68,30 @@ class Orders extends \yii\db\ActiveRecord
             'total_price' => Yii::t('app', 'Precio total'),
             'created_at' => Yii::t('app', 'Fecha'),
         ];
+    }
+
+    /**
+     * Establece el nombre del repartidor.
+     *
+     * @param string    $dealers    repartidor.
+     * @return void
+     */
+    public function setDealers($dealers)
+    {
+        $this->_dealers = $dealers;
+    }
+
+    /**
+     * Accede al nombre del repartidor asociado.
+     *
+     * @return string   nombre del repartidor asociado.
+     */
+    public function getDealers()
+    {
+        if ($this->_dealers === null && !$this->isNewRecord) {
+            $this->setDealers(isset($this->getDealer()->one()->username) ? $this->getDealer()->one()->username : Yii::t('app', 'No asignado'));
+        }
+        return $this->_dealers;
     }
 
     /**

@@ -218,11 +218,22 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
         return $this->_link;
     }
 
+    /**
+     * Establece el nombre completo del usuario.
+     *
+     * @param string    $fullname   Nombre completo.
+     * @return void
+     */
     public function setFullname($fullname)
     {
         $this->_fullname = $fullname;
     }
 
+    /**
+     * Accede al nombre completo del usuario.
+     *
+     * @return string   nombre completo del usuario.
+     */
     public function getFullname()
     {
         if ($this->_fullname === null && !$this->isNewRecord) {
@@ -608,5 +619,15 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     public static function labels()
     {
         return static::find()->select('username')->orderBy('id')->indexBy('id')->column();
+    }
+
+    /**
+     * Genera una lista con las etiquetas de los objetos [[User]]
+     *
+     * @return array    array con las etiquetas de [[User]] indexados por id.
+     */
+    public static function dealers()
+    {
+        return static::find()->select('username')->where(['rol_id' => Roles::DEALER])->orderBy('id')->indexBy('id')->column();
     }
 }

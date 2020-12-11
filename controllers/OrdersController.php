@@ -14,6 +14,10 @@ use yii\web\NotFoundHttpException;
 use app\models\Orders;
 use app\models\search\OrderItemsSearch;
 use app\models\search\OrdersSearch;
+use app\models\User;
+use yii\bootstrap4\ActiveForm;
+use yii\filters\AccessControl;
+use yii\web\Response;
 
 /**
  * Controlador de artículos [[Orders]].
@@ -33,6 +37,24 @@ class OrdersController extends Controller
                 'class' => VerbFilter::class,
                 'actions' => [
                     'delete' => ['POST'],
+                ],
+            ],
+            'access' => [
+                'class' => AccessControl::class,
+                'rules' => [
+                    [
+                        'actions' => ['view', 'index'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                    [
+                        'actions' => ['create', 'update'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                        'matchCallback' => function ($rule, $action) {
+                            return User::isAdmin();
+                        }
+                    ],
                 ],
             ],
         ];
@@ -103,8 +125,13 @@ class OrdersController extends Controller
     {
         $model = $this->findModel($id);
 
+        if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            return ActiveForm::validate($model);
+        }
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['admin/index']);
         }
 
         return $this->render('update', [

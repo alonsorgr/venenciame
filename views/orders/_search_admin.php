@@ -1,6 +1,7 @@
 <?php
 
 use app\models\Status;
+use app\models\User;
 use kartik\date\DatePicker;
 use kartik\datecontrol\DateControl;
 use kartik\select2\Select2;
@@ -30,10 +31,17 @@ use yii\bootstrap4\ActiveForm;
             ]); ?>
         </div>
         <div class="col-12 col-md-2">
-            <?= $form->field($model, 'partner.name')->textInput([
-                'maxlength' => true,
-                'placeholder' => Yii::t('app', 'Buscar por socio'),
-                'title' => Yii::t('app', 'Socio'),
+            <?= $form->field($model, 'dealer_id')->widget(Select2::class, [
+                'data' => User::dealers(),
+                'options' => [
+                    'class' => 'form-control',
+                    'placeholder' => Yii::t('app', 'Buscar por repartidor'),
+                    'title' => Yii::t('app', 'Repartidor'),
+                ],
+                'theme' => Select2::THEME_MATERIAL,
+                'pluginOptions' => [
+                    'allowClear' => false,
+                ],
             ]); ?>
         </div>
         <div class="col-12 col-md-2">

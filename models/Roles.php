@@ -21,6 +21,11 @@ use Yii;
  */
 class Roles extends \yii\db\ActiveRecord
 {
+    const ADMINISTRATOR = 1;
+    const CUSTOMER = 2;
+    const USER = 3;
+    const DEALER = 4;
+
     /**
      * {@inheritdoc}
      */
