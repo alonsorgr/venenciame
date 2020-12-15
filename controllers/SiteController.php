@@ -106,6 +106,9 @@ class SiteController extends Controller
         }
 
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
+            if (User::isDealer()) {
+                return $this->redirect(['dealer/index']);
+            }
             return $this->goBack();
         }
 

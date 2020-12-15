@@ -13,7 +13,7 @@ use app\helpers\Bootstrap;
 
 ?>
 
-<div class="admin-articles">
+<div class="dealer-articles">
 
     <?php Pjax::begin([
         'id' => 'admin-articles-pjax',

@@ -52,7 +52,7 @@ class OrdersController extends Controller
                         'allow' => true,
                         'roles' => ['@'],
                         'matchCallback' => function ($rule, $action) {
-                            return User::isAdmin();
+                            return User::isAdmin() || User::isDealer();
                         }
                     ],
                 ],
@@ -131,7 +131,7 @@ class OrdersController extends Controller
         }
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['admin/index']);
+            return $this->goBack();
         }
 
         return $this->render('update', [

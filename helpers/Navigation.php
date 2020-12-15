@@ -198,6 +198,20 @@ class Navigation
             ],
         ];
 
+        $dealers = [
+            'encode' => false,
+            'label' => static::label([
+                'icon' => 'fas fa-truck-moving',
+                'color' => 'text-primary',
+                'label' => Yii::t('app', 'Mis repartos'),
+            ]),
+            'url' => ['dealer/index'],
+            'linkOptions' => [
+                'title' => Yii::t('app', 'Mis repartos'),
+                'class' => 'text-capitalize',
+            ],
+        ];
+
         $articles = [
             'encode' => false,
             'label' => static::label([
@@ -241,6 +255,7 @@ class Navigation
                 $update,
                 User::isAdmin() ? static::horizontalDivider() : '',
                 User::isAdmin() ? $admin : '',
+                User::isDealer() ? $dealers : '',
                 User::isPartner() ? static::horizontalDivider() : '',
                 User::isPartner() ? $partner : '',
                 User::isPartner() ? $articles : '',
