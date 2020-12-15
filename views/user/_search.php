@@ -38,12 +38,12 @@ use yii\bootstrap4\ActiveForm;
             ]); ?>
         </div>
         <div class="col-12 col-md-2">
-            <?= $form->field($model, 'status_id')->widget(Select2::class, [
-                'data' => Status::labels(),
+            <?= $form->field($model, 'rol_id')->widget(Select2::class, [
+                'data' => Roles::labels(),
                 'options' => [
                     'class' => 'form-control',
-                    'placeholder' => Yii::t('app', 'Buscar por estado'),
-                    'title' => Yii::t('app', 'Estado'),
+                    'placeholder' => Yii::t('app', 'Buscar por rol de usuario'),
+                    'title' => Yii::t('app', 'Rol de usuario'),
                 ],
                 'theme' => Select2::THEME_MATERIAL,
                 'pluginOptions' => [
@@ -52,12 +52,12 @@ use yii\bootstrap4\ActiveForm;
             ]); ?>
         </div>
         <div class="col-12 col-md-2">
-            <?= $form->field($model, 'rol_id')->widget(Select2::class, [
-                'data' => Roles::labels(),
+            <?= $form->field($model, 'status_id')->widget(Select2::class, [
+                'data' => Status::labels(),
                 'options' => [
                     'class' => 'form-control',
-                    'placeholder' => Yii::t('app', 'Buscar por rol de usuario'),
-                    'title' => Yii::t('app', 'Rol de usuario'),
+                    'placeholder' => Yii::t('app', 'Buscar por estado'),
+                    'title' => Yii::t('app', 'Estado'),
                 ],
                 'theme' => Select2::THEME_MATERIAL,
                 'pluginOptions' => [
