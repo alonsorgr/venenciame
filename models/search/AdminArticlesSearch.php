@@ -27,7 +27,7 @@ class AdminArticlesSearch extends Articles
     {
         return [
             [['id', 'partner_id', 'category_id', 'denomination_id', 'vat_id', 'stock', 'capacity'], 'integer'],
-            [['title', 'description', 'degrees', 'variety', 'pairing', 'review', 'image', 'partner.name', 'created_at'], 'safe'],
+            [['title', 'description', 'degrees', 'variety', 'pairing', 'review', 'image', 'partner.name', 'status.label', 'created_at'], 'safe'],
             [['price'], 'number'],
         ];
     }
@@ -37,7 +37,7 @@ class AdminArticlesSearch extends Articles
      */
     public function attributes()
     {
-        return array_merge(parent::attributes(), ['partner.name']);
+        return array_merge(parent::attributes(), ['partner.name'], ['status.label']);
     }
 
     /**
@@ -82,7 +82,7 @@ class AdminArticlesSearch extends Articles
      */
     public function search($params)
     {
-        $query = Articles::find()->joinWith('partner p');
+        $query = Articles::find()->joinWith('partner p')->joinWith('status s');
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -93,14 +93,20 @@ class AdminArticlesSearch extends Articles
             'desc' => ['p.name' => SORT_DESC],
         ];
 
+        $dataProvider->sort->attributes['status.label'] = [
+            'asc' => ['s.label' => SORT_ASC],
+            'desc' => ['s.label' => SORT_DESC],
+        ];
+
         $this->load($params);
 
         if (!$this->validate()) {
             return $dataProvider;
         }
-        
+
         $query->andFilterWhere([
             'articles.id' => $this->id,
+            'articles.status_id' => $this->status_id,
             'articles.partner_id' => $this->partner_id,
             'articles.category_id' => $this->category_id,
             'articles.denomination_id' => $this->denomination_id,
@@ -118,7 +124,8 @@ class AdminArticlesSearch extends Articles
             ->andFilterWhere(['ilike', 'articles.review', $this->review])
             ->andFilterWhere(['<=', 'articles.price', $this->price])
             ->andFilterWhere(['ilike', 'articles.image', $this->image])
-            ->andFilterWhere(['ilike', 'p.name', $this->getAttribute('partner.name')]);
+            ->andFilterWhere(['ilike', 'p.name', $this->getAttribute('partner.name')])
+            ->andFilterWhere(['ilike', 's.label', $this->getAttribute('status.label')]);
 
         return $dataProvider;
     }

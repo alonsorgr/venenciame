@@ -11,7 +11,10 @@ namespace app\models\search;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use app\models\Orders;
+use app\models\Roles;
+use app\models\User;
 use Yii;
+use yii\rbac\Role;
 
 /**
  * Modelo que representa el modelo detrás de la forma de búsqueda de [[Orders]].
@@ -29,7 +32,7 @@ class OrdersSearch extends Orders
         return [
             [['id', 'status_id', 'user_id', 'dealer_id'], 'integer'],
             [['total_price'], 'number'],
-            [['created_at', 'user.username'], 'safe'],
+            [['created_at', 'user.username', 'status.label'], 'safe'],
         ];
     }
 
@@ -51,7 +54,7 @@ class OrdersSearch extends Orders
      */
     public function attributes()
     {
-        return array_merge(parent::attributes(), ['user.username']);
+        return array_merge(parent::attributes(), ['user.username'], ['status.label']);
     }
 
     /**
@@ -71,7 +74,7 @@ class OrdersSearch extends Orders
      */
     public function search($params)
     {
-        $query = Orders::find()->joinWith('user u');
+        $query = Orders::find()->joinWith(['user u', 'status s']);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -80,6 +83,11 @@ class OrdersSearch extends Orders
         $dataProvider->sort->attributes['user.username'] = [
             'asc' => ['u.username' => SORT_ASC],
             'desc' => ['u.username' => SORT_DESC],
+        ];
+
+        $dataProvider->sort->attributes['status.label'] = [
+            'asc' => ['s.label' => SORT_ASC],
+            'desc' => ['s.label' => SORT_DESC],
         ];
 
         $this->load($params);
@@ -97,7 +105,8 @@ class OrdersSearch extends Orders
             'orders.created_at' => $this->created_at,
         ]);
 
-        $query->andFilterWhere(['ilike', 'u.username', $this->getAttribute('user.username')]);
+        $query->andFilterWhere(['ilike', 'u.username', $this->getAttribute('user.username')])
+            ->andFilterWhere(['ilike', 's.label', $this->getAttribute('status.label')]);
 
         return $dataProvider;
     }

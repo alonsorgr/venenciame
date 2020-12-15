@@ -16,7 +16,7 @@ use app\helpers\Bootstrap;
 <div class="dealer-articles">
 
     <?php Pjax::begin([
-        'id' => 'admin-articles-pjax',
+        'id' => 'admin-orders-pjax',
         'timeout' => '100000',
     ]); ?>
     <div class="row mt-5">

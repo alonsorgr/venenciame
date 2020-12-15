@@ -32,7 +32,7 @@ class OrdersDealersSearch extends Orders
         return [
             [['id', 'status_id', 'user_id', 'dealer_id'], 'integer'],
             [['total_price'], 'number'],
-            [['created_at', 'user.username'], 'safe'],
+            [['created_at', 'user.username', 'status.label'], 'safe'],
         ];
     }
 
@@ -54,7 +54,7 @@ class OrdersDealersSearch extends Orders
      */
     public function attributes()
     {
-        return array_merge(parent::attributes(), ['user.username']);
+        return array_merge(parent::attributes(), ['user.username'], ['status.label']);
     }
 
     /**
@@ -74,7 +74,7 @@ class OrdersDealersSearch extends Orders
      */
     public function search($params)
     {
-        $query = Orders::find()->joinWith('user u')->where(['dealer_id' => User::id()]);
+        $query = Orders::find()->joinWith('user u')->joinWith('status s')->where(['dealer_id' => User::id()]);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -83,6 +83,11 @@ class OrdersDealersSearch extends Orders
         $dataProvider->sort->attributes['user.username'] = [
             'asc' => ['u.username' => SORT_ASC],
             'desc' => ['u.username' => SORT_DESC],
+        ];
+
+        $dataProvider->sort->attributes['status.label'] = [
+            'asc' => ['s.label' => SORT_ASC],
+            'desc' => ['s.label' => SORT_DESC],
         ];
 
         $this->load($params);
@@ -100,7 +105,8 @@ class OrdersDealersSearch extends Orders
             'orders.created_at' => $this->created_at,
         ]);
 
-        $query->andFilterWhere(['ilike', 'u.username', $this->getAttribute('user.username')]);
+        $query->andFilterWhere(['ilike', 'u.username', $this->getAttribute('user.username')])
+        ->andFilterWhere(['ilike', 's.label', $this->getAttribute('status.label')]);
 
         return $dataProvider;
     }

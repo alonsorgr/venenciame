@@ -9,7 +9,7 @@ use yii\bootstrap4\Html;
 use yii\bootstrap4\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\search\ArticlesSearch */
+/* @var $model app\models\search\OrdersSearch */
 /* @var $form yii\bootstrap4\ActiveForm */
 ?>
 
@@ -47,8 +47,8 @@ use yii\bootstrap4\ActiveForm;
         <div class="col-12 col-md-2">
             <?= $form->field($model, 'total_price')->textInput([
                 'maxlength' => true,
-                'placeholder' => Yii::t('app', 'Buscar capacidad'),
-                'title' => Yii::t('app', 'Capacidad'),
+                'placeholder' => Yii::t('app', 'Buscar por precio total'),
+                'title' => Yii::t('app', 'Precio total'),
             ]); ?>
         </div>
         <div class="col-12 col-md-2">
