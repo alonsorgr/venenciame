@@ -90,12 +90,12 @@ class OrdersUserSearch extends Orders
         }
 
         $query->andFilterWhere([
-            'id' => $this->id,
-            'status_id' => $this->status_id,
-            'user_id' => $this->user_id,
-            'dealer_id' => $this->dealer_id,
-            'total_price' => $this->total_price,
-            'created_at' => $this->created_at,
+            'orders.id' => $this->id,
+            'orders.status_id' => $this->status_id,
+            'orders.user_id' => $this->user_id,
+            'orders.dealer_id' => $this->dealer_id,
+            'orders.total_price' => $this->total_price,
+            'orders.created_at' => $this->created_at,
         ]);
 
         $query->andFilterWhere(['ilike', 'u.username', $this->getAttribute('user.username')]);

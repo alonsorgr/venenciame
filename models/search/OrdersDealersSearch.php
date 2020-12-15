@@ -11,7 +11,10 @@ namespace app\models\search;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use app\models\Orders;
+use app\models\Roles;
+use app\models\User;
 use Yii;
+use yii\rbac\Role;
 
 /**
  * Modelo que representa el modelo detrás de la forma de búsqueda de [[Orders]].
@@ -19,7 +22,7 @@ use Yii;
  * @author Alonso García <alonsorgr@gmail.com>
  * @since 3.0
  */
-class OrdersSearch extends Orders
+class OrdersDealersSearch extends Orders
 {
     /**
      * {@inheritdoc}
@@ -71,7 +74,7 @@ class OrdersSearch extends Orders
      */
     public function search($params)
     {
-        $query = Orders::find()->joinWith('user u');
+        $query = Orders::find()->joinWith('user u')->where(['dealer_id' => User::id()]);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,

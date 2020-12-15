@@ -3,7 +3,7 @@
 namespace app\controllers;
 
 use app\models\search\OrderItemsSearch;
-use app\models\search\OrdersSearch;
+use app\models\search\OrdersDealersSearch;
 use app\models\User;
 use Yii;
 use yii\filters\AccessControl;
@@ -34,7 +34,7 @@ class DealerController extends Controller
 
     public function actionIndex()
     {
-        $ordersSearch = new OrdersSearch();
+        $ordersSearch = new OrdersDealersSearch();
         $ordersProvider = $ordersSearch->search(Yii::$app->request->queryParams);
 
         $orderItemsSearch = new OrderItemsSearch();
