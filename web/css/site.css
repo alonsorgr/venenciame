@@ -242,3 +242,11 @@ a.desc:after {
   -ms-box-shadow: 0px 5px 25px 0px rgba(0, 0, 0, 0.2);
   box-shadow: 0px 5px 25px 0px rgba(0, 0, 0, 0.2);
 }
+
+#user-view-container.nav-tabs > .nav-item {
+  width: 25% !important;
+}
+
+#user-view-container-login.nav-tabs > .nav-item {
+  width: 33% !important;
+}

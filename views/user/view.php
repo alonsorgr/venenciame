@@ -1,6 +1,7 @@
 <?php
 
 use app\helpers\Bootstrap;
+use app\models\User;
 use kartik\tabs\TabsX;
 use yii\bootstrap4\Html;
 
@@ -55,21 +56,22 @@ $this->params['breadcrumbs'][] = $this->title;
                     'favoritesProvider' => $favoritesProvider,
                 ]),
             ]);
-
-            $items[] = Bootstrap::tabItem([
-                'icon' => 'fas fa-money-check',
-                'label' => Yii::t('app', 'Compras'),
-                'content' => $this->render('tabs/_orders.php', [
-                    'ordersSearch' => $ordersSearch,
-                    'ordersProvider' => $ordersProvider,
-                    'orderItemsSearch' => $orderItemsSearch,
-                    'orderItemsProvider' => $orderItemsProvider,
-                ]),
-            ]);
+            if ($model->isOwner() || User::isAdmin()) {
+                $items[] = Bootstrap::tabItem([
+                    'icon' => 'fas fa-money-check',
+                    'label' => Yii::t('app', 'Compras'),
+                    'content' => $this->render('tabs/_orders.php', [
+                        'ordersSearch' => $ordersSearch,
+                        'ordersProvider' => $ordersProvider,
+                        'orderItemsSearch' => $orderItemsSearch,
+                        'orderItemsProvider' => $orderItemsProvider,
+                    ]),
+                ]);
+            }
             ?>
             <div class="mt-5">
                 <?= TabsX::widget([
-                    'id' => 'user-view-container',
+                    'id' => $model->isOwner() || User::isAdmin() ? 'user-view-container' : 'user-view-container-login',
                     'items' => $items,
                     'position' => TabsX::POS_ABOVE,
                     'bordered' => true,
