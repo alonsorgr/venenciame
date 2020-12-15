@@ -597,6 +597,16 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     }
 
     /**
+     * Comprueba si el usuario es un usuario repartidor.
+     *
+     * @return boolean verdadero si el usuario es repartidor.
+     */
+    public static function isDealer()
+    {
+        return !Yii::$app->user->isGuest ? Yii::$app->user->identity->rol_id == Roles::DEALER : false;
+    }
+
+    /**
      * Comprueba si el usuario está activo.
      *
      * @return boolean  verdadero si el usuario está activo.
