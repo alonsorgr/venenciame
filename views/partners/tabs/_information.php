@@ -10,7 +10,7 @@ use yii\bootstrap4\Html;
 ?>
 
 <div class="partners-information">
-    <div class="lead-sm text-center m-5">
+    <div class="lead-sm my-5">
         <?= Html::encode($model->information) ?>
     </div>
 </div>
