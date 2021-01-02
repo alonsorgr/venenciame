@@ -1,24 +1,21 @@
 # Descripción general del proyecto
 
-Explicar.
+El proyecto "Venénciame" está enfocado a una tienda online para la venta de vinos españoles con denominación de origen, ofreciéndo un servicio de venta a mayoristas del sector.
 
 ## Funcionalidad principal de la aplicación
 
-Explicar.
+La funcionalidad principal del proyecto será la posibilidad de que los usuarios registrados puedan comprar vinos Españoles con denominación de origen. Asimismo, ofrecer al mayorista un servicio de venta con el cliente.
 
 ## Objetivos generales
 
-A diferencia de los casos de uso, los objetivos no tienen principio ni fin.
-
-Por ejemplo:
-
-* Objetivo: "gestionar los alquileres y las devoluciones de las películas".
-* Casos de uso: "alquilar una película", "devolver una película".
+- Gestión de venta de vinos
+- Gestión de venta de vinos de socios
+- Gestión de compra a clientes
 
 ## URL del repositorio
 
-[https://github.com/ricpelo/proyecto](https://github.com/ricpelo/proyecto)
+[https://github.com/alonsorgr/venenciame](https://github.com/alonsorgr/venenciame)
 
 ## URL de la documentación
 
-[https://ricpelo.github.io/proyecto](https://ricpelo.github.io/proyecto)
+[https://alonsorgr.github.io/venenciame](https://alonsorgr.github.io/venenciame)
