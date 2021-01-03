@@ -66,7 +66,7 @@ class LoginForm extends Model
                 ['password'], 'required',
                 'message' => Yii::t('app', 'El campo de contraseña no puede estar vacío.')
             ],
-            ['login', 'isActive'],
+            //['login', 'isActive'],
             ['password', 'validatePassword'],
         ];
     }

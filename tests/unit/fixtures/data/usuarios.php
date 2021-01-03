@@ -2,13 +2,10 @@
 
 return [
     [
-        'nombre' => 'vaca.roberto',
-        'password' => '$2y$13$AbFTOYb9VlhAT9B5HsTIh.EyojYnHPlXkJBB/ifYg6F/sHa/9SvKS',
-        'auth_key' => 'SuZOf8aEastmBX_AQyWNsvAeFqgwoTDY',
-        'telefono' => '980-018583',
-        'poblacion' => 'A Alfaro',
+        'username' => 'admin',
+        'password' => 'admin',
     ],
-    [
+    /* [
         'nombre' => 'alberto19',
         'password' => '$2y$13$H/Xzfudn7XZT2jGQN.bXdOXuIme96o7tc89Hdky7u11d1AUtHZ4bi',
         'auth_key' => '5UXD-aFyEJbJi8eeRhMf8hV0VaMnGZ4r',
@@ -70,5 +67,5 @@ return [
         'auth_key' => '5vWzlzdWZXoJ8-va7V761wIQO4QWxdlj',
         'telefono' => '666-069726',
         'poblacion' => 'Los Palacios Medio',
-    ],
+    ], */
 ];

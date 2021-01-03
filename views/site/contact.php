@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php if (Yii::$app->session->hasFlash('contactFormSubmitted')) : ?>
         <?= Yii::$app->session->setFlash(
             'success',
-            Yii::t('app', 'Gracias por contactar con nosotros, {username}. Nosotros responderemos a la mayor brevedad posible.', [
+            Yii::t('app', 'Gracias por contactar con nosotros. Nosotros responderemos a la mayor brevedad posible.', [
                 'username' => $model->name === '' ?: Yii::t('app', 'invitado'),
             ])
         ); ?>
