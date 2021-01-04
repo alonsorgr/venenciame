@@ -2,52 +2,53 @@
 
 /* @var $this yii\web\View */
 
+use app\helpers\Bootstrap;
+use yii\widgets\ListView;
+use yii\widgets\Pjax;
+
 $this->title = Yii::$app->name;
 ?>
 <div class="site-index">
-
-    <div class="jumbotron">
-        <h1>Congratulations!</h1>
-
-        <p class="lead">You have successfully created your Yii-powered application.</p>
-
-        <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>
-    </div>
-
-    <div class="body-content">
-
-        <div class="row">
-            <div class="col-xl-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-outline-info" href="http://www.yiiframework.com/doc/">Yii Documentation &raquo;</a></p>
-            </div>
-            <div class="col-xl-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-outline-info" href="http://www.yiiframework.com/forum/">Yii Forum &raquo;</a></p>
-            </div>
-            <div class="col-xl-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-outline-info" href="http://www.yiiframework.com/extensions/">Yii Extensions &raquo;</a></p>
-            </div>
+    <div class="row">
+        <div class="col-12 text-center">
+            <h1 class="display-3"><?= Yii::t('app', 'Venénciame') ?></h1>
         </div>
-
+        <div class="col-12 text-center">
+            <h2 class="lead font-italic"><?= Yii::t('app', 'Vinos de las mejores bodegas del marco de Jeréz') ?></h2>
+        </div>
     </div>
+    <?php Pjax::begin([
+        'id' => 'articles-index-pjax',
+        'timeout' => '100000',
+    ]); ?>
+    <div class="row">
+        <div class="col">
+            <?= ListView::widget([
+                'dataProvider' => $dataProvider,
+                'emptyText' => $this->render('/site/_empty'),
+                'itemView' => function ($model, $key, $index, $widget) {
+                    return $this->render('/articles/_small', ['model' => $model]);
+                },
+                'layout' => '<div class="d-flex justify-content-between mb-5">{summary}{sorter}</div>{items}{pager}',
+                'pager' => Bootstrap::listViewPager(),
+                'sorter' => [
+                    'class' => 'app\widgets\DropdownSorter',
+                    'label' => 'Ordenar por',
+                    'attributes' => [
+                        'title',
+                        'partner_id',
+                        'category_id',
+                        'denomination_id',
+                        'price',
+                        'degrees',
+                    ],
+                ],
+                'options' => [
+                    'class' => 'listview',
+                ],
+            ]); ?>
+            <?php Pjax::end(); ?>
+        </div>
+    </div>
+
 </div>

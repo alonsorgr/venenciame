@@ -17,6 +17,7 @@ use app\models\forms\RequestPasswordForm;
 use app\models\forms\ResetPasswordForm;
 use app\models\OrderItems;
 use app\models\Orders;
+use app\models\search\ArticlesSearch;
 use app\models\Status;
 use app\models\User;
 use Yii;
@@ -84,7 +85,13 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $searchModel = new ArticlesSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
     }
 
     /**

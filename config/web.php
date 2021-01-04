@@ -23,7 +23,7 @@ $config = [
         '@articles' => '@aws/articles',
     ],
     'language' => 'es-ES',
-    'defaultRoute' => 'articles/index',
+    'defaultRoute' => 'site/index',
     'components' => [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
