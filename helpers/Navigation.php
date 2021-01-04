@@ -37,7 +37,7 @@ class Navigation
             static::item([
                 'icon' => 'fa-home',
                 'label' => Yii::t('app', 'Inicio'),
-                'url' => ['/articles/index'],
+                'url' => ['/site/index'],
                 'title' => Yii::t('app', 'Ir a la página principal'),
             ]),
 
@@ -97,7 +97,7 @@ class Navigation
     {
         return [
             'encode' => false,
-            'label' => '<i class="fas ' . $options['icon'] . ' mr-1"></i>' . $options['label'],
+            'label' => '<div class="fas ' . $options['icon'] . ' mr-1"></div>' . $options['label'],
             'url' => $options['url'],
             'options' => [
                 'id' => !isset($options['id']) ?: $options['id'],

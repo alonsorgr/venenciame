@@ -14,7 +14,7 @@ $this->title = Yii::$app->name;
             <h1 class="display-3"><?= Yii::t('app', 'Venénciame') ?></h1>
         </div>
         <div class="col-12 text-center">
-            <h2 class="lead font-italic"><?= Yii::t('app', 'Vinos de las mejores bodegas del marco de Jeréz') ?></h2>
+            <div class="lead font-italic"><?= Yii::t('app', 'Vinos de las mejores bodegas del marco de Jeréz') ?></div>
         </div>
     </div>
     <?php Pjax::begin([

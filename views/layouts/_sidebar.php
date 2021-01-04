@@ -33,7 +33,7 @@ $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
     <div class="row mb-4">
         <div class="w-100 card-border">
             <div class="card-header">
-                <i class="fas fa-share-alt mr-2 d-inline"></i>
+                <div class="fas fa-share-alt mr-2 d-inline"></div>
                 <div class="lead d-inline"><?= Yii::t('app', 'Compartir') ?></div>
             </div>
             <div class="card-body">
@@ -45,19 +45,19 @@ $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
                         ]) ?>
                     </div>
                     <div class="col-3 text-center">
-                        <?= Html::a('<i class="fab fa-facebook fa-2x" style="color:#4E4990;"></i>', 'https://www.facebook.com/sharer/sharer.php?u=http://venenciame.herokuapp.com', [
+                        <?= Html::a('<div class="fab fa-facebook fa-2x" style="color:#4E4990;"></div>', 'https://www.facebook.com/sharer/sharer.php?u=http://venenciame.herokuapp.com', [
                             'class' => 'smd',
                             'title' => Yii::t('app', 'Compartir en Facebook'),
                         ]) ?>
                     </div>
                     <div class="col-3 text-center">
-                        <?= Html::a('<i class="fab fa-linkedin fa-2x" style="color:#0067B1;"></i>', 'https://www.linkedin.com/shareArticle?mini=true&url=http://venenciame.herokuapp.com&title=&summary=&source=', [
+                        <?= Html::a('<div class="fab fa-linkedin fa-2x" style="color:#0067B1;"></div>', 'https://www.linkedin.com/shareArticle?mini=true&url=http://venenciame.herokuapp.com&title=&summary=&source=', [
                             'class' => 'smd',
                             'title' => Yii::t('app', 'Compartir en Linkedin'),
                         ]) ?>
                     </div>
                     <div class="col-3 text-center">
-                        <?= Html::a('<i class="fab fa-pinterest fa-2x" style="color:#DC0000;"></i>', 'https://pinterest.com/pin/create/button/?url=http://venenciame.herokuapp.com&media=&description=', [
+                        <?= Html::a('<div class="fab fa-pinterest fa-2x" style="color:#DC0000;"></div>', 'https://pinterest.com/pin/create/button/?url=http://venenciame.herokuapp.com&media=&description=', [
                             'class' => 'smd',
                             'title' => Yii::t('app', 'Compartir en Pinterest'),
                         ]) ?>
