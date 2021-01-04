@@ -18,7 +18,7 @@ $title = Yii::t('app', 'No se encontraron resultados');
                 'title' => $title,
             ])
         ?>
-        <?= Html::tag('h2', $title, [
+        <?= Html::tag('div', $title, [
             'class' => 'lead',
             'title' => $title,
         ]) ?>

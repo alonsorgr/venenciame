@@ -39,7 +39,7 @@ $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
             <div class="card-body">
                 <div class="row justify-content-center mb-3">
                     <div class="col-3 text-center">
-                        <?= Html::a('<i class="fab fa-twitter fa-2x" style="color:#0098F4;"></i>', 'https://twitter.com/home?status=http://venenciame.herokuapp.com', [
+                        <?= Html::a('<div class="fab fa-twitter fa-2x" style="color:#0098F4;"></div>', 'https://twitter.com/home?status=http://venenciame.herokuapp.com', [
                             'class' => 'smd',
                             'title' => Yii::t('app', 'Compartir en Twitter'),
                         ]) ?>
@@ -70,7 +70,7 @@ $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 <div class="row mb-4">
     <div class="w-100 card-border">
         <div class="card-header">
-            <i class="fas fa-link mr-2 d-inline"></i>
+            <div class="fas fa-link mr-2 d-inline"></div>
             <div class="lead d-inline"><?= Yii::t('app', 'Enlaces') ?></div>
         </div>
         <ul class="list-group list-group-flush">
