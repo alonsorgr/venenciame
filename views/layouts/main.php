@@ -49,11 +49,9 @@ if (!Yii::$app->user->isGuest) {
 
 <body>
     <?php $this->beginBody() ?>
-
     <div class="wrap">
         <?php
         NavBar::begin([
-            'id' => 'app-navbar-main',
             'brandLabel' => Html::img('@web/img/site/logo.svg', [
                 'width' => '128',
                 'heigth' => '64',
