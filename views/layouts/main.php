@@ -95,7 +95,7 @@ if (!Yii::$app->user->isGuest) {
         </div>
     </div>
     <?php Bootstrap::modal([
-        'id' => 'modal-login',
+        'id' => 'modal-login-1',
         'image' => 'fas fa-sign-in-alt',
         'title' => Yii::t('app', 'Conectarse'),
     ]) ?>
