@@ -75,7 +75,7 @@ $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         </div>
         <ul class="list-group list-group-flush">
             <?php if (Yii::$app->user->isGuest) : ?>
-                <li class="list-group-item">
+                <div class="list-group-item">
                     <?= Html::a(Yii::t('app', 'Conectarse'), Url::to(['site/login']), [
                         'class' => 'show-modal-login',
                         'value' => Url::to(['site/login']),
@@ -83,8 +83,8 @@ $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
                         'data-target' => '#modal-login-sidebar',
                         'title' => Yii::t('app', 'Ir a la página de conexión de usuarios.'),
                     ]) ?>
-                </li>
-                <li class="list-group-item">
+                </div>
+                <div class="list-group-item">
                     <?= Html::a(Yii::t('app', 'Crear cuenta'), Url::to(['site/register']), [
                         'class' => 'show-modal-register',
                         'value' => Url::to(['site/register']),
@@ -92,7 +92,7 @@ $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
                         'data-target' => '#modal-register-sidebar',
                         'title' => Yii::t('app', 'Ir a la página de registro de usuarios.'),
                     ]) ?>
-                </li>
+                </div>
             <?php else : ?>
                 <?php if (Yii::$app->controller->action->id === 'update') : ?>
                     <li class="list-group-item">
