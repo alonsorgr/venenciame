@@ -149,10 +149,10 @@ if (!Yii::$app->user->isGuest) {
                 <div class="col-md-12">
                     <div class="row d-flex text-center justify-content-center mb-md-0">
                         <div class="col-md-8 col-12 mt-5">
-                            <i class="fab fa-facebook-f fa-lg mr-4"> </i>
-                            <i class="fab fa-twitter fa-lg mr-4"> </i>
-                            <i class="fab fa-linkedin-in fa-lg"> </i>
-                            <i class="fab fa-instagram fa-lg ml-4"> </i>
+                            <div class="fab fa-facebook-f fa-lg mr-4"> </div>
+                            <div class="fab fa-twitter fa-lg mr-4"> </div>
+                            <div class="fab fa-linkedin-in fa-lg"> </div>
+                            <div class="fab fa-instagram fa-lg ml-4"> </div>
                         </div>
                     </div>
                 </div>
