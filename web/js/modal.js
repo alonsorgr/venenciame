@@ -7,7 +7,7 @@ function show(selector, modal)
 {
     $(selector).click(function () {
         $(modal).modal('show')
-            .find('#content')
+            .find('#content' + modal.substring(1))
             .load($(this).attr('value'));
     });
 }

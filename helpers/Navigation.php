@@ -35,6 +35,7 @@ class Navigation
     {
         return [
             static::item([
+                'id' => 'nav-home',
                 'icon' => 'fa-home',
                 'label' => Yii::t('app', 'Inicio'),
                 'url' => ['/site/index'],

@@ -92,7 +92,7 @@ class Bootstrap
             'class' => 'slideInRight'
         ]);
         echo Html::tag('div', null, [
-            'id' => 'content',
+            'id' => 'content' . $options['id'],
         ]);
         Modal::end();
     }

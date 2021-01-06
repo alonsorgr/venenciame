@@ -75,7 +75,7 @@ $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         </div>
         <ul class="list-group list-group-flush">
             <?php if (!Yii::$app->user->isGuest) : ?>
-                
+
                 <?php if (Yii::$app->controller->action->id === 'update') : ?>
                     <li class="list-group-item">
                         <?= Html::a(Yii::t('app', 'Desconectarse'), Url::to(['site/logout']), [
@@ -192,4 +192,3 @@ $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         </div>
     <?php endif ?>
 <?php endif ?>
-</div>

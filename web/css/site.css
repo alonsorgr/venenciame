@@ -250,3 +250,8 @@ a.desc:after {
 #user-view-container-login.nav-tabs > .nav-item {
   width: 33% !important;
 }
+
+.logo-size {
+  width: 170px !important;
+  height: 64px !important;
+}

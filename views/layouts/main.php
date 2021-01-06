@@ -53,10 +53,8 @@ if (!Yii::$app->user->isGuest) {
         <?php
         NavBar::begin([
             'brandLabel' => Html::img('@web/img/site/logo.svg', [
-                'width' => '128',
-                'heigth' => '64',
-                'class' => 'img-fluid',
                 'alt' => Yii::$app->name,
+                'class' => 'img-fluid logo-size',
                 'style' => 'margin-top: -20px',
             ]),
             'brandUrl' => Yii::$app->homeUrl,
@@ -169,20 +167,6 @@ if (!Yii::$app->user->isGuest) {
             ]) ?>
         </div>
     </footer>
-    <!-- <div class="page-loader-wrapper" style="z-index: 100;">
-        <div class="loader">
-            <div class="preloader">
-                <div class="spinner-layer pl-primary">
-                    <div class="circle-clipper left">
-                        <div class="circle"></div>
-                    </div>
-                    <div class="circle-clipper right">
-                        <div class="circle"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> -->
     <?= Cookies::register(); ?>
     <?php $this->endBody() ?>
 </body>
