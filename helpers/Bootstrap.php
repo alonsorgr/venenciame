@@ -86,7 +86,7 @@ class Bootstrap
     {
         Modal::begin([
             'id' => $options['id'],
-            'title' => '<div class="' . $options['image'] . ' mr-3 ml-2"></div>' . $options['title'],
+            'title' => $options['title'],
             'size' => !isset($options['size']) ?: $options['size'],
             'clientOptions' => ['method' => 'GET'],
             'class' => 'slideInRight'
