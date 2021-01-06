@@ -74,26 +74,8 @@ $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
             <div class="lead d-inline"><?= Yii::t('app', 'Enlaces') ?></div>
         </div>
         <ul class="list-group list-group-flush">
-            <?php if (Yii::$app->user->isGuest) : ?>
-                <div class="list-group-item">
-                    <?= Html::a(Yii::t('app', 'Conectarse'), Url::to(['site/login']), [
-                        'class' => 'show-modal-login',
-                        'value' => Url::to(['site/login']),
-                        'data-toggle' => 'modal',
-                        'data-target' => '#modal-login-sidebar',
-                        'title' => Yii::t('app', 'Ir a la página de conexión de usuarios.'),
-                    ]) ?>
-                </div>
-                <div class="list-group-item">
-                    <?= Html::a(Yii::t('app', 'Crear cuenta'), Url::to(['site/register']), [
-                        'class' => 'show-modal-register',
-                        'value' => Url::to(['site/register']),
-                        'data-toggle' => 'modal',
-                        'data-target' => '#modal-register-sidebar',
-                        'title' => Yii::t('app', 'Ir a la página de registro de usuarios.'),
-                    ]) ?>
-                </div>
-            <?php else : ?>
+            <?php if (!Yii::$app->user->isGuest) : ?>
+                
                 <?php if (Yii::$app->controller->action->id === 'update') : ?>
                     <li class="list-group-item">
                         <?= Html::a(Yii::t('app', 'Desconectarse'), Url::to(['site/logout']), [
