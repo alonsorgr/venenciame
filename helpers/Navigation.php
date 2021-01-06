@@ -34,7 +34,7 @@ class Navigation
     public static function items()
     {
         return [
-            static::item([
+            /* static::item([
                 'id' => 'nav-home',
                 'icon' => 'fa-home',
                 'label' => Yii::t('app', 'Inicio'),
@@ -86,7 +86,7 @@ class Navigation
                 'label' => '<span id="shopping-cart-counter" class="count-badge badge badge-pill badge-success px-1"></span>',
                 'url' => Url::to(['cart-items/index']),
                 'title' => Yii::t('app', 'Carrito de la compra'),
-            ]) : '',
+            ]) : '', */
         ];
     }
 
