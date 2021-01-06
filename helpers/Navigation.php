@@ -48,6 +48,7 @@ class Navigation
             static::user(),
 
             Yii::$app->user->isGuest ? static::item([
+                'id' => 'nav-login',
                 'class' => 'show-modal-login active',
                 'icon' => 'fa-sign-in-alt',
                 'label' => Yii::t('app', 'Conectarse'),
@@ -59,6 +60,7 @@ class Navigation
             ]) : '',
 
             Yii::$app->user->isGuest ? static::item([
+                'id' => 'nav-register',
                 'class' => 'show-modal-register active',
                 'icon' => 'fa-sign-in-alt',
                 'label' => Yii::t('app', 'Registrarse'),
