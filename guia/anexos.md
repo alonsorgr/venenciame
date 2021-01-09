@@ -54,3 +54,46 @@
 
 6. ¿Cómo busco algo?
     - En la sección de artículos, hay un buscador con diferentes filtros para poder buscar cualquier artículo en el sitio web.
+
+## **([R38](https://github.com/alonsorgr/venenciame/issues/69)) Despliegue en servidor local**
+
+### Configuración apache:
+
+![Diagrama Clases](images/despliegue/apache-config.png)
+
+### Activar SSL
+``$ sudo a2enmod ssl``
+
+``$ sudo a2ensite default-ssl``
+
+``$ sudo openssl genrsa -des3 -out server.key 2048``
+
+`` sudo openssl req -new -key server.key -out server.csr``
+
+``$ sudo openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.crt``
+
+``$ sudo cp server.crt /etc/ssl/certs/``
+
+``$ sudo cp server.key /etc/ssl/private/``
+
+``$ sudo service apache2 restart``
+
+### Configuración de Red:
+
+![Diagrama Clases](images/despliegue/red.png)
+
+### Configuración DNS
+
+named.conf.local
+
+![Diagrama Clases](images/despliegue/dns-1.png)
+
+db.venenciame.com
+
+![Diagrama Clases](images/despliegue/dns-2.png)
+
+
+### Test
+
+![Diagrama Clases](images/despliegue/resultado
+.png)
