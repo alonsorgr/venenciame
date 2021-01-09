@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="language" content="en" />
+        
+<link href="./assets/e9b0d905/css/bootstrap.css" rel="stylesheet">
+<link href="./assets/6335e120/solarized_light.css" rel="stylesheet">
+<link href="./assets/92cb504e/style.css" rel="stylesheet">
+<script src="./assets/ca92148c/jquery.js"></script>
+<script src="./assets/e9b0d905/js/bootstrap.js"></script>
+<script src="./assets/56a1af5e/jssearch.js"></script>    <title>Guía del proyecto</title>
+</head>
+<body>
+
+<div class="wrap">
+    <nav id="w118" class="navbar-inverse navbar-fixed-top navbar"><div class="navbar-header"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#w118-collapse"><span class="sr-only">Toggle navigation</span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span></button><a class="navbar-brand" href="./index.html">Guía del proyecto</a></div><div id="w118-collapse" class="collapse navbar-collapse"><ul id="w119" class="navbar-nav nav"><li><a href="./api/index.html">Class reference</a></li>
+<li><a href="./README.html">Guide</a></li></ul><div class="navbar-form navbar-left" role="search">
+  <div class="form-group">
+    <input id="searchbox" type="text" class="form-control" placeholder="Search">
+  </div>
+</div>
+</div></nav>
+    <div id="search-resultbox" style="display: none;" class="modal-content">
+        <ul id="search-results">
+        </ul>
+    </div>
+
+    
+<div class="row">
+    <div class="col-md-2">
+                <div id="navigation" class="list-group"><a class="list-group-item" href="#navigation-108" data-toggle="collapse" data-parent="#navigation">Descripción general <b class="caret"></b></a><div id="navigation-108" class="submenu panel-collapse collapse"><a class="list-group-item" href="./descripcion.html#funcionalidad-principal-de-la-aplicacion">Funcionalidad principal de la aplicación</a>
+<a class="list-group-item" href="./descripcion.html#objetivos-generales">Objetivos generales</a>
+<a class="list-group-item" href="./descripcion.html#url-del-repositorio">URL del repositorio</a>
+<a class="list-group-item" href="./descripcion.html#url-de-la-documentacion">URL de la documentación</a></div>
+<a class="list-group-item" href="#navigation-109" data-toggle="collapse" data-parent="#navigation">Instrucciones de instalación y despliegue <b class="caret"></b></a><div id="navigation-109" class="submenu panel-collapse collapse"><a class="list-group-item" href="./instalacion.html#en-local">En local</a>
+<a class="list-group-item" href="./instalacion.html#en-la-nube">En la nube</a></div>
+<a class="list-group-item" href="#navigation-110" data-toggle="collapse" data-parent="#navigation">Catálogo de requisitos <b class="caret"></b></a><div id="navigation-110" class="submenu panel-collapse collapse"><a class="list-group-item" href="./requisitos.html#cuadro-resumen">Cuadro resumen</a></div>
+<a class="list-group-item" href="#navigation-111" data-toggle="collapse" data-parent="#navigation">Manual de usuario <b class="caret"></b></a><div id="navigation-111" class="submenu panel-collapse collapse"><a class="list-group-item" href="./manual.html">Manual de usuario</a></div>
+<a class="list-group-item" href="#navigation-112" data-toggle="collapse" data-parent="#navigation">Decisiones adoptadas <b class="caret"></b></a><div id="navigation-112" class="submenu panel-collapse collapse"><a class="list-group-item" href="./decisiones.html">Decisiones adoptadas</a></div>
+<a class="list-group-item" href="#navigation-113" data-toggle="collapse" data-parent="#navigation">Dificultades encontradas <b class="caret"></b></a><div id="navigation-113" class="submenu panel-collapse collapse"><a class="list-group-item" href="./dificultades.html">Dificultades encontradas</a></div>
+<a class="list-group-item" href="#navigation-114" data-toggle="collapse" data-parent="#navigation">Diagramas <b class="caret"></b></a><div id="navigation-114" class="submenu panel-collapse collapse"><a class="list-group-item" href="./diagramas.html#diagramas-de-clases">Diagramas de clases</a>
+<a class="list-group-item" href="./diagramas.html#diagramas-de-estructura-logica-de-datos">Diagramas de estructura lógica de datos</a></div>
+<a class="list-group-item" href="#navigation-115" data-toggle="collapse" data-parent="#navigation">Glosario de términos <b class="caret"></b></a><div id="navigation-115" class="submenu panel-collapse collapse"><a class="list-group-item" href="./glosario.html">Glosario de términos</a></div>
+<a class="list-group-item" href="#navigation-116" data-toggle="collapse" data-parent="#navigation">Conclusiones <b class="caret"></b></a><div id="navigation-116" class="submenu panel-collapse collapse"><a class="list-group-item" href="./conclusiones.html">Conclusiones</a></div>
+<a class="list-group-item" href="#navigation-117" data-toggle="collapse" data-parent="#navigation">Anexos <b class="caret"></b></a><div id="navigation-117" class="submenu panel-collapse collapse"><a class="list-group-item" href="./anexos.html">Anexos</a></div></div>    </div>
+    <div class="col-md-9 guide-content" role="main">
+        <h1>Instrucciones de instalación y despliegue <span id="instrucciones-de-instalacion-y-despliegue"></span><a href="#instrucciones-de-instalacion-y-despliegue" class="hashlink">&para;</a></h1>
+<div class="toc"><ol><li><a href="#en-local">En local</a></li>
+<li><a href="#en-la-nube">En la nube</a></li></ol></div>
+<h2>En local <span id="en-local"></span><a href="#en-local" class="hashlink">&para;</a></h2><h4>Requisitos: <span id="requisitos"></span><a href="#requisitos" class="hashlink">&para;</a></h4><ul>
+<li>PHP 7.4</li>
+<li>PostgreSQL</li>
+<li>Composer</li>
+<li>Cuenta de Amazon S3</li>
+<li>Correo electrónico</li>
+<li>Cuenta de PayPal y Sandbox PayPal</li>
+</ul>
+<h4>Instalación: <span id="instalacion"></span><a href="#instalacion" class="hashlink">&para;</a></h4><ol>
+<li>Ir al repositorio en GitHub de la <a href="https://github.com/alonsorgr/venenciame">Aplicación</a> y clonar el repositorio en el disco de la máquina.<ul>
+<li><code>`git clone https://github.com/alonsorgr/venenciame.git</code>`</li>
+</ul>
+</li>
+<li>Movernos hasta el directorio donde se clonó el repositorio y ejecutar el comando:<ul>
+<li><code>`composer install</code>`</li>
+</ul>
+</li>
+<li>Creamos las variables de entorno en un fichero llamado .env en la raíz del proyecto. Las variables son:<ul>
+<li><code>`SMTP_PASS</code>` contraseña de aplicación para gestión de correo electrónico</li>
+<li><code>`S3_KEY</code>` clave de Amazon Web Services S3</li>
+<li><code>`S3_SECRET</code>` clave secreta de Amazon Web Services S3</li>
+<li><code>`PAYPAL_ID</code>` identificador de cuenta de PayPal</li>
+<li><code>`PAYPAL_SECRET</code>` clave secreta de la cuenta de PayPal</li>
+</ul>
+</li>
+<li>Creación de base de datos y volcado de datos<ul>
+<li><code>`./db/create.sh</code>`</li>
+<li><code>`./db/load.sh</code>`</li>
+</ul>
+</li>
+<li>Abrimos la shell del sistema Ubuntu y ejecutamos el comando:<ul>
+<li><code>`make serve</code>`</li>
+</ul>
+</li>
+<li>Para acceder a la aplicación, escribir en la barra de direcciones la siguiente url:<ul>
+<li><code>`http://localhost:8080/</code>`<h2>En la nube <span id="en-la-nube"></span><a href="#en-la-nube" class="hashlink">&para;</a></h2></li>
+</ul>
+</li>
+</ol>
+<h4>Requisitos: <span id="requisitos"></span><a href="#requisitos" class="hashlink">&para;</a></h4><ul>
+<li>Heroku CLI</li>
+</ul>
+<h4>Despliegue: <span id="despliegue"></span><a href="#despliegue" class="hashlink">&para;</a></h4><ol>
+<li>Realizar una clonación o fork del repositorio de la <a href="https://github.com/alonsorgr/venenciame">Aplicación</a>.</li>
+<li>Nos dirigimos al sitio web de Heroku y creamos una nueva app y vinculamos nuestro repositorio con la nueva app.</li>
+<li>En la configuración de la app en Heroku, añadimos el add-on de Postgres.</li>
+<li>Configuramos las variables del entorno en la configuración de la app en Heroku:<ul>
+<li><code>`DATABASE_URL</code>` url de la base de datos</li>
+<li><code>`YII_ENV</code><code> con el valor </code><code>PROD</code>`</li>
+<li><code>`SMTP_PASS</code>` contraseña de aplicación para gestión de correo electrónico</li>
+<li><code>`S3_KEY</code>` clave de Amazon Web Services S3</li>
+<li><code>`S3_SECRET</code>` clave secreta de Amazon Web Services S3</li>
+<li><code>`PAYPAL_ID</code>` identificador de cuenta de PayPal</li>
+<li><code>`PAYPAL_SECRET</code>` clave secreta de la cuenta de PayPal</li>
+</ul>
+</li>
+<li>A través de una terminal de nuestra máquina, nos conectamos al servidor mediante Heroku CLI y volcamos la base de datos:<ul>
+<li><code>`heroku login</code>`</li>
+<li><code>`heroku pg:psql &lt; db/venenciame.sql</code>`</li>
+<li><code>`heroku pg:psql &lt; db/data.sql</code>`</li>
+</ul>
+</li>
+<li>Acceder a la aplicación a través de la url que nos proporciona Heroku de nuestra app</li>
+</ol>
+        <div class="toplink"><a href="#" class="h1" title="go to top"><span class="glyphicon glyphicon-arrow-up"></a></div>
+    </div>
+</div>
+
+
+</div>
+
+<footer class="footer">
+        <p class="pull-right"><small>Page generated on Sat, 09 Jan 2021 17:11:02 +0000</small></p>
+    Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a></footer>
+
+<script>jQuery(function ($) {
+    var shiftWindow = function () { scrollBy(0, -50) };
+    if (location.hash) setTimeout(shiftWindow, 1);
+    window.addEventListener("hashchange", shiftWindow);
+var element = document.createElement("script");
+element.src = "./jssearch.index.js";
+document.body.appendChild(element);
+
+var searchBox = $('#searchbox');
+
+// search when typing in search field
+searchBox.on("keyup", function(event) {
+    var query = $(this).val();
+
+    if (query == '' || event.which == 27) {
+        $('#search-resultbox').hide();
+        return;
+    } else if (event.which == 13) {
+        var selectedLink = $('#search-resultbox a.selected');
+        if (selectedLink.length != 0) {
+            document.location = selectedLink.attr('href');
+            return;
+        }
+    } else if (event.which == 38 || event.which == 40) {
+        $('#search-resultbox').show();
+
+        var selected = $('#search-resultbox a.selected');
+        if (selected.length == 0) {
+            $('#search-results').find('a').first().addClass('selected');
+        } else {
+            var next;
+            if (event.which == 40) {
+                next = selected.parent().next().find('a').first();
+            } else {
+                next = selected.parent().prev().find('a').first();
+            }
+            if (next.length != 0) {
+                var resultbox = $('#search-results');
+                var position = next.position();
+
+//              TODO scrolling is buggy and jumps around
+//                resultbox.scrollTop(Math.floor(position.top));
+//                console.log(position.top);
+
+                selected.removeClass('selected');
+                next.addClass('selected');
+            }
+        }
+
+        return;
+    }
+    $('#search-resultbox').show();
+    $('#search-results').html('<li><span class="no-results">No results</span></li>');
+
+    var result = jssearch.search(query);
+
+    if (result.length > 0) {
+        var i = 0;
+        var resHtml = '';
+
+        for (var key in result) {
+            if (i++ > 20) {
+                break;
+            }
+            resHtml = resHtml +
+            '<li><a href="' + result[key].file.u.substr(3) +'"><span class="title">' + result[key].file.t + '</span>' +
+            '<span class="description">' + result[key].file.d + '</span></a></li>';
+        }
+        $('#search-results').html(resHtml);
+    }
+});
+
+// hide the search results on ESC
+$(document).on("keyup", function(event) { if (event.which == 27) { $('#search-resultbox').hide(); } });
+// hide search results on click to document
+$(document).bind('click', function (e) { $('#search-resultbox').hide(); });
+// except the following:
+searchBox.bind('click', function(e) { e.stopPropagation(); });
+$('#search-resultbox').bind('click', function(e) { e.stopPropagation(); });
+
+});</script></body>
+</html>

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="language" content="en" />
+        
+<link href="./assets/e9b0d905/css/bootstrap.css" rel="stylesheet">
+<link href="./assets/6335e120/solarized_light.css" rel="stylesheet">
+<link href="./assets/92cb504e/style.css" rel="stylesheet">
+<script src="./assets/ca92148c/jquery.js"></script>
+<script src="./assets/e9b0d905/js/bootstrap.js"></script>
+<script src="./assets/56a1af5e/jssearch.js"></script>    <title>Anexos - Anexos - Guía del proyecto</title>
+</head>
+<body>
+
+<div class="wrap">
+    <nav id="w130" class="navbar-inverse navbar-fixed-top navbar"><div class="navbar-header"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#w130-collapse"><span class="sr-only">Toggle navigation</span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span></button><a class="navbar-brand" href="./index.html">Guía del proyecto</a></div><div id="w130-collapse" class="collapse navbar-collapse"><ul id="w131" class="navbar-nav nav"><li><a href="./api/index.html">Class reference</a></li>
+<li><a href="./README.html">Guide</a></li></ul><div class="navbar-form navbar-left" role="search">
+  <div class="form-group">
+    <input id="searchbox" type="text" class="form-control" placeholder="Search">
+  </div>
+</div>
+</div></nav>
+    <div id="search-resultbox" style="display: none;" class="modal-content">
+        <ul id="search-results">
+        </ul>
+    </div>
+
+    
+<div class="row">
+    <div class="col-md-2">
+                <div id="navigation" class="list-group"><a class="list-group-item" href="#navigation-120" data-toggle="collapse" data-parent="#navigation">Descripción general <b class="caret"></b></a><div id="navigation-120" class="submenu panel-collapse collapse"><a class="list-group-item" href="./descripcion.html#funcionalidad-principal-de-la-aplicacion">Funcionalidad principal de la aplicación</a>
+<a class="list-group-item" href="./descripcion.html#objetivos-generales">Objetivos generales</a>
+<a class="list-group-item" href="./descripcion.html#url-del-repositorio">URL del repositorio</a>
+<a class="list-group-item" href="./descripcion.html#url-de-la-documentacion">URL de la documentación</a></div>
+<a class="list-group-item" href="#navigation-121" data-toggle="collapse" data-parent="#navigation">Instrucciones de instalación y despliegue <b class="caret"></b></a><div id="navigation-121" class="submenu panel-collapse collapse"><a class="list-group-item" href="./instalacion.html#en-local">En local</a>
+<a class="list-group-item" href="./instalacion.html#en-la-nube">En la nube</a></div>
+<a class="list-group-item" href="#navigation-122" data-toggle="collapse" data-parent="#navigation">Catálogo de requisitos <b class="caret"></b></a><div id="navigation-122" class="submenu panel-collapse collapse"><a class="list-group-item" href="./requisitos.html#cuadro-resumen">Cuadro resumen</a></div>
+<a class="list-group-item" href="#navigation-123" data-toggle="collapse" data-parent="#navigation">Manual de usuario <b class="caret"></b></a><div id="navigation-123" class="submenu panel-collapse collapse"><a class="list-group-item" href="./manual.html">Manual de usuario</a></div>
+<a class="list-group-item" href="#navigation-124" data-toggle="collapse" data-parent="#navigation">Decisiones adoptadas <b class="caret"></b></a><div id="navigation-124" class="submenu panel-collapse collapse"><a class="list-group-item" href="./decisiones.html">Decisiones adoptadas</a></div>
+<a class="list-group-item" href="#navigation-125" data-toggle="collapse" data-parent="#navigation">Dificultades encontradas <b class="caret"></b></a><div id="navigation-125" class="submenu panel-collapse collapse"><a class="list-group-item" href="./dificultades.html">Dificultades encontradas</a></div>
+<a class="list-group-item" href="#navigation-126" data-toggle="collapse" data-parent="#navigation">Diagramas <b class="caret"></b></a><div id="navigation-126" class="submenu panel-collapse collapse"><a class="list-group-item" href="./diagramas.html#diagramas-de-clases">Diagramas de clases</a>
+<a class="list-group-item" href="./diagramas.html#diagramas-de-estructura-logica-de-datos">Diagramas de estructura lógica de datos</a></div>
+<a class="list-group-item" href="#navigation-127" data-toggle="collapse" data-parent="#navigation">Glosario de términos <b class="caret"></b></a><div id="navigation-127" class="submenu panel-collapse collapse"><a class="list-group-item" href="./glosario.html">Glosario de términos</a></div>
+<a class="list-group-item" href="#navigation-128" data-toggle="collapse" data-parent="#navigation">Conclusiones <b class="caret"></b></a><div id="navigation-128" class="submenu panel-collapse collapse"><a class="list-group-item" href="./conclusiones.html">Conclusiones</a></div>
+<a class="list-group-item active" href="#navigation-129" data-toggle="collapse" data-parent="#navigation">Anexos <b class="caret"></b></a><div id="navigation-129" class="submenu panel-collapse collapse in"><a class="list-group-item active" href="./anexos.html">Anexos</a></div></div>    </div>
+    <div class="col-md-9 guide-content" role="main">
+        <h1>Anexos <span id="anexos"></span><a href="#anexos" class="hashlink">&para;</a></h1>
+<div class="toc"><ol><li><a href="#r25-codeception">(R25) Codeception</a></li>
+<li><a href="#r26-code-climate">(R26) Code Climate</a></li>
+<li><a href="#r34-validacion-html5-css3-y-accesibilidad">(R34) Validación HTML5, CSS3 y accesibilidad</a></li>
+<li><a href="#r36-varios-navegadores">(R36) Varios navegadores</a></li>
+<li><a href="#r38-despliegue-en-servidor-local">(R38) Despliegue en servidor local</a></li></ol></div>
+<h2><strong>(<a href="https://github.com/alonsorgr/venenciame/issues/56">R25</a>) Codeception</strong> <span id="r25-codeception"></span><a href="#r25-codeception" class="hashlink">&para;</a></h2><p><img src="images/codeception.png" alt="Tests" /></p>
+<h2><strong>(<a href="https://github.com/alonsorgr/venenciame/issues/57">R26</a>) Code Climate</strong> <span id="r26-code-climate"></span><a href="#r26-code-climate" class="hashlink">&para;</a></h2><p><img src="images/code-climate.png" alt="Tests" /></p>
+<h2><strong>(<a href="https://github.com/alonsorgr/venenciame/issues/65">R34</a>) Validación HTML5, CSS3 y accesibilidad</strong> <span id="r34-validacion-html5-css3-y-accesibilidad"></span><a href="#r34-validacion-html5-css3-y-accesibilidad" class="hashlink">&para;</a></h2><h3>Validación accesibilidad AA <span id="validacion-accesibilidad-aa"></span><a href="#validacion-accesibilidad-aa" class="hashlink">&para;</a></h3><p><img src="images/validacion-aa.png" alt="Diagrama Clases" /></p>
+<h3>Validación HTML <span id="validacion-html"></span><a href="#validacion-html" class="hashlink">&para;</a></h3><p><img src="images/validacion-html.png" alt="Diagrama Clases" /></p>
+<h3>Valicadión CSS <span id="valicadion-css"></span><a href="#valicadion-css" class="hashlink">&para;</a></h3><p><img src="images/validacion-css.png" alt="Diagrama Clases" /></p>
+<h2><strong>(<a href="https://github.com/alonsorgr/venenciame/issues/67">R36</a>) Varios navegadores</strong> <span id="r36-varios-navegadores"></span><a href="#r36-varios-navegadores" class="hashlink">&para;</a></h2><h3>Google Chrome <span id="google-chrome"></span><a href="#google-chrome" class="hashlink">&para;</a></h3><p><img src="images/chrome.png" alt="Diagrama Clases" /></p>
+<h3>Mozilla Firefox <span id="mozilla-firefox"></span><a href="#mozilla-firefox" class="hashlink">&para;</a></h3><p><img src="images/firefox.png" alt="Diagrama Clases" /></p>
+<h3>Opera <span id="opera"></span><a href="#opera" class="hashlink">&para;</a></h3><p><img src="images/opera.png" alt="Diagrama Clases" /></p>
+<h3>Microsoft Edge <span id="microsoft-edge"></span><a href="#microsoft-edge" class="hashlink">&para;</a></h3><p><img src="images/edge.png" alt="Diagrama Clases" /></p>
+<h3>Prueba del seis <span id="prueba-del-seis"></span><a href="#prueba-del-seis" class="hashlink">&para;</a></h3><ol>
+<li><p>¿Qué sitio es éste?</p>
+<ul>
+<li>En todo momento que el usuario navegue por la aplicación, podrá saber en qué sitio web se encuentra por el logo que siempre está presente en la barra de navegación.</li>
+</ul>
+</li>
+<li><p>¿En qué página estoy?</p>
+<ul>
+<li>En todo momento sabremos en qué página estamos gracias al componente de migas de pan.</li>
+</ul>
+</li>
+<li><p>¿Cuáles son las principales secciones del sitio?</p>
+<ul>
+<li><strong>Página de inicio</strong>: es la página principal de la aplicación.</li>
+<li><strong>Pagina de artículos</strong>: es la página donde podremos navegar entre los distintos artículos en venta.</li>
+<li><strong>Pagina de socios</strong>: es la página donde se encuentra la información de los vendedores y sus productos en venta.</li>
+<li><strong>Pagina de administración de socios</strong>: es la página donde los socios podrán administrar sus artículos y ventas.</li>
+<li><strong>Pagina de administración</strong>: es la página donde los administradores de la aplicación podrán administrar el sitio web.</li>
+<li><strong>Perfil de usuario</strong>: página que se accede a través de un menú en la barra de navegación y donde se encuentra toda la información e iteracciones del usuario en el sitio web.</li>
+</ul>
+</li>
+<li><p>¿Qué opciones tengo en este nivel?</p>
+<ul>
+<li>Tenemos la opción de filtrar artículos por tipo gracias al menú de categorías en la barra de navegación así como otro menú donde los usuarios podrán acceder a toda su información e iteracciones.
+ Finalmente, los socios y administradores del sitio web, podrán administrar respectivamente los artículos y el sitio web.</li>
+</ul>
+</li>
+<li><p>¿Dónde estoy en el esquema de las cosas?</p>
+<ul>
+<li>Gracias a las migas de pan, podremos saber en qué sitio estamos siempre dentro del esquema de las cosas.</li>
+</ul>
+</li>
+<li><p>¿Cómo busco algo?</p>
+<ul>
+<li>En la sección de artículos, hay un buscador con diferentes filtros para poder buscar cualquier artículo en el sitio web.</li>
+</ul>
+</li>
+</ol>
+<h2><strong>(<a href="https://github.com/alonsorgr/venenciame/issues/69">R38</a>) Despliegue en servidor local</strong> <span id="r38-despliegue-en-servidor-local"></span><a href="#r38-despliegue-en-servidor-local" class="hashlink">&para;</a></h2><h3>Configuración apache: <span id="configuracion-apache"></span><a href="#configuracion-apache" class="hashlink">&para;</a></h3><p><img src="images/despliegue/apache-config.png" alt="Diagrama Clases" /></p>
+<h3>Activar SSL <span id="activar-ssl"></span><a href="#activar-ssl" class="hashlink">&para;</a></h3><p><code>`$ sudo a2enmod ssl</code>`</p>
+<p><code>`$ sudo a2ensite default-ssl</code>`</p>
+<p><code>`$ sudo openssl genrsa -des3 -out server.key 2048</code>`</p>
+<p><code>` sudo openssl req -new -key server.key -out server.csr</code>`</p>
+<p><code>`$ sudo openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.crt</code>`</p>
+<p><code>`$ sudo cp server.crt /etc/ssl/certs/</code>`</p>
+<p><code>`$ sudo cp server.key /etc/ssl/private/</code>`</p>
+<p><code>`$ sudo service apache2 restart</code>`</p>
+<h3>Configuración de Red: <span id="configuracion-de-red"></span><a href="#configuracion-de-red" class="hashlink">&para;</a></h3><p><img src="images/despliegue/red.png" alt="Diagrama Clases" /></p>
+<h3>Configuración DNS <span id="configuracion-dns"></span><a href="#configuracion-dns" class="hashlink">&para;</a></h3><p>named.conf.local</p>
+<p><img src="images/despliegue/dns-1.png" alt="Diagrama Clases" /></p>
+<p>db.venenciame.com</p>
+<p><img src="images/despliegue/dns-2.png" alt="Diagrama Clases" /></p>
+<h3>Test <span id="test"></span><a href="#test" class="hashlink">&para;</a></h3><p>![Diagrama Clases](images/despliegue/resultado
+.png)</p>
+        <div class="toplink"><a href="#" class="h1" title="go to top"><span class="glyphicon glyphicon-arrow-up"></a></div>
+    </div>
+</div>
+
+
+</div>
+
+<footer class="footer">
+        <p class="pull-right"><small>Page generated on Sat, 09 Jan 2021 17:11:02 +0000</small></p>
+    Powered by <a href="http://www.yiiframework.com/" rel="external">Yii Framework</a></footer>
+
+<script>jQuery(function ($) {
+    var shiftWindow = function () { scrollBy(0, -50) };
+    if (location.hash) setTimeout(shiftWindow, 1);
+    window.addEventListener("hashchange", shiftWindow);
+var element = document.createElement("script");
+element.src = "./jssearch.index.js";
+document.body.appendChild(element);
+
+var searchBox = $('#searchbox');
+
+// search when typing in search field
+searchBox.on("keyup", function(event) {
+    var query = $(this).val();
+
+    if (query == '' || event.which == 27) {
+        $('#search-resultbox').hide();
+        return;
+    } else if (event.which == 13) {
+        var selectedLink = $('#search-resultbox a.selected');
+        if (selectedLink.length != 0) {
+            document.location = selectedLink.attr('href');
+            return;
+        }
+    } else if (event.which == 38 || event.which == 40) {
+        $('#search-resultbox').show();
+
+        var selected = $('#search-resultbox a.selected');
+        if (selected.length == 0) {
+            $('#search-results').find('a').first().addClass('selected');
+        } else {
+            var next;
+            if (event.which == 40) {
+                next = selected.parent().next().find('a').first();
+            } else {
+                next = selected.parent().prev().find('a').first();
+            }
+            if (next.length != 0) {
+                var resultbox = $('#search-results');
+                var position = next.position();
+
+//              TODO scrolling is buggy and jumps around
+//                resultbox.scrollTop(Math.floor(position.top));
+//                console.log(position.top);
+
+                selected.removeClass('selected');
+                next.addClass('selected');
+            }
+        }
+
+        return;
+    }
+    $('#search-resultbox').show();
+    $('#search-results').html('<li><span class="no-results">No results</span></li>');
+
+    var result = jssearch.search(query);
+
+    if (result.length > 0) {
+        var i = 0;
+        var resHtml = '';
+
+        for (var key in result) {
+            if (i++ > 20) {
+                break;
+            }
+            resHtml = resHtml +
+            '<li><a href="' + result[key].file.u.substr(3) +'"><span class="title">' + result[key].file.t + '</span>' +
+            '<span class="description">' + result[key].file.d + '</span></a></li>';
+        }
+        $('#search-results').html(resHtml);
+    }
+});
+
+// hide the search results on ESC
+$(document).on("keyup", function(event) { if (event.which == 27) { $('#search-resultbox').hide(); } });
+// hide search results on click to document
+$(document).bind('click', function (e) { $('#search-resultbox').hide(); });
+// except the following:
+searchBox.bind('click', function(e) { e.stopPropagation(); });
+$('#search-resultbox').bind('click', function(e) { e.stopPropagation(); });
+
+});</script></body>
+</html>
