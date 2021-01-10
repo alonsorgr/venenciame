@@ -44,7 +44,7 @@ class Navigation
 
             static::item([
                 'id' => 'nav-articles',
-                'icon' => 'wine-glass-alt',
+                'icon' => 'fas fa-wine-glass',
                 'label' => Yii::t('app', 'Vinos'),
                 'url' => ['/articles/index'],
                 'title' => Yii::t('app', 'Todos los vinos'),
