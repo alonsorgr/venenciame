@@ -350,7 +350,7 @@ class Articles extends \yii\db\ActiveRecord
         $article = self::find()->where(['id' => Yii::$app->getRequest()->getQueryParam('id')]);
         $partner = Partners::find()->where(['id' => $article->one()->partner_id]);
         $user = User::findById($partner->one()->user->id);
-        return User::id() == $user;
+        return User::id() == $user->id;
     }
 
     /**
