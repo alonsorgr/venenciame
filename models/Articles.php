@@ -348,7 +348,7 @@ class Articles extends \yii\db\ActiveRecord
     public static function isOwner()
     {
         $model = Partners::find()->where(['user_id' => (int) (User::id())]);
-        $id = $model->exists() ? (int) ($model->one()->id) : (int) 0;
+        $id = $model->exists() ? (int) ($model->one()->id) : '';
         return self::find()->where(['partner_id' => $id])->exists();
     }
 
