@@ -73,11 +73,6 @@ use yii\helpers\Url;
                 </div>
             <?php else : ?>
                 <div class="col">
-                    <?= $form->field($model, 'partner_id')->hiddenInput([
-                        'value' => User::partnerId(),
-                    ])->label(false); ?>
-                </div>
-                <div class="col">
                     <?= $form->field($model, 'status_id')->hiddenInput([
                         'value' => Status::STATUS_INACTIVE,
                     ])->label(false); ?>
