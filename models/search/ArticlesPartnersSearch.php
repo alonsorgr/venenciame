@@ -75,7 +75,7 @@ class ArticlesPartnersSearch extends Articles
      */
     public function search($params)
     {
-        $query = Articles::find()->where(['status_id' => Status::STATUS_INACTIVE]);
+        $query = Articles::find()->where(['partner_id' => intval(Yii::$app->getRequest()->getQueryParam('id'))])->andWhere(['status_id' => Status::STATUS_INACTIVE]);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
