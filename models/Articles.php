@@ -347,9 +347,10 @@ class Articles extends \yii\db\ActiveRecord
      */
     public static function isOwner()
     {
-        $model = Partners::find()->where(['user_id' => User::id()]);
-        $id = $model->exists() ? $model->one()->id : '';
-        return self::find()->where(['partner_id' => $id])->exists();
+        $article = self::find()->where(['id' => Yii::$app->getRequest()->getQueryParam('id')]);
+        $partner = Partners::find()->where(['id' => $article->one()->partner_id]);
+        $user = User::findById($partner->one()->user->id);
+        return User::id() == $user;
     }
 
     /**
