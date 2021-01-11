@@ -59,7 +59,6 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </div>
     <?php if (User::isAdmin() || Articles::isOwner()) : ?>
-    <?= var_dump(Articles::isOwner())?>
         <div class="row">
             <div class="col mt-5">
                 <?= Bootstrap::header(Yii::t('app', 'Administrar')); ?>
