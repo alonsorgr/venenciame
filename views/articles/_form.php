@@ -77,12 +77,13 @@ use yii\helpers\Url;
                         'value' => Status::STATUS_INACTIVE,
                     ])->label(false); ?>
                 </div>
+                <div class="col">
+                    <?= $form->field($model, 'partner_id')->hiddenInput([
+                        'value' => User::partnerId(),
+                    ])->label(false); ?>
+                </div>
             <?php endif ?>
-            <div class="col">
-                <?= $form->field($model, 'partner_id')->hiddenInput([
-                    'value' => User::partnerId(),
-                ])->label(false); ?>
-            </div>
+
 
             <div class="mb-4">
                 <?= $form->field($model, 'category_id')->widget(Select2::class, [

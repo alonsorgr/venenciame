@@ -11,7 +11,7 @@ $this->title = Yii::$app->name;
 <div class="site-index">
     <div class="row">
         <div class="col-12 text-center">
-            <div class="display-3"><?= Yii::t('app', 'Venénciame') ?></div>
+            <div class="display-4"><?= Yii::t('app', 'Venénciame') ?></div>
         </div>
         <div class="col-12 text-center">
             <div class="lead font-italic"><?= Yii::t('app', 'Vinos de las mejores bodegas del marco de Jeréz') ?></div>

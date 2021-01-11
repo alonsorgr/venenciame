@@ -27,7 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ]); ?>
         </div>
     </div>
-    <div class="row">
+    <div class="row mb-3">
         <div class="col">
             <?php
             $items[] = Bootstrap::tabItem([
